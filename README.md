@@ -4,11 +4,8 @@
 
 <div align="center">
   <h3>
-    <a href="https://website-car-next.vercel.app/">
+    <a href="">
       Demo
-    </a>
-    <a href="https://github.com/jean-carlos-19/websit-car-next">
-      Github
     </a>
   </h3>
 </div>
