@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+ --foreground-rgb: 0, 0, 0;
+ --background-start-rgb: 214, 219, 220;
+ --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+ :root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+ }
+}
+body {
+ background-color: rgb(226, 232, 240);
+}
+
+.colorTitleForm {
+ @apply text-slate-600 text-2xl font-semibold text-center;
+}
+.backgroundForm {
+ @apply bg-gray-50;
+}
+.backgroundField {
+ @apply flex flex-col space-y-2 rounded-lg;
+}
+.backgroundField {
+ @apply flex flex-col space-y-2 rounded-lg;
+}
+.label {
+ @apply text-slate-500 font-semibold text-xl;
+}
+.input {
+ @apply bg-white text-xl border-2 text-slate-500 p-2 rounded-lg;
+}
+.inputButtonEnable {
+ @apply text-slate-100 font-semibold text-xl;
+}
+.backgroundSelect {
+ @apply w-full flex flex-row justify-between items-center text-slate-500 font-semibold text-xl;
+}
+.inputSelectEnable {
+ @apply bg-slate-100  p-2 text-slate-500 font-semibold text-xl rounded-lg;
+}
+.buttonEnable {
+ @apply bg-rose-600  p-4 rounded-lg basis-full;
+}
+.buttonDisable {
+ @apply bg-slate-200 p-4 rounded-lg basis-full;
+}
+.inputButtonDisable {
+ @apply text-gray-500 font-semibold text-xl;
+}
+/* flex flex-col justify-start items-center */
+.flexColStartCenter {
+ @apply flex-1 flex flex-col justify-start items-center;
+}
+.flexRowStart {
+ @apply flex-1 flex flex-row justify-start items-stretch space-y-4;
+}
+.flexRowCenterStretch {
+ @apply flex-1 flex flex-row justify-stretch items-center space-y-4;
+}
+.flexRowBetween {
+ @apply flex-1 flex flex-row justify-between items-stretch space-x-4;
+}
+.flexColStart {
+ @apply flex-1 flex flex-col justify-start items-stretch space-y-4;
+}
+.flexColCenter {
+ @apply flex-1 flex flex-col justify-center items-center space-y-4;
+}
+.flexColCenterStretch {
+ @apply flex-1 flex flex-col justify-center items-stretch space-y-4;
+}
+.flexCenter {
+ @apply flex flex-row justify-center items-center space-x-4;
+}
+.windowSecundary {
+ @apply w-full h-screen absolute top-0 flexColCenter;
+}
+.loader {
+ width: 12px;
+ height: 12px;
+ border-radius: 50%;
+ display: block;
+ margin: 15px auto;
+ position: relative;
+ color: #fff;
+ box-sizing: border-box;
+ animation: animloader 1s linear infinite alternate;
+}
+
+@keyframes animloader {
+ 0% {
+  box-shadow:
+   -38px -12px,
+   -14px 0,
+   14px 0,
+   38px 0;
+ }
+ 33% {
+  box-shadow:
+   -38px 0px,
+   -14px -12px,
+   14px 0,
+   38px 0;
+ }
+ 66% {
+  box-shadow:
+   -38px 0px,
+   -14px 0,
+   14px -12px,
+   38px 0;
+ }
+ 100% {
+  box-shadow:
+   -38px 0,
+   -14px 0,
+   14px 0,
+   38px -12px;
+ }
+}
