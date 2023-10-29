@@ -2,6 +2,29 @@
   "name": "client-red-car",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "NextJs",
+    "Formik",
+    "Tailwind",
+    "Typescript",
+    "YupJs",
+    "Reapidapi",
+    "Headless"
+  ],
+  "homepage": "https://www.piguavesof.com",
+  "demo": "",
+  "author": {
+    "name": "Jean Carlos Piguave Alvarado",
+    "email": "piguavejc@gmail.com",
+    "url": "https://github.com/jean-carlos-19"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jean-carlos-19/nextjs-flexible.git"
+  },
+  "config": {
+    "port": "3000"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
