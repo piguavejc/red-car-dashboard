@@ -10,18 +10,16 @@ const CustomInput = (props: CustomInputProps) => {
      <span className="text-rose-600">{`${props.isRequeried && props.isRequeried ? '*' : ''}`}</span>
     </label>
    )}
-    <textarea 
-        rows={1}
-        id={props.id}
-        value={props.value === undefined ? '' : props.value}
-        disabled={props.isDisable}
-        className={props.stylyText}
-        onBlur={props.hanhandlerBlur}
-        onChange={props.handlerChange}
-        placeholder={props.placeholder}
-    >
-
-    </textarea>
+   <textarea
+    rows={1}
+    id={props.id}
+    value={props.value === undefined ? '' : props.value}
+    disabled={props.isDisable}
+    className={props.stylyText}
+    onBlur={props.hanhandlerBlur}
+    onChange={props.handlerChange}
+    placeholder={props.placeholder}
+   ></textarea>
    {/* <input
     type="text"
     id={props.id}

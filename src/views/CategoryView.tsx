@@ -3,7 +3,7 @@ import { CustomDialog, CustomLoading, CustomModal } from '@/atomic/designs';
 import { typesButton, typesForm, typesIcon } from '@/constants';
 import { validationCategory } from '@/validations';
 import { CustomButton } from '@/atomic/elements';
-import { useCategory, useSearch } from '@/hooks';
+import { useCategoryController, useSearch } from '@/hooks';
 import { validationSearch } from '@/validations';
 import { theme } from '@/atomic/theme';
 
@@ -22,23 +22,23 @@ const CategoryView = () => {
   dialog,
   category,
   isEnable,
+  isEdition,
   isLoading,
   categories,
   messageLoad,
   modalSetting,
-  isEdition,
   isLoadingSearch,
   disabledCategories,
-  handlerSave,
   handlerEdit,
-  handlerEdition,
-  handlerEnable,
-  handlerDisable,
-  handlerRefresAll,
-  handlerHiddeEnable,
-  handlerHiddeEdition,
-  handlerAppearEnable,
- } = useCategory(search);
+  handlerCreate,
+  handlerShowEdit,
+  handlerHiddeEdit,
+  handlerUpdateAll,
+  handlerOpenEnable,
+  handlerCloseEnable,
+  handlerActionEnable,
+  handlerActionDisable,
+ } = useCategoryController(search);
 
  /* Loading */
  if (isLoading) {
@@ -84,10 +84,10 @@ const CategoryView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEnable}
+     handlerPress={handlerCloseEnable}
     />
     <div className="w-[50%]">
-     <CustomList data={disabledCategories} handlerEnable={handlerEnable} isLoading={false} />
+     <CustomList data={disabledCategories} handlerEnable={handlerActionEnable} isLoading={false} />
     </div>
    </div>
   );
@@ -107,7 +107,7 @@ const CategoryView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEdition}
+     handlerPress={handlerHiddeEdit}
     />
     <div className="w-[50%]">
      <CustomCategoryForm
@@ -122,17 +122,18 @@ const CategoryView = () => {
  }
 
  return (
-  <div className="flexRowStart">
+  <div className="overflow-scroll flexRowStart">
    {/* category form  */}
-   <div className="p-8 w-6/12">
+   <div className="flex-1 p-8 overflow-scroll">
     <CustomCategoryForm
      entity={category}
      type={typesForm.create}
-     handlerSubmit={handlerSave}
+     handlerSubmit={handlerCreate}
      validationSchema={validationCategory}
     />
    </div>
-   <div className="p-8 w-6/12 flexColStart">
+
+   <div className="flex-1 p-8 flexColStart">
     {/*header search */}
     <div className="flexCenter space-x-4">
      {/* button loading */}
@@ -140,7 +141,7 @@ const CategoryView = () => {
       stylyButton="bg-gray-100 p-2 rounded-lg"
       title={contentCategory.load}
       type={typesButton.icon}
-      handlerPress={handlerRefresAll}
+      handlerPress={handlerUpdateAll}
       icon={{
        type: typesIcon.refresh,
        color: theme.gray,
@@ -162,7 +163,7 @@ const CategoryView = () => {
       stylyText="text-xl font-semibold"
       text={'' + disabledCategories.length}
       type={typesButton.iconText}
-      handlerPress={handlerAppearEnable}
+      handlerPress={handlerOpenEnable}
       icon={{
        type: typesIcon.elimited,
        color: theme.red,
@@ -174,8 +175,8 @@ const CategoryView = () => {
     {/* categories list  */}
     <CustomList
      data={categories}
-     handlerDelete={handlerDisable}
-     handlerEdit={handlerEdition}
+     handlerDelete={handlerActionDisable}
+     handlerEdit={handlerShowEdit}
      isLoading={isLoadingSearch}
     />
    </div>

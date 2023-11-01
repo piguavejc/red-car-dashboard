@@ -33,7 +33,7 @@ const CustomPhoto = (props: CustomPhotoProps) => {
     title={props.title}
     alt={props.title}
     width={isLoading ? 0 : props.width}
-    height={ isLoading ? 0 : props.height}
+    height={isLoading ? 0 : props.height}
     onLoad={() => setIsLoading(false)}
    />
   </figure>

@@ -3,11 +3,9 @@ import { CustomButton } from '@/atomic/elements';
 import { CustomList, CustomSearch, CustomProductForm } from '@/atomic/components';
 import { CustomModal, CustomDialog, CustomLoading } from '@/atomic/designs';
 import { typesButton, typesForm, typesIcon } from '@/constants';
-import { useProduct } from '../hooks/useProduct';
-import { useSearch } from '../hooks/useSearch';
+import { useProductController, useSearch, useLaboratoryController } from '@/hooks';
 import { validationCategory, validationProduct, validationSearch } from '@/validations';
 import { theme } from '@/atomic/theme';
-import { useLaboratory } from '../hooks/useLaboratory';
 
 const contentProduct = Object.freeze({
  eliminate: 'Ver productos eliminados',
@@ -31,17 +29,17 @@ const ProductView = () => {
   modalSetting,
   isLoadingSearch,
   disabledProducts,
-  handlerSave,
   handlerEdit,
-  handlerEnable,
-  handlerEdition,
-  handlerDisable,
-  handlerRefresAll,
-  handlerHiddeEnable,
-  handlerHiddeEdition,
-  handlerAppearEnable,
- } = useProduct(search);
- const { laboratories } = useLaboratory();
+  handlerCreate,
+  handlerShowEdit,
+  handlerHiddeEdit,
+  handlerUpdateAll,
+  handlerOpenEnable,
+  handlerCloseEnable,
+  handlerActionEnable,
+  handlerActionDisable,
+ } = useProductController(search);
+ const { laboratories } = useLaboratoryController();
 
  /* Loading */
  if (isLoading) {
@@ -89,10 +87,14 @@ const ProductView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEnable}
+     handlerPress={handlerCloseEnable}
     />
     <div className="w-[50%]">
-     <CustomList data={disabledProducts} handlerEnable={handlerEnable} isLoading={false} />
+     <CustomList
+      data={disabledProducts}
+      handlerEnable={handlerActionEnable}
+      isLoading={isLoadingSearch}
+     />
     </div>
    </div>
   );
@@ -112,7 +114,7 @@ const ProductView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEdition}
+     handlerPress={handlerHiddeEdit}
     />
     <div className="w-[50%]]">
      <CustomProductForm
@@ -127,24 +129,25 @@ const ProductView = () => {
  }
 
  return (
-  <div className="flexRowStart">
-   <div className="p-4 basis-6/12">
+  <div className="overflow-scroll flexRowStart">
+   {/* product form */}
+   <div className="flex-1 p-8 overflow-scroll">
     <CustomProductForm
      entity={product}
      type={typesForm.create}
-     handlerSubmit={handlerSave}
+     handlerSubmit={handlerCreate}
      validationSchema={validationCategory}
     />
    </div>
 
-   <div className="p-4 w-[50%] flexColStart">
-    <div className="flex flex-row justify-start items-center space-x-4 overflow-scroll pb-2"></div>
-    <div className="flexCenter">
+   <div className="flex-1 p-8 flexColStart">
+    {/* header Search */}
+    <div className="flexCenter space-x-4">
      <CustomButton
       stylyButton="bg-gray-100 p-2 rounded-lg"
       title={contentProduct.load}
       type={typesButton.icon}
-      handlerPress={handlerRefresAll}
+      handlerPress={handlerUpdateAll}
       icon={{
        type: typesIcon.refresh,
        color: theme.gray,
@@ -164,7 +167,7 @@ const ProductView = () => {
       stylyText="text-xl font-semibold"
       text={'' + disabledProducts.length}
       type={typesButton.iconText}
-      handlerPress={handlerAppearEnable}
+      handlerPress={handlerOpenEnable}
       icon={{
        type: typesIcon.elimited,
        color: theme.red,
@@ -173,11 +176,12 @@ const ProductView = () => {
       }}
      />
     </div>
+    {/* products list */}
     <CustomList
      data={products}
-     handlerDelete={handlerDisable}
+     handlerDelete={handlerActionDisable}
      isLoading={isLoadingSearch}
-     handlerEdit={handlerEdition}
+     handlerEdit={handlerShowEdit}
     />
    </div>
   </div>

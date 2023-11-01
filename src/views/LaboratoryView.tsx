@@ -2,7 +2,7 @@ import { CustomLaboratoryForm, CustomList, CustomSearch } from '@/atomic/compone
 import { CustomDialog, CustomLoading, CustomModal } from '@/atomic/designs';
 import { validationLaboratory, validationSearch } from '@/validations';
 import { typesButton, typesForm, typesIcon } from '@/constants';
-import { useLaboratory, useSearch } from '@/hooks';
+import { useLaboratoryController, useSearch } from '@/hooks';
 import { CustomButton } from '@/atomic/elements';
 import { theme } from '@/atomic/theme';
 
@@ -28,16 +28,16 @@ const LaboratoryView = () => {
   modalSetting,
   isLoadingSearch,
   disabledLaboratories,
-  handlerSave,
   handlerEdit,
-  handlerEnable,
-  handlerDisable,
-  handlerEdition,
-  handlerRefresAll,
-  handlerHiddeEnable,
-  handlerHiddeEdition,
-  handlerAppearEnable,
- } = useLaboratory(search);
+  handlerCreate,
+  handlerShowEdit,
+  handlerHiddeEdit,
+  handlerUpdateAll,
+  handlerOpenEnable,
+  handlerCloseEnable,
+  handlerActionEnable,
+  handlerActionDisable,
+ } = useLaboratoryController(search);
 
  /* Loading */
  if (isLoading) {
@@ -85,7 +85,7 @@ const LaboratoryView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEdition}
+     handlerPress={handlerHiddeEdit}
     />
     <div className="w-[50%]">
      <CustomLaboratoryForm
@@ -113,73 +113,77 @@ const LaboratoryView = () => {
       color: theme.gray,
       size: 50,
      }}
-     handlerPress={handlerHiddeEnable}
+     handlerPress={handlerCloseEnable}
     />
     <div className="w-[50%]">
-     <CustomList data={disabledLaboratories} handlerEnable={handlerEnable} isLoading={false} />
+     <CustomList
+      data={disabledLaboratories}
+      handlerEnable={handlerActionEnable}
+      isLoading={false}
+     />
     </div>
    </div>
   );
  }
 
  return (
-  <div className="flexRowStart">
+  <div className="overflow-scroll flexRowStart">
    {/* laboratory form  */}
-   <div className="p-8 w-6/12">
+   <div className="flex-1 p-8 overflow-scroll">
     <CustomLaboratoryForm
      entity={laboratory}
      type={typesForm.create}
-     handlerSubmit={handlerSave}
+     handlerSubmit={handlerCreate}
      validationSchema={validationLaboratory}
     />
    </div>
-   <div className="w-6/12">
-    <div className="p-8 flexColStart ">
-     <div className="flexRowBetween">
-      {/* button loading */}
-      <CustomButton
-       title={contentLaboratory.load}
-       stylyButton="bg-gray-100 p-2 rounded-lg"
-       type={typesButton.icon}
-       icon={{
-        type: typesIcon.refresh,
-        color: theme.gray,
-        size: 35,
-        strokeWidth: 1,
-       }}
-       handlerPress={handlerRefresAll}
-      />
-      {/*search form*/}
-      <CustomSearch
-       placeholder={contentLaboratory.search.placeholder}
-       entity={search}
-       handlerSubmit={hanlderSearch}
-       validationSchema={validationSearch}
-      />
-      {/*button show laboratories eliminated*/}
-      <CustomButton
-       title={contentLaboratory.eliminate}
-       stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
-       stylyText="text-xl font-semibold"
-       text={'' + disabledLaboratories.length}
-       type={typesButton.iconText}
-       handlerPress={handlerAppearEnable}
-       icon={{
-        type: typesIcon.elimited,
-        color: theme.red,
-        size: 35,
-        strokeWidth: 1,
-       }}
-      />
-     </div>
-     {/*laboratories list*/}
-     <CustomList
-      data={laboratories}
-      handlerEdit={handlerEdition}
-      handlerDelete={handlerDisable}
-      isLoading={isLoadingSearch}
+
+   <div className="flex-1 p-8 flexColStart ">
+    {/* header Search */}
+    <div className="flexCenter space-x-4">
+     {/* button loading */}
+     <CustomButton
+      title={contentLaboratory.load}
+      stylyButton="bg-gray-100 p-2 rounded-lg"
+      type={typesButton.icon}
+      icon={{
+       type: typesIcon.refresh,
+       color: theme.gray,
+       size: 35,
+       strokeWidth: 1,
+      }}
+      handlerPress={handlerUpdateAll}
+     />
+     {/*search form*/}
+     <CustomSearch
+      placeholder={contentLaboratory.search.placeholder}
+      entity={search}
+      handlerSubmit={hanlderSearch}
+      validationSchema={validationSearch}
+     />
+     {/*button show laboratories eliminated*/}
+     <CustomButton
+      title={contentLaboratory.eliminate}
+      stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
+      stylyText="text-xl font-semibold"
+      text={'' + disabledLaboratories.length}
+      type={typesButton.iconText}
+      handlerPress={handlerOpenEnable}
+      icon={{
+       type: typesIcon.elimited,
+       color: theme.red,
+       size: 35,
+       strokeWidth: 1,
+      }}
      />
     </div>
+    {/*laboratories list*/}
+    <CustomList
+     data={laboratories}
+     handlerEdit={handlerShowEdit}
+     handlerDelete={handlerActionDisable}
+     isLoading={isLoadingSearch}
+    />
    </div>
   </div>
  );

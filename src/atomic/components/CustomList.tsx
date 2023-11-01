@@ -37,7 +37,7 @@ const CustomList = (props: CustomListProps) => {
  if (props.data.length <= 0)
   return (
    <CustomPhoto
-    className="h-[73vh] bg-white px-4 py-8 flex flex-col justify-center items-center rounded-lg"
+    className="flex-1 odd:bg-white px-4 py-8 flex flex-col justify-center items-center rounded-lg"
     title={''}
     src={images.empty.src.src}
     width={500}
@@ -45,7 +45,7 @@ const CustomList = (props: CustomListProps) => {
    />
   );
  return (
-  <ul className="h-[73vh] bg-white px-4 py-8 space-y-4 rounded-lg  overflow-scroll">
+  <ul className="flex-1 bg-white px-4 py-8 space-y-4 rounded-lg  overflow-scroll">
    {props.data.map((item, i) => (
     <li
      key={i}
