@@ -6,6 +6,11 @@ import { usePhoto } from '@/hooks';
 import Image from 'next/image';
 import React from 'react';
 
+const content = Object.freeze({
+ load: 'Espere mientras se carga los datos...',
+ empty: 'No existen proyectos aun',
+});
+
 const CustomList = (props: CustomListProps) => {
  const { isOpen, photo, handlerHidde, handlerImage } = usePhoto();
  if (isOpen)
@@ -26,23 +31,27 @@ const CustomList = (props: CustomListProps) => {
     <CustomPhoto title={''} src={photo!} width={200} height={200} />
    </figure>
   );
+ /* is loading */
  if (props.isLoading)
   return (
    <div className="flexColCenter bg-white px-4 py-8  rounded-lg">
-    <p className="font-semibold text-xl text-slate-600">Espere mientras se carga la busqueda...</p>
+    <p className="font-semibold text-xl text-slate-600">{content.load}</p>
     <Image src={images.redCar.src} width={200} height={200} alt="" />
    </div>
   );
  /* it is empty */
  if (props.data.length <= 0)
   return (
-   <CustomPhoto
-    className="flex-1 odd:bg-white px-4 py-8 flex flex-col justify-center items-center rounded-lg"
-    title={''}
-    src={images.empty.src.src}
-    width={500}
-    height={500}
-   />
+   <div className="flex-1 flex flex-col justify-center items-center bg-slate-300 px-4 py-8  rounded-lg space-y-4">
+    <CustomPhoto
+     className="flex-1"
+     title={''}
+     src={images.empty.src.src}
+     width={500}
+     height={500}
+    />
+    <p className="text-2xl font-semibold text-slate-100"> {content.empty} </p>
+   </div>
   );
  return (
   <ul className="flex-1 bg-white px-4 py-8 space-y-4 rounded-lg  overflow-scroll">

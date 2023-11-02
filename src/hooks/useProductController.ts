@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ProductModel } from '@/mvc/models';
 import { useDialog, useModal } from '.';
-import { Item, Message, Search, resposeApi } from '@/types';
-import { statusLoad } from '../constants/loading.const';
-import { messageDialog, statusDialog, typesAction, typesStatusDialog } from '@/constants';
+import { Item, Search } from '@/types';
+import { messageDialog, statusDialog, typesAction } from '@/constants';
 import { useProduct } from './useProduct';
 
 const useProductController = (searchTarget: Search) => {
  const { edit, find, create, enable, search, disable, listEnableds, listDisableds, existError } =
   useProduct();
- const [response, setResponse] = useState<resposeApi>();
- const [messageLoad, setMessageLoad] = useState<Message>();
  const [isLoading, setIsLoading] = useState<boolean>(false);
  const [product, setProduct] = useState<ProductModel>({
   idproduct: undefined,
@@ -44,7 +41,7 @@ const useProductController = (searchTarget: Search) => {
  } = useDialog();
 
  useEffect(() => {
-  search(searchTarget);
+  handlerSearch(searchTarget);
  }, [searchTarget.search]);
 
  useEffect(() => {
@@ -85,14 +82,25 @@ const useProductController = (searchTarget: Search) => {
  };
  const handlerHiddeEdit = () => {
   setEdition(!isEdition);
-  handlerUpdateAll();
+  setProduct({
+   idproduct: undefined,
+   photo: undefined,
+   category: undefined,
+   laboratory: undefined,
+   barcode: undefined,
+   product: undefined,
+   features: undefined,
+   summary: undefined,
+   dosage: undefined,
+   cost: undefined,
+   pvp: undefined,
+  });
  };
 
  /* ------------------------------------------------------------------------------------------------------- */
  /* create */
  const handlerCreate = async (values: ProductModel) => {
   setIsLoading(true);
-  setMessageLoad(statusLoad.product.create);
   const rs = await create(values);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   setIsLoading(false);
@@ -101,31 +109,25 @@ const useProductController = (searchTarget: Search) => {
  /* edit */
  const handlerEdit = async (values: ProductModel) => {
   setIsLoading(true);
-  setMessageLoad(statusLoad.product.edit);
-
   const rs = await edit(values);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   setIsLoading(false);
   handlerUpdateAll();
+  handlerHiddeEdit();
  };
 
  /* enable */
  const handlerEnable = async (idProduct: number, product: string) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.product.enable);
   const rs = await enable(idProduct, product);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  setIsLoading(false);
+  handlerHidde();
   handlerUpdateAll();
  };
  /* disable */
  const handlerDisable = async (idProduct: number, product: string) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.product.disable);
   const rs = await disable(idProduct, product);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-
-  setIsLoading(false);
+  handlerHidde();
   handlerUpdateAll();
  };
  /* search all */
@@ -171,6 +173,7 @@ const useProductController = (searchTarget: Search) => {
 
  /* show all disable */
  const handlerListDisableds = async () => {
+  setIsLoadingSearch(true);
   const rs = await listDisableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
@@ -180,9 +183,11 @@ const useProductController = (searchTarget: Search) => {
    }));
    setDisabledProducts(data);
   }
+  setIsLoadingSearch(false);
  };
  /* show all enable */
  const handlerListEnableds = async () => {
+  setIsLoadingSearch(true);
   const rs = await listEnableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
@@ -192,6 +197,7 @@ const useProductController = (searchTarget: Search) => {
    }));
    setProducts(data);
   }
+  setIsLoadingSearch(false);
  };
  /* eliminating a category */
  if (decisition && type === typesAction.eliminate && target?.id && target?.name) {
@@ -217,7 +223,7 @@ const useProductController = (searchTarget: Search) => {
   isEnable,
   isEdition,
   isLoading,
-  messageLoad,
+  existError,
   modalSetting,
   isLoadingSearch,
   disabledProducts,

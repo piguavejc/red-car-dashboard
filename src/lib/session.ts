@@ -11,23 +11,6 @@ const authOptions: NextAuthOptions = {
    clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
   }),
  ],
- jwt: {
-  encode: ({ secret, token }) => {
-   const endcodedToken = jsonwebtoken.sign(
-    {
-     ...token,
-     iss: 'grafbase',
-     exp: Math.floor(Date.now() / 1000 + 60 * 60),
-    },
-    secret,
-   );
-   return endcodedToken;
-  },
-  decode: async ({ secret, token }) => {
-   const decodeToken = jsonwebtoken.verify(token!, secret);
-   return decodeToken as JWT;
-  },
- },
  callbacks: {
   async session({ session }) {
    return session;

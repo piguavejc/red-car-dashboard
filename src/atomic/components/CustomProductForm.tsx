@@ -4,10 +4,11 @@ import { CustomProductFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { ProductModel } from '@/mvc/models';
 import { typesButton, typesForm } from '@/constants';
-import { useProgressBar, useCategory, useLaboratory } from '@/hooks';
+import { useProgressBar, useCategoryController, useLaboratoryController } from '@/hooks';
 import { CustomProgressBar, CustomSelect } from '.';
+import { Oval } from 'react-loader-spinner';
 
-const contentProductForm = Object.freeze({
+const content = Object.freeze({
  edit: {
   title: 'Edita un producto',
  },
@@ -73,14 +74,36 @@ const contentProductForm = Object.freeze({
   },
   secundary: 'Limpiar el formulario',
  },
+ load: 'Espere mientras se guardan los datos',
 });
 
 const CustomProductForm = (props: CustomProductFormProps) => {
  const { type } = props;
  const { items, position, handlerPosition } = useProgressBar(4);
 
- const { categories } = useCategory();
- const { laboratories } = useLaboratory();
+ const { categories } = useCategoryController();
+ const { laboratories } = useLaboratoryController();
+
+ if (props.isLoading) {
+  return (
+   <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+    <Oval
+     height={80}
+     width={80}
+     color="gray"
+     wrapperStyle={{}}
+     wrapperClass=""
+     visible={true}
+     ariaLabel="oval-loading"
+     secondaryColor="#666"
+     strokeWidth={5}
+     strokeWidthSecondary={5}
+    />
+    <p className="text-2xl font-semibold text-slate-100"> {content.load} </p>
+   </div>
+  );
+ }
+
  return (
   <Formik
    enableReinitialize={true}
@@ -97,9 +120,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
       <CustomProgressBar items={items} handlerItem={handlerPosition} posiition={position} />
       <header>
        <h2 className="colorTitleForm">
-        {type === typesForm.create
-         ? contentProductForm.create.title
-         : contentProductForm.edit.title}{' '}
+        {type === typesForm.create ? content.create.title : content.edit.title}{' '}
        </h2>
       </header>
       {position === 0 && (
@@ -107,35 +128,35 @@ const CustomProductForm = (props: CustomProductFormProps) => {
         <CustomSelect
          stylyLabel={'label'}
          stylySelect={'inputSelectEnable'}
-         label={contentProductForm.category.label}
+         label={content.category.label}
          value={props.values.category}
          data={categories}
-         id={contentProductForm.category.id}
+         id={content.category.id}
          handlerChange={(value) => {
-          props.setFieldValue(contentProductForm.category.id, value);
+          props.setFieldValue(content.category.id, value);
          }}
          isRequeried
         />
         <CustomSelect
          stylyLabel={'label'}
          stylySelect={'inputSelectEnable'}
-         label={contentProductForm.laboratory.label}
+         label={content.laboratory.label}
          value={props.values.laboratory}
          data={laboratories}
-         id={contentProductForm.laboratory.id}
+         id={content.laboratory.id}
          handlerChange={(value) => {
-          props.setFieldValue(contentProductForm.laboratory.id, value);
+          props.setFieldValue(content.laboratory.id, value);
          }}
          isRequeried
         />
         <CustomInput
-         id={contentProductForm.product.id}
+         id={content.product.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.product.label}
-         placeholder={contentProductForm.product.placeholder}
+         label={content.product.label}
+         placeholder={content.product.placeholder}
          value={props.values.product}
          handlerChange={props.handleChange('product')}
          hanhandlerBlur={props.handleBlur('product')}
@@ -158,13 +179,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
       {position === 1 && (
        <>
         <CustomInput
-         id={contentProductForm.barcode.id}
+         id={content.barcode.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.barcode.label}
-         placeholder={contentProductForm.barcode.placeholder}
+         label={content.barcode.label}
+         placeholder={content.barcode.placeholder}
          value={props.values.barcode}
          handlerChange={props.handleChange('barcode')}
          hanhandlerBlur={props.handleBlur('barcode')}
@@ -172,13 +193,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          messageError={props.errors.barcode}
         />
         <CustomInput
-         id={contentProductForm.features.id}
+         id={content.features.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.features.label}
-         placeholder={contentProductForm.features.placeholder}
+         label={content.features.label}
+         placeholder={content.features.placeholder}
          value={props.values.features}
          handlerChange={props.handleChange('features')}
          hanhandlerBlur={props.handleBlur('features')}
@@ -187,13 +208,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          isRequeried
         />
         <CustomInput
-         id={contentProductForm.summary.id}
+         id={content.summary.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.summary.label}
-         placeholder={contentProductForm.summary.placeholder}
+         label={content.summary.label}
+         placeholder={content.summary.placeholder}
          value={props.values.summary}
          handlerChange={props.handleChange('summary')}
          hanhandlerBlur={props.handleBlur('summary')}
@@ -216,13 +237,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
       {position === 2 && (
        <>
         <CustomInput
-         id={contentProductForm.dosage.id}
+         id={content.dosage.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.dosage.label}
-         placeholder={contentProductForm.dosage.placeholder}
+         label={content.dosage.label}
+         placeholder={content.dosage.placeholder}
          value={props.values.dosage}
          handlerChange={props.handleChange('dosage')}
          hanhandlerBlur={props.handleBlur('dosage')}
@@ -231,13 +252,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          isRequeried
         />
         <CustomInput
-         id={contentProductForm.cost.id}
+         id={content.cost.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.cost.label}
-         placeholder={contentProductForm.cost.placeholder}
+         label={content.cost.label}
+         placeholder={content.cost.placeholder}
          value={props.values.cost}
          handlerChange={props.handleChange('cost')}
          hanhandlerBlur={props.handleBlur('cost')}
@@ -246,13 +267,13 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          isRequeried
         />
         <CustomInput
-         id={contentProductForm.pvp.id}
+         id={content.pvp.id}
          className={'backgroundField'}
          styleLabel={'label'}
          stylyText={' input'}
          isDisable={false}
-         label={contentProductForm.pvp.label}
-         placeholder={contentProductForm.pvp.placeholder}
+         label={content.pvp.label}
+         placeholder={content.pvp.placeholder}
          value={props.values.pvp}
          handlerChange={props.handleChange('pvp')}
          hanhandlerBlur={props.handleBlur('pvp')}
@@ -289,14 +310,10 @@ const CustomProductForm = (props: CustomProductFormProps) => {
         <CustomButton
          type={typesButton.default}
          title={
-          type === typesForm.create
-           ? contentProductForm.button.create.primary
-           : contentProductForm.button.edit.primary
+          type === typesForm.create ? content.button.create.primary : content.button.edit.primary
          }
          text={
-          type === typesForm.create
-           ? contentProductForm.button.create.primary
-           : contentProductForm.button.edit.primary
+          type === typesForm.create ? content.button.create.primary : content.button.edit.primary
          }
          isDisable={!props.isValid}
          stylyButton={'buttonEnable'}

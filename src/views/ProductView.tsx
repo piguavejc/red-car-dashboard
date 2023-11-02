@@ -7,13 +7,14 @@ import { useProductController, useSearch, useLaboratoryController } from '@/hook
 import { validationCategory, validationProduct, validationSearch } from '@/validations';
 import { theme } from '@/atomic/theme';
 
-const contentProduct = Object.freeze({
+const content = Object.freeze({
  eliminate: 'Ver productos eliminados',
  close: 'Cerrar',
  load: 'Recargar la informacion',
  search: {
   placeholder: 'Buscar el producto',
  },
+ error: 'Ha ocurrido un error en el servidor, por favor recargue la pagina',
 });
 
 const ProductView = () => {
@@ -25,7 +26,7 @@ const ProductView = () => {
   isEnable,
   isEdition,
   isLoading,
-  messageLoad,
+  existError,
   modalSetting,
   isLoadingSearch,
   disabledProducts,
@@ -40,17 +41,6 @@ const ProductView = () => {
   handlerActionDisable,
  } = useProductController(search);
  const { laboratories } = useLaboratoryController();
-
- /* Loading */
- if (isLoading) {
-  return (
-   <div className="windowSecundary">
-    <div className="w-[50%]">
-     <CustomLoading colorText={''} message={messageLoad!} background={''} />
-    </div>
-   </div>
-  );
- }
 
  /* dialog */
  if (dialog.isActivate)
@@ -78,7 +68,7 @@ const ProductView = () => {
   return (
    <div className="windowSecundary ">
     <CustomButton
-     title={contentProduct.load}
+     title={content.load}
      type={typesButton.icon}
      stylyButton="self-center"
      icon={{
@@ -89,7 +79,7 @@ const ProductView = () => {
      }}
      handlerPress={handlerCloseEnable}
     />
-    <div className="w-[50%]">
+    <div className="flex-1 w-[50%]">
      <CustomList
       data={disabledProducts}
       handlerEnable={handlerActionEnable}
@@ -105,7 +95,7 @@ const ProductView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     title={contentProduct.load}
+     title={content.load}
      type={typesButton.icon}
      stylyButton="self-center"
      icon={{
@@ -118,6 +108,7 @@ const ProductView = () => {
     />
     <div className="w-[50%]]">
      <CustomProductForm
+      isLoading={isLoading}
       entity={product}
       type={typesForm.edit}
       handlerSubmit={handlerEdit}
@@ -127,12 +118,22 @@ const ProductView = () => {
    </div>
   );
  }
+ /* error */
+
+ if (existError)
+  return (
+   <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
+    <p className="text-2xl font-semibold text-slate-100"> {content.error} </p>
+   </div>
+  );
 
  return (
   <div className="overflow-scroll flexRowStart">
    {/* product form */}
    <div className="flex-1 p-8 overflow-scroll">
     <CustomProductForm
+     isLoading={isLoading}
      entity={product}
      type={typesForm.create}
      handlerSubmit={handlerCreate}
@@ -145,7 +146,7 @@ const ProductView = () => {
     <div className="flexCenter space-x-4">
      <CustomButton
       stylyButton="bg-gray-100 p-2 rounded-lg"
-      title={contentProduct.load}
+      title={content.load}
       type={typesButton.icon}
       handlerPress={handlerUpdateAll}
       icon={{
@@ -156,13 +157,13 @@ const ProductView = () => {
       }}
      />
      <CustomSearch
-      placeholder={contentProduct.search.placeholder}
+      placeholder={content.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
      <CustomButton
-      title={contentProduct.eliminate}
+      title={content.eliminate}
       stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
       stylyText="text-xl font-semibold"
       text={'' + disabledProducts.length}

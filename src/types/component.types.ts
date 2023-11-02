@@ -51,12 +51,14 @@ interface PosterProps {
  setUrlImageLocal: (image: string) => void;
 }
 interface CustomCategoryFormProps {
+ isLoading: boolean;
  entity: CategoryModel;
  type: typesForm;
  handlerSubmit: (values: CategoryModel) => void;
  validationSchema: AnyObjectSchema;
 }
 interface CustomProductFormProps {
+ isLoading: boolean;
  type: typesForm;
  entity: ProductModel;
  validationSchema: AnyObjectSchema;
@@ -70,6 +72,7 @@ interface CustomSearchFormProps {
 }
 
 interface CustomLaboratoryFormProps {
+ isLoading: boolean;
  entity: LaboratoryModel;
  type: typesForm;
  handlerSubmit: (values: LaboratoryModel) => void;

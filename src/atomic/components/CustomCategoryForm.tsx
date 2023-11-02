@@ -4,8 +4,9 @@ import { Formik, FormikHelpers } from 'formik';
 import { CategoryModel } from '@/mvc/models';
 import { typesButton, typesForm } from '@/constants';
 import React from 'react';
+import { Oval } from 'react-loader-spinner';
 
-const contentCategoryForm = Object.freeze({
+const content = Object.freeze({
  edit: {
   title: 'Edita la categoria',
  },
@@ -26,10 +27,30 @@ const contentCategoryForm = Object.freeze({
   },
   secundary: 'Limpiar el formulario',
  },
+ load: 'Espere mientras se guardan los datos',
 });
 
 const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { type } = props;
+ if (props.isLoading) {
+  return (
+   <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+    <Oval
+     height={80}
+     width={80}
+     color="gray"
+     wrapperStyle={{}}
+     wrapperClass=""
+     visible={true}
+     ariaLabel="oval-loading"
+     secondaryColor="#666"
+     strokeWidth={5}
+     strokeWidthSecondary={5}
+    />
+    <p className="text-2xl font-semibold text-slate-100"> {content.load} </p>
+   </div>
+  );
+ }
  return (
   <Formik
    enableReinitialize={true}
@@ -45,9 +66,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
      <section className="backgroundForm basis-full p-8 flexColStart rounded-lg">
       <header>
        <h2 className="colorTitleForm">
-        {type === typesForm.create
-         ? contentCategoryForm.create.title
-         : contentCategoryForm.edit.title}
+        {type === typesForm.create ? content.create.title : content.edit.title}
        </h2>
       </header>
       {/* Poster */}
@@ -66,13 +85,13 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
       {/* Category  */}
       <CustomInput
        isRequeried
-       id={contentCategoryForm.category.id}
+       id={content.category.id}
        className={'backgroundField'}
        styleLabel={'label'}
        stylyText={'input p-2 rounded-lg'}
        isDisable={false}
-       label={contentCategoryForm.category.label}
-       placeholder={contentCategoryForm.category.placeholder}
+       label={content.category.label}
+       placeholder={content.category.placeholder}
        value={props.values.category}
        handlerChange={props.handleChange('category')}
        hanhandlerBlur={props.handleBlur('category')}
@@ -86,21 +105,17 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        stylyButton={'buttonEnable'}
        stylyText={'inputButtonEnable'}
        text={
-        type === typesForm.create
-         ? contentCategoryForm.button.create.primary
-         : contentCategoryForm.button.edit.primary
+        type === typesForm.create ? content.button.create.primary : content.button.edit.primary
        }
        title={
-        type === typesForm.create
-         ? contentCategoryForm.button.create.primary
-         : contentCategoryForm.button.edit.primary
+        type === typesForm.create ? content.button.create.primary : content.button.edit.primary
        }
        handlerPress={props.handleSubmit}
       />
       {/* button secondary */}
       <CustomButton
-       title={contentCategoryForm.button.secundary}
-       text={contentCategoryForm.button.secundary}
+       title={content.button.secundary}
+       text={content.button.secundary}
        type={typesButton.default}
        isDisable={false}
        stylyButton={'buttonDisable'}

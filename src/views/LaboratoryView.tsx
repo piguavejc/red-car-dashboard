@@ -6,13 +6,14 @@ import { useLaboratoryController, useSearch } from '@/hooks';
 import { CustomButton } from '@/atomic/elements';
 import { theme } from '@/atomic/theme';
 
-const contentLaboratory = Object.freeze({
+const content = Object.freeze({
  eliminate: 'Ver laboratorios eliminados',
  close: 'Ocultar',
  load: 'Recargar la informacion',
  search: {
   placeholder: 'Buscar laboratorio',
  },
+ error: 'Ha ocurrido un error en el servidor, por favor recargue la pagina',
 });
 
 const LaboratoryView = () => {
@@ -23,7 +24,7 @@ const LaboratoryView = () => {
   isLoading,
   isEdition,
   laboratory,
-  messageLoad,
+  existError,
   laboratories,
   modalSetting,
   isLoadingSearch,
@@ -38,17 +39,6 @@ const LaboratoryView = () => {
   handlerActionEnable,
   handlerActionDisable,
  } = useLaboratoryController(search);
-
- /* Loading */
- if (isLoading) {
-  return (
-   <div className="windowSecundary">
-    <div className="w-[50%]">
-     <CustomLoading colorText={''} message={messageLoad!} background={''} />
-    </div>
-   </div>
-  );
- }
 
  /* dialog */
  if (dialog.isActivate)
@@ -76,7 +66,7 @@ const LaboratoryView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     title={contentLaboratory.close}
+     title={content.close}
      type={typesButton.icon}
      stylyButton="self-center"
      icon={{
@@ -89,6 +79,7 @@ const LaboratoryView = () => {
     />
     <div className="w-[50%]">
      <CustomLaboratoryForm
+      isLoading={isLoading}
       entity={laboratory}
       type={typesForm.edit}
       handlerSubmit={handlerEdit}
@@ -104,7 +95,7 @@ const LaboratoryView = () => {
   return (
    <div className="windowSecundary ">
     <CustomButton
-     title={contentLaboratory.close}
+     title={content.close}
      type={typesButton.icon}
      stylyButton="self-center"
      icon={{
@@ -115,22 +106,33 @@ const LaboratoryView = () => {
      }}
      handlerPress={handlerCloseEnable}
     />
-    <div className="w-[50%]">
+    <div className="flex-1  w-[50%]">
      <CustomList
       data={disabledLaboratories}
       handlerEnable={handlerActionEnable}
-      isLoading={false}
+      isLoading={isLoadingSearch}
      />
     </div>
    </div>
   );
  }
 
+ /* error */
+
+ if (existError)
+  return (
+   <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
+    <p className="text-2xl font-semibold text-slate-100"> {content.error} </p>
+   </div>
+  );
+
  return (
   <div className="overflow-scroll flexRowStart">
    {/* laboratory form  */}
    <div className="flex-1 p-8 overflow-scroll">
     <CustomLaboratoryForm
+     isLoading={isLoading}
      entity={laboratory}
      type={typesForm.create}
      handlerSubmit={handlerCreate}
@@ -143,7 +145,7 @@ const LaboratoryView = () => {
     <div className="flexCenter space-x-4">
      {/* button loading */}
      <CustomButton
-      title={contentLaboratory.load}
+      title={content.load}
       stylyButton="bg-gray-100 p-2 rounded-lg"
       type={typesButton.icon}
       icon={{
@@ -156,14 +158,14 @@ const LaboratoryView = () => {
      />
      {/*search form*/}
      <CustomSearch
-      placeholder={contentLaboratory.search.placeholder}
+      placeholder={content.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
      {/*button show laboratories eliminated*/}
      <CustomButton
-      title={contentLaboratory.eliminate}
+      title={content.eliminate}
       stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
       stylyText="text-xl font-semibold"
       text={'' + disabledLaboratories.length}

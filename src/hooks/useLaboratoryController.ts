@@ -18,7 +18,6 @@ const useLaboratoryController = (targetSearch?: Search) => {
   idlaboratory: undefined,
   laboratory: undefined,
  });
- const [messageLoad, setMessageLoad] = useState<Message>();
  const [laboratories, setLaboratories] = useState<Item[]>([]);
  const [disabledLaboratories, setDisabledLaboratories] = useState<Item[]>([]);
  const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
@@ -74,6 +73,10 @@ const useLaboratoryController = (targetSearch?: Search) => {
 
  const handlerHiddeEdit = () => {
   setEdition(false);
+  setLaboratory({
+   idlaboratory: undefined,
+   laboratory: undefined,
+  });
  };
 
  /* handler to display the screen edition */
@@ -87,7 +90,6 @@ const useLaboratoryController = (targetSearch?: Search) => {
  /* create laboratory */
  const handlerCreate = async (values: LaboratoryModel) => {
   setIsLoading(true);
-  setMessageLoad(statusLoad.laboratory.create);
   try {
    const rs = await create(values);
    if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
@@ -104,31 +106,25 @@ const useLaboratoryController = (targetSearch?: Search) => {
  };
  /* edit laboratory */
  const handlerEdit = async (values: LaboratoryModel) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.laboratory.edit);
   const rs = await edit(values);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  setIsLoading(false);
-  handlerUpdateAll();
   handlerHiddeEdit();
+  handlerUpdateAll();
  };
 
  /* disable laboratory */
  const handlerDisable = async (values: LaboratoryModel) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.laboratory.disable);
   const rs = await disable(values);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  setIsLoading(false);
+  handlerHidde();
+  handlerUpdateAll();
  };
 
  /* enable laboratory */
  const handlerEnable = async (values: LaboratoryModel) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.laboratory.enable);
   const rs = await enable(values);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  setIsLoading(false);
+  handlerHidde();
   handlerUpdateAll();
  };
 
@@ -188,11 +184,11 @@ const useLaboratoryController = (targetSearch?: Search) => {
 
  /* eliminating a laboratory */
  if (decisition && type === typesAction.eliminate && laboratory?.idlaboratory) {
-  handlerEnable(laboratory);
+  handlerDisable(laboratory);
  }
  /* enabling a laboratory */
  if (decisition && type === typesAction.enable && laboratory?.idlaboratory) {
-  handlerDisable(laboratory);
+  handlerEnable(laboratory);
  }
 
  const dialog = Object.freeze({
@@ -210,7 +206,7 @@ const useLaboratoryController = (targetSearch?: Search) => {
   isLoading,
   isEdition,
   laboratory,
-  messageLoad,
+  existError,
   laboratories,
   modalSetting,
   isLoadingSearch,

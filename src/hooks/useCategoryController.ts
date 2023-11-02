@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CategoryModel } from '@/mvc/models';
 import { useDialog, useModal, usePoster } from '.';
-import {
- messageDialog,
- statusDialog,
- statusLoad,
- typesAction,
- typesStatusDialog,
-} from '@/constants';
-import { Message, resposeApi, Item, Search } from '@/types';
+import { messageDialog, statusDialog, typesAction } from '@/constants';
+import { Item, Search } from '@/types';
 import { useCategory } from './useCategory';
 
 const useCategoryController = (searchTarget?: Search) => {
@@ -19,9 +13,7 @@ const useCategoryController = (searchTarget?: Search) => {
   category: undefined,
   photo: undefined,
  });
- const [messageLoad, setMessageLoad] = useState<Message>();
  const {} = usePoster(category.photo);
- const [response, setResponse] = useState<resposeApi>();
  const [categories, setCategories] = useState<Item[]>([]);
  const [disabledCategories, setDisabledCategories] = useState<Item[]>([]);
  const [isEdition, setEdition] = useState<boolean>(false);
@@ -42,17 +34,12 @@ const useCategoryController = (searchTarget?: Search) => {
  const { modalSetting, handlerStatus } = useModal(false);
 
  useEffect(() => {
-  if (searchTarget) search(searchTarget);
+  if (searchTarget) handlerSearch(searchTarget);
  }, [searchTarget?.search]);
 
  useEffect(() => {
   handlerUpdateAll();
  }, []);
-
- /* hanlder to update all category information */
- const handlerRefresAll = () => {
-  handlerUpdateAll();
- };
 
  /* show all disabled */
  const handlerOpenEnable = () => {
@@ -65,18 +52,23 @@ const useCategoryController = (searchTarget?: Search) => {
 
  /* handler to disable one category */
  const handlerActionEnable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.eliminate, messageDialog.category.disable);
+  handlerAppear(category, typesAction.enable, messageDialog.category.enable);
   setCategory({ idcategory: id, category });
  };
 
  /* handler to enable one category */
  const handlerActionDisable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.enable, messageDialog.category.enable);
+  handlerAppear(category, typesAction.eliminate, messageDialog.category.disable);
   setCategory({ idcategory: id, category });
  };
 
  const handlerHiddeEdit = () => {
   setEdition(false);
+  setCategory({
+   idcategory: undefined,
+   category: undefined,
+   photo: undefined,
+  });
  };
 
  /* handler to display the screen edition */
@@ -96,10 +88,8 @@ const useCategoryController = (searchTarget?: Search) => {
  /* create category */
  const handlerCreate = async (values: CategoryModel) => {
   setIsLoading(true);
-  setMessageLoad(statusLoad.category.create);
   const rs = await create(values);
   if (rs?.data) {
-   setResponse(rs.data);
    handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   }
   setIsLoading(false);
@@ -108,36 +98,23 @@ const useCategoryController = (searchTarget?: Search) => {
  /* edit category */
  const handlerEdit = async (values: CategoryModel) => {
   setIsLoading(true);
-  setMessageLoad(statusLoad.category.edit);
   const rs = await edit(values);
-  if (rs?.data) {
-   setResponse(rs.data);
-   handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  }
+  if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   setIsLoading(false);
+  handlerHiddeEdit();
  };
  /* disable category */
  const handlerDisable = async (values: CategoryModel) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.category.disable);
   const rs = await disable(values);
-  if (rs?.data) {
-   setResponse(rs.data);
-   handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  }
-  setIsLoading(false);
+  if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
+  handlerHidde();
   handlerUpdateAll();
  };
  /* enable category */
  const handlerEnable = async (values: CategoryModel) => {
-  setIsLoading(true);
-  setMessageLoad(statusLoad.category.enable);
   const rs = await enable(values);
-  if (rs?.data) {
-   setResponse(rs.data);
-   handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
-  }
-  setIsLoading(false);
+  if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
+  handlerHidde();
   handlerUpdateAll();
  };
  /* search all categories */
@@ -175,6 +152,7 @@ const useCategoryController = (searchTarget?: Search) => {
 
  /* show all disable */
  const handlerListDisableds = async () => {
+  setIsLoadingSearch(true);
   const rs = await listDisableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
@@ -184,9 +162,11 @@ const useCategoryController = (searchTarget?: Search) => {
    }));
    setDisabledCategories(data);
   }
+  setIsLoadingSearch(false);
  };
  /* show all enable */
  const handlerListEnableds = async () => {
+  setIsLoadingSearch(true);
   const rs = await listEnableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
@@ -196,17 +176,18 @@ const useCategoryController = (searchTarget?: Search) => {
    }));
    setCategories(data);
   }
+  setIsLoadingSearch(false);
  };
 
  /* ------------------------------------------------------------------------------------------------ */
 
  /* eliminating a category */
  if (decisition && type === typesAction.eliminate && category?.idcategory) {
-  disable(category);
+  handlerDisable(category);
  }
  /* enabling a category */
  if (decisition && type === typesAction.enable && category?.idcategory) {
-  enable(category);
+  handlerEnable(category);
  }
 
  const dialog = Object.freeze({
@@ -224,7 +205,7 @@ const useCategoryController = (searchTarget?: Search) => {
   isEdition,
   isLoading,
   categories,
-  messageLoad,
+  existError,
   modalSetting,
   isLoadingSearch,
   disabledCategories,

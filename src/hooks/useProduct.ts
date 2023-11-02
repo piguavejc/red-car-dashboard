@@ -98,7 +98,7 @@ const useProduct = () => {
   | undefined
  > => {
   try {
-   return await service.showDisable();
+   return await service.showEnable();
   } catch (error) {
    // console.log(error)
    setExistError(true);
@@ -113,7 +113,7 @@ const useProduct = () => {
   | undefined
  > => {
   try {
-   return await service.showEnable();
+   return await service.showDisable();
   } catch (error) {
    // console.log(error)
    setExistError(true);
