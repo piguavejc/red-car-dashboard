@@ -106,7 +106,7 @@ const ProductView = () => {
      }}
      handlerPress={handlerHiddeEdit}
     />
-    <div className="w-[50%]]">
+    <div className="w-full">
      <CustomProductForm
       isLoading={isLoading}
       entity={product}

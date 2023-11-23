@@ -1,3 +1,4 @@
+import { FixedSizeList } from 'react-window';
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
 import { images, typesButton, typesIcon } from '@/constants';
 import { CustomListProps } from '@/types';
@@ -11,7 +12,7 @@ const content = Object.freeze({
  empty: 'No existen proyectos aun',
 });
 
-const CustomList = (props: CustomListProps) => {
+const CustomList2 = (props: CustomListProps) => {
  const { isOpen, photo, handlerHidde, handlerImage } = usePhoto();
  if (isOpen)
   return (
@@ -55,7 +56,7 @@ const CustomList = (props: CustomListProps) => {
   );
 
  return (
-  <ul className="flex-1 bg-white px-4 py-8 space-y-4 rounded-lg  overflow-y-scroll">
+  <ul className="flex-1 bg-white px-4 py-8 space-y-4 rounded-lg  overflow-scroll">
    {props.data.map((item, i) => (
     <li
      key={i}
@@ -123,4 +124,4 @@ const CustomList = (props: CustomListProps) => {
  );
 };
 
-export { CustomList };
+export { CustomList2 };

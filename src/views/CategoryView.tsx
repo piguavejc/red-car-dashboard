@@ -105,7 +105,7 @@ const CategoryView = () => {
      }}
      handlerPress={handlerHiddeEdit}
     />
-    <div className="w-[50%]">
+    <div className="w-full">
      <CustomCategoryForm
       isLoading={isLoading}
       entity={category}

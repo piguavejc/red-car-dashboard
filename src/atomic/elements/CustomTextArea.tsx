@@ -1,7 +1,7 @@
-import { CustomInputProps } from '@/types';
+import { CustomTextAreaProps } from '@/types';
 import React from 'react';
 
-const CustomInput = (props: CustomInputProps) => {
+const CustomTextArea = (props: CustomTextAreaProps) => {
  return (
   <div className={props.className}>
    {props.label && (
@@ -10,8 +10,8 @@ const CustomInput = (props: CustomInputProps) => {
      <span className="text-rose-600">{`${props.isRequeried && props.isRequeried ? '*' : ''}`}</span>
     </label>
    )}
-   <input
-    type="text"
+   <textarea
+    rows={5}
     id={props.id}
     value={props.value === undefined ? '' : props.value}
     disabled={props.isDisable}
@@ -19,10 +19,10 @@ const CustomInput = (props: CustomInputProps) => {
     onBlur={props.hanhandlerBlur}
     onChange={props.handlerChange}
     placeholder={props.placeholder}
-   />
+   ></textarea>
    {props.validation && <p className="text-red-700 font-semibold">{props.messageError}</p>}
   </div>
  );
 };
 
-export { CustomInput };
+export { CustomTextArea };

@@ -9,12 +9,15 @@ export type {
  Item,
 } from './common.types';
 export type {
+ CustomDetailsCategoryProps,
+ CustomDetailsProductProps,
  CustomLaboratoryFormProps,
  CustomCategoryFormProps,
  CustomProgressBarProps,
  CustomProductFormProps,
  CustomSearchFormProps,
  CustomButtonIconProps,
+ CustomTextAreaProps,
  CustomLoadingProps,
  CustomSelectProps,
  CustomDialogProps,

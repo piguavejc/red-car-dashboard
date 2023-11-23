@@ -1,3 +1,5 @@
+export { CustomDetailsCategory } from './CustomDetailsCategory';
+export { CustomDetailsProduct } from './CustomDetailsProduct';
 export { CustomLaboratoryForm } from './CustomLaboratoryForm';
 export { CustomCategoryForm } from './CustomCategoryForm';
 export { CustomProductForm } from './CustomProductForm';

@@ -1,3 +1,4 @@
+export { CustomTextArea } from './CustomTextArea';
 export { CustomPoster } from './CustomPoster';
 export { CustomButton } from './CustomButton';
 export { CustomInput } from './CustomInput';

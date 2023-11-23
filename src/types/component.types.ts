@@ -39,6 +39,14 @@ interface CustomHeaderProps {
  target: number;
  hanlderTarget: (target: number) => void;
 }
+interface CustomDetailsCategoryProps {
+ isLoading: boolean;
+ data: CategoryModel;
+}
+interface CustomDetailsProductProps {
+ isLoading: boolean;
+ data: ProductModel;
+}
 interface PosterProps {
  id: string;
  type: typesForm;
@@ -124,7 +132,7 @@ interface CustomButtonProps {
  icon?: IconProps;
  handlerPress?: () => void;
 }
-interface CustomInputProps {
+interface CustomTextAreaProps {
  id: string;
  label?: string;
  className: string;
@@ -138,6 +146,21 @@ interface CustomInputProps {
  messageError: string | undefined;
  handlerChange: React.ChangeEventHandler<HTMLTextAreaElement> | undefined;
  hanhandlerBlur: React.FocusEventHandler<HTMLTextAreaElement> | undefined;
+}
+interface CustomInputProps {
+ id: string;
+ label?: string;
+ className: string;
+ stylyText: string;
+ styleLabel: string;
+ isDisable: boolean;
+ placeholder: string;
+ isRequeried?: boolean;
+ value: string | undefined;
+ validation: boolean | undefined | '';
+ messageError: string | undefined;
+ handlerChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+ hanhandlerBlur: React.FocusEventHandler<HTMLInputElement> | undefined;
 }
 interface CustomLoadingProps {
  colorText: string;
@@ -155,18 +178,21 @@ interface CustomModalProps {
  setting: ModalSetting;
 }
 export type {
+ CustomDetailsCategoryProps,
  CustomLaboratoryFormProps,
+ CustomDetailsProductProps,
  CustomCategoryFormProps,
  CustomProductFormProps,
  CustomProgressBarProps,
  CustomSearchFormProps,
  CustomButtonIconProps,
+ CustomTextAreaProps,
  CustomLoadingProps,
  CustomDialogProps,
  CustomButtonProps,
  CustomHeaderProps,
- CustomSelectProps,
  CustomInputProps,
+ CustomSelectProps,
  CustomPhotoProps,
  CustomModalProps,
  CustomListProps,
