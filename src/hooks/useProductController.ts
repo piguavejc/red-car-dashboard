@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProductModel } from '@/mvc/models';
+import { ProductDto, ProductModel } from '@/mvc/models';
 import { useDialog, useModal } from '.';
 import { Item, Search } from '@/types';
 import { messageDialog, statusDialog, typesAction } from '@/constants';
@@ -23,6 +23,7 @@ const useProductController = (searchTarget: Search) => {
   pvp: undefined,
  });
  const [target, setTarget] = useState<Item>();
+ const [detail, setDetail] = useState<ProductDto>();
  const [products, setProducts] = useState<Item[]>([]);
  const [isEnable, setIsEnable] = useState<boolean>(false);
  const [isEdition, setEdition] = useState<boolean>(false);
@@ -98,6 +99,7 @@ const useProductController = (searchTarget: Search) => {
  };
 
  /* ------------------------------------------------------------------------------------------------------- */
+
  /* create */
  const handlerCreate = async (values: ProductModel) => {
   setIsLoading(true);
@@ -171,6 +173,16 @@ const useProductController = (searchTarget: Search) => {
   setIsLoading(false);
  };
 
+ const handlerFindDetail = async (id: number) => {
+  setIsLoadingSearch(true);
+  const rs = await find(id);
+  if (rs?.data) {
+   const data = rs.data.data;
+   setDetail(data);
+  }
+  setIsLoadingSearch(false);
+ };
+
  /* show all disable */
  const handlerListDisableds = async () => {
   setIsLoadingSearch(true);
@@ -199,6 +211,15 @@ const useProductController = (searchTarget: Search) => {
   }
   setIsLoadingSearch(false);
  };
+ const handlerDetail = async (id: number) => {
+  await handlerFindDetail(id);
+ };
+ const handlerCloseDetail = () => {
+  setDetail(undefined);
+ };
+
+ /* --------------------------------------------------------------------------------------------------------------------------------- */
+
  /* eliminating a category */
  if (decisition && type === typesAction.eliminate && target?.id && target?.name) {
   handlerDisable(target?.id, target?.name);
@@ -218,6 +239,7 @@ const useProductController = (searchTarget: Search) => {
  });
  return {
   dialog,
+  detail,
   product,
   products,
   isEnable,
@@ -229,11 +251,13 @@ const useProductController = (searchTarget: Search) => {
   disabledProducts,
   handlerEdit,
   handlerCreate,
+  handlerDetail,
   handlerShowEdit,
   handlerHiddeEdit,
   handlerUpdateAll,
   handlerOpenEnable,
   handlerCloseEnable,
+  handlerCloseDetail,
   handlerActionEnable,
   handlerActionDisable,
  };

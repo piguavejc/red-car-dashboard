@@ -9,8 +9,6 @@ const contentPoster = Object.freeze({
  alt: 'Project poster',
 });
 const CustomPoster = (props: PosterProps) => {
- const { urlImage } = usePoster(props.value);
-
  return (
   <div className=" p-4 flexCenter border-4 border-dashed w-full min-h-[200px] relative">
    <label htmlFor={props.id} className="flexCenter label w-full min-h-[200px] cursor-pointer">
@@ -26,7 +24,12 @@ const CustomPoster = (props: PosterProps) => {
     onBlur={props.hanhandlerBlur}
    />
    {props.value && (
-    <Image className="object-contain z-20" src={urlImage || ''} alt={contentPoster.alt} fill />
+    <Image
+     className="object-contain z-20"
+     src={props.urlImage || ''}
+     alt={contentPoster.alt}
+     fill
+    />
    )}
    {props.validation && <p className="text-red-700 font-semibold">{props.messageError}</p>}
   </div>

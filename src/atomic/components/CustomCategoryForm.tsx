@@ -3,9 +3,10 @@ import { typesButton, typesForm } from '@/constants';
 import { CustomCategoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { CategoryModel } from '@/mvc/models';
-import React from 'react';
 import { Oval } from 'react-loader-spinner';
 import { CustomDetailsCategory } from '.';
+import { usePoster } from '@/hooks';
+import React from 'react';
 
 const content = Object.freeze({
  edit: {
@@ -36,6 +37,7 @@ const content = Object.freeze({
 
 const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { type } = props;
+ const { urlImage, handlerPoster } = usePoster();
  if (props.isLoading) {
   return (
    <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
@@ -66,8 +68,9 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
    }}
   >
    {(props) => {
+    if (props.values.photo) handlerPoster(props.values.photo);
     return (
-     <section className="flex-1 flex flex-row justify-start items-start relative space-x-4">
+     <section className="flex-1 flex flex-row justify-start items-stretch relative space-x-4">
       <section className="backgroundForm basis-full p-8 flexColStart rounded-lg">
        <header>
         <h2 className="colorTitleForm">
@@ -82,8 +85,8 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
         handlerChange={(e) => {
          props.setFieldValue('photo', e.target.files![0]);
         }}
+        urlImage={String(urlImage)}
         hanhandlerBlur={props.handleBlur('photo')}
-        setUrlImageLocal={(image: string) => {}}
         validation={props.errors.photo && props.touched.photo}
         messageError={props.errors.photo}
        />
@@ -129,14 +132,14 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        />
       </section>
       {type === typesForm.edit && props.values.photo && (
-       <section className="flex-1 p-8 space-y-4">
+       <section className="flex-1 flex flex-col justify-stretch items-center p-8 space-y-4">
         <h1 className="colorTitleForm">{content.detail.title}</h1>
         <CustomDetailsCategory
          data={{
           idcategory: props.values.idcategory,
           category: props.values.category,
           idphoto: props.values.idphoto,
-          photo: props.values.photo,
+          photo: String(urlImage),
          }}
          isLoading={false}
         />

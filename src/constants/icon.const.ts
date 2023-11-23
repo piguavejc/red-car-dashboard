@@ -14,7 +14,8 @@ type statusIcon =
  | 'eliminated'
  | 'EyeSlashIcon'
  | 'MicrophoneIcon'
- | 'MagnifyingGlassIcon';
+ | 'MagnifyingGlassIcon'
+ | 'HiInformationCircle';
 const typesIcon = Object.freeze({
  eye: 'eye',
  view: 'view',
@@ -31,6 +32,7 @@ const typesIcon = Object.freeze({
  EyeSlashIcon: 'EyeSlashIcon',
  MicrophoneIcon: 'MicrophoneIcon',
  MagnifyingGlassIcon: 'MagnifyingGlassIcon',
+ HiInformationCircle: 'HiInformationCircle',
 });
 export { typesIcon };
 export type { statusIcon };

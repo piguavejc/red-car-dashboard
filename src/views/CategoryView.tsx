@@ -1,4 +1,9 @@
-import { CustomCategoryForm, CustomList, CustomSearch } from '@/atomic/components';
+import {
+ CustomCategoryForm,
+ CustomDetailsCategory,
+ CustomList,
+ CustomSearch,
+} from '@/atomic/components';
 import { CustomDialog, CustomLoading, CustomModal } from '@/atomic/designs';
 import { typesButton, typesForm, typesIcon } from '@/constants';
 import { validationCategory } from '@/validations';
@@ -21,6 +26,7 @@ const CategoryView = () => {
  const { search, hanlderSearch } = useSearch();
  const {
   dialog,
+  detail,
   category,
   isEnable,
   isEdition,
@@ -31,11 +37,13 @@ const CategoryView = () => {
   isLoadingSearch,
   disabledCategories,
   handlerEdit,
+  handlerDeatil,
   handlerCreate,
   handlerShowEdit,
   handlerHiddeEdit,
   handlerUpdateAll,
   handlerOpenEnable,
+  handlerCloseDetail,
   handlerCloseEnable,
   handlerActionEnable,
   handlerActionDisable,
@@ -180,13 +188,22 @@ const CategoryView = () => {
       }}
      />
     </div>
-    {/* categories list  */}
-    <CustomList
-     data={categories}
-     handlerDelete={handlerActionDisable}
-     isLoading={isLoadingSearch}
-     handlerEdit={handlerShowEdit}
-    />
+    {/* list categories and detail one category  */}
+    {!detail ? (
+     <CustomList
+      data={categories}
+      handlerDelete={handlerActionDisable}
+      isLoading={isLoadingSearch}
+      handlerEdit={handlerShowEdit}
+      handlerDetail={handlerDeatil}
+     />
+    ) : (
+     <CustomDetailsCategory
+      data={detail}
+      handlerClose={handlerCloseDetail}
+      isLoading={isLoadingSearch}
+     />
+    )}
    </div>
   </div>
  );

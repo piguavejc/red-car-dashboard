@@ -1,5 +1,5 @@
 import { CustomButton, CustomInput, CustomPoster, CustomTextArea } from '@/atomic/elements';
-import { useProgressBar, useCategoryController, useLaboratoryController } from '@/hooks';
+import { useProgressBar, useCategoryController, useLaboratoryController, usePoster } from '@/hooks';
 import { typesButton, typesForm } from '@/constants';
 import { CustomDetailsProduct, CustomProgressBar, CustomSelect } from '.';
 import { CustomProductFormProps } from '@/types';
@@ -86,6 +86,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
 
  const { categories } = useCategoryController();
  const { laboratories } = useLaboratoryController();
+ const { urlImage, handlerPoster } = usePoster();
 
  if (props.isLoading) {
   return (
@@ -118,6 +119,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
    }}
   >
    {(props) => {
+    if (props.values.photo) handlerPoster(props.values.photo);
     return (
      <section className="flex-1 flex flex-row justify-start items-start relative space-x-4">
       <section className="backgroundForm p-8 basis-full flexColStart  rounded-lg">
@@ -303,11 +305,11 @@ const CustomProductForm = (props: CustomProductFormProps) => {
           id={'photo'}
           type={typesForm.create}
           value={props.values.photo}
+          urlImage={String(urlImage)}
           handlerChange={(e) => {
            props.setFieldValue('photo', e.target.files![0]);
           }}
           hanhandlerBlur={props.handleBlur('photo')}
-          setUrlImageLocal={(image: string) => {}}
           validation={props.errors.photo && props.touched.photo}
           messageError={props.errors.photo}
          />
@@ -328,12 +330,11 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        )}
       </section>
       {type === typesForm.edit && props.values.photo && (
-       <section className="flex-1 p-8 space-y-4">
-        <h1 className="colorTitleForm">{content.dateail.title}</h1>
+       <section className="flex-1 p-8 space-y-8">
         <CustomDetailsProduct
          data={{
           idproduct: props.values.idproduct,
-          photo: props.values.photo,
+          photo: String(urlImage),
           category: props.values.category,
           laboratory: props.values.laboratory,
           barcode: props.values.barcode,

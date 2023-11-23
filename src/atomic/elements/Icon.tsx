@@ -11,8 +11,9 @@ import {
  HiEyeOff,
  HiSearch,
  HiRefresh,
- HiPlusCircle,
  HiXCircle,
+ HiPlusCircle,
+ HiInformationCircle,
  HiOutlineArrowCircleLeft,
 } from 'react-icons/hi';
 
@@ -31,6 +32,8 @@ const Icon = (props: IconProps) => {
  if (type === typesIcon.EyeSlashIcon) return <HiEyeOff size={size} color={color} />;
  if (type === typesIcon.MagnifyingGlassIcon) return <HiSearch size={size} color={color} />;
  if (type === typesIcon.XCircle) return <HiXCircle size={size} color={color} />;
+ if (type === typesIcon.HiInformationCircle)
+  return <HiInformationCircle size={size} color={color} />;
  return null;
 };
 

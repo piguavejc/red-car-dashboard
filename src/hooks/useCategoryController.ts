@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CategoryModel } from '@/mvc/models';
-import { useDialog, useModal, usePoster } from '.';
+import { CategoryDto, CategoryModel } from '@/mvc/models';
+import { useDialog, useModal } from '.';
 import { messageDialog, statusDialog, typesAction } from '@/constants';
 import { Item, Search } from '@/types';
 import { useCategory } from './useCategory';
@@ -13,13 +13,6 @@ const useCategoryController = (searchTarget?: Search) => {
   category: undefined,
   photo: undefined,
  });
- const {} = usePoster(category.photo);
- const [categories, setCategories] = useState<Item[]>([]);
- const [disabledCategories, setDisabledCategories] = useState<Item[]>([]);
- const [isEdition, setEdition] = useState<boolean>(false);
- const [isLoading, setIsLoading] = useState<boolean>(false);
- const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
- const [isEnable, setIsEnable] = useState<boolean>(false);
  const {
   type,
   content,
@@ -30,8 +23,15 @@ const useCategoryController = (searchTarget?: Search) => {
   handlerAppear,
   handlerVerify,
  } = useDialog();
-
+ const [detail, setDetail] = useState<CategoryDto>();
+ const [target, setTarget] = useState<CategoryDto>();
  const { modalSetting, handlerStatus } = useModal(false);
+ const [categories, setCategories] = useState<Item[]>([]);
+ const [isEnable, setIsEnable] = useState<boolean>(false);
+ const [isEdition, setEdition] = useState<boolean>(false);
+ const [isLoading, setIsLoading] = useState<boolean>(false);
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+ const [disabledCategories, setDisabledCategories] = useState<Item[]>([]);
 
  useEffect(() => {
   if (searchTarget) handlerSearch(searchTarget);
@@ -150,6 +150,15 @@ const useCategoryController = (searchTarget?: Search) => {
   setIsLoading(false);
  };
 
+ const handlerFindDetail = async (id: number) => {
+  setIsLoadingSearch(true);
+  const rs = await find(id);
+  if (rs?.data) {
+   const data = rs.data.data;
+   setTarget(data);
+  }
+  setIsLoadingSearch(false);
+ };
  /* show all disable */
  const handlerListDisableds = async () => {
   setIsLoadingSearch(true);
@@ -178,6 +187,13 @@ const useCategoryController = (searchTarget?: Search) => {
   }
   setIsLoadingSearch(false);
  };
+ const handlerDeatil = async (id: number) => {
+  await handlerFindDetail(id);
+  setDetail(target);
+ };
+ const handlerCloseDetail = () => {
+  setDetail(undefined);
+ };
 
  /* ------------------------------------------------------------------------------------------------ */
 
@@ -200,6 +216,7 @@ const useCategoryController = (searchTarget?: Search) => {
  });
  return {
   dialog,
+  detail,
   category,
   isEnable,
   isEdition,
@@ -211,10 +228,12 @@ const useCategoryController = (searchTarget?: Search) => {
   disabledCategories,
   handlerEdit,
   handlerCreate,
+  handlerDeatil,
   handlerShowEdit,
   handlerHiddeEdit,
   handlerUpdateAll,
   handlerOpenEnable,
+  handlerCloseDetail,
   handlerCloseEnable,
   handlerActionEnable,
   handlerActionDisable,

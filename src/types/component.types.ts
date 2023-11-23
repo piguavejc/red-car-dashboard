@@ -1,6 +1,12 @@
 import { AnyObjectSchema } from 'yup';
 import { statusButton, statusIcon } from '@/constants';
-import { CategoryModel, LaboratoryModel, ProductModel } from '@/mvc/models';
+import {
+ CategoryDto,
+ CategoryModel,
+ LaboratoryModel,
+ ProductDto,
+ ProductModel,
+} from '@/mvc/models';
 import {
  ModalSetting,
  Photo,
@@ -33,6 +39,7 @@ interface CustomListProps {
  handlerEdit?: (id: number, name: string) => void;
  handlerDelete?: (id: number, name: string) => void;
  handlerEnable?: (id: number, name: string) => void;
+ handlerDetail?: (id: number) => void;
 }
 interface CustomHeaderProps {
  list: string[];
@@ -41,22 +48,24 @@ interface CustomHeaderProps {
 }
 interface CustomDetailsCategoryProps {
  isLoading: boolean;
- data: CategoryModel;
+ data: CategoryDto;
+ handlerClose?: () => void;
 }
 interface CustomDetailsProductProps {
  isLoading: boolean;
- data: ProductModel;
+ data: ProductDto;
+ handlerClose?: () => void;
 }
 interface PosterProps {
  id: string;
  type: typesForm;
+ urlImage: string;
  disabled?: boolean;
  value: File | undefined;
  messageError: string | undefined;
  validation: boolean | undefined | '';
  handlerChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
  hanhandlerBlur: React.FocusEventHandler<HTMLInputElement> | undefined;
- setUrlImageLocal: (image: string) => void;
 }
 interface CustomCategoryFormProps {
  isLoading: boolean;

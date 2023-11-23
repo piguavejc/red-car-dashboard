@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+'use client';
+import { useState } from 'react';
 
-const usePoster = (value: File | undefined) => {
+const usePoster = () => {
  const [urlImage, setUrlImage] = useState<string | undefined>();
- useEffect(() => {
-  if (!value) return;
+
+ const handlerPoster = (value: File) => {
   const reader = new FileReader();
   reader.readAsDataURL(value);
   reader.onload = () => {
    const result = reader.result as string;
    setUrlImage(result);
   };
- }, [value]);
- return { urlImage };
+ };
+ return { urlImage, handlerPoster };
 };
 export { usePoster };

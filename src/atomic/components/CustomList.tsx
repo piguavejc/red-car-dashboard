@@ -9,6 +9,11 @@ import React from 'react';
 const content = Object.freeze({
  load: 'Espere mientras se carga los datos...',
  empty: 'No existen proyectos aun',
+ buttons: {
+  delete: 'Eliminar',
+  edit: 'Editar',
+  detail: 'Detail',
+ },
 });
 
 const CustomList = (props: CustomListProps) => {
@@ -112,6 +117,22 @@ const CustomList = (props: CustomListProps) => {
          type: typesIcon.elimited,
          strokeWidth: 2,
          color: theme.red,
+         size: 30,
+        }}
+       />
+      )}
+      {props.handlerDetail && (
+       <CustomButton
+        type={typesButton.icon}
+        title={content.buttons.detail}
+        stylyButton="bg-white p-1 rounded-lg"
+        handlerPress={() => {
+         props.handlerDetail && props.handlerDetail(Number(item.id));
+        }}
+        icon={{
+         type: typesIcon.HiInformationCircle,
+         strokeWidth: 2,
+         color: 'gray',
          size: 30,
         }}
        />

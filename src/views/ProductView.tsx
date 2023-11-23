@@ -1,6 +1,11 @@
 import React from 'react';
 import { CustomButton } from '@/atomic/elements';
-import { CustomList, CustomSearch, CustomProductForm } from '@/atomic/components';
+import {
+ CustomList,
+ CustomSearch,
+ CustomProductForm,
+ CustomDetailsProduct,
+} from '@/atomic/components';
 import { CustomModal, CustomDialog, CustomLoading } from '@/atomic/designs';
 import { typesButton, typesForm, typesIcon } from '@/constants';
 import { useProductController, useSearch, useLaboratoryController } from '@/hooks';
@@ -21,6 +26,7 @@ const ProductView = () => {
  const { search, hanlderSearch } = useSearch();
  const {
   dialog,
+  detail,
   product,
   products,
   isEnable,
@@ -31,10 +37,12 @@ const ProductView = () => {
   isLoadingSearch,
   disabledProducts,
   handlerEdit,
+  handlerDetail,
   handlerCreate,
   handlerShowEdit,
   handlerHiddeEdit,
   handlerUpdateAll,
+  handlerCloseDetail,
   handlerOpenEnable,
   handlerCloseEnable,
   handlerActionEnable,
@@ -177,13 +185,22 @@ const ProductView = () => {
       }}
      />
     </div>
-    {/* products list */}
-    <CustomList
-     data={products}
-     handlerDelete={handlerActionDisable}
-     isLoading={isLoadingSearch}
-     handlerEdit={handlerShowEdit}
-    />
+    {/* list products  and detail one product */}
+    {!detail ? (
+     <CustomList
+      data={products}
+      handlerDelete={handlerActionDisable}
+      isLoading={isLoadingSearch}
+      handlerEdit={handlerShowEdit}
+      handlerDetail={handlerDetail}
+     />
+    ) : (
+     <CustomDetailsProduct
+      data={detail}
+      handlerClose={handlerCloseDetail}
+      isLoading={isLoadingSearch}
+     />
+    )}
    </div>
   </div>
  );
