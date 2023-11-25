@@ -5,9 +5,19 @@ import { Item, Search } from '@/types';
 import { messageDialog, statusDialog, typesAction } from '@/constants';
 import { useProduct } from './useProduct';
 
-const useProductController = (searchTarget: Search) => {
- const { edit, find, create, enable, search, disable, listEnableds, listDisableds, existError } =
-  useProduct();
+const useProductController = (category: string, searchTarget: Search) => {
+ const {
+  edit,
+  find,
+  create,
+  enable,
+  search,
+  disable,
+  listEnableds,
+  listDisableds,
+  listCategories,
+  existError,
+ } = useProduct();
  const [isLoading, setIsLoading] = useState<boolean>(false);
  const [product, setProduct] = useState<ProductModel>({
   idproduct: undefined,
@@ -44,6 +54,10 @@ const useProductController = (searchTarget: Search) => {
  useEffect(() => {
   handlerSearch(searchTarget);
  }, [searchTarget.search]);
+
+ useEffect(() => {
+  if (category !== 'Todos') handlerListCategory(category);
+ }, [category]);
 
  useEffect(() => {
   handlerUpdateAll();
@@ -96,6 +110,13 @@ const useProductController = (searchTarget: Search) => {
    cost: undefined,
    pvp: undefined,
   });
+ };
+
+ const handlerDetail = async (id: number) => {
+  await handlerFindDetail(id);
+ };
+ const handlerCloseDetail = () => {
+  setDetail(undefined);
  };
 
  /* ------------------------------------------------------------------------------------------------------- */
@@ -211,11 +232,20 @@ const useProductController = (searchTarget: Search) => {
   }
   setIsLoadingSearch(false);
  };
- const handlerDetail = async (id: number) => {
-  await handlerFindDetail(id);
- };
- const handlerCloseDetail = () => {
-  setDetail(undefined);
+
+ /* show all enable */
+ const handlerListCategory = async (category: string) => {
+  setIsLoadingSearch(true);
+  const rs = await listCategories(category);
+  if (rs?.data) {
+   const data = rs.data.data.map((item) => ({
+    id: item.idproduct,
+    name: item.product,
+    photo: item.photo,
+   }));
+   setProducts(data);
+  }
+  setIsLoadingSearch(false);
  };
 
  /* --------------------------------------------------------------------------------------------------------------------------------- */

@@ -56,6 +56,16 @@ interface CustomDetailsProductProps {
  data: ProductDto;
  handlerClose?: () => void;
 }
+interface CustomTabsProps {
+ items: string[];
+ itemFocus: string;
+ returnItem: (item: string) => void;
+}
+interface CustomItemTabsProps {
+ isActive: boolean;
+ item: string;
+ returnItem: (item: string) => void;
+}
 interface PosterProps {
  id: string;
  type: typesForm;
@@ -196,6 +206,7 @@ export type {
  CustomSearchFormProps,
  CustomButtonIconProps,
  CustomTextAreaProps,
+ CustomItemTabsProps,
  CustomLoadingProps,
  CustomDialogProps,
  CustomButtonProps,
@@ -204,6 +215,7 @@ export type {
  CustomSelectProps,
  CustomPhotoProps,
  CustomModalProps,
+ CustomTabsProps,
  CustomListProps,
  CustomItemProps,
  PosterProps,

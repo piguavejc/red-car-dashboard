@@ -5,10 +5,11 @@ import {
  CustomSearch,
  CustomProductForm,
  CustomDetailsProduct,
+ CustomTabs,
 } from '@/atomic/components';
-import { CustomModal, CustomDialog, CustomLoading } from '@/atomic/designs';
+import { CustomModal, CustomDialog } from '@/atomic/designs';
 import { typesButton, typesForm, typesIcon } from '@/constants';
-import { useProductController, useSearch, useLaboratoryController } from '@/hooks';
+import { useProductController, useSearch, useTab, useCategoryController } from '@/hooks';
 import { validationCategory, validationProduct, validationSearch } from '@/validations';
 import { theme } from '@/atomic/theme';
 
@@ -23,6 +24,7 @@ const content = Object.freeze({
 });
 
 const ProductView = () => {
+ const { tab, handlerTab } = useTab();
  const { search, hanlderSearch } = useSearch();
  const {
   dialog,
@@ -47,9 +49,8 @@ const ProductView = () => {
   handlerCloseEnable,
   handlerActionEnable,
   handlerActionDisable,
- } = useProductController(search);
- const { laboratories } = useLaboratoryController();
-
+ } = useProductController(tab, search);
+ const { categories } = useCategoryController();
  /* dialog */
  if (dialog.isActivate)
   return (
@@ -139,7 +140,7 @@ const ProductView = () => {
  return (
   <div className="overflow-scroll flexRowStart">
    {/* product form */}
-   <div className="flex-1 p-8 overflow-scroll">
+   <div className="flex-1 w-[50%] p-8 overflow-scroll">
     <CustomProductForm
      isLoading={isLoading}
      entity={product}
@@ -149,9 +150,16 @@ const ProductView = () => {
     />
    </div>
 
-   <div className="flex-1 p-8 flexColStart">
+   <div className="flex-1 w-[50%] p-8 flexColStart">
+    {/* Tabs */}
+    <CustomTabs
+     items={categories.map((category) => category.name as string)}
+     itemFocus={tab}
+     returnItem={handlerTab}
+    />
     {/* header Search */}
     <div className="flexCenter space-x-4">
+     {/* button refresh */}
      <CustomButton
       stylyButton="bg-gray-100 p-2 rounded-lg"
       title={content.load}
@@ -164,16 +172,26 @@ const ProductView = () => {
        strokeWidth: 1,
       }}
      />
+     {/* button length products */}
+     <CustomButton
+      stylyButton="bg-gray-100 p-2 rounded-lg"
+      stylyText="text-xl text-slate-600 font-semibold"
+      text={products.length.toString()}
+      title={products.length.toString()}
+      type={typesButton.default}
+     />
+     {/* input Search */}
      <CustomSearch
       placeholder={content.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
+     {/* button delete */}
      <CustomButton
       title={content.eliminate}
       stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl font-semibold"
+      stylyText="text-xl text-slate-600 font-semibold"
       text={'' + disabledProducts.length}
       type={typesButton.iconText}
       handlerPress={handlerOpenEnable}
@@ -185,6 +203,7 @@ const ProductView = () => {
       }}
      />
     </div>
+
     {/* list products  and detail one product */}
     {!detail ? (
      <CustomList

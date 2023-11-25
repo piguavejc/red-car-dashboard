@@ -165,6 +165,14 @@ const CategoryView = () => {
        strokeWidth: 1,
       }}
      />
+     {/* button length categories */}
+     <CustomButton
+      stylyButton="bg-gray-100 p-2 rounded-lg"
+      stylyText="text-xl text-slate-600 font-semibold"
+      text={categories.length.toString()}
+      title={categories.length.toString()}
+      type={typesButton.default}
+     />
      {/* Search Form  */}
      <CustomSearch
       placeholder={content.search.placeholder}
@@ -176,7 +184,7 @@ const CategoryView = () => {
      <CustomButton
       title={content.eliminate}
       stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl font-semibold"
+      stylyText="text-xl font-semibold text-slate-600"
       text={'' + disabledCategories.length}
       type={typesButton.iconText}
       handlerPress={handlerOpenEnable}

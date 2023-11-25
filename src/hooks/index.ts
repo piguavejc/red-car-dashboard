@@ -1,10 +1,11 @@
-export { useModal } from './useModal';
-export { usePhoto } from './usePhoto';
+export { useLaboratoryController } from './useLaboratoryController';
+export { useCategoryController } from './useCategoryController';
+export { useProductController } from './useProductController';
+export { useProgressBar } from './useProgressBar';
 export { useDialog } from './useDialog';
 export { usePoster } from './usePoster';
 export { useHeader } from './useHeader';
 export { useSearch } from './useSearch';
-export { useProgressBar } from './useProgressBar';
-export { useProductController } from './useProductController';
-export { useCategoryController } from './useCategoryController';
-export { useLaboratoryController } from './useLaboratoryController';
+export { usePhoto } from './usePhoto';
+export { useModal } from './useModal';
+export { useTab } from './useTab';

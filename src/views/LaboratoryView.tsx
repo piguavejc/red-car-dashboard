@@ -143,7 +143,7 @@ const LaboratoryView = () => {
    <div className="flex-1 p-8 flexColStart ">
     {/* header Search */}
     <div className="flexCenter space-x-4">
-     {/* button loading */}
+     {/* button refresh */}
      <CustomButton
       title={content.load}
       stylyButton="bg-gray-100 p-2 rounded-lg"
@@ -156,6 +156,14 @@ const LaboratoryView = () => {
       }}
       handlerPress={handlerUpdateAll}
      />
+     {/* button length laboratories */}
+     <CustomButton
+      stylyButton="bg-gray-100 p-2 rounded-lg"
+      stylyText="text-xl text-slate-600 font-semibold"
+      text={laboratories.length.toString()}
+      title={laboratories.length.toString()}
+      type={typesButton.default}
+     />
      {/*search form*/}
      <CustomSearch
       placeholder={content.search.placeholder}
@@ -167,7 +175,7 @@ const LaboratoryView = () => {
      <CustomButton
       title={content.eliminate}
       stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
-      stylyText="text-xl font-semibold"
+      stylyText="text-xl font-semibold text-slate-600"
       text={'' + disabledLaboratories.length}
       type={typesButton.iconText}
       handlerPress={handlerOpenEnable}
