@@ -15,6 +15,7 @@ const useProductController = (category: string, searchTarget: Search) => {
   disable,
   listEnableds,
   listDisableds,
+  searchCategory,
   listCategories,
   existError,
  } = useProduct();
@@ -52,12 +53,12 @@ const useProductController = (category: string, searchTarget: Search) => {
  } = useDialog();
 
  useEffect(() => {
-  handlerSearch(searchTarget);
- }, [searchTarget.search]);
-
- useEffect(() => {
-  if (category !== 'Todos') handlerListCategory(category);
- }, [category]);
+  if (category === 'Todos') handlerSearch(searchTarget);
+  if (category !== 'Todos') {
+   if (searchTarget.search === '') handlerListCategory(category);
+   else handlerSearchCategory(searchTarget.search, category);
+  }
+ }, [searchTarget.search, category]);
 
  useEffect(() => {
   handlerUpdateAll();
@@ -237,6 +238,21 @@ const useProductController = (category: string, searchTarget: Search) => {
  const handlerListCategory = async (category: string) => {
   setIsLoadingSearch(true);
   const rs = await listCategories(category);
+  if (rs?.data) {
+   const data = rs.data.data.map((item) => ({
+    id: item.idproduct,
+    name: item.product,
+    photo: item.photo,
+   }));
+   setProducts(data);
+  }
+  setIsLoadingSearch(false);
+ };
+
+ /* show all enable */
+ const handlerSearchCategory = async (product: string, category: string) => {
+  setIsLoadingSearch(true);
+  const rs = await searchCategory(product, category);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
     id: item.idproduct,

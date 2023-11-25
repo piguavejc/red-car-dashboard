@@ -137,6 +137,24 @@ const useProduct = () => {
   }
   return undefined;
  };
+ /* show all categories */
+ const searchCategory = async (
+  product: string,
+  category: string,
+ ): Promise<
+  | AxiosResponse<{
+     data: ProductDto[];
+    }>
+  | undefined
+ > => {
+  try {
+   return await service.searchCategory(product, category);
+  } catch (error) {
+   // console.log(error)
+   setExistError(true);
+  }
+  return undefined;
+ };
  return {
   edit,
   find,
@@ -146,6 +164,7 @@ const useProduct = () => {
   disable,
   listEnableds,
   listDisableds,
+  searchCategory,
   listCategories,
   existError,
  };
