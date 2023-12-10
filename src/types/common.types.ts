@@ -1,8 +1,4 @@
-import { statusAction, statusDialog } from '@/constants';
 import { StaticImageData } from 'next/image';
-
-/*  */
-type typesForm = 'create' | 'edit';
 
 /*  */
 interface Search {
@@ -50,4 +46,44 @@ interface ModalSetting {
  handlerStatus: (status: boolean, type: statusDialog, message: string) => void;
 }
 
-export type { ModalSetting, dialogSetting, Photo, resposeApi, typesForm, Message, Item, Search };
+/*  */
+type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
+/* types icons */
+type statusIcon =
+ | 'eye'
+ | 'edit'
+ | 'view'
+ | 'hidde'
+ | 'enable'
+ | 'expand'
+ | 'create'
+ | 'refresh'
+ | 'default'
+ | 'XCircle'
+ | 'arrow-left'
+ | 'eliminated'
+ | 'EyeSlashIcon'
+ | 'MicrophoneIcon'
+ | 'MagnifyingGlassIcon'
+ | 'HiInformationCircle';
+
+/* types form */
+type statusForm = 'create' | 'edit';
+/*  */
+type statusButton = 'default' | 'icon' | 'iconText';
+/*  */
+type statusDialog = 200 | 500;
+export type {
+ Item,
+ Photo,
+ Search,
+ Message,
+ resposeApi,
+ statusIcon,
+ statusForm,
+ statusButton,
+ ModalSetting,
+ statusDialog,
+ statusAction,
+ dialogSetting,
+};

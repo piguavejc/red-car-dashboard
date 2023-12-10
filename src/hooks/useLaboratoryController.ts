@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
 import { LaboratoryModel } from '@/mvc/models';
 import { useDialog, useModal } from '.';
-import {
- messageDialog,
- statusDialog,
- statusLoad,
- typesAction,
- typesStatusDialog,
-} from '@/constants';
-import { Item, Message, Search } from '@/types';
+import { messageDialog, types } from '@/constants';
+import { Item, Search, statusDialog } from '@/types';
 import { useLaboratory } from './useLaboratory';
 
 const useLaboratoryController = (targetSearch?: Search) => {
@@ -61,13 +55,13 @@ const useLaboratoryController = (targetSearch?: Search) => {
  };
  /* handler to enable one laboratory */
  const handlerActionEnable = (id: number, laboratory: string) => {
-  handlerAppear(laboratory, typesAction.enable, messageDialog.laboratory.enable);
+  handlerAppear(laboratory, types.action.enable, messageDialog.laboratory.enable);
   setLaboratory({ idlaboratory: id, laboratory });
  };
 
  /* handler to disable one laboratory */
  const handlerActionDisable = (id: number, laboratory: string) => {
-  handlerAppear(laboratory, typesAction.eliminate, messageDialog.laboratory.disable);
+  handlerAppear(laboratory, types.action.eliminate, messageDialog.laboratory.disable);
   setLaboratory({ idlaboratory: id, laboratory });
  };
 
@@ -97,7 +91,7 @@ const useLaboratoryController = (targetSearch?: Search) => {
    //  console.log(error);
    handlerStatus(
     true,
-    typesStatusDialog.error,
+    types.dialog.error,
     'Ha ocurido un error en el servidor, por favor recargue la pagina',
    );
   }
@@ -141,7 +135,7 @@ const useLaboratoryController = (targetSearch?: Search) => {
    //  console.log(error);
    handlerStatus(
     true,
-    typesStatusDialog.error,
+    types.dialog.error,
     'Ha ocurido un error en el servidor, por favor recargue la pagina',
    );
   }
@@ -183,11 +177,11 @@ const useLaboratoryController = (targetSearch?: Search) => {
  /* ----------------------------------------------------------------------------------------------------------------------- */
 
  /* eliminating a laboratory */
- if (decisition && type === typesAction.eliminate && laboratory?.idlaboratory) {
+ if (decisition && type === types.action.eliminate && laboratory?.idlaboratory) {
   handlerDisable(laboratory);
  }
  /* enabling a laboratory */
- if (decisition && type === typesAction.enable && laboratory?.idlaboratory) {
+ if (decisition && type === types.action.enable && laboratory?.idlaboratory) {
   handlerEnable(laboratory);
  }
 

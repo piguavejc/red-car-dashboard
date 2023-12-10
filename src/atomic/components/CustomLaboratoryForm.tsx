@@ -2,33 +2,11 @@ import { CustomButton, CustomInput, CustomPoster } from '@/atomic/elements';
 import { CustomLaboratoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { LaboratoryModel } from '@/mvc/models';
-import { typesButton, typesForm } from '@/constants';
-import React from 'react';
 import { Oval } from 'react-loader-spinner';
+import { types, data } from '@/constants';
+import React from 'react';
 
-const content = Object.freeze({
- edit: {
-  title: 'Edita un laboratorio',
- },
- create: {
-  title: 'Crea un laboratorio',
- },
- laboratory: {
-  id: 'laboratory',
-  label: 'Laboratorio',
-  placeholder: 'Ej: Labmac',
- },
- button: {
-  create: {
-   primary: 'Guardar el laboratorio',
-  },
-  edit: {
-   primary: 'Guardar cambios',
-  },
-  secundary: 'Limpiar el formulario',
- },
- load: 'Espere mientras se guardan los datos',
-});
+const { laboratory } = data.screens.dashboard.forms;
 
 const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
  const { type } = props;
@@ -47,7 +25,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {content.load} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {laboratory.load} </p>
    </div>
   );
  }
@@ -66,19 +44,19 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
      <section className="backgroundForm p-8 basis-full flexColStart rounded-lg">
       <header>
        <h2 className="colorTitleForm">
-        {type === typesForm.create ? content.create.title : content.edit.title}
+        {type === types.form.create ? laboratory.titles.create : laboratory.titles.edit}
        </h2>
       </header>
       {/* input laboratory  */}
       <CustomInput
        isRequeried
-       id={content.laboratory.id}
+       id={laboratory.fields.laboratory.id}
        className={'backgroundField'}
        styleLabel={'label'}
        stylyText={' input'}
        isDisable={false}
-       label={content.laboratory.label}
-       placeholder={content.laboratory.placeholder}
+       label={laboratory.fields.laboratory.label}
+       placeholder={laboratory.fields.laboratory.placeholder}
        value={props.values.laboratory}
        handlerChange={props.handleChange('laboratory')}
        hanhandlerBlur={props.handleBlur('laboratory')}
@@ -87,12 +65,16 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
       />
       {/* button create or edit*/}
       <CustomButton
-       type={typesButton.default}
+       type={types.button.default}
        title={
-        type === typesForm.create ? content.button.create.primary : content.button.edit.primary
+        type === types.form.create
+         ? laboratory.buttons.create.primary
+         : laboratory.buttons.edit.primary
        }
        text={
-        type === typesForm.create ? content.button.create.primary : content.button.edit.primary
+        type === types.form.create
+         ? laboratory.buttons.create.primary
+         : laboratory.buttons.edit.primary
        }
        isDisable={!props.isValid}
        stylyButton={'buttonEnable'}
@@ -101,9 +83,9 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
       />
       {/* button secondary  */}
       <CustomButton
-       title={content.button.secundary}
-       text={content.button.secundary}
-       type={typesButton.default}
+       title={laboratory.buttons.secundary}
+       text={laboratory.buttons.secundary}
+       type={types.button.default}
        isDisable={false}
        stylyButton={'buttonDisable'}
        stylyText={'inputButtonDisable'}

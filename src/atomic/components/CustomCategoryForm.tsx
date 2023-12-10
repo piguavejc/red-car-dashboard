@@ -1,39 +1,14 @@
 import { CustomButton, CustomInput, CustomPoster } from '@/atomic/elements';
-import { typesButton, typesForm } from '@/constants';
 import { CustomCategoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { CategoryModel } from '@/mvc/models';
 import { Oval } from 'react-loader-spinner';
 import { CustomDetailsCategory } from '.';
+import { types, data } from '@/constants';
 import { usePoster } from '@/hooks';
 import React from 'react';
 
-const content = Object.freeze({
- edit: {
-  title: 'Edita la categoria',
- },
- create: {
-  title: 'Crea una categoria',
- },
- detail: {
-  title: 'Detalles de la categoria',
- },
- category: {
-  id: 'category',
-  label: 'Categoria',
-  placeholder: 'Ej: Cerebro',
- },
- button: {
-  create: {
-   primary: 'Guardar la categoria',
-  },
-  edit: {
-   primary: 'Guardar cambios',
-  },
-  secundary: 'Limpiar el formulario',
- },
- load: 'Espere mientras se guardan los datos',
-});
+const { category } = data.screens.dashboard.forms;
 
 const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { type } = props;
@@ -53,7 +28,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {content.load} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {category.load} </p>
    </div>
   );
  }
@@ -74,13 +49,14 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
       <section className="backgroundForm basis-full p-8 flexColStart rounded-lg">
        <header>
         <h2 className="colorTitleForm">
-         {type === typesForm.create ? content.create.title : content.edit.title}
+         {type === types.form.create ? category.titles.create : category.titles.edit}
         </h2>
        </header>
        {/* Poster */}
        <CustomPoster
+        label={category.fields.photo.label}
         id={'photo'}
-        type={typesForm.create}
+        type={types.form.create}
         value={props.values.photo}
         handlerChange={(e) => {
          props.setFieldValue('photo', e.target.files![0]);
@@ -93,13 +69,13 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        {/* Category  */}
        <CustomInput
         isRequeried
-        id={content.category.id}
+        id={category.fields.category.id}
         className={'backgroundField'}
         styleLabel={'label'}
         stylyText={'input p-2 rounded-lg'}
         isDisable={false}
-        label={content.category.label}
-        placeholder={content.category.placeholder}
+        label={category.fields.category.label}
+        placeholder={category.fields.category.placeholder}
         value={props.values.category}
         handlerChange={props.handleChange('category')}
         hanhandlerBlur={props.handleBlur('category')}
@@ -108,32 +84,36 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        />
        {/* button create or edit  */}
        <CustomButton
-        type={typesButton.default}
+        type={types.button.default}
         isDisable={!props.isValid}
         stylyButton={'buttonEnable'}
         stylyText={'inputButtonEnable'}
         text={
-         type === typesForm.create ? content.button.create.primary : content.button.edit.primary
+         type === types.form.create
+          ? category.buttons.create.primary
+          : category.buttons.edit.primary
         }
         title={
-         type === typesForm.create ? content.button.create.primary : content.button.edit.primary
+         type === types.form.create
+          ? category.buttons.create.primary
+          : category.buttons.edit.primary
         }
         handlerPress={props.handleSubmit}
        />
        {/* button secondary */}
        <CustomButton
-        title={content.button.secundary}
-        text={content.button.secundary}
-        type={typesButton.default}
+        title={category.buttons.secundary}
+        text={category.buttons.secundary}
+        type={types.button.default}
         isDisable={false}
         stylyButton={'buttonDisable'}
         stylyText={'inputButtonDisable'}
         handlerPress={props.resetForm}
        />
       </section>
-      {type === typesForm.edit && props.values.photo && (
+      {type === types.form.edit && props.values.photo && (
        <section className="flex-1 flex flex-col justify-stretch items-center p-8 space-y-4">
-        <h1 className="colorTitleForm">{content.detail.title}</h1>
+        <h1 className="colorTitleForm">{category.titles.detail}</h1>
         <CustomDetailsCategory
          data={{
           idcategory: props.values.idcategory,

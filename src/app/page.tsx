@@ -3,7 +3,7 @@
 import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { images } from '../constants/images.const';
+import { images } from '../constants/images';
 
 export default function Home() {
  const { data: session } = useSession();

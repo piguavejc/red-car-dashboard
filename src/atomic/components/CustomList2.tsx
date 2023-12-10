@@ -1,6 +1,5 @@
-import { FixedSizeList } from 'react-window';
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
-import { images, typesButton, typesIcon } from '@/constants';
+import { images, types } from '@/constants';
 import { CustomListProps } from '@/types';
 import { theme } from '@/atomic/theme';
 import { usePhoto } from '@/hooks';
@@ -19,10 +18,10 @@ const CustomList2 = (props: CustomListProps) => {
    <figure className="flexColStartCenter bg-white px-4 py-8  rounded-lg space-y-2">
     <CustomButton
      title="Cerrar imagen"
-     type={typesButton.icon}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -71,14 +70,14 @@ const CustomList2 = (props: CustomListProps) => {
      <div className="space-x-4">
       {props.handlerEnable && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         stylyButton="bg-white p-1 rounded-lg"
         title="Habilitar"
         handlerPress={() => {
          props.handlerEnable && props.handlerEnable(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.enable,
+         type: types.icon.enable,
          strokeWidth: 2,
          color: theme.gray,
          size: 30,
@@ -87,14 +86,14 @@ const CustomList2 = (props: CustomListProps) => {
       )}
       {props.handlerEdit && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         stylyButton="bg-white p-1 rounded-lg"
         title="Editar"
         handlerPress={() => {
          props.handlerEdit && props.handlerEdit(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.edit,
+         type: types.icon.edit,
          strokeWidth: 2,
          color: theme.gray,
          size: 30,
@@ -103,14 +102,14 @@ const CustomList2 = (props: CustomListProps) => {
       )}
       {props.handlerDelete && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         title="Eliminar"
         stylyButton="bg-white p-1 rounded-lg"
         handlerPress={() => {
          props.handlerDelete && props.handlerDelete(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.elimited,
+         type: types.icon.elimited,
          strokeWidth: 2,
          color: theme.red,
          size: 30,

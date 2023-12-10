@@ -1,8 +1,12 @@
 export type {
  dialogSetting,
+ statusDialog,
  ModalSetting,
+ statusAction,
+ statusButton,
  resposeApi,
- typesForm,
+ statusForm,
+ statusIcon,
  Message,
  Search,
  Photo,

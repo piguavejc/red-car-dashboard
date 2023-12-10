@@ -1,7 +1,7 @@
 import React from 'react';
 import { CustomButton } from '@/atomic/elements';
-import { typesButton } from '@/constants';
 import { CustomProgressBarProps } from '@/types';
+import { types } from '@/constants';
 
 const CustomProgressBar = (props: CustomProgressBarProps) => {
  return (
@@ -16,7 +16,7 @@ const CustomProgressBar = (props: CustomProgressBarProps) => {
       stylyText={`${
        props.posiition >= i ? 'bg-rose-600' : 'bg-slate-300'
       } px-8 py-4  p-4 rounded-lg`}
-      type={typesButton.default}
+      type={types.button.default}
       title={'' + (i + 1)}
       text={'' + (i + 1)}
       handlerPress={() => props.handlerItem(i)}

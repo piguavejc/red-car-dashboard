@@ -81,7 +81,7 @@ body {
  @apply flex flex-row justify-center items-center space-x-4;
 }
 .windowSecundary {
- @apply p-8 w-full h-screen bg-slate-200 flex flex-col justify-stretch items-center space-y-4 overflow-scroll ;
+ @apply p-8 w-full h-screen bg-slate-200 flex flex-col justify-stretch items-center space-y-4 overflow-scroll;
 }
 .loader {
  width: 12px;

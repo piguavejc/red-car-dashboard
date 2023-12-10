@@ -1,8 +1,8 @@
-import React from 'react';
 import { CustomButton } from '@/atomic/elements';
-import { images, typesButton, typesStatusDialog } from '@/constants';
+import { images, types } from '@/constants';
 import { CustomModalProps } from '@/types';
 import Image from 'next/image';
+import React from 'react';
 
 {
  /* body modal */
@@ -17,23 +17,21 @@ const CustomModal = (props: CustomModalProps) => {
      height={300}
      alt=""
      src={
-      props.setting.type === typesStatusDialog.error
-       ? images.warning.src.src
-       : images.success.src.src
+      props.setting.type === types.dialog.error ? images.warning.src.src : images.success.src.src
      }
     />
    </div>
    {/* title and message modal */}
    <h1 className="text-gray-700 font-semibold text-3xl text-center">
-    {props.setting.type === typesStatusDialog.error
+    {props.setting.type === types.dialog.error
      ? 'Mensaje de advertencia'
      : 'Mensaje de verificacion'}
    </h1>
    <p className="text-gray-700 font-normal text-2xl text-center">{props.setting.message}</p>
    {/* Button modal */}
-   {props.setting.type === typesStatusDialog.success && (
+   {props.setting.type === types.dialog.success && (
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyButton={'buttonEnable'}
      stylyText={'inputButtonEnable'}

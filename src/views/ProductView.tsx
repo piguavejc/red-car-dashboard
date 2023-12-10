@@ -1,27 +1,20 @@
 import React from 'react';
 import { CustomButton } from '@/atomic/elements';
 import {
+ CustomTabs,
  CustomList,
  CustomSearch,
  CustomProductForm,
  CustomDetailsProduct,
- CustomTabs,
 } from '@/atomic/components';
 import { CustomModal, CustomDialog } from '@/atomic/designs';
-import { typesButton, typesForm, typesIcon } from '@/constants';
 import { useProductController, useSearch, useTab, useCategoryController } from '@/hooks';
 import { validationCategory, validationProduct, validationSearch } from '@/validations';
+import { types, data } from '@/constants';
 import { theme } from '@/atomic/theme';
 
-const content = Object.freeze({
- eliminate: 'Ver productos eliminados',
- close: 'Cerrar',
- load: 'Recargar la informacion',
- search: {
-  placeholder: 'Buscar el producto',
- },
- error: 'Ha ocurrido un error en el servidor, por favor recargue la pagina',
-});
+const { pages } = data.screens.dashboard;
+const { forms } = data.screens.dashboard;
 
 const ProductView = () => {
  const { tab, handlerTab } = useTab();
@@ -77,11 +70,11 @@ const ProductView = () => {
   return (
    <div className="windowSecundary ">
     <CustomButton
-     title={content.load}
-     type={typesButton.icon}
+     title={pages.products.buttons.load}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -104,11 +97,11 @@ const ProductView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     title={content.load}
-     type={typesButton.icon}
+     title={pages.products.buttons.load}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -119,7 +112,7 @@ const ProductView = () => {
      <CustomProductForm
       isLoading={isLoading}
       entity={product}
-      type={typesForm.edit}
+      type={types.form.edit}
       handlerSubmit={handlerEdit}
       validationSchema={validationProduct}
      />
@@ -133,7 +126,7 @@ const ProductView = () => {
   return (
    <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
     <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="text-2xl font-semibold text-slate-100"> {content.error} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {pages.products.error} </p>
    </div>
   );
 
@@ -144,7 +137,7 @@ const ProductView = () => {
     <CustomProductForm
      isLoading={isLoading}
      entity={product}
-     type={typesForm.create}
+     type={types.form.create}
      handlerSubmit={handlerCreate}
      validationSchema={validationCategory}
     />
@@ -162,11 +155,11 @@ const ProductView = () => {
      {/* button refresh */}
      <CustomButton
       stylyButton="bg-gray-100 p-2 rounded-lg"
-      title={content.load}
-      type={typesButton.icon}
+      title={pages.products.buttons.load}
+      type={types.button.icon}
       handlerPress={handlerUpdateAll}
       icon={{
-       type: typesIcon.refresh,
+       type: types.icon.refresh,
        color: theme.gray,
        size: 35,
        strokeWidth: 1,
@@ -178,25 +171,25 @@ const ProductView = () => {
       stylyText="text-xl text-slate-600 font-semibold"
       text={products.length.toString()}
       title={products.length.toString()}
-      type={typesButton.default}
+      type={types.button.default}
      />
      {/* input Search */}
      <CustomSearch
-      placeholder={content.search.placeholder}
+      placeholder={forms.products.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
      {/* button delete */}
      <CustomButton
-      title={content.eliminate}
+      title={pages.products.buttons.eliminate}
       stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
       stylyText="text-xl text-slate-600 font-semibold"
       text={'' + disabledProducts.length}
-      type={typesButton.iconText}
+      type={types.button.iconText}
       handlerPress={handlerOpenEnable}
       icon={{
-       type: typesIcon.elimited,
+       type: types.icon.elimited,
        color: theme.red,
        size: 35,
        strokeWidth: 1,

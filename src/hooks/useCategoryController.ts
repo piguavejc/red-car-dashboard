@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { CategoryDto, CategoryModel } from '@/mvc/models';
-import { useDialog, useModal } from '.';
-import { messageDialog, statusDialog, typesAction } from '@/constants';
-import { Item, Search } from '@/types';
+import { Item, Search, statusDialog } from '@/types';
+import { messageDialog, types } from '@/constants';
 import { useCategory } from './useCategory';
+import { useEffect, useState } from 'react';
+import { useDialog, useModal } from '.';
 
 const useCategoryController = (searchTarget?: Search) => {
  const { edit, find, create, search, enable, disable, listEnableds, listDisableds, existError } =
@@ -52,13 +52,13 @@ const useCategoryController = (searchTarget?: Search) => {
 
  /* handler to disable one category */
  const handlerActionEnable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.enable, messageDialog.category.enable);
+  handlerAppear(category, types.action.enable, messageDialog.category.enable);
   setCategory({ idcategory: id, category });
  };
 
  /* handler to enable one category */
  const handlerActionDisable = (id: number, category: string) => {
-  handlerAppear(category, typesAction.eliminate, messageDialog.category.disable);
+  handlerAppear(category, types.action.eliminate, messageDialog.category.disable);
   setCategory({ idcategory: id, category });
  };
 
@@ -198,11 +198,11 @@ const useCategoryController = (searchTarget?: Search) => {
  /* ------------------------------------------------------------------------------------------------ */
 
  /* eliminating a category */
- if (decisition && type === typesAction.eliminate && category?.idcategory) {
+ if (decisition && type === types.action.eliminate && category?.idcategory) {
   handlerDisable(category);
  }
  /* enabling a category */
- if (decisition && type === typesAction.enable && category?.idcategory) {
+ if (decisition && type === types.action.enable && category?.idcategory) {
   handlerEnable(category);
  }
 

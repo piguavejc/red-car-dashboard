@@ -1,7 +1,7 @@
-import React from 'react';
 import { CustomButton } from '@/atomic/elements';
-import { typesButton } from '@/constants';
 import { CustomDialogProps } from '@/types';
+import { types } from '@/constants';
+import React from 'react';
 
 const CustomDialog = (props: CustomDialogProps) => {
  return (
@@ -20,7 +20,7 @@ const CustomDialog = (props: CustomDialogProps) => {
     </p>
     {/* button primary dialog */}
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyButton={'buttonEnable'}
      stylyText={'inputButtonEnable'}
@@ -30,7 +30,7 @@ const CustomDialog = (props: CustomDialogProps) => {
     />
     {/* button secundary dialog */}
     <CustomButton
-     type={typesButton.default}
+     type={types.button.default}
      isDisable={false}
      stylyButton={'buttonDisable'}
      stylyText={'inputButtonDisable'}

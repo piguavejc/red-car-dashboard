@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { ProductDto, ProductModel } from '@/mvc/models';
-import { useDialog, useModal } from '.';
-import { Item, Search } from '@/types';
-import { messageDialog, statusDialog, typesAction } from '@/constants';
+import { Item, Search, statusDialog } from '@/types';
+import { messageDialog, types } from '@/constants';
+import { useEffect, useState } from 'react';
 import { useProduct } from './useProduct';
+import { useDialog, useModal } from '.';
 
 const useProductController = (category: string, searchTarget: Search) => {
  const {
@@ -81,13 +81,13 @@ const useProductController = (category: string, searchTarget: Search) => {
 
  /* handler to disable one category */
  const handlerActionDisable = (id: number, product: string) => {
-  handlerAppear(product, typesAction.eliminate, messageDialog.product.disable);
+  handlerAppear(product, types.action.eliminate, messageDialog.product.disable);
   setTarget({ id, name: product });
  };
 
  /* handler to enable one product */
  const handlerActionEnable = (id: number, product: string) => {
-  handlerAppear(product, typesAction.enable, messageDialog.product.enable);
+  handlerAppear(product, types.action.enable, messageDialog.product.enable);
   setTarget({ id, name: product });
  };
 
@@ -267,11 +267,11 @@ const useProductController = (category: string, searchTarget: Search) => {
  /* --------------------------------------------------------------------------------------------------------------------------------- */
 
  /* eliminating a category */
- if (decisition && type === typesAction.eliminate && target?.id && target?.name) {
+ if (decisition && type === types.action.eliminate && target?.id && target?.name) {
   handlerDisable(target?.id, target?.name);
  }
  /* enabling a category */
- if (decisition && type === typesAction.enable && target?.id && target?.name) {
+ if (decisition && type === types.action.enable && target?.id && target?.name) {
   handlerEnable(target?.id, target?.name);
  }
 

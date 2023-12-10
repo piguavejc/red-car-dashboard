@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconProps } from '@/types';
-import { typesIcon } from '@/constants';
+import { types } from '@/constants';
 import {
  HiX,
  HiEye,
@@ -19,20 +19,20 @@ import {
 
 const Icon = (props: IconProps) => {
  const { type, color, size, strokeWidth } = props;
- if (type === typesIcon.default) return <HiX size={size} color={color} />;
- if (type === typesIcon.enable) return <HiCheck size={size} color={color} />;
- if (type === typesIcon.elimited) return <HiTrash size={size} color={color} />;
- if (type === typesIcon.view) return <HiPlus size={size} color={color} />;
- if (type === typesIcon.hidde) return <HiX size={size} color={color} />;
- if (type === typesIcon.arrowLeft) return <HiOutlineArrowCircleLeft size={size} color={color} />;
- if (type === typesIcon.refresh) return <HiRefresh size={size} color={color} />;
- if (type === typesIcon.eye) return <HiEye size={size} color={color} />;
- if (type === typesIcon.edit) return <HiPencil size={size} color={color} />;
- if (type === typesIcon.create) return <HiPlusCircle size={size} color={color} />;
- if (type === typesIcon.EyeSlashIcon) return <HiEyeOff size={size} color={color} />;
- if (type === typesIcon.MagnifyingGlassIcon) return <HiSearch size={size} color={color} />;
- if (type === typesIcon.XCircle) return <HiXCircle size={size} color={color} />;
- if (type === typesIcon.HiInformationCircle)
+ if (type === types.icon.default) return <HiX size={size} color={color} />;
+ if (type === types.icon.enable) return <HiCheck size={size} color={color} />;
+ if (type === types.icon.elimited) return <HiTrash size={size} color={color} />;
+ if (type === types.icon.view) return <HiPlus size={size} color={color} />;
+ if (type === types.icon.hidde) return <HiX size={size} color={color} />;
+ if (type === types.icon.arrowLeft) return <HiOutlineArrowCircleLeft size={size} color={color} />;
+ if (type === types.icon.refresh) return <HiRefresh size={size} color={color} />;
+ if (type === types.icon.eye) return <HiEye size={size} color={color} />;
+ if (type === types.icon.edit) return <HiPencil size={size} color={color} />;
+ if (type === types.icon.create) return <HiPlusCircle size={size} color={color} />;
+ if (type === types.icon.EyeSlashIcon) return <HiEyeOff size={size} color={color} />;
+ if (type === types.icon.MagnifyingGlassIcon) return <HiSearch size={size} color={color} />;
+ if (type === types.icon.XCircle) return <HiXCircle size={size} color={color} />;
+ if (type === types.icon.HiInformationCircle)
   return <HiInformationCircle size={size} color={color} />;
  return null;
 };

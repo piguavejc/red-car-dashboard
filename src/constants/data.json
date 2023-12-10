@@ -1,0 +1,177 @@
+{
+ "screens": {
+  "dashboard": {
+   "forms": {
+    "category": {
+     "titles": {
+      "create": "Crea una categoria",
+      "edit": "Edita la categoria",
+      "detail": "Detalles de la categoria"
+     },
+     "search": {
+      "placeholder": "Buscar categoria"
+     },
+     "fields": {
+      "category": {
+       "id": "category",
+       "label": "Categoria",
+       "placeholder": "Ej: Cerebro"
+      },
+      "photo": {
+       "id": "photo",
+       "label": "Foto producto",
+       "placeholder": "Ej: Labmac"
+      }
+     },
+     "buttons": {
+      "create": {
+       "primary": "Guardar la categoria"
+      },
+      "edit": {
+       "primary": "Guardar cambios"
+      },
+      "secundary": "Limpiar el formulario"
+     },
+     "load": "Espere mientras se guardan los datos"
+    },
+    "laboratory": {
+     "titles": {
+      "create": "Crea un laboratorio",
+      "edit": "Edita un laboratorio",
+      "detail": ""
+     },
+     "search": {
+      "placeholder": "Buscar laboratorio"
+     },
+     "fields": {
+      "laboratory": {
+       "id": "laboratory",
+       "label": "Laboratorio",
+       "placeholder": "Ej: Labmac"
+      }
+     },
+     "buttons": {
+      "create": {
+       "primary": "Guardar el laboratorio"
+      },
+      "edit": {
+       "primary": "Guardar cambios"
+      },
+      "secundary": "Limpiar el formulario"
+     },
+     "load": "Espere mientras se guardan los datos"
+    },
+    "products": {
+     "titles": {
+      "create": "Crea un producto",
+      "edit": "Edita un producto",
+      "detail": "Detalles del product"
+     },
+     "search": {
+      "placeholder": "Buscar productos"
+     },
+     "fields": {
+      "product": {
+       "id": "product",
+       "label": "Producto",
+       "placeholder": "Ej: Labmac"
+      },
+      "category": {
+       "id": "category",
+       "label": "Categoria",
+       "placeholder": "Ej: Labmac"
+      },
+      "laboratory": {
+       "id": "laboratory",
+       "label": "Laboratorio",
+       "placeholder": "Ej: Labmac"
+      },
+      "barcode": {
+       "id": "barcode",
+       "label": "Codigo de barra",
+       "placeholder": "Ej: Labmac"
+      },
+      "features": {
+       "id": "features",
+       "label": "Descripcion",
+       "placeholder": "Ej: Labmac"
+      },
+      "summary": {
+       "id": "summary",
+       "label": "Componentes",
+       "placeholder": "Ej: Labmac"
+      },
+      "dosage": {
+       "id": "dosage",
+       "label": "dosis",
+       "placeholder": "Ej: Labmac"
+      },
+      "cost": {
+       "id": "cost",
+       "label": "Costo",
+       "placeholder": "Ej: Labmac"
+      },
+      "pvp": {
+       "id": "pvp",
+       "label": "Pvp",
+       "placeholder": "Ej: Labmac"
+      },
+      "photo": {
+       "id": "photo",
+       "label": "Foto producto",
+       "placeholder": "Ej: Labmac"
+      }
+     },
+     "buttons": {
+      "create": {
+       "primary": "Guardar producto"
+      },
+      "edit": {
+       "primary": "Guardar cambios"
+      },
+      "secundary": "Limpiar el formulario"
+     },
+     "load": "Espere mientras se guardan los datos"
+    }
+   },
+   "details": {
+    "product": ["Descripcion", "Propiedades", "Dosis"]
+   },
+   "list": {
+    "load": "Espere mientras se carga los datos...",
+    "empty": "No existen proyectos aun",
+    "buttons": {
+     "delete": "Eliminar",
+     "edit": "Editar",
+     "detail": "Detail"
+    }
+   },
+   "pages": {
+    "category": {
+     "buttons": {
+      "eliminate": "Ver categorias eliminadas",
+      "close": "Ocultar",
+      "load": "Recargar la informacion"
+     },
+     "error": "Ha ocurrido un error en el servidor, por favor recargue la pagina"
+    },
+    "laboratory": {
+     "buttons": {
+      "eliminate": "Ver laboratorios eliminados",
+      "close": "Ocultar",
+      "load": "Recargar la informacion"
+     },
+     "error": "Ha ocurrido un error en el servidor, por favor recargue la pagina"
+    },
+    "products": {
+     "buttons": {
+      "eliminate": "Ver productos eliminados",
+      "close": "Ocultar",
+      "load": "Recargar la informacion"
+     },
+     "error": "Ha ocurrido un error en el servidor, por favor recargue la pagina"
+    }
+   }
+  }
+ }
+}

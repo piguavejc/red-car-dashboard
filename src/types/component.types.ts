@@ -1,5 +1,4 @@
 import { AnyObjectSchema } from 'yup';
-import { statusButton, statusIcon } from '@/constants';
 import {
  CategoryDto,
  CategoryModel,
@@ -8,13 +7,14 @@ import {
  ProductModel,
 } from '@/mvc/models';
 import {
- ModalSetting,
- Photo,
- dialogSetting,
- Message,
- typesForm,
  Item,
  Search,
+ Message,
+ statusIcon,
+ statusForm,
+ statusButton,
+ ModalSetting,
+ dialogSetting,
 } from './common.types';
 
 /*  */
@@ -68,7 +68,8 @@ interface CustomItemTabsProps {
 }
 interface PosterProps {
  id: string;
- type: typesForm;
+ label: string;
+ type: statusForm;
  urlImage: string;
  disabled?: boolean;
  value: File | undefined;
@@ -80,13 +81,13 @@ interface PosterProps {
 interface CustomCategoryFormProps {
  isLoading: boolean;
  entity: CategoryModel;
- type: typesForm;
+ type: statusForm;
  handlerSubmit: (values: CategoryModel) => void;
  validationSchema: AnyObjectSchema;
 }
 interface CustomProductFormProps {
  isLoading: boolean;
- type: typesForm;
+ type: statusForm;
  entity: ProductModel;
  validationSchema: AnyObjectSchema;
  handlerSubmit: (values: ProductModel) => void;
@@ -101,7 +102,7 @@ interface CustomSearchFormProps {
 interface CustomLaboratoryFormProps {
  isLoading: boolean;
  entity: LaboratoryModel;
- type: typesForm;
+ type: statusForm;
  handlerSubmit: (values: LaboratoryModel) => void;
  validationSchema: AnyObjectSchema;
 }

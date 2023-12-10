@@ -1,10 +1,10 @@
-import React from 'react';
-import { CustomHeaderProps } from '@/types';
-import { typesButton } from '@/constants';
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { CustomHeaderProps } from '@/types';
+import { types } from '@/constants';
 import Link from 'next/link';
+import React from 'react';
 
 const CustomHeader = (props: CustomHeaderProps) => {
  const router = useRouter();
@@ -36,7 +36,7 @@ const CustomHeader = (props: CustomHeaderProps) => {
     {props.list.map((item, i) => (
      <li key={i}>
       <CustomButton
-       type={typesButton.default}
+       type={types.button.default}
        text={item}
        stylyText={`${
         props.target === i ? 'text-slate-100' : 'text-slate-600'

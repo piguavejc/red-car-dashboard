@@ -1,20 +1,12 @@
 import { CustomButton, CustomPhoto } from '@/atomic/elements';
-import { images, typesButton, typesIcon } from '@/constants';
+import { images, types, data } from '@/constants';
 import { CustomListProps } from '@/types';
 import { theme } from '@/atomic/theme';
 import { usePhoto } from '@/hooks';
 import Image from 'next/image';
 import React from 'react';
 
-const content = Object.freeze({
- load: 'Espere mientras se carga los datos...',
- empty: 'No existen proyectos aun',
- buttons: {
-  delete: 'Eliminar',
-  edit: 'Editar',
-  detail: 'Detail',
- },
-});
+const { list } = data.screens.dashboard;
 
 const CustomList = (props: CustomListProps) => {
  const { isOpen, photo, handlerHidde, handlerImage } = usePhoto();
@@ -23,10 +15,10 @@ const CustomList = (props: CustomListProps) => {
    <figure className="flexColStartCenter bg-white px-4 py-8  rounded-lg space-y-2">
     <CustomButton
      title="Cerrar imagen"
-     type={typesButton.icon}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -40,7 +32,7 @@ const CustomList = (props: CustomListProps) => {
  if (props.isLoading)
   return (
    <div className="flexColCenter bg-white px-4 py-8  rounded-lg">
-    <p className="font-semibold text-xl text-slate-600">{content.load}</p>
+    <p className="font-semibold text-xl text-slate-600">{list.load}</p>
     <Image src={images.redCar.src} width={200} height={200} alt="" />
    </div>
   );
@@ -55,7 +47,7 @@ const CustomList = (props: CustomListProps) => {
      width={500}
      height={500}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {content.empty} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {list.empty} </p>
    </div>
   );
 
@@ -75,14 +67,14 @@ const CustomList = (props: CustomListProps) => {
      <div className="space-x-4">
       {props.handlerEnable && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         stylyButton="bg-white p-1 rounded-lg"
         title="Habilitar"
         handlerPress={() => {
          props.handlerEnable && props.handlerEnable(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.enable,
+         type: types.icon.enable,
          strokeWidth: 2,
          color: theme.gray,
          size: 30,
@@ -91,14 +83,14 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerEdit && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         stylyButton="bg-white p-1 rounded-lg"
         title="Editar"
         handlerPress={() => {
          props.handlerEdit && props.handlerEdit(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.edit,
+         type: types.icon.edit,
          strokeWidth: 2,
          color: theme.gray,
          size: 30,
@@ -107,14 +99,14 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerDelete && (
        <CustomButton
-        type={typesButton.icon}
+        type={types.button.icon}
         title="Eliminar"
         stylyButton="bg-white p-1 rounded-lg"
         handlerPress={() => {
          props.handlerDelete && props.handlerDelete(item.id!, item.name!);
         }}
         icon={{
-         type: typesIcon.elimited,
+         type: types.icon.elimited,
          strokeWidth: 2,
          color: theme.red,
          size: 30,
@@ -123,14 +115,14 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerDetail && (
        <CustomButton
-        type={typesButton.icon}
-        title={content.buttons.detail}
+        type={types.button.icon}
+        title={list.buttons.detail}
         stylyButton="bg-white p-1 rounded-lg"
         handlerPress={() => {
          props.handlerDetail && props.handlerDetail(Number(item.id));
         }}
         icon={{
-         type: typesIcon.HiInformationCircle,
+         type: types.icon.HiInformationCircle,
          strokeWidth: 2,
          color: 'gray',
          size: 30,

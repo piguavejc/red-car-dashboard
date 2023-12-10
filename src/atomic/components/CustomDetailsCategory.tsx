@@ -1,7 +1,6 @@
 import { CustomDetailsCategoryProps } from '@/types';
 import { CustomButton } from '@/atomic/elements';
-import { typesButton } from '@/constants';
-import { typesIcon } from '@/constants';
+import { types } from '@/constants';
 import Image from 'next/image';
 import React from 'react';
 
@@ -11,10 +10,10 @@ const CustomDetailsCategory = (props: CustomDetailsCategoryProps) => {
    {props.handlerClose && (
     <CustomButton
      title="Cerrar"
-     type={typesButton.icon}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: '#50577A',
       size: 50,

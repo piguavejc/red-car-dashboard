@@ -1,12 +1,10 @@
 import { CustomDetailsProductProps } from '@/types';
 import { CustomButton } from '@/atomic/elements';
-import { typesButton, typesIcon } from '@/constants';
+import { types, data } from '@/constants';
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const content = Object.freeze({
- descriptions: ['Descripcion', 'Propiedades', 'Dosis'],
-});
+const { product } = data.screens.dashboard.details;
 
 const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
  const [position, setPosition] = useState<number>(0);
@@ -19,10 +17,10 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
    {props.handlerClose && (
     <CustomButton
      title="Cerrar"
-     type={typesButton.icon}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: '#50577A',
       size: 50,
@@ -43,23 +41,21 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
     </div>
     <div className="flex-1 flex flex-col justify-center items-end space-y-2">
      <p className="text-slate-100 font-semibold p-4 rounded-xl bg-rose-600">
-      {' '}
-      {props.data.laboratory}{' '}
+      {props.data.laboratory}
      </p>
      <p className="text-slate-100 font-semibold p-4 rounded-xl bg-rose-600">
-      {' '}
-      {props.data.category}{' '}
+      {props.data.category}
      </p>
     </div>
    </div>
    <section className="p-4 flex-1 w-full flex flex-col justify-stretch items-start bg-slate-100 rounded-xl space-y-4">
     <ul className="w-full flex flex-row justify-start items-center space-x-2">
-     {content.descriptions.map((tecnology, i) => (
+     {product.map((detail, i) => (
       <CustomButton
        key={i}
-       type={typesButton.default}
-       text={tecnology}
-       title={tecnology}
+       type={types.button.default}
+       text={detail}
+       title={detail}
        stylyButton={`${position === i ? 'bg-rose-600' : 'bg-slate-200'} p-4 rounded-xl`}
        stylyText={`text-xl text-slate-700 font-semibold ${
         position === i ? 'text-white' : 'text-slate-700'

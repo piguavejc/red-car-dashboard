@@ -1,10 +1,10 @@
-import { typesButton } from '@/constants';
 import { CustomButtonProps } from '@/types';
+import { types } from '@/constants';
 import React from 'react';
 import { Icon } from '.';
 
 const CustomButton = (props: CustomButtonProps) => {
- if (props.type === typesButton.default)
+ if (props.type === types.button.default)
   return (
    <button
     type="button"
@@ -19,7 +19,7 @@ const CustomButton = (props: CustomButtonProps) => {
    </button>
   );
  if (
-  props.type === typesButton.icon &&
+  props.type === types.button.icon &&
   props.icon?.type &&
   props.icon.size &&
   props.icon.size &&
@@ -41,7 +41,7 @@ const CustomButton = (props: CustomButtonProps) => {
    </button>
   );
  if (
-  props.type === typesButton.iconText &&
+  props.type === types.button.iconText &&
   props.icon?.type &&
   props.icon.size &&
   props.icon.size &&

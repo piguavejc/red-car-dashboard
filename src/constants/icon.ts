@@ -1,21 +1,3 @@
-/* types icons */
-type statusIcon =
- | 'eye'
- | 'edit'
- | 'view'
- | 'hidde'
- | 'enable'
- | 'expand'
- | 'create'
- | 'refresh'
- | 'default'
- | 'XCircle'
- | 'arrow-left'
- | 'eliminated'
- | 'EyeSlashIcon'
- | 'MicrophoneIcon'
- | 'MagnifyingGlassIcon'
- | 'HiInformationCircle';
 const typesIcon = Object.freeze({
  eye: 'eye',
  view: 'view',
@@ -35,4 +17,3 @@ const typesIcon = Object.freeze({
  HiInformationCircle: 'HiInformationCircle',
 });
 export { typesIcon };
-export type { statusIcon };

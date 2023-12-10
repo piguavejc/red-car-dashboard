@@ -4,23 +4,16 @@ import {
  CustomList,
  CustomSearch,
 } from '@/atomic/components';
-import { CustomDialog, CustomLoading, CustomModal } from '@/atomic/designs';
-import { typesButton, typesForm, typesIcon } from '@/constants';
+import { CustomDialog, CustomModal } from '@/atomic/designs';
+import { useCategoryController, useSearch } from '@/hooks';
 import { validationCategory } from '@/validations';
 import { CustomButton } from '@/atomic/elements';
-import { useCategoryController, useSearch } from '@/hooks';
 import { validationSearch } from '@/validations';
+import { types, data } from '@/constants';
 import { theme } from '@/atomic/theme';
 
-const content = Object.freeze({
- eliminate: 'Ver categorias eliminadas',
- close: 'Ocultar',
- load: 'Recargar la informacion',
- search: {
-  placeholder: 'Buscar laboratorio',
- },
- error: 'Ha ocurrido un error en el servidor, por favor recargue la pagina',
-});
+const { pages } = data.screens.dashboard;
+const { forms } = data.screens.dashboard;
 
 const CategoryView = () => {
  const { search, hanlderSearch } = useSearch();
@@ -75,11 +68,11 @@ const CategoryView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     type={typesButton.icon}
+     type={types.button.icon}
      stylyButton="self-center"
-     title={content.close}
+     title={pages.category.buttons.close}
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -102,11 +95,11 @@ const CategoryView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     title={content.load}
-     type={typesButton.icon}
+     title={pages.category.buttons.load}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -117,7 +110,7 @@ const CategoryView = () => {
      <CustomCategoryForm
       isLoading={isLoading}
       entity={category}
-      type={typesForm.edit}
+      type={types.form.edit}
       handlerSubmit={handlerEdit}
       validationSchema={validationCategory}
      />
@@ -132,7 +125,7 @@ const CategoryView = () => {
   return (
    <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
     <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="text-2xl font-semibold text-slate-100"> {content.error} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {pages.category.error} </p>
    </div>
   );
 
@@ -143,7 +136,7 @@ const CategoryView = () => {
     <CustomCategoryForm
      isLoading={isLoading}
      entity={category}
-     type={typesForm.create}
+     type={types.form.create}
      handlerSubmit={handlerCreate}
      validationSchema={validationCategory}
     />
@@ -155,11 +148,11 @@ const CategoryView = () => {
      {/* button loading */}
      <CustomButton
       stylyButton="bg-gray-100 p-2 rounded-lg"
-      title={content.load}
-      type={typesButton.icon}
+      title={pages.category.buttons.load}
+      type={types.button.icon}
       handlerPress={handlerUpdateAll}
       icon={{
-       type: typesIcon.refresh,
+       type: types.icon.refresh,
        color: theme.gray,
        size: 35,
        strokeWidth: 1,
@@ -171,25 +164,25 @@ const CategoryView = () => {
       stylyText="text-xl text-slate-600 font-semibold"
       text={categories.length.toString()}
       title={categories.length.toString()}
-      type={typesButton.default}
+      type={types.button.default}
      />
      {/* Search Form  */}
      <CustomSearch
-      placeholder={content.search.placeholder}
+      placeholder={forms.category.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
      {/*button show categories eliminated*/}
      <CustomButton
-      title={content.eliminate}
+      title={pages.category.buttons.eliminate}
       stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
       stylyText="text-xl font-semibold text-slate-600"
       text={'' + disabledCategories.length}
-      type={typesButton.iconText}
+      type={types.button.iconText}
       handlerPress={handlerOpenEnable}
       icon={{
-       type: typesIcon.elimited,
+       type: types.icon.elimited,
        color: theme.red,
        size: 35,
        strokeWidth: 1,

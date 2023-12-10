@@ -1,20 +1,13 @@
 import { CustomLaboratoryForm, CustomList, CustomSearch } from '@/atomic/components';
-import { CustomDialog, CustomLoading, CustomModal } from '@/atomic/designs';
+import { CustomDialog, CustomModal } from '@/atomic/designs';
 import { validationLaboratory, validationSearch } from '@/validations';
-import { typesButton, typesForm, typesIcon } from '@/constants';
 import { useLaboratoryController, useSearch } from '@/hooks';
 import { CustomButton } from '@/atomic/elements';
+import { types, data } from '@/constants';
 import { theme } from '@/atomic/theme';
 
-const content = Object.freeze({
- eliminate: 'Ver laboratorios eliminados',
- close: 'Ocultar',
- load: 'Recargar la informacion',
- search: {
-  placeholder: 'Buscar laboratorio',
- },
- error: 'Ha ocurrido un error en el servidor, por favor recargue la pagina',
-});
+const { pages } = data.screens.dashboard;
+const { forms } = data.screens.dashboard;
 
 const LaboratoryView = () => {
  const { search, hanlderSearch } = useSearch();
@@ -66,11 +59,11 @@ const LaboratoryView = () => {
   return (
    <div className="windowSecundary">
     <CustomButton
-     title={content.close}
-     type={typesButton.icon}
+     title={pages.laboratory.buttons.close}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -81,7 +74,7 @@ const LaboratoryView = () => {
      <CustomLaboratoryForm
       isLoading={isLoading}
       entity={laboratory}
-      type={typesForm.edit}
+      type={types.form.edit}
       handlerSubmit={handlerEdit}
       validationSchema={validationLaboratory}
      />
@@ -95,11 +88,11 @@ const LaboratoryView = () => {
   return (
    <div className="windowSecundary ">
     <CustomButton
-     title={content.close}
-     type={typesButton.icon}
+     title={pages.laboratory.buttons.close}
+     type={types.button.icon}
      stylyButton="self-center"
      icon={{
-      type: typesIcon.XCircle,
+      type: types.icon.XCircle,
       strokeWidth: 1,
       color: theme.gray,
       size: 50,
@@ -123,7 +116,7 @@ const LaboratoryView = () => {
   return (
    <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
     <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="text-2xl font-semibold text-slate-100"> {content.error} </p>
+    <p className="text-2xl font-semibold text-slate-100"> {pages.laboratory.error} </p>
    </div>
   );
 
@@ -134,7 +127,7 @@ const LaboratoryView = () => {
     <CustomLaboratoryForm
      isLoading={isLoading}
      entity={laboratory}
-     type={typesForm.create}
+     type={types.form.create}
      handlerSubmit={handlerCreate}
      validationSchema={validationLaboratory}
     />
@@ -145,11 +138,11 @@ const LaboratoryView = () => {
     <div className="flexCenter space-x-4">
      {/* button refresh */}
      <CustomButton
-      title={content.load}
+      title={pages.laboratory.buttons.load}
       stylyButton="bg-gray-100 p-2 rounded-lg"
-      type={typesButton.icon}
+      type={types.button.icon}
       icon={{
-       type: typesIcon.refresh,
+       type: types.icon.refresh,
        color: theme.gray,
        size: 35,
        strokeWidth: 1,
@@ -162,25 +155,25 @@ const LaboratoryView = () => {
       stylyText="text-xl text-slate-600 font-semibold"
       text={laboratories.length.toString()}
       title={laboratories.length.toString()}
-      type={typesButton.default}
+      type={types.button.default}
      />
      {/*search form*/}
      <CustomSearch
-      placeholder={content.search.placeholder}
+      placeholder={forms.laboratory.search.placeholder}
       entity={search}
       handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
      />
      {/*button show laboratories eliminated*/}
      <CustomButton
-      title={content.eliminate}
+      title={pages.laboratory.buttons.eliminate}
       stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
       stylyText="text-xl font-semibold text-slate-600"
       text={'' + disabledLaboratories.length}
-      type={typesButton.iconText}
+      type={types.button.iconText}
       handlerPress={handlerOpenEnable}
       icon={{
-       type: typesIcon.elimited,
+       type: types.icon.elimited,
        color: theme.red,
        size: 35,
        strokeWidth: 1,
