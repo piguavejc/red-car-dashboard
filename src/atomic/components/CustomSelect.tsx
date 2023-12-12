@@ -22,7 +22,7 @@ const CustomSelect = (props: CustomSelectProps) => {
 
  return (
   <div className="relative  flex-1 flex flex-col justify-start items-stretch space-y-2">
-   <label htmlFor="" className={props.stylyLabel}>
+   <label htmlFor="" className={'label-form'}>
     {props.label}
     <span className="text-rose-600">{`${props.isRequeried ? '*' : ''}`}</span>
    </label>
@@ -30,7 +30,7 @@ const CustomSelect = (props: CustomSelectProps) => {
     <Combobox value={selected} onChange={setSelected}>
      <div className="p-4 flex-1 flex flex-row justify-stretch items-center cursor-default overflow-hidden text-left">
       <Combobox.Input
-       className={`${props.stylyLabel} flex-1 flex flex-row justify-between items-center `}
+       className={` flex-1 flex flex-row justify-between items-center text-select-form`}
        onChange={(event) => setQuery(event.target.value)}
        displayValue={(item: string) => item}
       />

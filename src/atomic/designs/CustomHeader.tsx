@@ -38,12 +38,7 @@ const CustomHeader = (props: CustomHeaderProps) => {
       <CustomButton
        type={types.button.default}
        text={item}
-       stylyText={`${
-        props.target === i ? 'text-slate-100' : 'text-slate-600'
-       } font-semibold text-xl`}
-       stylyButton={`${
-        props.target === i ? 'bg-rose-600' : 'bg-slate-300'
-       } px-8 py-4  p-4 rounded-lg`}
+       variant={props.target === i ? types.variant.button.primary : types.variant.button.secondary}
        handlerPress={() => props.hanlderTarget(i)}
        title={item}
       />

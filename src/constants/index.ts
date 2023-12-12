@@ -2,22 +2,10 @@ import data from './data.json';
 import { images } from './images';
 import { typesIcon } from './icon';
 import { typesForm } from './form';
-import { typesButton } from './button';
+import { typesButton, typesVariantButton } from './button';
+import { typesAction } from './action';
 import { messageDialog } from './message';
-
-const typesAction = Object.freeze({
- enable: 'enable',
- create: 'create',
- eliminate: 'eliminate',
- edit: 'edit',
- update: 'update',
- cancel: 'cancel',
-});
-
-const typesStatusDialog = Object.freeze({
- success: 200,
- error: 500,
-});
+import { typesStatusDialog } from './dialog';
 
 const types = Object.freeze({
  icon: typesIcon,
@@ -25,6 +13,9 @@ const types = Object.freeze({
  button: typesButton,
  action: typesAction,
  dialog: typesStatusDialog,
+ variant: {
+  button: typesVariantButton,
+ },
 });
 
 export { types, images, messageDialog, data };

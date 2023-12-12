@@ -33,8 +33,7 @@ const CustomModal = (props: CustomModalProps) => {
     <CustomButton
      type={types.button.default}
      isDisable={false}
-     stylyButton={'buttonEnable'}
-     stylyText={'inputButtonEnable'}
+     variant={types.variant.button.primary}
      text={'Ok'}
      handlerPress={props.setting.handlerHidde}
      title={'Ok'}

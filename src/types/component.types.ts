@@ -15,6 +15,7 @@ import {
  statusButton,
  ModalSetting,
  dialogSetting,
+ variantButton,
 } from './common.types';
 
 /*  */
@@ -125,9 +126,9 @@ interface CustomButtonIconProps {
 }
 
 interface IconProps {
- type: statusIcon;
- color: string;
  size: number;
+ color: string;
+ type: statusIcon;
  strokeWidth: number;
 }
 interface CustomDialogProps {
@@ -143,21 +144,18 @@ interface CustomItemProps {
  handlerEliminate?: (id: number, name: string) => void;
 }
 interface CustomButtonProps {
- type: statusButton;
  title: string;
- isDisable?: boolean;
- stylyButton?: string;
- stylyText?: string;
  text?: string;
  icon?: IconProps;
+ type: statusButton;
+ className?: string;
+ isDisable?: boolean;
+ variant?: variantButton;
  handlerPress?: () => void;
 }
 interface CustomTextAreaProps {
  id: string;
  label?: string;
- className: string;
- stylyText: string;
- styleLabel: string;
  isDisable: boolean;
  placeholder: string;
  isRequeried?: boolean;
@@ -170,9 +168,6 @@ interface CustomTextAreaProps {
 interface CustomInputProps {
  id: string;
  label?: string;
- className: string;
- stylyText: string;
- styleLabel: string;
  isDisable: boolean;
  placeholder: string;
  isRequeried?: boolean;

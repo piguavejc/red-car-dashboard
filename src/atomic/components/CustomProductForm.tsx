@@ -1,5 +1,5 @@
-import { CustomButton, CustomInput, CustomPoster, CustomTextArea } from '@/atomic/elements';
 import { useProgressBar, useCategoryController, useLaboratoryController, usePoster } from '@/hooks';
+import { CustomButton, CustomInput, CustomPoster, CustomTextArea } from '@/atomic/elements';
 import { CustomDetailsProduct, CustomProgressBar, CustomSelect } from '.';
 import { CustomProductFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
@@ -52,18 +52,18 @@ const CustomProductForm = (props: CustomProductFormProps) => {
     if (props.values.photo) handlerPoster(props.values.photo);
     return (
      <section className="flex-1 flex flex-row justify-start items-start relative space-x-4">
-      <section className="backgroundForm p-8 basis-full flexColStart  rounded-lg">
+      <section className="bg-form p-8 basis-full flexColStart  rounded-lg">
        <CustomProgressBar items={items} handlerItem={handlerPosition} posiition={position} />
        <header>
-        <h2 className="colorTitleForm">
+        <h2 className="title-form">
          {type === types.form.create ? products.titles.create : products.titles.edit}{' '}
         </h2>
        </header>
        {position === 0 && (
         <>
          <CustomSelect
-          stylyLabel={'label'}
-          stylySelect={'inputSelectEnable'}
+          stylyLabel={'label-forn'}
+          stylySelect={'select-form'}
           label={products.fields.category.label}
           value={props.values.category}
           data={categories}
@@ -74,8 +74,8 @@ const CustomProductForm = (props: CustomProductFormProps) => {
           isRequeried
          />
          <CustomSelect
-          stylyLabel={'label'}
-          stylySelect={'inputSelectEnable'}
+          stylyLabel={'label-forn'}
+          stylySelect={'select-form'}
           label={products.fields.laboratory.label}
           value={props.values.laboratory}
           data={laboratories}
@@ -87,9 +87,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          />
          <CustomInput
           id={products.fields.product.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.product.label}
           placeholder={products.fields.product.placeholder}
@@ -105,8 +102,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
           title={'Siguiente'}
           text={'Siguiente'}
           isDisable={false}
-          stylyButton={'buttonEnable'}
-          stylyText={'inputButtonEnable'}
+          variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(1)}
          />
         </>
@@ -116,9 +112,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
         <>
          <CustomInput
           id={products.fields.barcode.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.barcode.label}
           placeholder={products.fields.barcode.placeholder}
@@ -130,9 +123,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          />
          <CustomTextArea
           id={products.fields.features.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.features.label}
           placeholder={products.fields.features.placeholder}
@@ -145,9 +135,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          />
          <CustomTextArea
           id={products.fields.summary.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.summary.label}
           placeholder={products.fields.summary.placeholder}
@@ -163,8 +150,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
           title={'Siguiente'}
           text={'Siguiente'}
           isDisable={false}
-          stylyButton={'buttonEnable'}
-          stylyText={'inputButtonEnable'}
+          variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(2)}
          />
         </>
@@ -174,9 +160,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
         <>
          <CustomTextArea
           id={products.fields.dosage.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.dosage.label}
           placeholder={products.fields.dosage.placeholder}
@@ -189,9 +172,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          />
          <CustomInput
           id={products.fields.cost.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.cost.label}
           placeholder={products.fields.cost.placeholder}
@@ -204,9 +184,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
          />
          <CustomInput
           id={products.fields.pvp.id}
-          className={'backgroundField'}
-          styleLabel={'label'}
-          stylyText={' input'}
           isDisable={false}
           label={products.fields.pvp.label}
           placeholder={products.fields.pvp.placeholder}
@@ -222,8 +199,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
           title={'Siguiente'}
           text={'Siguiente'}
           isDisable={false}
-          stylyButton={'buttonEnable'}
-          stylyText={'inputButtonEnable'}
+          variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(3)}
          />
         </>
@@ -257,8 +233,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
             : products.buttons.edit.primary
           }
           isDisable={!props.isValid}
-          stylyButton={'buttonEnable'}
-          stylyText={'inputButtonEnable'}
+          variant={types.variant.button.primary}
           handlerPress={props.handleSubmit}
          />
         </>

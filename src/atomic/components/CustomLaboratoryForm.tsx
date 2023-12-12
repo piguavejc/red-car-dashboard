@@ -1,4 +1,4 @@
-import { CustomButton, CustomInput, CustomPoster } from '@/atomic/elements';
+import { CustomButton, CustomInput } from '@/atomic/elements';
 import { CustomLaboratoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { LaboratoryModel } from '@/mvc/models';
@@ -41,9 +41,9 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
   >
    {(props) => {
     return (
-     <section className="backgroundForm p-8 basis-full flexColStart rounded-lg">
+     <section className="bg-form p-8 basis-full flexColStart rounded-lg">
       <header>
-       <h2 className="colorTitleForm">
+       <h2 className="title-form">
         {type === types.form.create ? laboratory.titles.create : laboratory.titles.edit}
        </h2>
       </header>
@@ -51,9 +51,6 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
       <CustomInput
        isRequeried
        id={laboratory.fields.laboratory.id}
-       className={'backgroundField'}
-       styleLabel={'label'}
-       stylyText={' input'}
        isDisable={false}
        label={laboratory.fields.laboratory.label}
        placeholder={laboratory.fields.laboratory.placeholder}
@@ -77,8 +74,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
          : laboratory.buttons.edit.primary
        }
        isDisable={!props.isValid}
-       stylyButton={'buttonEnable'}
-       stylyText={'inputButtonEnable'}
+       variant={types.variant.button.primary}
        handlerPress={props.handleSubmit}
       />
       {/* button secondary  */}
@@ -87,8 +83,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
        text={laboratory.buttons.secundary}
        type={types.button.default}
        isDisable={false}
-       stylyButton={'buttonDisable'}
-       stylyText={'inputButtonDisable'}
+       variant={types.variant.button.secondary}
        handlerPress={props.resetForm}
       />
      </section>

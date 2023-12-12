@@ -11,7 +11,7 @@ const CustomDetailsCategory = (props: CustomDetailsCategoryProps) => {
     <CustomButton
      title="Cerrar"
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -29,7 +29,7 @@ const CustomDetailsCategory = (props: CustomDetailsCategoryProps) => {
      width={150}
      height={150}
     />
-    <h2 className="colorTitleForm"> {props.data.category} </h2>
+    <h2 className="title-form"> {props.data.category} </h2>
    </div>
   </section>
  );

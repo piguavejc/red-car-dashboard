@@ -16,7 +16,7 @@ const CustomList = (props: CustomListProps) => {
     <CustomButton
      title="Cerrar imagen"
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -60,16 +60,21 @@ const CustomList = (props: CustomListProps) => {
     >
      {item.photo && (
       <button onClick={() => handlerImage(item.photo)} title={item.name}>
-       <CustomPhoto title={'' + item.name} src={item.photo} width={25} height={25} />
+       <CustomPhoto
+        title={item.name?.toString() as string}
+        src={item.photo}
+        width={25}
+        height={25}
+       />
       </button>
      )}
-     <p className="text-xl font-semibold text-slate-600 flex-1">{item.name}</p>
-     <div className="space-x-4">
+     <p className="flex-1 text-xl font-semibold text-slate-600">{item.name}</p>
+     <div className="flex flex-row items-center space-x-4">
       {props.handlerEnable && (
        <CustomButton
+        variant={types.variant.button.secondary}
+        title={list.buttons.enable}
         type={types.button.icon}
-        stylyButton="bg-white p-1 rounded-lg"
-        title="Habilitar"
         handlerPress={() => {
          props.handlerEnable && props.handlerEnable(item.id!, item.name!);
         }}
@@ -83,9 +88,9 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerEdit && (
        <CustomButton
+        variant={types.variant.button.secondary}
         type={types.button.icon}
-        stylyButton="bg-white p-1 rounded-lg"
-        title="Editar"
+        title={list.buttons.edit}
         handlerPress={() => {
          props.handlerEdit && props.handlerEdit(item.id!, item.name!);
         }}
@@ -99,9 +104,9 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerDelete && (
        <CustomButton
+        variant={types.variant.button.secondary}
         type={types.button.icon}
-        title="Eliminar"
-        stylyButton="bg-white p-1 rounded-lg"
+        title={list.buttons.delete}
         handlerPress={() => {
          props.handlerDelete && props.handlerDelete(item.id!, item.name!);
         }}
@@ -115,9 +120,9 @@ const CustomList = (props: CustomListProps) => {
       )}
       {props.handlerDetail && (
        <CustomButton
+        variant={types.variant.button.secondary}
         type={types.button.icon}
         title={list.buttons.detail}
-        stylyButton="bg-white p-1 rounded-lg"
         handlerPress={() => {
          props.handlerDetail && props.handlerDetail(Number(item.id));
         }}

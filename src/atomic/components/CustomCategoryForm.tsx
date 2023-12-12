@@ -46,9 +46,9 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
     if (props.values.photo) handlerPoster(props.values.photo);
     return (
      <section className="flex-1 flex flex-row justify-start items-stretch relative space-x-4">
-      <section className="backgroundForm basis-full p-8 flexColStart rounded-lg">
+      <section className="bg-form basis-full p-8 flexColStart rounded-lg">
        <header>
-        <h2 className="colorTitleForm">
+        <h2 className="title-form">
          {type === types.form.create ? category.titles.create : category.titles.edit}
         </h2>
        </header>
@@ -70,9 +70,6 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        <CustomInput
         isRequeried
         id={category.fields.category.id}
-        className={'backgroundField'}
-        styleLabel={'label'}
-        stylyText={'input p-2 rounded-lg'}
         isDisable={false}
         label={category.fields.category.label}
         placeholder={category.fields.category.placeholder}
@@ -86,8 +83,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        <CustomButton
         type={types.button.default}
         isDisable={!props.isValid}
-        stylyButton={'buttonEnable'}
-        stylyText={'inputButtonEnable'}
+        variant={types.variant.button.primary}
         text={
          type === types.form.create
           ? category.buttons.create.primary
@@ -102,18 +98,17 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        />
        {/* button secondary */}
        <CustomButton
-        title={category.buttons.secundary}
-        text={category.buttons.secundary}
-        type={types.button.default}
         isDisable={false}
-        stylyButton={'buttonDisable'}
-        stylyText={'inputButtonDisable'}
+        type={types.button.default}
+        text={category.buttons.secundary}
+        title={category.buttons.secundary}
+        variant={types.variant.button.secondary}
         handlerPress={props.resetForm}
        />
       </section>
       {type === types.form.edit && props.values.photo && (
        <section className="flex-1 flex flex-col justify-stretch items-center p-8 space-y-4">
-        <h1 className="colorTitleForm">{category.titles.detail}</h1>
+        <h1 className="title-form">{category.titles.detail}</h1>
         <CustomDetailsCategory
          data={{
           idcategory: props.values.idcategory,

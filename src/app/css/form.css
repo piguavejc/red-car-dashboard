@@ -1,0 +1,27 @@
+.title-form {
+ @apply text-slate-600 text-2xl font-semibold text-center;
+}
+
+.bg-form {
+ @apply bg-gray-50;
+}
+
+.field-form {
+ @apply flex flex-col space-y-2 rounded-lg;
+}
+
+.text-form {
+ @apply bg-white text-xl border-2 text-slate-500 p-2 rounded-lg;
+}
+
+.label-form {
+ @apply text-slate-500 font-semibold text-xl;
+}
+
+.select-form {
+ @apply bg-slate-100 p-2 text-slate-500 font-semibold text-xl rounded-lg;
+}
+
+.text-select-form {
+ @apply bg-white text-xl text-slate-500 p-2;
+}

@@ -61,7 +61,7 @@ const LaboratoryView = () => {
     <CustomButton
      title={pages.laboratory.buttons.close}
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -90,7 +90,7 @@ const LaboratoryView = () => {
     <CustomButton
      title={pages.laboratory.buttons.close}
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -138,8 +138,8 @@ const LaboratoryView = () => {
     <div className="flexCenter space-x-4">
      {/* button refresh */}
      <CustomButton
+      variant={types.variant.button.secondary}
       title={pages.laboratory.buttons.load}
-      stylyButton="bg-gray-100 p-2 rounded-lg"
       type={types.button.icon}
       icon={{
        type: types.icon.refresh,
@@ -151,8 +151,7 @@ const LaboratoryView = () => {
      />
      {/* button length laboratories */}
      <CustomButton
-      stylyButton="bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl text-slate-600 font-semibold"
+      variant={types.variant.button.secondary}
       text={laboratories.length.toString()}
       title={laboratories.length.toString()}
       type={types.button.default}
@@ -166,18 +165,17 @@ const LaboratoryView = () => {
      />
      {/*button show laboratories eliminated*/}
      <CustomButton
+      variant={types.variant.button.secondary}
       title={pages.laboratory.buttons.eliminate}
-      stylyButton="bg-gray-100 p-2 rounded-lg flexCenter"
-      stylyText="text-xl font-semibold text-slate-600"
-      text={'' + disabledLaboratories.length}
+      text={disabledLaboratories.length.toString()}
       type={types.button.iconText}
-      handlerPress={handlerOpenEnable}
       icon={{
        type: types.icon.elimited,
        color: theme.red,
        size: 35,
        strokeWidth: 1,
       }}
+      handlerPress={handlerOpenEnable}
      />
     </div>
     {/*laboratories list*/}

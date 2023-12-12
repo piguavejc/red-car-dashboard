@@ -69,7 +69,7 @@ const CategoryView = () => {
    <div className="windowSecundary">
     <CustomButton
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      title={pages.category.buttons.close}
      icon={{
       type: types.icon.XCircle,
@@ -97,7 +97,7 @@ const CategoryView = () => {
     <CustomButton
      title={pages.category.buttons.load}
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -147,7 +147,7 @@ const CategoryView = () => {
     <div className="flexCenter space-x-4">
      {/* button loading */}
      <CustomButton
-      stylyButton="bg-gray-100 p-2 rounded-lg"
+      variant={types.variant.button.secondary}
       title={pages.category.buttons.load}
       type={types.button.icon}
       handlerPress={handlerUpdateAll}
@@ -160,11 +160,10 @@ const CategoryView = () => {
      />
      {/* button length categories */}
      <CustomButton
-      stylyButton="bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl text-slate-600 font-semibold"
       text={categories.length.toString()}
       title={categories.length.toString()}
       type={types.button.default}
+      variant={types.variant.button.secondary}
      />
      {/* Search Form  */}
      <CustomSearch
@@ -176,10 +175,9 @@ const CategoryView = () => {
      {/*button show categories eliminated*/}
      <CustomButton
       title={pages.category.buttons.eliminate}
-      stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl font-semibold text-slate-600"
       text={'' + disabledCategories.length}
       type={types.button.iconText}
+      variant={types.variant.button.secondary}
       handlerPress={handlerOpenEnable}
       icon={{
        type: types.icon.elimited,

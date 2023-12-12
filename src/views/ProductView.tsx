@@ -72,7 +72,7 @@ const ProductView = () => {
     <CustomButton
      title={pages.products.buttons.load}
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -99,7 +99,7 @@ const ProductView = () => {
     <CustomButton
      title={pages.products.buttons.load}
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -154,46 +154,44 @@ const ProductView = () => {
     <div className="flexCenter space-x-4">
      {/* button refresh */}
      <CustomButton
-      stylyButton="bg-gray-100 p-2 rounded-lg"
+      variant={types.variant.button.secondary}
       title={pages.products.buttons.load}
       type={types.button.icon}
-      handlerPress={handlerUpdateAll}
       icon={{
        type: types.icon.refresh,
        color: theme.gray,
        size: 35,
        strokeWidth: 1,
       }}
+      handlerPress={handlerUpdateAll}
      />
      {/* button length products */}
      <CustomButton
-      stylyButton="bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl text-slate-600 font-semibold"
-      text={products.length.toString()}
+      variant={types.variant.button.secondary}
       title={products.length.toString()}
+      text={products.length.toString()}
       type={types.button.default}
      />
      {/* input Search */}
      <CustomSearch
       placeholder={forms.products.search.placeholder}
-      entity={search}
-      handlerSubmit={hanlderSearch}
       validationSchema={validationSearch}
+      handlerSubmit={hanlderSearch}
+      entity={search}
      />
      {/* button delete */}
      <CustomButton
+      variant={types.variant.button.secondary}
       title={pages.products.buttons.eliminate}
-      stylyButton="flexCenter bg-gray-100 p-2 rounded-lg"
-      stylyText="text-xl text-slate-600 font-semibold"
       text={'' + disabledProducts.length}
       type={types.button.iconText}
-      handlerPress={handlerOpenEnable}
       icon={{
        type: types.icon.elimited,
        color: theme.red,
        size: 35,
        strokeWidth: 1,
       }}
+      handlerPress={handlerOpenEnable}
      />
     </div>
 

@@ -1,7 +1,9 @@
 import { CustomButton } from '@/atomic/elements';
 import { CustomDialogProps } from '@/types';
-import { types } from '@/constants';
+import { types, data } from '@/constants';
 import React from 'react';
+
+const { dialog } = data.screens.dashboard;
 
 const CustomDialog = (props: CustomDialogProps) => {
  return (
@@ -20,23 +22,21 @@ const CustomDialog = (props: CustomDialogProps) => {
     </p>
     {/* button primary dialog */}
     <CustomButton
-     type={types.button.default}
      isDisable={false}
-     stylyButton={'buttonEnable'}
-     stylyText={'inputButtonEnable'}
-     text={'Si'}
+     type={types.button.default}
+     text={dialog.buttons.primary}
+     title={dialog.buttons.primary}
+     variant={types.variant.button.primary}
      handlerPress={() => props.setting.handlerVerify(true)}
-     title={'Si'}
     />
     {/* button secundary dialog */}
     <CustomButton
-     type={types.button.default}
      isDisable={false}
-     stylyButton={'buttonDisable'}
-     stylyText={'inputButtonDisable'}
-     text={'No'}
+     type={types.button.default}
+     text={dialog.buttons.secondary}
+     title={dialog.buttons.secondary}
+     variant={types.variant.button.secondary}
      handlerPress={() => props.setting.handlerVerify(false)}
-     title={'NO'}
     />
    </div>
   </div>

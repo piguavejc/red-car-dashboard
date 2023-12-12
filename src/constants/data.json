@@ -1,6 +1,12 @@
 {
  "screens": {
   "dashboard": {
+   "dialog": {
+    "buttons": {
+     "primary": "Si, Estoy de acuerdo",
+     "secondary": "No estoy de acuerdo"
+    }
+   },
    "forms": {
     "category": {
      "titles": {
@@ -19,8 +25,8 @@
       },
       "photo": {
        "id": "photo",
-       "label": "Foto producto",
-       "placeholder": "Ej: Labmac"
+       "label": "Foto de la categoria",
+       "placeholder": "Ej: Deporte"
       }
      },
      "buttons": {
@@ -143,7 +149,8 @@
     "buttons": {
      "delete": "Eliminar",
      "edit": "Editar",
-     "detail": "Detail"
+     "detail": "Detail",
+     "enable": "Habilitar"
     }
    },
    "pages": {

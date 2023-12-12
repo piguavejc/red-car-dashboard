@@ -10,12 +10,9 @@ const CustomProgressBar = (props: CustomProgressBarProps) => {
     {props.items.map((item, i) => (
      <CustomButton
       key={i}
-      stylyButton={`${
-       props.posiition >= i ? 'text-slate-100' : 'text-slate-600'
-      } font-semibold text-xl cursor-pointer`}
-      stylyText={`${
-       props.posiition >= i ? 'bg-rose-600' : 'bg-slate-300'
-      } px-8 py-4  p-4 rounded-lg`}
+      variant={
+       props.posiition === i ? types.variant.button.primary : types.variant.button.secondary
+      }
       type={types.button.default}
       title={'' + (i + 1)}
       text={'' + (i + 1)}
@@ -28,3 +25,4 @@ const CustomProgressBar = (props: CustomProgressBarProps) => {
 };
 
 export { CustomProgressBar };
+/*   */

@@ -6,7 +6,10 @@ import { types } from '@/constants';
 const CustomPoster = (props: PosterProps) => {
  return (
   <div className=" p-4 flexCenter border-4 border-dashed w-full min-h-[200px] relative">
-   <label htmlFor={props.id} className="flexCenter label w-full min-h-[200px] cursor-pointer">
+   <label
+    htmlFor={props.id}
+    className="flexCenter label-form label w-full min-h-[200px] cursor-pointer"
+   >
     {!props.value && props.label}
    </label>
    <input

@@ -18,7 +18,7 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
     <CustomButton
      title="Cerrar"
      type={types.button.icon}
-     stylyButton="self-center"
+     className="self-center"
      icon={{
       type: types.icon.XCircle,
       strokeWidth: 1,
@@ -37,7 +37,7 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
       width={150}
       height={150}
      />
-     <h2 className="colorTitleForm"> {props.data.product} </h2>
+     <h2 className="title-form"> {props.data.product} </h2>
     </div>
     <div className="flex-1 flex flex-col justify-center items-end space-y-2">
      <p className="text-slate-100 font-semibold p-4 rounded-xl bg-rose-600">
@@ -50,19 +50,7 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
    </div>
    <section className="p-4 flex-1 w-full flex flex-col justify-stretch items-start bg-slate-100 rounded-xl space-y-4">
     <ul className="w-full flex flex-row justify-start items-center space-x-2">
-     {product.map((detail, i) => (
-      <CustomButton
-       key={i}
-       type={types.button.default}
-       text={detail}
-       title={detail}
-       stylyButton={`${position === i ? 'bg-rose-600' : 'bg-slate-200'} p-4 rounded-xl`}
-       stylyText={`text-xl text-slate-700 font-semibold ${
-        position === i ? 'text-white' : 'text-slate-700'
-       }`}
-       handlerPress={() => handlerPosition(i)}
-      />
-     ))}
+     {product.map((detail, i) => null)}
     </ul>
     <p className="p-4 w-full rounded-xl text-xl bg-slate-200  text-slate-700 flex flex-row justify-between items-start space-x-2">
      {links[position]}
@@ -73,3 +61,13 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
 };
 
 export { CustomDetailsProduct };
+// <CustomButton
+//     key={i}
+//     type={types.button.default}
+//     text={detail}
+//     title={detail}
+//     stylyButton={`${position === i ? 'bg-rose-600' : 'bg-slate-200'} p-4 rounded-xl`}
+//     stylyText={`text-xl text-slate-700 font-semibold ${position === i ? 'text-white' : 'text-slate-700'
+//         }`}
+//     handlerPress={() => handlerPosition(i)}
+// />

@@ -3,4 +3,9 @@ const typesButton = Object.freeze({
  icon: 'icon',
  iconText: 'iconText',
 });
-export { typesButton };
+const typesVariantButton = Object.freeze({
+ primary: 'primary',
+ secondary: 'secondary',
+ disabled: 'disabled',
+});
+export { typesButton, typesVariantButton };

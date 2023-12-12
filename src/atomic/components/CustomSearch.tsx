@@ -18,19 +18,17 @@ const CustomSearch = (props: CustomSearchFormProps) => {
    {(props) => {
     handlerSubmit({ search: props.values.search });
     return (
-     <CustomInput
-      id={'search'}
-      className={'flex-1 rounded-lg flex flex-col space-y-4 '}
-      styleLabel={'text-xl font-semibold'}
-      stylyText={'input '}
-      isDisable={false}
-      placeholder={placeholder}
-      value={props.values.search}
-      validation={props.errors.search && props.touched.search}
-      messageError={props.errors.search}
-      handlerChange={props.handleChange('search')}
-      hanhandlerBlur={props.handleBlur('search')}
-     />
+     <div className={'flex-1 rounded-lg flex flex-col space-y-4 '}>
+      <input
+       id={'search'}
+       type="text"
+       value={props.values.search}
+       className={'text-form'}
+       onBlur={props.handleBlur('search')}
+       onChange={props.handleChange('search')}
+       placeholder={placeholder}
+      />
+     </div>
     );
    }}
   </Formik>

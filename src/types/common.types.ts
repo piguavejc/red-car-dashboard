@@ -73,6 +73,8 @@ type statusForm = 'create' | 'edit';
 type statusButton = 'default' | 'icon' | 'iconText';
 /*  */
 type statusDialog = 200 | 500;
+/*  */
+type variantButton = 'primary' | 'secondary' | 'disabled';
 export type {
  Item,
  Photo,
@@ -85,5 +87,6 @@ export type {
  ModalSetting,
  statusDialog,
  statusAction,
+ variantButton,
  dialogSetting,
 };
