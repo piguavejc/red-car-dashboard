@@ -21,8 +21,6 @@ import {
 /*  */
 interface CustomSelectProps {
  isRequeried?: boolean;
- stylyLabel: string;
- stylySelect: string;
  label: string;
  value: string | undefined;
  data: Item[];
@@ -126,10 +124,7 @@ interface CustomButtonIconProps {
 }
 
 interface IconProps {
- size: number;
- color: string;
  type: statusIcon;
- strokeWidth: number;
 }
 interface CustomDialogProps {
  setting: dialogSetting;
@@ -146,7 +141,7 @@ interface CustomItemProps {
 interface CustomButtonProps {
  title: string;
  text?: string;
- icon?: IconProps;
+ icon?: statusIcon;
  type: statusButton;
  className?: string;
  isDisable?: boolean;
@@ -177,11 +172,6 @@ interface CustomInputProps {
  handlerChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
  hanhandlerBlur: React.FocusEventHandler<HTMLInputElement> | undefined;
 }
-interface CustomLoadingProps {
- colorText: string;
- message: Message;
- background: string;
-}
 interface CustomPhotoProps {
  className?: string;
  title: string;
@@ -203,7 +193,6 @@ export type {
  CustomButtonIconProps,
  CustomTextAreaProps,
  CustomItemTabsProps,
- CustomLoadingProps,
  CustomDialogProps,
  CustomButtonProps,
  CustomHeaderProps,

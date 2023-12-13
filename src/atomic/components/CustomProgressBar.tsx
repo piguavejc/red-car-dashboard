@@ -6,7 +6,7 @@ import { types } from '@/constants';
 const CustomProgressBar = (props: CustomProgressBarProps) => {
  return (
   <nav>
-   <ul className="flexRowBetween space-x-5">
+   <ul className="flex-row-between-stretch space-x-5">
     {props.items.map((item, i) => (
      <CustomButton
       key={i}

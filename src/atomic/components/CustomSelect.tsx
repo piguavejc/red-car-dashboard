@@ -21,16 +21,16 @@ const CustomSelect = (props: CustomSelectProps) => {
    : props.data.filter((data: Item) => data.name!.toLowerCase().includes(query.toLowerCase()));
 
  return (
-  <div className="relative  flex-1 flex flex-col justify-start items-stretch space-y-2">
+  <div className="relative  flex-col-start-stretch">
    <label htmlFor="" className={'label-form'}>
     {props.label}
     <span className="text-rose-600">{`${props.isRequeried ? '*' : ''}`}</span>
    </label>
-   <div className="flex-1 flex flex-col justify-stretch items-stretch rounded-lg bg-white  border-2">
+   <div className="flex-col-stretch-stretch rounded-lg bg-white  border-2">
     <Combobox value={selected} onChange={setSelected}>
-     <div className="p-4 flex-1 flex flex-row justify-stretch items-center cursor-default overflow-hidden text-left">
+     <div className="p-4 flex-row-stretch-center cursor-default overflow-hidden text-left">
       <Combobox.Input
-       className={` flex-1 flex flex-row justify-between items-center text-select-form`}
+       className={`flex-row-between-center text-select-form`}
        onChange={(event) => setQuery(event.target.value)}
        displayValue={(item: string) => item}
       />
@@ -53,10 +53,10 @@ const CustomSelect = (props: CustomSelectProps) => {
          </div>
         ) : (
          filteredData.map((item: Item, i) => (
-          <Combobox.Option key={i} value={item.name} className={props.stylySelect}>
+          <Combobox.Option key={i} value={item.name} className={'select-form'}>
            {({ active, selected }) => (
             <li
-             className={`p-4 rounded-xl flex flex-row justify-start items-center space-x-4 ${
+             className={`p-4 rounded-xl flex-row-start-center ${
               active ? 'bg-rose-600 text-white' : 'bg-white text-black'
              }`}
             >

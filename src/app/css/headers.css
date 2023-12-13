@@ -1,0 +1,18 @@
+.header-1 {
+ @apply font-semibold text-4xl text-slate-800 text-center;
+}
+.header-2 {
+ @apply text-3xl font-semibold text-slate-800 text-center;
+}
+.header-3 {
+ @apply flex-1 text-2xl font-semibold text-slate-600 text-center;
+}
+.default-text {
+ @apply text-xl text-slate-800 text-center;
+}
+.default-text-bold {
+ @apply text-xl font-semibold text-center text-slate-800;
+}
+.error-text {
+ @apply text-2xl font-semibold text-slate-100 text-rose-600;
+}

@@ -15,7 +15,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { urlImage, handlerPoster } = usePoster();
  if (props.isLoading) {
   return (
-   <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -28,7 +28,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {category.load} </p>
+    <p className="error-text"> {category.load} </p>
    </div>
   );
  }
@@ -45,8 +45,8 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
    {(props) => {
     if (props.values.photo) handlerPoster(props.values.photo);
     return (
-     <section className="flex-1 flex flex-row justify-start items-stretch relative space-x-4">
-      <section className="bg-form basis-full p-8 flexColStart rounded-lg">
+     <section className="flex-row-start-stretch relative">
+      <section className="bg-form basis-full p-8 flex-col-start-stretch rounded-lg">
        <header>
         <h2 className="title-form">
          {type === types.form.create ? category.titles.create : category.titles.edit}
@@ -69,15 +69,15 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        {/* Category  */}
        <CustomInput
         isRequeried
-        id={category.fields.category.id}
         isDisable={false}
+        value={props.values.category}
+        id={category.fields.category.id}
+        messageError={props.errors.category}
         label={category.fields.category.label}
         placeholder={category.fields.category.placeholder}
-        value={props.values.category}
-        handlerChange={props.handleChange('category')}
-        hanhandlerBlur={props.handleBlur('category')}
         validation={props.errors.category && props.touched.category}
-        messageError={props.errors.category}
+        hanhandlerBlur={props.handleBlur('category')}
+        handlerChange={props.handleChange('category')}
        />
        {/* button create or edit  */}
        <CustomButton
@@ -107,14 +107,14 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        />
       </section>
       {type === types.form.edit && props.values.photo && (
-       <section className="flex-1 flex flex-col justify-stretch items-center p-8 space-y-4">
+       <section className="p-8 ">
         <h1 className="title-form">{category.titles.detail}</h1>
         <CustomDetailsCategory
          data={{
-          idcategory: props.values.idcategory,
-          category: props.values.category,
-          idphoto: props.values.idphoto,
           photo: String(urlImage),
+          idphoto: props.values.idphoto,
+          category: props.values.category,
+          idcategory: props.values.idcategory,
          }}
          isLoading={false}
         />

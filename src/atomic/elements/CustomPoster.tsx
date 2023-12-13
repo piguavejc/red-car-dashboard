@@ -5,10 +5,10 @@ import { types } from '@/constants';
 
 const CustomPoster = (props: PosterProps) => {
  return (
-  <div className=" p-4 flexCenter border-4 border-dashed w-full min-h-[200px] relative">
+  <div className=" p-4 flex-col-center-center border-4 border-dashed w-full min-h-[200px] relative">
    <label
     htmlFor={props.id}
-    className="flexCenter label-form label w-full min-h-[200px] cursor-pointer"
+    className="flex-col-center-center label-form label w-full min-h-[200px] cursor-pointer"
    >
     {!props.value && props.label}
    </label>
@@ -24,7 +24,7 @@ const CustomPoster = (props: PosterProps) => {
    {props.value && (
     <Image className="object-contain z-20" src={props.urlImage || ''} alt={'Project poster'} fill />
    )}
-   {props.validation && <p className="text-red-700 font-semibold">{props.messageError}</p>}
+   {props.validation && <p className="error-text">{props.messageError}</p>}
   </div>
  );
 };

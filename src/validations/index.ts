@@ -54,4 +54,10 @@ const validationSearch = object({
  search: string(),
 });
 
-export { validationCategory, validationLaboratory, validationSearch, validationProduct };
+const validate = Object.freeze({
+ search: validationSearch,
+ product: validationProduct,
+ category: validationCategory,
+ laboratory: validationLaboratory,
+});
+export { validate };

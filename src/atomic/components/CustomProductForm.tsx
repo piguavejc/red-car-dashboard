@@ -20,7 +20,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
 
  if (props.isLoading) {
   return (
-   <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -33,7 +33,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {products.load} </p>
+    <p className="error-text"> {products.load} </p>
    </div>
   );
  }
@@ -50,9 +50,10 @@ const CustomProductForm = (props: CustomProductFormProps) => {
   >
    {(props) => {
     if (props.values.photo) handlerPoster(props.values.photo);
+    console.log(props.errors);
     return (
-     <section className="flex-1 flex flex-row justify-start items-start relative space-x-4">
-      <section className="bg-form p-8 basis-full flexColStart  rounded-lg">
+     <section className="flex-row-start-stretch relative">
+      <section className="flex-col-start-stretch bg-form p-8 basis-full rounded-lg">
        <CustomProgressBar items={items} handlerItem={handlerPosition} posiition={position} />
        <header>
         <h2 className="title-form">
@@ -62,46 +63,42 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        {position === 0 && (
         <>
          <CustomSelect
-          stylyLabel={'label-forn'}
-          stylySelect={'select-form'}
-          label={products.fields.category.label}
-          value={props.values.category}
+          isRequeried
           data={categories}
+          value={props.values.category}
           id={products.fields.category.id}
+          label={products.fields.category.label}
           handlerChange={(value) => {
            props.setFieldValue(products.fields.category.id, value);
           }}
-          isRequeried
          />
          <CustomSelect
-          stylyLabel={'label-forn'}
-          stylySelect={'select-form'}
-          label={products.fields.laboratory.label}
-          value={props.values.laboratory}
+          isRequeried
           data={laboratories}
+          value={props.values.laboratory}
           id={products.fields.laboratory.id}
+          label={products.fields.laboratory.label}
           handlerChange={(value) => {
            props.setFieldValue(products.fields.laboratory.id, value);
           }}
-          isRequeried
          />
          <CustomInput
-          id={products.fields.product.id}
+          isRequeried
           isDisable={false}
+          value={props.values.product}
+          id={products.fields.product.id}
+          messageError={props.errors.product}
           label={products.fields.product.label}
           placeholder={products.fields.product.placeholder}
-          value={props.values.product}
+          validation={props.errors.product && props.touched.product}
           handlerChange={props.handleChange('product')}
           hanhandlerBlur={props.handleBlur('product')}
-          validation={props.errors.product && props.touched.product}
-          messageError={props.errors.product}
-          isRequeried
          />
          <CustomButton
-          type={types.button.default}
-          title={'Siguiente'}
-          text={'Siguiente'}
           isDisable={false}
+          text={'Siguiente'}
+          title={'Siguiente'}
+          type={types.button.default}
           variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(1)}
          />
@@ -111,45 +108,45 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        {position === 1 && (
         <>
          <CustomInput
-          id={products.fields.barcode.id}
           isDisable={false}
+          value={props.values.barcode}
+          id={products.fields.barcode.id}
+          messageError={props.errors.barcode}
           label={products.fields.barcode.label}
           placeholder={products.fields.barcode.placeholder}
-          value={props.values.barcode}
+          validation={props.errors.barcode && props.touched.barcode}
           handlerChange={props.handleChange('barcode')}
           hanhandlerBlur={props.handleBlur('barcode')}
-          validation={props.errors.barcode && props.touched.barcode}
-          messageError={props.errors.barcode}
          />
          <CustomTextArea
-          id={products.fields.features.id}
+          isRequeried
           isDisable={false}
+          value={props.values.features}
+          id={products.fields.features.id}
           label={products.fields.features.label}
           placeholder={products.fields.features.placeholder}
-          value={props.values.features}
           handlerChange={props.handleChange('features')}
           hanhandlerBlur={props.handleBlur('features')}
           validation={props.errors.features && props.touched.features}
           messageError={props.errors.features}
-          isRequeried
          />
          <CustomTextArea
-          id={products.fields.summary.id}
+          isRequeried
           isDisable={false}
+          value={props.values.summary}
+          id={products.fields.summary.id}
+          messageError={props.errors.summary}
           label={products.fields.summary.label}
           placeholder={products.fields.summary.placeholder}
-          value={props.values.summary}
+          validation={props.errors.summary && props.touched.summary}
           handlerChange={props.handleChange('summary')}
           hanhandlerBlur={props.handleBlur('summary')}
-          validation={props.errors.summary && props.touched.summary}
-          messageError={props.errors.summary}
-          isRequeried
          />
          <CustomButton
-          type={types.button.default}
-          title={'Siguiente'}
-          text={'Siguiente'}
           isDisable={false}
+          text={'Siguiente'}
+          title={'Siguiente'}
+          type={types.button.default}
           variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(2)}
          />
@@ -159,46 +156,46 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        {position === 2 && (
         <>
          <CustomTextArea
-          id={products.fields.dosage.id}
+          isRequeried
           isDisable={false}
+          value={props.values.dosage}
+          id={products.fields.dosage.id}
+          messageError={props.errors.dosage}
           label={products.fields.dosage.label}
           placeholder={products.fields.dosage.placeholder}
-          value={props.values.dosage}
+          validation={props.errors.dosage && props.touched.dosage}
           handlerChange={props.handleChange('dosage')}
           hanhandlerBlur={props.handleBlur('dosage')}
-          validation={props.errors.dosage && props.touched.dosage}
-          messageError={props.errors.dosage}
-          isRequeried
          />
          <CustomInput
-          id={products.fields.cost.id}
+          isRequeried
           isDisable={false}
+          value={props.values.cost}
+          id={products.fields.cost.id}
+          messageError={props.errors.cost}
           label={products.fields.cost.label}
           placeholder={products.fields.cost.placeholder}
-          value={props.values.cost}
+          validation={props.errors.cost && props.touched.cost}
           handlerChange={props.handleChange('cost')}
           hanhandlerBlur={props.handleBlur('cost')}
-          validation={props.errors.cost && props.touched.cost}
-          messageError={props.errors.cost}
-          isRequeried
          />
          <CustomInput
-          id={products.fields.pvp.id}
+          isRequeried
           isDisable={false}
+          value={props.values.pvp}
+          id={products.fields.pvp.id}
+          messageError={props.errors.pvp}
           label={products.fields.pvp.label}
           placeholder={products.fields.pvp.placeholder}
-          value={props.values.pvp}
+          validation={props.errors.pvp && props.touched.pvp}
           handlerChange={props.handleChange('pvp')}
           hanhandlerBlur={props.handleBlur('pvp')}
-          validation={props.errors.pvp && props.touched.pvp}
-          messageError={props.errors.pvp}
-          isRequeried
          />
          <CustomButton
-          type={types.button.default}
-          title={'Siguiente'}
-          text={'Siguiente'}
           isDisable={false}
+          text={'Siguiente'}
+          title={'Siguiente'}
+          type={types.button.default}
           variant={types.variant.button.primary}
           handlerPress={() => handlerPosition(3)}
          />
@@ -208,17 +205,17 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        {position === 3 && (
         <>
          <CustomPoster
-          label={products.fields.photo.label}
           id={'photo'}
           type={types.form.create}
           value={props.values.photo}
           urlImage={String(urlImage)}
+          messageError={props.errors.photo}
+          label={products.fields.photo.label}
+          validation={props.errors.photo && props.touched.photo}
           handlerChange={(e) => {
            props.setFieldValue('photo', e.target.files![0]);
           }}
           hanhandlerBlur={props.handleBlur('photo')}
-          validation={props.errors.photo && props.touched.photo}
-          messageError={props.errors.photo}
          />
          <CustomButton
           type={types.button.default}
@@ -243,17 +240,17 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        <section className="flex-1 p-8 space-y-8">
         <CustomDetailsProduct
          data={{
-          idproduct: props.values.idproduct,
-          photo: String(urlImage),
-          category: props.values.category,
-          laboratory: props.values.laboratory,
-          barcode: props.values.barcode,
-          product: props.values.product,
-          features: props.values.features,
-          summary: props.values.summary,
-          dosage: props.values.dosage,
-          cost: props.values.cost,
           pvp: props.values.pvp,
+          photo: String(urlImage),
+          cost: props.values.cost,
+          dosage: props.values.dosage,
+          product: props.values.product,
+          barcode: props.values.barcode,
+          summary: props.values.summary,
+          category: props.values.category,
+          features: props.values.features,
+          idproduct: props.values.idproduct,
+          laboratory: props.values.laboratory,
          }}
          isLoading={false}
         />

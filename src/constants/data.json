@@ -1,6 +1,17 @@
 {
  "screens": {
   "dashboard": {
+   "message": {
+    "loading": {
+     "title": "Por favor espere...",
+     "text": "Mientras que se caragan los datos"
+    },
+    "user": {
+     "title": "No te has autenticado",
+     "text": "Regresa para que",
+     "button": "Autentiques"
+    }
+   },
    "dialog": {
     "buttons": {
      "primary": "Si, Estoy de acuerdo",
@@ -149,8 +160,9 @@
     "buttons": {
      "delete": "Eliminar",
      "edit": "Editar",
-     "detail": "Detail",
-     "enable": "Habilitar"
+     "detail": "Detalle",
+     "enable": "Habilitar",
+     "close": "Cerr ventana"
     }
    },
    "pages": {

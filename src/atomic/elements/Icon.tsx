@@ -16,24 +16,25 @@ import {
  HiInformationCircle,
  HiOutlineArrowCircleLeft,
 } from 'react-icons/hi';
+import { theme } from '../theme';
 
 const Icon = (props: IconProps) => {
- const { type, color, size, strokeWidth } = props;
- if (type === types.icon.default) return <HiX size={size} color={color} />;
- if (type === types.icon.enable) return <HiCheck size={size} color={color} />;
- if (type === types.icon.elimited) return <HiTrash size={size} color={color} />;
- if (type === types.icon.view) return <HiPlus size={size} color={color} />;
- if (type === types.icon.hidde) return <HiX size={size} color={color} />;
- if (type === types.icon.arrowLeft) return <HiOutlineArrowCircleLeft size={size} color={color} />;
- if (type === types.icon.refresh) return <HiRefresh size={size} color={color} />;
- if (type === types.icon.eye) return <HiEye size={size} color={color} />;
- if (type === types.icon.edit) return <HiPencil size={size} color={color} />;
- if (type === types.icon.create) return <HiPlusCircle size={size} color={color} />;
- if (type === types.icon.EyeSlashIcon) return <HiEyeOff size={size} color={color} />;
- if (type === types.icon.MagnifyingGlassIcon) return <HiSearch size={size} color={color} />;
- if (type === types.icon.XCircle) return <HiXCircle size={size} color={color} />;
- if (type === types.icon.HiInformationCircle)
-  return <HiInformationCircle size={size} color={color} />;
+ if (props.type === types.icon.eye) return <HiEye size={0} color={theme.gray} />;
+ if (props.type === types.icon.hidde) return <HiX size={0} color={theme.gray} />;
+ if (props.type === types.icon.view) return <HiPlus size={0} color={theme.gray} />;
+ if (props.type === types.icon.default) return <HiX size={0} color={theme.gray} />;
+ if (props.type === types.icon.edit) return <HiPencil size={30} color={theme.gray} />;
+ if (props.type === types.icon.enable) return <HiCheck size={30} color={theme.gray} />;
+ if (props.type === types.icon.elimited) return <HiTrash size={30} color={theme.red} />;
+ if (props.type === types.icon.XCircle) return <HiXCircle size={50} color={theme.gray} />;
+ if (props.type === types.icon.refresh) return <HiRefresh size={30} color={theme.gray} />;
+ if (props.type === types.icon.create) return <HiPlusCircle size={0} color={theme.gray} />;
+ if (props.type === types.icon.EyeSlashIcon) return <HiEyeOff size={0} color={theme.gray} />;
+ if (props.type === types.icon.MagnifyingGlassIcon) return <HiSearch size={0} color={theme.gray} />;
+ if (props.type === types.icon.arrowLeft)
+  return <HiOutlineArrowCircleLeft size={0} color={theme.gray} />;
+ if (props.type === types.icon.HiInformationCircle)
+  return <HiInformationCircle size={30} color={theme.gray} />;
  return null;
 };
 

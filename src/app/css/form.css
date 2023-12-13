@@ -1,5 +1,5 @@
 .title-form {
- @apply text-slate-600 text-2xl font-semibold text-center;
+ @apply text-slate-600 text-2xl font-semibold text-center whitespace-nowrap;
 }
 
 .bg-form {
@@ -11,7 +11,11 @@
 }
 
 .text-form {
- @apply bg-white text-xl border-2 text-slate-500 p-2 rounded-lg;
+ @apply bg-white text-xl border-2 text-slate-500 p-2 rounded-lg whitespace-nowrap;
+}
+
+.text-error-form {
+ @apply text-xl text-rose-800 font-semibold whitespace-nowrap;
 }
 
 .label-form {
@@ -23,5 +27,5 @@
 }
 
 .text-select-form {
- @apply bg-white text-xl text-slate-500 p-2;
+ @apply bg-white text-xl text-slate-500 p-2 whitespace-nowrap;
 }

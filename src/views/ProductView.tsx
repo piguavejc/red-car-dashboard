@@ -1,17 +1,16 @@
 import React from 'react';
 import { CustomButton } from '@/atomic/elements';
 import {
- CustomTabs,
  CustomList,
+ CustomTabs,
  CustomSearch,
  CustomProductForm,
  CustomDetailsProduct,
 } from '@/atomic/components';
-import { CustomModal, CustomDialog } from '@/atomic/designs';
 import { useProductController, useSearch, useTab, useCategoryController } from '@/hooks';
-import { validationCategory, validationProduct, validationSearch } from '@/validations';
+import { CustomModal, CustomDialog } from '@/atomic/designs';
 import { types, data } from '@/constants';
-import { theme } from '@/atomic/theme';
+import { validate } from '@/validations';
 
 const { pages } = data.screens.dashboard;
 const { forms } = data.screens.dashboard;
@@ -73,12 +72,7 @@ const ProductView = () => {
      title={pages.products.buttons.load}
      type={types.button.icon}
      className="self-center"
-     icon={{
-      type: types.icon.XCircle,
-      strokeWidth: 1,
-      color: theme.gray,
-      size: 50,
-     }}
+     icon={types.icon.XCircle}
      handlerPress={handlerCloseEnable}
     />
     <div className="flex-1 w-[50%]">
@@ -100,12 +94,7 @@ const ProductView = () => {
      title={pages.products.buttons.load}
      type={types.button.icon}
      className="self-center"
-     icon={{
-      type: types.icon.XCircle,
-      strokeWidth: 1,
-      color: theme.gray,
-      size: 50,
-     }}
+     icon={types.icon.XCircle}
      handlerPress={handlerHiddeEdit}
     />
     <div className="w-full">
@@ -114,7 +103,7 @@ const ProductView = () => {
       entity={product}
       type={types.form.edit}
       handlerSubmit={handlerEdit}
-      validationSchema={validationProduct}
+      validationSchema={validate.product}
      />
     </div>
    </div>
@@ -124,14 +113,14 @@ const ProductView = () => {
 
  if (existError)
   return (
-   <div className="flex-1 h-screen flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
     <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="text-2xl font-semibold text-slate-100"> {pages.products.error} </p>
+    <p className="error-text"> {pages.products.error} </p>
    </div>
   );
 
  return (
-  <div className="overflow-scroll flexRowStart">
+  <div className="overflow-scroll flex-row-start-stretch">
    {/* product form */}
    <div className="flex-1 w-[50%] p-8 overflow-scroll">
     <CustomProductForm
@@ -139,11 +128,11 @@ const ProductView = () => {
      entity={product}
      type={types.form.create}
      handlerSubmit={handlerCreate}
-     validationSchema={validationCategory}
+     validationSchema={validate.product}
     />
    </div>
 
-   <div className="flex-1 w-[50%] p-8 flexColStart">
+   <div className="flex-col-start-stretch w-[50%] p-8">
     {/* Tabs */}
     <CustomTabs
      items={categories.map((category) => category.name as string)}
@@ -151,31 +140,19 @@ const ProductView = () => {
      returnItem={handlerTab}
     />
     {/* header Search */}
-    <div className="flexCenter space-x-4">
+    <div className="flex-row-center-center flex-initial">
      {/* button refresh */}
      <CustomButton
       variant={types.variant.button.secondary}
       title={pages.products.buttons.load}
       type={types.button.icon}
-      icon={{
-       type: types.icon.refresh,
-       color: theme.gray,
-       size: 35,
-       strokeWidth: 1,
-      }}
+      icon={types.icon.refresh}
       handlerPress={handlerUpdateAll}
-     />
-     {/* button length products */}
-     <CustomButton
-      variant={types.variant.button.secondary}
-      title={products.length.toString()}
-      text={products.length.toString()}
-      type={types.button.default}
      />
      {/* input Search */}
      <CustomSearch
       placeholder={forms.products.search.placeholder}
-      validationSchema={validationSearch}
+      validationSchema={validate.search}
       handlerSubmit={hanlderSearch}
       entity={search}
      />
@@ -185,12 +162,7 @@ const ProductView = () => {
       title={pages.products.buttons.eliminate}
       text={'' + disabledProducts.length}
       type={types.button.iconText}
-      icon={{
-       type: types.icon.elimited,
-       color: theme.red,
-       size: 35,
-       strokeWidth: 1,
-      }}
+      icon={types.icon.elimited}
       handlerPress={handlerOpenEnable}
      />
     </div>

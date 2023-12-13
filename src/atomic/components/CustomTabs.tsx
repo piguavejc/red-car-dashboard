@@ -5,7 +5,7 @@ import { CustomTabsProps } from '@/types';
 const CustomTabs = (props: CustomTabsProps) => {
  props.items.push('Todos');
  return (
-  <ul className="w-[100%] flex flex-row justify-between items-center space-x-4 overflow-x-auto pb-4">
+  <ul className="w-[100%] flex-row-between-center flex-initial overflow-x-auto pb-4">
    {props.items
     .reverse()
     .map((item: string, i: number) =>

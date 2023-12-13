@@ -52,46 +52,28 @@ const CustomButton = (props: CustomButtonProps) => {
    </button>
   );
  /* icon  */
- if (
-  props.type === types.button.icon &&
-  props.icon?.type &&
-  props.icon.size &&
-  props.icon.size &&
-  props.icon.strokeWidth
- )
+ if (props.type === types.button.icon && props.icon)
   return (
    <button
     type="button"
     title={props.title}
-    className={styles.container}
+    className={`${styles.container} ${props.className} p-2`}
     onClick={props.handlerPress}
    >
-    <Icon
-     type={props.icon.type}
-     color={props.icon.color}
-     size={props.icon.size}
-     strokeWidth={props.icon.strokeWidth}
-    />
+    <Icon type={props.icon} />
    </button>
   );
 
  /* icon and text */
- if (
-  props.type === types.button.iconText &&
-  props.icon?.type &&
-  props.icon.size &&
-  props.icon.size &&
-  props.icon.strokeWidth
- )
+ if (props.type === types.button.iconText && props.icon)
   return (
-   <button className={styles.container} onClick={props.handlerPress} title={props.title}>
+   <button
+    className={`${styles.container} ${props.className} p-2`}
+    onClick={props.handlerPress}
+    title={props.title}
+   >
     <p className={styles.button}>{props.text}</p>
-    <Icon
-     type={props.icon.type}
-     color={props.icon.color}
-     size={props.icon.size}
-     strokeWidth={props.icon.strokeWidth}
-    />
+    <Icon type={props.icon} />
    </button>
   );
  return null;

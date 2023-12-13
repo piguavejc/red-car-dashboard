@@ -20,7 +20,7 @@ const CustomInput = (props: CustomInputProps) => {
     onChange={props.handlerChange}
     placeholder={props.placeholder}
    />
-   {props.validation && <p className="text-red-700 font-semibold">{props.messageError}</p>}
+   {props.validation && <p className="text-error-form">{props.messageError}</p>}
   </div>
  );
 };

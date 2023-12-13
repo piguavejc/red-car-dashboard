@@ -13,23 +13,18 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
   setPosition(i);
  };
  return (
-  <section className="flex-1 flex flex-col justify-stretch items-stretch space-y-8">
+  <section className="flex-col-stretch-stretch">
    {props.handlerClose && (
     <CustomButton
      title="Cerrar"
      type={types.button.icon}
      className="self-center"
-     icon={{
-      type: types.icon.XCircle,
-      strokeWidth: 1,
-      color: '#50577A',
-      size: 50,
-     }}
+     icon={types.icon.XCircle}
      handlerPress={props.handlerClose}
     />
    )}
-   <div className="p-4 flex-1 flex flex-row justify-stretch items-center space-x-4 bg-slate-100 rounded-xl">
-    <div className="flex-1 flex flex-row justify-start items-center space-x-2">
+   <div className="p-4 flex-row-center-stretch bg-slate-100 rounded-xl">
+    <div className="flex-row-start-center">
      <Image
       className="rounded-full w-[7rem] h-[7rem] bg-slate-300 object-contain"
       src={String(props.data.photo)}
@@ -39,7 +34,7 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
      />
      <h2 className="title-form"> {props.data.product} </h2>
     </div>
-    <div className="flex-1 flex flex-col justify-center items-end space-y-2">
+    <div className="flex-col-center-end">
      <p className="text-slate-100 font-semibold p-4 rounded-xl bg-rose-600">
       {props.data.laboratory}
      </p>
@@ -48,11 +43,20 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
      </p>
     </div>
    </div>
-   <section className="p-4 flex-1 w-full flex flex-col justify-stretch items-start bg-slate-100 rounded-xl space-y-4">
-    <ul className="w-full flex flex-row justify-start items-center space-x-2">
-     {product.map((detail, i) => null)}
+   <section className="p-4 w-full flex-col-stretch-start bg-slate-100 rounded-xl">
+    <ul className="w-full flex-row-start-center">
+     {product.map((detail, i) => (
+      <CustomButton
+       key={i}
+       type={types.button.default}
+       text={detail}
+       title={detail}
+       variant={position === i ? types.variant.button.primary : types.variant.button.secondary}
+       handlerPress={() => handlerPosition(i)}
+      />
+     ))}
     </ul>
-    <p className="p-4 w-full rounded-xl text-xl bg-slate-200  text-slate-700 flex flex-row justify-between items-start space-x-2">
+    <p className="p-4 w-full rounded-xl text-xl bg-slate-200  text-slate-700 flex-row-between-start">
      {links[position]}
     </p>
    </section>
@@ -61,13 +65,3 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
 };
 
 export { CustomDetailsProduct };
-// <CustomButton
-//     key={i}
-//     type={types.button.default}
-//     text={detail}
-//     title={detail}
-//     stylyButton={`${position === i ? 'bg-rose-600' : 'bg-slate-200'} p-4 rounded-xl`}
-//     stylyText={`text-xl text-slate-700 font-semibold ${position === i ? 'text-white' : 'text-slate-700'
-//         }`}
-//     handlerPress={() => handlerPosition(i)}
-// />

@@ -9,7 +9,7 @@ import React from 'react';
 }
 const CustomModal = (props: CustomModalProps) => {
  return (
-  <div className="bg-white p-16 rounded-lg space-y-4 flexColStart">
+  <div className="bg-white p-16 rounded-lg space-y-4 flex-col-start-stretch">
    {/* photo modal */}
    <div className="flex justify-center items-center">
     <Image
@@ -22,12 +22,12 @@ const CustomModal = (props: CustomModalProps) => {
     />
    </div>
    {/* title and message modal */}
-   <h1 className="text-gray-700 font-semibold text-3xl text-center">
+   <h1 className="header-2">
     {props.setting.type === types.dialog.error
      ? 'Mensaje de advertencia'
      : 'Mensaje de verificacion'}
    </h1>
-   <p className="text-gray-700 font-normal text-2xl text-center">{props.setting.message}</p>
+   <p className="default-text">{props.setting.message}</p>
    {/* Button modal */}
    {props.setting.type === types.dialog.success && (
     <CustomButton

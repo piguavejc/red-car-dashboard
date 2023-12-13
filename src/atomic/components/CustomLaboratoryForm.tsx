@@ -12,7 +12,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
  const { type } = props;
  if (props.isLoading) {
   return (
-   <div className="flex-1 flex flex-col justify-center items-center bg-slate-800 px-4 py-8  rounded-lg space-y-4">
+   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -25,7 +25,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="text-2xl font-semibold text-slate-100"> {laboratory.load} </p>
+    <p className="error-text"> {laboratory.load} </p>
    </div>
   );
  }
@@ -41,7 +41,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
   >
    {(props) => {
     return (
-     <section className="bg-form p-8 basis-full flexColStart rounded-lg">
+     <section className="bg-form p-8 basis-full flex-col-start-stretch rounded-lg">
       <header>
        <h2 className="title-form">
         {type === types.form.create ? laboratory.titles.create : laboratory.titles.edit}

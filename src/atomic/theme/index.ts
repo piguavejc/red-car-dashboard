@@ -1,5 +1,5 @@
 const theme = Object.freeze({
- gray: 'rgb(148 163 184)',
+ gray: '#50577A',
  red: 'rgb(225 29 72)',
 });
 export { theme };

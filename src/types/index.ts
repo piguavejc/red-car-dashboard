@@ -24,7 +24,6 @@ export type {
  CustomButtonIconProps,
  CustomTextAreaProps,
  CustomItemTabsProps,
- CustomLoadingProps,
  CustomSelectProps,
  CustomDialogProps,
  CustomButtonProps,
