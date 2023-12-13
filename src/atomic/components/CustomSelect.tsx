@@ -26,9 +26,9 @@ const CustomSelect = (props: CustomSelectProps) => {
     {props.label}
     <span className="text-rose-600">{`${props.isRequeried ? '*' : ''}`}</span>
    </label>
-   <div className="flex-col-stretch-stretch rounded-lg bg-white  border-2">
+   <div className="flex-col-stretch-stretch rounded-lg bg-secondary  border-2">
     <Combobox value={selected} onChange={setSelected}>
-     <div className="p-4 flex-row-stretch-center cursor-default overflow-hidden text-left">
+     <div className="flex-row-stretch-center cursor-default overflow-hidden text-left bg-secondary pr-2">
       <Combobox.Input
        className={`flex-row-between-center text-select-form`}
        onChange={(event) => setQuery(event.target.value)}
@@ -48,16 +48,14 @@ const CustomSelect = (props: CustomSelectProps) => {
       <Combobox.Options>
        <div className="p-2 space-y-2 h-[10rem] overflow-y-scroll">
         {filteredData.length === 0 && query !== '' ? (
-         <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-          {`No existe la busqueda ${query}`}
-         </div>
+         <div className="relative py-2 default-text-bold">{`No existe la busqueda ${query}`}</div>
         ) : (
          filteredData.map((item: Item, i) => (
           <Combobox.Option key={i} value={item.name} className={'select-form'}>
            {({ active, selected }) => (
             <li
              className={`p-4 rounded-xl flex-row-start-center ${
-              active ? 'bg-rose-600 text-white' : 'bg-white text-black'
+              active ? 'bg-primary  color-secondary' : 'bg-helper color-dark'
              }`}
             >
              {selected && <CheckIcon width={20} />}

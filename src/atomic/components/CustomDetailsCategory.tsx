@@ -12,7 +12,7 @@ const CustomDetailsCategory = (props: CustomDetailsCategoryProps) => {
      title="Cerrar"
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={props.handlerClose}
     />
    )}

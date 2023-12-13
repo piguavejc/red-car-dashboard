@@ -2,10 +2,10 @@ import data from './data.json';
 import { images } from './images';
 import { typesIcon } from './icon';
 import { typesForm } from './form';
-import { typesButton, typesVariantButton } from './button';
 import { typesAction } from './action';
 import { messageDialog } from './message';
 import { typesStatusDialog } from './dialog';
+import { typesButton, typesVariantButton } from './button';
 
 const types = Object.freeze({
  icon: typesIcon,

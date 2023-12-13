@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 const CustomPhoto = (props: CustomPhotoProps) => {
  const [isLoading, setIsLoading] = useState<boolean>(true);
  return (
-  <figure className={`${isLoading ? 'flex-1 bg-slate-200 rounded-lg' : props.className} `}>
+  <figure className={`${isLoading ? 'flex-1 bg-secondary rounded-lg' : props.className} `}>
    {isLoading && (
     <div role="status">
      <svg

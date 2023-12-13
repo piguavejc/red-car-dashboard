@@ -1,0 +1,9 @@
+.bg-primary {
+ background-color: var(--bg-primary);
+}
+.bg-secondary {
+ background-color: var(--bg-secondary);
+}
+.bg-helper {
+ background-color: var(--bg-helper);
+}

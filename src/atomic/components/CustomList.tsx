@@ -11,12 +11,12 @@ const CustomList = (props: CustomListProps) => {
  const { isOpen, photo, handlerHidde, handlerImage } = usePhoto();
  if (isOpen)
   return (
-   <figure className="flex-col-start-center bg-white px-4 py-8  rounded-lg space-y-2">
+   <figure className="flex-col-start-center bg-helper px-4 py-8 rounded-lg">
     <CustomButton
      title={list.buttons.close}
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={handlerHidde}
     />
     <CustomPhoto title={''} src={photo!} width={200} height={200} />
@@ -25,7 +25,7 @@ const CustomList = (props: CustomListProps) => {
  /* is loading */
  if (props.isLoading)
   return (
-   <div className="flex-col-center-center bg-white px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <p className="font-semibold text-xl text-slate-600">{list.load}</p>
     <Image src={images.redCar.src} width={200} height={200} alt="" />
    </div>
@@ -33,7 +33,7 @@ const CustomList = (props: CustomListProps) => {
  /* it is empty */
  if (props.data.length <= 0)
   return (
-   <div className="flex-col-center-center  bg-slate-300 px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <CustomPhoto
      className="flex-1"
      title={''}
@@ -46,9 +46,9 @@ const CustomList = (props: CustomListProps) => {
   );
 
  return (
-  <ul className="flex-col-start-stretch  bg-white px-4 py-8 space-y-4 rounded-lg  overflow-y-scroll">
+  <ul className="flex-col-start-stretch  bg-helper px-4 py-8 space-y-4 rounded-lg  overflow-y-scroll">
    {props.data.map((item, i) => (
-    <li key={i} className="p-4 flex-row-between-center bg-slate-200 rounded-lg ">
+    <li key={i} className="p-4 flex-row-between-center bg-secondary rounded-lg ">
      {item.photo && (
       <button onClick={() => handlerImage(item.photo)} title={item.name}>
        <CustomPhoto
@@ -59,7 +59,7 @@ const CustomList = (props: CustomListProps) => {
        />
       </button>
      )}
-     <h3 className="header-3">{item.name}</h3>
+     <p className="default-text-bold">{item.name}</p>
      <div className="flex-row-end-center">
       {props.handlerEnable && (
        <CustomButton
@@ -98,7 +98,7 @@ const CustomList = (props: CustomListProps) => {
        <CustomButton
         type={types.button.icon}
         title={list.buttons.detail}
-        icon={types.icon.HiInformationCircle}
+        icon={types.icon.detail}
         variant={types.variant.button.secondary}
         handlerPress={() => {
          props.handlerDetail && props.handlerDetail(Number(item.id));

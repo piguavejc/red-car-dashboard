@@ -12,7 +12,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
  const { type } = props;
  if (props.isLoading) {
   return (
-   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -25,7 +25,7 @@ const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="error-text"> {laboratory.load} </p>
+    <p className="default-text-bold"> {laboratory.load} </p>
    </div>
   );
  }

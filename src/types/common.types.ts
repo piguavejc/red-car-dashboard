@@ -49,23 +49,7 @@ interface ModalSetting {
 /*  */
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 /* types icons */
-type statusIcon =
- | 'eye'
- | 'edit'
- | 'view'
- | 'hidde'
- | 'enable'
- | 'expand'
- | 'create'
- | 'refresh'
- | 'default'
- | 'XCircle'
- | 'arrow-left'
- | 'eliminated'
- | 'EyeSlashIcon'
- | 'MicrophoneIcon'
- | 'MagnifyingGlassIcon'
- | 'HiInformationCircle';
+type statusIcon = 'edit' | 'close' | 'enable' | 'create' | 'detail' | 'refresh' | 'eliminated';
 
 /* types form */
 type statusForm = 'create' | 'edit';

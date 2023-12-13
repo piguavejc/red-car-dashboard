@@ -9,7 +9,7 @@ import React from 'react';
 }
 const CustomModal = (props: CustomModalProps) => {
  return (
-  <div className="bg-white p-16 rounded-lg space-y-4 flex-col-start-stretch">
+  <div className="bg-helper p-16 rounded-lg flex-col-start-stretch">
    {/* photo modal */}
    <div className="flex justify-center items-center">
     <Image

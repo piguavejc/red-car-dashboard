@@ -6,6 +6,11 @@
  --foreground-rgb: 0, 0, 0;
  --background-start-rgb: 214, 219, 220;
  --background-end-rgb: 255, 255, 255;
+
+ --bg-primary: #e11d48; /* bg-rose-600 */
+ --bg-secondary: #e2e8f0; /* bg-slate-200 */
+ --bg-helper: #f1f5f9; /* bg-slate-100 */
+ --bg-dark: #334155; /* bg-slate-700 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +26,8 @@ body {
 }
 
 @import './css/form.css';
-@import './css/headers.css';
-@import './css/buttons.css';
 @import './css/layout.css';
+@import './css/colors.css';
+@import './css/buttons.css';
+@import './css/headers.css';
+@import './css/background.css';

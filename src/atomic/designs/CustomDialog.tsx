@@ -7,9 +7,9 @@ const { dialog } = data.screens.dashboard;
 
 const CustomDialog = (props: CustomDialogProps) => {
  return (
-  <div className="p-4 flexRowCenterStretch">
+  <div className="p-4 flex-row-center-stretch">
    {/* body dialog */}
-   <div className="p-[5rem] space-y-4 bg-white rounded-xl flex-col-start-stretch">
+   <div className="p-[5rem] bg-helper rounded-xl flex-col-start-stretch">
     {/* title and message dialog */}
     <h1 className="header-3">{props.setting.content?.message.title}</h1>
     <p className="default-text">

@@ -15,7 +15,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { urlImage, handlerPoster } = usePoster();
  if (props.isLoading) {
   return (
-   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -28,7 +28,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="error-text"> {category.load} </p>
+    <p className="default-text-bold"> {category.load} </p>
    </div>
   );
  }
@@ -46,7 +46,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
     if (props.values.photo) handlerPoster(props.values.photo);
     return (
      <section className="flex-row-start-stretch relative">
-      <section className="bg-form basis-full p-8 flex-col-start-stretch rounded-lg">
+      <section className="w-[50%] bg-form basis-full p-8 flex-col-start-stretch rounded-lg">
        <header>
         <h2 className="title-form">
          {type === types.form.create ? category.titles.create : category.titles.edit}
@@ -107,7 +107,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
        />
       </section>
       {type === types.form.edit && props.values.photo && (
-       <section className="p-8 ">
+       <section className="p-8 w-[50%]">
         <h1 className="title-form">{category.titles.detail}</h1>
         <CustomDetailsCategory
          data={{

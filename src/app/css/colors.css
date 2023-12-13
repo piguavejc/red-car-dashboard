@@ -1,0 +1,14 @@
+.color-primary {
+ color: var(--bg-primary);
+}
+
+.color-secondary {
+ color: var(--bg-secondary);
+}
+
+.color-helper {
+ color: var(--bg-helper);
+}
+.color-dark {
+ color: var(--bg-dark);
+}

@@ -72,7 +72,7 @@ const ProductView = () => {
      title={pages.products.buttons.load}
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={handlerCloseEnable}
     />
     <div className="flex-1 w-[50%]">
@@ -94,7 +94,7 @@ const ProductView = () => {
      title={pages.products.buttons.load}
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={handlerHiddeEdit}
     />
     <div className="w-full">

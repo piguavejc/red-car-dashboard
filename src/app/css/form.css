@@ -3,7 +3,8 @@
 }
 
 .bg-form {
- @apply bg-gray-50;
+ background-color: var(--bg-helper);
+ /* @apply bg-gray-50; */
 }
 
 .field-form {
@@ -11,7 +12,8 @@
 }
 
 .text-form {
- @apply bg-white text-xl border-2 text-slate-500 p-2 rounded-lg whitespace-nowrap;
+ background-color: var(--bg-secondary);
+ @apply text-xl border-2 text-slate-600 p-2 rounded-lg whitespace-nowrap;
 }
 
 .text-error-form {
@@ -23,9 +25,10 @@
 }
 
 .select-form {
- @apply bg-slate-100 p-2 text-slate-500 font-semibold text-xl rounded-lg;
+ @apply p-2 text-slate-500 font-semibold text-xl rounded-lg;
 }
 
 .text-select-form {
- @apply bg-white text-xl text-slate-500 p-2 whitespace-nowrap;
+ background-color: var(--bg-secondary);
+ @apply text-xl text-slate-500 p-2 whitespace-nowrap;
 }

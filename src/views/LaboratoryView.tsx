@@ -61,7 +61,7 @@ const LaboratoryView = () => {
      title={pages.laboratory.buttons.close}
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={handlerHiddeEdit}
     />
     <div className="w-[50%]">
@@ -85,7 +85,7 @@ const LaboratoryView = () => {
      title={pages.laboratory.buttons.close}
      type={types.button.icon}
      className="self-center"
-     icon={types.icon.XCircle}
+     icon={types.icon.close}
      handlerPress={handlerCloseEnable}
     />
     <div className="flex-1  w-[50%]">

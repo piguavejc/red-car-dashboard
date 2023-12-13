@@ -20,7 +20,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
 
  if (props.isLoading) {
   return (
-   <div className="flex-col-center-center bg-slate-800 px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <Oval
      height={80}
      width={80}
@@ -33,7 +33,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
      strokeWidth={5}
      strokeWidthSecondary={5}
     />
-    <p className="error-text"> {products.load} </p>
+    <p className="default-text-bold"> {products.load} </p>
    </div>
   );
  }
@@ -53,7 +53,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
     console.log(props.errors);
     return (
      <section className="flex-row-start-stretch relative">
-      <section className="flex-col-start-stretch bg-form p-8 basis-full rounded-lg">
+      <section className="w-[50%] flex-col-start-stretch bg-form p-8 basis-full rounded-lg">
        <CustomProgressBar items={items} handlerItem={handlerPosition} posiition={position} />
        <header>
         <h2 className="title-form">
@@ -237,7 +237,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        )}
       </section>
       {type === types.form.edit && props.values.photo && (
-       <section className="flex-1 p-8 space-y-8">
+       <section className="flex-1 w-[50%] p-8 space-y-8">
         <CustomDetailsProduct
          data={{
           pvp: props.values.pvp,

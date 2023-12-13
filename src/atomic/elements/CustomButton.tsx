@@ -1,7 +1,7 @@
 import { CustomButtonProps, variantButton } from '@/types';
 import { types } from '@/constants';
 import React from 'react';
-import { Icon } from '.';
+import { CustomIcon } from '.';
 
 const getVariantButton = (
  variant: variantButton | undefined,
@@ -60,7 +60,7 @@ const CustomButton = (props: CustomButtonProps) => {
     className={`${styles.container} ${props.className} p-2`}
     onClick={props.handlerPress}
    >
-    <Icon type={props.icon} />
+    <CustomIcon type={props.icon} />
    </button>
   );
 
@@ -73,7 +73,7 @@ const CustomButton = (props: CustomButtonProps) => {
     title={props.title}
    >
     <p className={styles.button}>{props.text}</p>
-    <Icon type={props.icon} />
+    <CustomIcon type={props.icon} />
    </button>
   );
  return null;

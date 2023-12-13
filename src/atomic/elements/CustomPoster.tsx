@@ -24,7 +24,7 @@ const CustomPoster = (props: PosterProps) => {
    {props.value && (
     <Image className="object-contain z-20" src={props.urlImage || ''} alt={'Project poster'} fill />
    )}
-   {props.validation && <p className="error-text">{props.messageError}</p>}
+   {props.validation && <p className="text-error-form">{props.messageError}</p>}
   </div>
  );
 };
