@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useTab = () => {
- const [tab, setTab] = useState<string>('Todos');
+const useTab = (name: string) => {
+ const [tab, setTab] = useState<string>(name);
 
  const handlerTab = (newTab: string) => {
   setTab(newTab);

@@ -16,7 +16,7 @@ const { pages } = data.screens.dashboard;
 const { forms } = data.screens.dashboard;
 
 const ProductView = () => {
- const { tab, handlerTab } = useTab();
+ const { tab, handlerTab } = useTab('Todos');
  const { search, hanlderSearch } = useSearch();
  const {
   dialog,

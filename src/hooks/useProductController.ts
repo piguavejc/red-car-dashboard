@@ -19,7 +19,7 @@ const useProductController = (category: string, searchTarget: Search) => {
   listCategories,
   existError,
  } = useProduct();
- const [isLoading, setIsLoading] = useState<boolean>(false);
+ const [isLoading, setIsLoading] = useState<boolean>(true);
  const [product, setProduct] = useState<ProductModel>({
   idproduct: undefined,
   photo: undefined,
@@ -39,7 +39,7 @@ const useProductController = (category: string, searchTarget: Search) => {
  const [isEnable, setIsEnable] = useState<boolean>(false);
  const [isEdition, setEdition] = useState<boolean>(false);
  const [disabledProducts, setDisabledProducts] = useState<Item[]>([]);
- const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(true);
  const { modalSetting, handlerStatus } = useModal(false);
  const {
   type,

@@ -57,6 +57,7 @@ interface CustomDetailsProductProps {
 }
 interface CustomTabsProps {
  items: string[];
+ className?: string;
  itemFocus: string;
  returnItem: (item: string) => void;
 }

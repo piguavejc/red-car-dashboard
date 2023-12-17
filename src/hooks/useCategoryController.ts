@@ -29,8 +29,8 @@ const useCategoryController = (searchTarget?: Search) => {
  const [categories, setCategories] = useState<Item[]>([]);
  const [isEnable, setIsEnable] = useState<boolean>(false);
  const [isEdition, setEdition] = useState<boolean>(false);
- const [isLoading, setIsLoading] = useState<boolean>(false);
- const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
+ const [isLoading, setIsLoading] = useState<boolean>(true);
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(true);
  const [disabledCategories, setDisabledCategories] = useState<Item[]>([]);
 
  useEffect(() => {

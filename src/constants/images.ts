@@ -1,35 +1,10 @@
-import { imgWarning, imgSuccess, imgEmpty, imgLoad, imgReadCar, imgLogo } from '@/assets';
+import { assets } from '@/assets';
 /* list images */
 const images = Object.freeze({
- warning: {
-  title: '',
-  alt: '',
-  src: imgWarning,
- },
- success: {
-  title: '',
-  alt: '',
-  src: imgSuccess,
- },
- empty: {
-  title: '',
-  alt: '',
-  src: imgEmpty,
- },
- load: {
-  title: '',
-  alt: '',
-  src: imgLoad,
- },
- redCar: {
-  title: '',
-  alt: '',
-  src: imgReadCar,
- },
- logo: {
-  title: '',
-  alt: '',
-  src: imgLogo,
- },
+ load: assets.images.load,
+ empty: assets.images.empty,
+ redCar: assets.images.redCar,
+ success: assets.images.success,
+ warning: assets.images.warning,
 });
 export { images };

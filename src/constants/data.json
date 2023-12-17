@@ -191,6 +191,52 @@
      "error": "Ha ocurrido un error en el servidor, por favor recargue la pagina"
     }
    }
+  },
+  "homepage": {
+   "header": {
+    "title": "Carrito Rojo",
+    "button": "Menu"
+   },
+   "secctions": {
+    "products": {
+     "loading": {
+      "title": "Mensaje de espera",
+      "text": "Espere mientras se cargan las categorias ..."
+     }
+    },
+    "quienesSomos": {
+     "title": "Quienes Somos",
+     "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, nesciunt libero enim sequi delectus id eaque modi? Nostrum ea corporis, eligendi officiis repellat sint temporibus, velit quisquam ducimus fuga praesentium delectus quis maxime ratione odit, reprehenderit expedita facilis? Consequatur modi dolore minus consequuntur quidem saepe. Quis reiciendis dicta autem nulla."
+    },
+    "contactanos": {
+     "title": "Redes Sociales",
+     "socialMedia": {
+      "facebook": {
+       "title": "Facebook",
+       "url": ""
+      },
+      "whatsapp": {
+       "title": "Whatsapp",
+       "url": ""
+      }
+     }
+    }
+   },
+   "footer": {
+    "author": {
+     "title": "by @piguavesof",
+     "url": "https://piguavesof.com"
+    }
+   }
+  },
+  "product": {
+   "header": {
+    "button": "Regresar a la pagina anterior"
+   },
+   "loading": {
+    "title": "Mensaje de espera",
+    "text": "por favor espere mientras se cargan los productos"
+   }
   }
  }
 }

@@ -14,5 +14,5 @@
  @apply text-xl font-semibold text-center text-slate-800;
 }
 .error-text {
- @apply text-2xl font-semibold text-slate-100 text-rose-600;
+ @apply text-2xl font-semibold  text-rose-600;
 }

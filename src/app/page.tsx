@@ -1,31 +1,119 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
+import { CustomButton } from '@/atomic/elements';
+import { useCategoryController } from '@/hooks';
+import { Oval } from 'react-loader-spinner';
+import { types, data, images } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import { images } from '../constants/images';
+
+const { secctions, header, footer } = data.screens.homepage;
 
 export default function Home() {
- const { data: session } = useSession();
-
+ const { categories, isLoadingSearch } = useCategoryController();
  return (
-  <main className="w-full h-screen bg-slate-200 flex flex-col justify-center items-center space-y-4">
-   <Image src={images.logo.src} width={200} height={200} alt="" />
-   {!session ? (
-    <button
-     className="px-8 py-4 bg-slate-100 rounded-xl font-semibold text-gray-600 text-xl"
-     onClick={() => signIn('google')}
-    >
-     Entra con google
-    </button>
+  <main className="w-full bg-helper flex-col-stretch-start space-y-12">
+   {/* header */}
+   <header className="w-full p-4 bg-primary flex-row-between-center">
+    <Image src={images.redCar.src} width={50} height={50} alt="" />
+    <h1 className="header-2 color-secondary"> {header.title} </h1>
+    <CustomButton title={header.button} type={types.button.icon} icon={types.icon.menu} />
+   </header>
+   {/* categories */}
+   {isLoadingSearch ? (
+    <div className="w-full p-8 bg-helper flex-col-center-center">
+     <h2 className="header-2 text-center">{secctions.products.loading.title}</h2>
+     <p className="default-text text-center">{secctions.products.loading.text}</p>
+     <Oval
+      height={80}
+      width={80}
+      color="gray"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      ariaLabel="oval-loading"
+      secondaryColor="#666"
+      strokeWidth={5}
+      strokeWidthSecondary={5}
+     />
+    </div>
    ) : (
-    <Link
-     className="px-8 py-4 bg-rose-600 rounded-xl font-semibold text-slate-100 text-xl"
-     href={'/dashboard'}
+    <section
+     className="w-full bg-helper"
+     style={{
+      gap: '2rem',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(10rem, 1fr))',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      justifyItems: 'center',
+     }}
     >
-     Ir al panel de control
-    </Link>
+     {categories.map((category, i) => (
+      <Link key={i} href={`/category/${category.name}`} title={`categoria ${category.name}`}>
+       <Image
+        className="flex-row-center-center"
+        src={category.photo as string}
+        width={150}
+        height={300}
+        alt=""
+       />
+      </Link>
+     ))}
+    </section>
    )}
+   {/* who we */}
+   <section className="w-full p-4  bg-helper">
+    <div></div>
+    <article className="space-y-8">
+     <header>
+      <h2 className="header-2">{secctions.quienesSomos.title}</h2>
+     </header>
+     <main>
+      <p className="default-text">{secctions.quienesSomos.text}</p>
+     </main>
+    </article>
+   </section>
+   {/* contact */}
+   <section className="w-full p-4 bg-helper space-y-16">
+    <article className="space-y-8">
+     <header>
+      <h2 className="header-2">{secctions.contactanos.title}</h2>
+     </header>
+     <ul className="flex-row-center-center">
+      <li>
+       <Link href={secctions.contactanos.socialMedia.facebook.url} target="_blank">
+        <CustomButton
+         title={secctions.contactanos.socialMedia.facebook.title}
+         type={types.button.icon}
+         icon={types.icon.facebook}
+        />
+       </Link>
+      </li>
+      <li>
+       <Link href={secctions.contactanos.socialMedia.whatsapp.url} target="_blank">
+        <CustomButton
+         title={secctions.contactanos.socialMedia.whatsapp.title}
+         type={types.button.icon}
+         icon={types.icon.whatsapp}
+        />
+       </Link>
+      </li>
+     </ul>
+    </article>
+   </section>
+   {/* footer */}
+   <footer className="w-full py-16 bg-slate-200 flex-row-center-center">
+    <Link
+     className="w-full p-2 block "
+     href={footer.author.url}
+     title={footer.author.title}
+     target="_blank"
+    >
+     <p className="default-text-bold"> {footer.author.title} </p>
+    </Link>
+   </footer>
   </main>
  );
 }

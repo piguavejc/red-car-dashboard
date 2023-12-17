@@ -49,7 +49,18 @@ interface ModalSetting {
 /*  */
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 /* types icons */
-type statusIcon = 'edit' | 'close' | 'enable' | 'create' | 'detail' | 'refresh' | 'eliminated';
+type statusIcon =
+ | 'edit'
+ | 'menu'
+ | 'close'
+ | 'enable'
+ | 'create'
+ | 'detail'
+ | 'goBack'
+ | 'refresh'
+ | 'whatsapp'
+ | 'eliminated'
+ | 'facebook';
 
 /* types form */
 type statusForm = 'create' | 'edit';

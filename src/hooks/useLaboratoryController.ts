@@ -14,8 +14,8 @@ const useLaboratoryController = (targetSearch?: Search) => {
  });
  const [laboratories, setLaboratories] = useState<Item[]>([]);
  const [disabledLaboratories, setDisabledLaboratories] = useState<Item[]>([]);
- const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(false);
- const [isLoading, setIsLoading] = useState<boolean>(false);
+ const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(true);
+ const [isLoading, setIsLoading] = useState<boolean>(true);
  const [isEdition, setEdition] = useState<boolean>(false);
  const [isEnable, setIsEnable] = useState<boolean>(false);
  const {
