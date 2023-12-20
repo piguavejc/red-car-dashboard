@@ -137,7 +137,25 @@ const useProduct = () => {
   }
   return undefined;
  };
- /* show all categories */
+ /* show all laboratories */
+ const listLaboratories = async (
+  category: string,
+  laboratory: string,
+ ): Promise<
+  | AxiosResponse<{
+     data: ProductDto[];
+    }>
+  | undefined
+ > => {
+  try {
+   return await service.showLaboratory(category, laboratory);
+  } catch (error) {
+   // console.log(error)
+   setExistError(true);
+  }
+  return undefined;
+ };
+ /* search all categories */
  const searchCategory = async (
   product: string,
   category: string,
@@ -166,6 +184,7 @@ const useProduct = () => {
   listDisableds,
   searchCategory,
   listCategories,
+  listLaboratories,
   existError,
  };
 };

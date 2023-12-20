@@ -1,0 +1,4 @@
+.component-loading {
+ background-color: var(--bg-secondary);
+ @apply p-4 rounded-xl bg-opacity-50;
+}

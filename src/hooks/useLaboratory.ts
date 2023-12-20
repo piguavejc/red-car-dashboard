@@ -129,6 +129,27 @@ const useLaboratory = () => {
   }
   return undefined;
  };
+
+ /* show all enable */
+ const listCategory = async (
+  category: string,
+ ): Promise<
+  | AxiosResponse<
+     {
+      data: LaboratoryModel[];
+     },
+     any
+    >
+  | undefined
+ > => {
+  try {
+   return await service.listCategory(category);
+  } catch (error) {
+   // console.log(error)
+   setExistError(true);
+  }
+  return undefined;
+ };
  return {
   edit,
   find,
@@ -137,6 +158,7 @@ const useLaboratory = () => {
   search,
   disable,
   listEnableds,
+  listCategory,
   listDisableds,
   existError,
  };

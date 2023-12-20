@@ -30,7 +30,7 @@ const LaboratoryView = () => {
   handlerCloseEnable,
   handlerActionEnable,
   handlerActionDisable,
- } = useLaboratoryController(search);
+ } = useLaboratoryController(undefined, search);
 
  /* dialog */
  if (dialog.isActivate)

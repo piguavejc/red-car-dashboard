@@ -41,7 +41,7 @@ const ProductView = () => {
   handlerCloseEnable,
   handlerActionEnable,
   handlerActionDisable,
- } = useProductController(tab, search);
+ } = useProductController(tab, undefined, search);
  const { categories } = useCategoryController();
  /* dialog */
  if (dialog.isActivate)

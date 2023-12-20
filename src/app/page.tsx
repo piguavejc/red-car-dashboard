@@ -12,7 +12,7 @@ const { secctions, header, footer } = data.screens.homepage;
 export default function Home() {
  const { categories, isLoadingSearch } = useCategoryController();
  return (
-  <main className="w-full bg-helper flex-col-stretch-start space-y-12">
+  <main className="w-full bg-helper flex-col-stretch-center space-y-12">
    {/* header */}
    <header className="w-full p-4 bg-primary flex-row-between-center">
     <Image src={images.redCar.src} width={50} height={50} alt="" />
@@ -21,7 +21,7 @@ export default function Home() {
    </header>
    {/* categories */}
    {isLoadingSearch ? (
-    <div className="w-full p-8 bg-helper flex-col-center-center">
+    <div className="w-[90%] component-loading flex-col-center-center">
      <h2 className="header-2 text-center">{secctions.products.loading.title}</h2>
      <p className="default-text text-center">{secctions.products.loading.text}</p>
      <Oval
@@ -64,9 +64,9 @@ export default function Home() {
     </section>
    )}
    {/* who we */}
-   <section className="w-full p-4  bg-helper">
-    <div></div>
-    <article className="space-y-8">
+   <section className="w-full py-12 px-4  bg-secondary flex-col-stretch-center space-y-8">
+    <Image src={images.redCar.src} width={250} height={250} alt="" />
+    <article className="space-y-4">
      <header>
       <h2 className="header-2">{secctions.quienesSomos.title}</h2>
      </header>

@@ -16,6 +16,14 @@ class ServiceProduct implements ProductController {
    `${process.env.API_RED_CAR_LOCAL}/show/category/product?category=${category}`,
   );
  };
+ public showLaboratory = async (
+  category: string,
+  laboratory: string,
+ ): Promise<AxiosResponse<{ data: ProductDto[] }>> => {
+  return await this.http.get<ProductDto>(
+   `${process.env.API_RED_CAR_LOCAL}/show/laboratory/product?category=${category}&laboratory=${laboratory}`,
+  );
+ };
  public edit = async (product: ProductModel): Promise<AxiosResponse<resposeApi>> => {
   return await this.http.put<resposeApi>(
    `${process.env.API_RED_CAR_LOCAL}/edit/product`,

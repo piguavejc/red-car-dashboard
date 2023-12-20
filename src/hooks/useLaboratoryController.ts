@@ -1,13 +1,26 @@
+import { useDialog, useModal } from '.';
 import { useEffect, useState } from 'react';
 import { LaboratoryModel } from '@/mvc/models';
-import { useDialog, useModal } from '.';
+import { useLaboratory } from './useLaboratory';
 import { messageDialog, types } from '@/constants';
 import { Item, Search, statusDialog } from '@/types';
-import { useLaboratory } from './useLaboratory';
 
-const useLaboratoryController = (targetSearch?: Search) => {
- const { edit, find, create, enable, search, disable, listEnableds, listDisableds, existError } =
-  useLaboratory();
+const useLaboratoryController = (
+ category: string | undefined,
+ targetSearch: Search | undefined,
+) => {
+ const {
+  edit,
+  find,
+  create,
+  enable,
+  search,
+  disable,
+  listEnableds,
+  listDisableds,
+  listCategory,
+  existError,
+ } = useLaboratory();
  const [laboratory, setLaboratory] = useState<LaboratoryModel>({
   idlaboratory: undefined,
   laboratory: undefined,
@@ -33,7 +46,11 @@ const useLaboratoryController = (targetSearch?: Search) => {
 
  useEffect(() => {
   if (targetSearch) handlerSearch(targetSearch);
- }, [targetSearch?.search]);
+ }, [targetSearch]);
+
+ useEffect(() => {
+  handlerListCategory(category as string);
+ }, [category]);
 
  useEffect(() => {
   handlerUpdateAll();
@@ -166,7 +183,20 @@ const useLaboratoryController = (targetSearch?: Search) => {
  /* show all enable */
  const handlerListEnableds = async () => {
   setIsLoadingSearch(true);
+  if (laboratories.length === 0) setLaboratories([]);
   const rs = await listEnableds();
+  if (rs?.data) {
+   const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
+   setLaboratories(data);
+  }
+  setIsLoadingSearch(false);
+ };
+
+ /* show all enable */
+ const handlerListCategory = async (category: string) => {
+  setIsLoadingSearch(true);
+  if (laboratories.length === 0) setLaboratories([]);
+  const rs = await listCategory(category);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
    setLaboratories(data);
@@ -206,6 +236,7 @@ const useLaboratoryController = (targetSearch?: Search) => {
   isLoadingSearch,
   disabledLaboratories,
   handlerEdit,
+  listCategory,
   handlerCreate,
   handlerShowEdit,
   handlerHiddeEdit,

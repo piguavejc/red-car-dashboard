@@ -16,5 +16,9 @@ interface ProductController {
   product: string,
   category: string,
  ) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
+ showLaboratory: (
+  category: string,
+  laboratory: string,
+ ) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
 }
 export type { ProductController };

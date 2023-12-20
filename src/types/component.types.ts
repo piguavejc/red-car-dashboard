@@ -57,6 +57,7 @@ interface CustomDetailsProductProps {
 }
 interface CustomTabsProps {
  items: string[];
+ isLoading?: boolean;
  className?: string;
  itemFocus: string;
  returnItem: (item: string) => void;
@@ -66,6 +67,12 @@ interface CustomItemTabsProps {
  item: string;
  returnItem: (item: string) => void;
 }
+/*  */
+interface CustomItemProps {
+ title: string;
+ text: string;
+}
+/*  */
 interface PosterProps {
  id: string;
  label: string;
@@ -110,14 +117,14 @@ interface CustomLaboratoryFormProps {
 interface CustomButtonIconProps {
  type:
   | 'view'
-  | 'eliminated'
-  | 'default'
-  | 'disabled'
-  | 'hidde'
-  | 'arrow-left'
-  | 'refresh'
-  | 'expand'
   | 'edit'
+  | 'hidde'
+  | 'expand'
+  | 'default'
+  | 'refresh'
+  | 'disabled'
+  | 'arrow-left'
+  | 'eliminated'
   | 'eye';
  className?: string;
  text?: string;
@@ -130,15 +137,7 @@ interface IconProps {
 interface CustomDialogProps {
  setting: dialogSetting;
 }
-interface CustomItemProps {
- id: number;
- title: string;
- buttons: CustomButtonProps[];
- handlerItem?: () => void;
- handlerEnable?: (id: number, name: string) => void;
- handlerEdit?: (id: number, name: string) => void;
- handlerEliminate?: (id: number, name: string) => void;
-}
+
 interface CustomButtonProps {
  title: string;
  text?: string;

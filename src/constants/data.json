@@ -236,6 +236,9 @@
    "loading": {
     "title": "Mensaje de espera",
     "text": "por favor espere mientras se cargan los productos"
+   },
+   "tabs": {
+    "loading": "Espere mientras se cargan los datos"
    }
   }
  }

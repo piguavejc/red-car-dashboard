@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 import { useProduct } from './useProduct';
 import { useDialog, useModal } from '.';
 
-const useProductController = (category: string, searchTarget: Search) => {
+const useProductController = (
+ category: string,
+ laboratory: string | undefined,
+ searchTarget: Search,
+) => {
  const {
   edit,
   find,
@@ -17,6 +21,7 @@ const useProductController = (category: string, searchTarget: Search) => {
   listDisableds,
   searchCategory,
   listCategories,
+  listLaboratories,
   existError,
  } = useProduct();
  const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -58,7 +63,11 @@ const useProductController = (category: string, searchTarget: Search) => {
    if (searchTarget.search === '') handlerListCategory(category);
    else handlerSearchCategory(searchTarget.search, category);
   }
- }, [searchTarget.search, category]);
+  if (laboratory) {
+   if (laboratory !== 'Todos' && laboratory) handlerListLaboratory(category, laboratory);
+   else handlerListCategory(category);
+  }
+ }, [searchTarget.search, category, laboratory]);
 
  useEffect(() => {
   handlerUpdateAll();
@@ -171,6 +180,7 @@ const useProductController = (category: string, searchTarget: Search) => {
 
  const handlerFind = async (id: number) => {
   setIsLoading(true);
+
   const rs = await find(id);
   if (rs?.data) {
    const blob = await (await fetch(rs.data.data.photo!)).blob();
@@ -222,6 +232,7 @@ const useProductController = (category: string, searchTarget: Search) => {
  /* show all enable */
  const handlerListEnableds = async () => {
   setIsLoadingSearch(true);
+  if (products.length >= 0) setProducts([]);
   const rs = await listEnableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
@@ -237,7 +248,24 @@ const useProductController = (category: string, searchTarget: Search) => {
  /* show all enable */
  const handlerListCategory = async (category: string) => {
   setIsLoadingSearch(true);
+  if (products.length >= 0) setProducts([]);
   const rs = await listCategories(category);
+  if (rs?.data) {
+   const data = rs.data.data.map((item) => ({
+    id: item.idproduct,
+    name: item.product,
+    photo: item.photo,
+   }));
+   setProducts(data);
+  }
+  setIsLoadingSearch(false);
+ };
+
+ /* show all enable */
+ const handlerListLaboratory = async (category: string, laboratory: string) => {
+  setIsLoadingSearch(true);
+  if (products.length >= 0) setProducts([]);
+  const rs = await listLaboratories(category, laboratory);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
     id: item.idproduct,
@@ -252,6 +280,7 @@ const useProductController = (category: string, searchTarget: Search) => {
  /* show all enable */
  const handlerSearchCategory = async (product: string, category: string) => {
   setIsLoadingSearch(true);
+  if (products.length >= 0) setProducts([]);
   const rs = await searchCategory(product, category);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({

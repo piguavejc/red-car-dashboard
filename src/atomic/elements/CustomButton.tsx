@@ -43,12 +43,14 @@ const CustomButton = (props: CustomButtonProps) => {
   return (
    <button
     type="button"
-    className={props.isDisable ? 'p-4 bg-gray-400 rounded-xl cursor-not-allowed' : styles.container}
+    className={
+     props.isDisable ? 'p-4 bg-gray-400 rounded-xl cursor-not-allowed' : `${styles.container}`
+    }
     disabled={props.isDisable}
     onClick={props.handlerPress}
     title={props.title}
    >
-    <p className={styles.button}>{props.text}</p>
+    <p className={`${styles.button} ${props.className}`}>{props.text}</p>
    </button>
   );
  /* icon  */

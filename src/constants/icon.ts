@@ -1,4 +1,5 @@
 const typesIcon = Object.freeze({
+ plus: 'plus',
  menu: 'menu',
  edit: 'edit',
  close: 'close',

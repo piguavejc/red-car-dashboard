@@ -60,6 +60,7 @@ type statusIcon =
  | 'refresh'
  | 'whatsapp'
  | 'eliminated'
+ | 'plus'
  | 'facebook';
 
 /* types form */

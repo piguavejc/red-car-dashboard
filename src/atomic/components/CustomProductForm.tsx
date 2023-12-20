@@ -15,7 +15,7 @@ const CustomProductForm = (props: CustomProductFormProps) => {
  const { items, position, handlerPosition } = useProgressBar(4);
 
  const { categories } = useCategoryController();
- const { laboratories } = useLaboratoryController();
+ const { laboratories } = useLaboratoryController(undefined, undefined);
  const { urlImage, handlerPoster } = usePoster();
 
  if (props.isLoading) {

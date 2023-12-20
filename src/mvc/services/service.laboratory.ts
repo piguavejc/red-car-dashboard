@@ -29,6 +29,16 @@ class ServiceLaboratory implements LaboratoryController {
    this.getFormData(laboratory),
   );
  };
+ public search = async (search: Search): Promise<AxiosResponse<{ data: LaboratoryModel[] }>> => {
+  return await this.http.get<LaboratoryModel>(
+   `${process.env.API_RED_CAR_LOCAL}/search/laboratory?search=${search.search}`,
+  );
+ };
+ public find = async (id: number): Promise<AxiosResponse<{ data: LaboratoryModel }>> => {
+  return await this.http.get<LaboratoryModel>(
+   `${process.env.API_RED_CAR_LOCAL}/find/laboratory?id=${id}`,
+  );
+ };
  public showDisable = async (): Promise<AxiosResponse<{ data: LaboratoryModel[] }>> => {
   return await this.http.get<{ data: LaboratoryModel[] }>(
    `${process.env.API_RED_CAR_LOCAL}/show/disable/laboratory`,
@@ -39,14 +49,12 @@ class ServiceLaboratory implements LaboratoryController {
    `${process.env.API_RED_CAR_LOCAL}/show/enable/laboratory`,
   );
  };
- public search = async (search: Search): Promise<AxiosResponse<{ data: LaboratoryModel[] }>> => {
-  return await this.http.get<LaboratoryModel>(
-   `${process.env.API_RED_CAR_LOCAL}/search/laboratory?search=${search.search}`,
-  );
- };
- public find = async (id: number): Promise<AxiosResponse<{ data: LaboratoryModel }>> => {
-  return await this.http.get<LaboratoryModel>(
-   `${process.env.API_RED_CAR_LOCAL}/find/laboratory?id=${id}`,
+
+ public listCategory = async (
+  category: string,
+ ): Promise<AxiosResponse<{ data: LaboratoryModel[] }>> => {
+  return await this.http.get<{ data: LaboratoryModel[] }>(
+   `${process.env.API_RED_CAR_LOCAL}/show/enable/laboratory/category?category=${category}`,
   );
  };
 
