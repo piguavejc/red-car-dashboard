@@ -1,27 +1,44 @@
 'use client';
-
+import { CustomCarousel } from '@/atomic/components';
+import { types, data, images } from '@/constants';
 import { CustomButton } from '@/atomic/elements';
 import { useCategoryController } from '@/hooks';
 import { Oval } from 'react-loader-spinner';
-import { types, data, images } from '@/constants';
+import { theme } from '@/atomic/theme';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const { secctions, header, footer } = data.screens.homepage;
+const { pages } = data.screens.dashboard;
 
 export default function Home() {
- const { categories, isLoadingSearch } = useCategoryController();
+ const { categories, isLoadingSearch, existError } = useCategoryController();
+
+ /* error */
+
+ if (existError)
+  return (
+   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
+    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
+    <p className="error-text"> {pages.products.error} </p>
+   </div>
+  );
+
  return (
-  <main className="w-full bg-helper flex-col-stretch-center space-y-12">
+  <main className="w-full h-screen bg-helper flex-col-stretch-center space-y-12">
    {/* header */}
    <header className="w-full p-4 bg-primary flex-row-between-center">
     <Image src={images.redCar.src} width={50} height={50} alt="" />
-    <h1 className="header-2 color-secondary"> {header.title} </h1>
+    <h1 className="header-2 color-secondary" style={{ color: theme.white }}>
+     {' '}
+     {header.title}{' '}
+    </h1>
     <CustomButton title={header.button} type={types.button.icon} icon={types.icon.menu} />
    </header>
+   <CustomCarousel />
    {/* categories */}
    {isLoadingSearch ? (
-    <div className="w-[90%] component-loading flex-col-center-center">
+    <div className="w-[90%] component-loading flex-col-center-center lg:w-[80%]">
      <h2 className="header-2 text-center">{secctions.products.loading.title}</h2>
      <p className="default-text text-center">{secctions.products.loading.text}</p>
      <Oval
@@ -39,7 +56,7 @@ export default function Home() {
     </div>
    ) : (
     <section
-     className="w-full bg-helper"
+     className="w-full bg-helper lg:w-[80%]"
      style={{
       gap: '2rem',
       display: 'grid',
@@ -64,9 +81,9 @@ export default function Home() {
     </section>
    )}
    {/* who we */}
-   <section className="w-full py-12 px-4  bg-secondary flex-col-stretch-center space-y-8">
-    <Image src={images.redCar.src} width={250} height={250} alt="" />
-    <article className="space-y-4">
+   <section className="w-full py-12 px-4  bg-secondary flex-col-stretch-center space-y-8 lg:w-[80%] rounded-xl">
+    <Image src={images.redCar.src} width={250} height={250} alt="" className="flex-1" />
+    <article className="space-y-4 flex-1">
      <header>
       <h2 className="header-2">{secctions.quienesSomos.title}</h2>
      </header>

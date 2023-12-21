@@ -9,6 +9,11 @@ interface ProductController {
  edit: (product: ProductModel) => Promise<AxiosResponse<resposeApi>>;
  create: (product: ProductModel) => Promise<AxiosResponse<resposeApi>>;
  search: (search: Search) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
+ searchLaboratory: (
+  category: string,
+  laboratory: string,
+  search: Search,
+ ) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
  enable: (id: number, product: string) => Promise<AxiosResponse<resposeApi>>;
  disable: (id: number, product: string) => Promise<AxiosResponse<resposeApi>>;
  showCategory: (category: string) => Promise<AxiosResponse<{ data: ProductDto[] }>>;

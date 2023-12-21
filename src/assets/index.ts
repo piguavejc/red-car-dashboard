@@ -1,10 +1,11 @@
+import whatsapp from '../../public/assets/whatsapp-removebg-preview.png';
+import prostaeros from '../../public/assets/prosta-eros.jpg';
+import facebook from '../../public/assets/facebook.png';
 import warning from '../../public/assets/warning.png';
 import success from '../../public/assets/success.png';
 import redCar from '../../public/assets/red-car.png';
 import empty from '../../public/assets/empty.png';
 import load from '../../public/assets/load.png';
-import facebook from '../../public/assets/facebook.png';
-import whatsapp from '../../public/assets/whatsapp-removebg-preview.png';
 
 const assets = Object.freeze({
  images: {
@@ -42,6 +43,11 @@ const assets = Object.freeze({
    title: '',
    alt: '',
    src: whatsapp,
+  },
+  prostaeros: {
+   title: '',
+   alt: '',
+   src: prostaeros,
   },
  },
 });

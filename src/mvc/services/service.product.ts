@@ -72,7 +72,15 @@ class ServiceProduct implements ProductController {
    `${process.env.API_RED_CAR_LOCAL}/search/product?search=${search.search}`,
   );
  };
-
+ public searchLaboratory = async (
+  category: string,
+  laboratory: string,
+  search: Search,
+ ): Promise<AxiosResponse<{ data: ProductDto[] }>> => {
+  return await this.http.get<ProductDto>(
+   `${process.env.API_RED_CAR_LOCAL}/search/laboratory/product?laboratory=${laboratory}&search=${search.search}&category=${category}`,
+  );
+ };
  public find = async (id: number): Promise<AxiosResponse<{ data: ProductDto }>> => {
   return await this.http.get<ProductDto>(`${process.env.API_RED_CAR_LOCAL}/find/product?id=${id}`);
  };

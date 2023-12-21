@@ -22,7 +22,7 @@
 }
 
 body {
- background-color: rgb(226, 232, 240);
+ background-color: var(--bg-helper);
 }
 
 @import './css/form.css';

@@ -173,6 +173,26 @@ const useProduct = () => {
   }
   return undefined;
  };
+
+ /* search all categories */
+ const searchLaboratory = async (
+  category: string,
+  laboratory: string,
+  search: Search,
+ ): Promise<
+  | AxiosResponse<{
+     data: ProductDto[];
+    }>
+  | undefined
+ > => {
+  try {
+   return await service.searchLaboratory(category, laboratory, search);
+  } catch (error) {
+   // console.log(error)
+   setExistError(true);
+  }
+  return undefined;
+ };
  return {
   edit,
   find,
@@ -184,6 +204,7 @@ const useProduct = () => {
   listDisableds,
   searchCategory,
   listCategories,
+  searchLaboratory,
   listLaboratories,
   existError,
  };

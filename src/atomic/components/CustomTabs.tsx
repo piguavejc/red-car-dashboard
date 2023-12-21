@@ -9,7 +9,7 @@ const CustomTabs = (props: CustomTabsProps) => {
  props.items.push('Todos');
  if (props.isLoading)
   return (
-   <div className="w-[90%] component-loading flex-col-stretch-center">
+   <div className="w-[90%] component-loading flex-col-stretch-center lg:w-[70%]">
     <p className="default-text text-center">{tabs.loading}</p>
     <Oval
      height={80}
@@ -26,7 +26,7 @@ const CustomTabs = (props: CustomTabsProps) => {
    </div>
   );
  return (
-  <ul className="w-[100%] flex-row-between-center flex-initial overflow-x-auto pb-4">
+  <ul className="w-[100%] pl-2 flex-row-start-center flex-initial overflow-x-auto pb-4">
    {props.items
     .reverse()
     .map((item: string, i: number) =>

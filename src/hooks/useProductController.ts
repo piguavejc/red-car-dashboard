@@ -22,6 +22,7 @@ const useProductController = (
   searchCategory,
   listCategories,
   listLaboratories,
+  searchLaboratory,
   existError,
  } = useProduct();
  const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -63,20 +64,21 @@ const useProductController = (
    if (searchTarget.search === '') handlerListCategory(category);
    else handlerSearchCategory(searchTarget.search, category);
   }
+
   if (laboratory) {
+   if (searchTarget.search !== '' && laboratory !== 'Todos') {
+    handlerSearchLaboratory(category, laboratory, searchTarget);
+    return;
+   }
    if (laboratory !== 'Todos' && laboratory) handlerListLaboratory(category, laboratory);
    else handlerListCategory(category);
   }
  }, [searchTarget.search, category, laboratory]);
 
- useEffect(() => {
-  handlerUpdateAll();
- }, []);
-
  /* update all category */
  const handlerUpdateAll = async () => {
-  handlerListEnableds();
-  handlerListDisableds();
+  await handlerListEnableds();
+  await handlerListDisableds();
  };
 
  /* show all disabled */
@@ -282,6 +284,22 @@ const useProductController = (
   setIsLoadingSearch(true);
   if (products.length >= 0) setProducts([]);
   const rs = await searchCategory(product, category);
+  if (rs?.data) {
+   const data = rs.data.data.map((item) => ({
+    id: item.idproduct,
+    name: item.product,
+    photo: item.photo,
+   }));
+   setProducts(data);
+  }
+  setIsLoadingSearch(false);
+ };
+
+ /* show all enable */
+ const handlerSearchLaboratory = async (category: string, laboratory: string, search: Search) => {
+  setIsLoadingSearch(true);
+  if (products.length >= 0) setProducts([]);
+  const rs = await searchLaboratory(category, laboratory, search);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
     id: item.idproduct,

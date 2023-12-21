@@ -69,8 +69,9 @@ interface CustomItemTabsProps {
 }
 /*  */
 interface CustomItemProps {
- title: string;
  text: string;
+ title: string;
+ className?: string;
 }
 /*  */
 interface PosterProps {

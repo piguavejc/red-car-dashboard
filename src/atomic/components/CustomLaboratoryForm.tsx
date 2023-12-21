@@ -10,7 +10,7 @@ const { laboratory } = data.screens.dashboard.forms;
 
 const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
  const { type } = props;
- if (props.isLoading) {
+ if (props.isLoading && props.type === types.form.edit) {
   return (
    <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
     <Oval

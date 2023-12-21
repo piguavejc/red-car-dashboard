@@ -213,11 +213,11 @@
      "socialMedia": {
       "facebook": {
        "title": "Facebook",
-       "url": ""
+       "url": "https://www.facebook.com/carritorojonatural"
       },
       "whatsapp": {
        "title": "Whatsapp",
-       "url": ""
+       "url": "whatsapp://send?phone=593998022878&text=hola, tengo una duda sobre los productos, pueden ayudarme?"
       }
      }
     }
@@ -239,6 +239,11 @@
    },
    "tabs": {
     "loading": "Espere mientras se cargan los datos"
+   },
+   "card": {
+    "description": "Descripcion",
+    "summary": "Componentes",
+    "dosage": "Dosis"
    }
   }
  }

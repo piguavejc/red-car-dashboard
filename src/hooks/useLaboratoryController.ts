@@ -52,10 +52,6 @@ const useLaboratoryController = (
   handlerListCategory(category as string);
  }, [category]);
 
- useEffect(() => {
-  handlerUpdateAll();
- }, []);
-
  /* update all laboratory */
  const handlerUpdateAll = () => {
   handlerListEnableds();

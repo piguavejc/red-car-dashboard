@@ -6,5 +6,8 @@ const images = Object.freeze({
  redCar: assets.images.redCar,
  success: assets.images.success,
  warning: assets.images.warning,
+ banners: {
+  prostaEros: assets.images.prostaeros,
+ },
 });
 export { images };
