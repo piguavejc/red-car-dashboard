@@ -34,12 +34,13 @@ const CustomList = (props: CustomListProps) => {
  if (props.data.length <= 0)
   return (
    <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
-    <CustomPhoto
+    <Image
+     src={images.redCar.src.src}
      className="flex-1"
-     title={''}
-     src={images.empty.src.src}
-     width={300}
      height={300}
+     width={300}
+     title={''}
+     alt=""
     />
     <p className="default-text-bold"> {list.empty} </p>
    </div>

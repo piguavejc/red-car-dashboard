@@ -156,7 +156,7 @@
    },
    "list": {
     "load": "Espere mientras se carga los datos...",
-    "empty": "No existen proyectos aun",
+    "empty": "No se encuentra el producto aun",
     "buttons": {
      "delete": "Eliminar",
      "edit": "Editar",
@@ -190,6 +190,11 @@
      },
      "error": "Ha ocurrido un error en el servidor, por favor recargue la pagina"
     }
+   },
+   "header": {
+    "title": "Carrito Rojo",
+    "button": "Menu",
+    "items": ["Categoria", "Laboratorio", "Producto"]
    }
   },
   "homepage": {
@@ -198,6 +203,7 @@
     "button": "Menu"
    },
    "secctions": {
+    "headers": ["Inicio", "Productos", "Quienes Somos", "Contactanos", "Entrar"],
     "products": {
      "loading": {
       "title": "Mensaje de espera",

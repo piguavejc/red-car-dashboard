@@ -35,7 +35,8 @@ const CustomCarousel = () => {
     navigation={true}
     modules={[Autoplay, Pagination, Navigation]}
     onAutoplayTimeLeft={onAutoplayTimeLeft}
-    className="h-[20vmax] mt-0 lg:h-[40vmax]"
+    className="h-[20vmax] lg:h-[40vmax]"
+    style={{ marginTop: 0 }}
    >
     <SwiperSlide className="h-auto">
      <Image src={images.banners.prostaEros.src} alt="" className="max-w-full object-contain" fill />

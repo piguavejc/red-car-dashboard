@@ -1,17 +1,19 @@
 'use client';
+import { useCategoryController, useHeader } from '@/hooks';
 import { CustomCarousel } from '@/atomic/components';
 import { types, data, images } from '@/constants';
 import { CustomButton } from '@/atomic/elements';
-import { useCategoryController } from '@/hooks';
+import { CustomHeader } from '@/atomic/designs';
 import { Oval } from 'react-loader-spinner';
 import { theme } from '@/atomic/theme';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const { secctions, header, footer } = data.screens.homepage;
+const { secctions, footer, header } = data.screens.homepage;
 const { pages } = data.screens.dashboard;
 
 export default function Home() {
+ const { headers, target, handlerTarger } = useHeader(secctions.headers);
  const { categories, isLoadingSearch, existError } = useCategoryController();
 
  /* error */
@@ -25,15 +27,19 @@ export default function Home() {
   );
 
  return (
-  <main className="w-full h-screen bg-helper flex-col-stretch-center space-y-12">
+  <main className="w-full bg-helper flex-col-stretch-center space-y-12">
    {/* header */}
-   <header className="w-full p-4 bg-primary flex-row-between-center">
+   <header className="w-full p-4 bg-secondary flex-row-between-center flex-initial ">
     <Image src={images.redCar.src} width={50} height={50} alt="" />
-    <h1 className="header-2 color-secondary" style={{ color: theme.white }}>
-     {' '}
-     {header.title}{' '}
+    <h1 className="header-2" style={{ color: theme.gray }}>
+     {header.title}
     </h1>
-    <CustomButton title={header.button} type={types.button.icon} icon={types.icon.menu} />
+    <div className="lg:hidden">
+     <CustomButton title={header.button} type={types.button.icon} icon={types.icon.menu} />
+    </div>
+    <div className="hidden lg:block flex-1">
+     <CustomHeader list={headers} target={target} hanlderTarget={handlerTarger} />
+    </div>
    </header>
    <CustomCarousel />
    {/* categories */}

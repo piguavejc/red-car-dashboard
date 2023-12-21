@@ -17,7 +17,7 @@ import { FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import { theme } from '@/atomic/theme';
 
 const CustomIcon = (props: IconProps) => {
- if (props.type === types.icon.menu) return <HiMenu size={30} color={theme.white} />;
+ if (props.type === types.icon.menu) return <HiMenu size={30} color={theme.gray} />;
  if (props.type === types.icon.edit) return <HiPencil size={30} color={theme.gray} />;
  if (props.type === types.icon.enable) return <HiCheck size={30} color={theme.gray} />;
  if (props.type === types.icon.elimited) return <HiTrash size={30} color={theme.red} />;
@@ -28,7 +28,7 @@ const CustomIcon = (props: IconProps) => {
  if (props.type === types.icon.goBack) return <HiArrowLeft size={30} color={theme.white} />;
  if (props.type === types.icon.whatsapp) return <FaWhatsapp size={65} color={theme.green} />;
  if (props.type === types.icon.plus) return <HiOutlinePlusCircle size={30} color={theme.white} />;
- if (props.type === types.icon.detail) return <HiInformationCircle size={30} color={theme.white} />;
+ if (props.type === types.icon.detail) return <HiInformationCircle size={30} color={theme.gray} />;
  return null;
 };
 

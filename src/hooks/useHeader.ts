@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
-const header: string[] = ['Categoria', 'Laboratorio', 'Producto'];
-
-const useHeader = () => {
- const [headers] = useState<string[]>(header);
+const useHeader = (items: string[]) => {
+ const [headers] = useState<string[]>(items);
  const [target, setTarget] = useState<number>(0);
  const handlerTarger = (target: number) => {
   setTarget(target);

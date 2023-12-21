@@ -36,7 +36,7 @@ export default function Category({ params: { name } }: { params: { name: string 
   );
 
  return (
-  <div className="w-full h-screen bg-helper flex-col-stretch-center space-y-12">
+  <div className="w-full bg-helper flex flex-col justify-stretch items-stretch space-y-12">
    {/* header */}
    <header className="w-full p-4 bg-primary flex-row-between-center lg:px-[5rem]">
     <CustomButton
@@ -51,36 +51,41 @@ export default function Category({ params: { name } }: { params: { name: string 
     </h1>
     <Image src={images.redCar.src} width={50} height={50} alt="" />
    </header>
-   {/* Tabs */}
-   <CustomTabs
-    isLoading={isLoad}
-    itemFocus={tab}
-    className={'pl-4'}
-    items={laboratories.map((laboratory) => laboratory.name as string)}
-    returnItem={handlerTab}
-   />
+   <div className="flex-col-start-stretch">
+    {/* Tabs */}
+    <CustomTabs
+     isLoading={isLoad}
+     itemFocus={tab}
+     className={'pl-4'}
+     items={laboratories.map((laboratory) => laboratory.name as string)}
+     returnItem={handlerTab}
+    />
+   </div>
    {/* input Search */}
-   <CustomSearch
-    placeholder={forms.products.search.placeholder}
-    validationSchema={validate.search}
-    handlerSubmit={hanlderSearch}
-    entity={search}
-   />
-   {products.length === 0 && (
-    <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
-     <CustomPhoto
+   <div className="self-center">
+    <CustomSearch
+     placeholder={forms.products.search.placeholder}
+     validationSchema={validate.search}
+     handlerSubmit={hanlderSearch}
+     entity={search}
+    />
+   </div>
+   {products.length === 0 && !isLoadingSearch && (
+    <div className="self-center flex-col-center-center bg-helper px-4 py-8  rounded-lg">
+     <Image
+      src={images.redCar.src.src}
       className="flex-1"
-      title={''}
-      src={images.empty.src.src}
-      width={300}
       height={300}
+      width={300}
+      title={''}
+      alt=""
      />
      <p className="default-text-bold"> {list.empty} </p>
     </div>
    )}
    {/* products */}
    {isLoadingSearch && products.length === 0 ? (
-    <div className="w-[90%] component-loading flex-col-center-center lg:w-[80%]">
+    <div className="w-[90%] self-center component-loading flex-col-center-center lg:w-[80%]">
      <h2 className="header-2 text-center">{loading.title}</h2>
      <p className="default-text text-center">{loading.text}</p>
      <Oval
@@ -97,7 +102,7 @@ export default function Category({ params: { name } }: { params: { name: string 
      />
     </div>
    ) : detail ? (
-    <section className="w-[90%] p-4 bg-secondary rounded-xl flex-col-stretch-center lg:w-[80%]">
+    <section className="w-[90%] self-center p-4 bg-secondary rounded-xl flex-col-stretch-center lg:w-[80%]">
      <CustomButton
       title={''}
       type={types.button.icon}
@@ -129,7 +134,7 @@ export default function Category({ params: { name } }: { params: { name: string 
    ) : (
     <>
      <section
-      className="w-full p-4 bg-helper lg:w-[80%]"
+      className="w-full self-center p-4 bg-helper lg:w-[80%]"
       style={{
        gap: '2rem',
        display: 'grid',
@@ -145,7 +150,7 @@ export default function Category({ params: { name } }: { params: { name: string 
         key={i}
         title={product.name}
         onClick={() => handlerDetail(product.id as number)}
-        className="bg-slate-200 p-8 rounded-xl space-y-4 cursor-pointer"
+        className="bg-slate-200 p-8 flex-col-stretch-stretch rounded-xl space-y-4 cursor-pointer"
         style={{ height: '100%' }}
        >
         <Image

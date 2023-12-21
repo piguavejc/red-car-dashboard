@@ -5,7 +5,7 @@ import React from 'react';
 
 const CustomHeader = (props: CustomHeaderProps) => {
  return (
-  <nav className="p-4 flex-row-reverese-between-center flex-initial border-b-2 border-slate-300">
+  <nav className="p-4 flex-row-reverese-between-center flex-initial">
    <ul className="flex-row-end-center">
     {props.list.map((item, i) => (
      <li key={i}>
