@@ -13,10 +13,6 @@ class ServiceUser implements UserController {
  };
  public getFormData = (user: UserModel): URLSearchParams => {
   const formData: URLSearchParams = new URLSearchParams();
-  if (user.id) formData.append('id', user.id);
-  if (user.name) formData.append('name', user.name);
-  if (user.email) formData.append('email', user.email);
-  if (user.image) formData.append('image', user.image);
   return formData;
  };
 

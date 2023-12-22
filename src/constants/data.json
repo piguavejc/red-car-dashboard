@@ -203,6 +203,14 @@
     "button": "Menu"
    },
    "secctions": {
+    "names": {
+     "home": "inicio",
+     "product": "productos",
+     "whoUs": "quienes-somos",
+     "contact": "contactanos",
+     "logi": "entrar",
+     "urls": ["inicio", "productos", "quienes-somos", "contactanos", "entrar"]
+    },
     "headers": ["Inicio", "Productos", "Quienes Somos", "Contactanos", "Entrar"],
     "products": {
      "loading": {
@@ -250,6 +258,44 @@
     "description": "Descripcion",
     "summary": "Componentes",
     "dosage": "Dosis"
+   }
+  },
+  "login": {
+   "secctions": {
+    "names": ["Cuenta", "Registrar"],
+    "login": "Cuenta",
+    "register": "Registrar"
+   },
+   "forms": {
+    "login": {
+     "titles": {
+      "create": "Crea una cuenta",
+      "edit": "Edita la cuenta",
+      "detail": "Edita de la categoria"
+     },
+     "fields": {
+      "user": {
+       "id": "user",
+       "label": "Usuario",
+       "placeholder": "Ej: piguavejc"
+      },
+      "password": {
+       "id": "password",
+       "label": "Contraseña",
+       "placeholder": "Ej: ********"
+      }
+     },
+     "buttons": {
+      "create": {
+       "primary": "Crear cuenta"
+      },
+      "edit": {
+       "primary": "Guardar cambios"
+      },
+      "secundary": "Limpiar el formulario"
+     },
+     "load": "Espere mientras se guardan los datos"
+    }
    }
   }
  }

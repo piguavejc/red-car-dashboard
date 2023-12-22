@@ -1,6 +1,8 @@
 export { useLaboratoryController } from './useLaboratoryController';
 export { useCategoryController } from './useCategoryController';
+export { useRegisterController } from './useRegisterController';
 export { useProductController } from './useProductController';
+export { useLoginController } from './useLoginController';
 export { useProgressBar } from './useProgressBar';
 export { useDialog } from './useDialog';
 export { usePoster } from './usePoster';

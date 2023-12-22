@@ -59,5 +59,7 @@ const validate = Object.freeze({
  product: validationProduct,
  category: validationCategory,
  laboratory: validationLaboratory,
+ login: validationSearch,
+ register: validationSearch,
 });
 export { validate };

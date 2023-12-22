@@ -3,13 +3,14 @@ import {
  CategoryDto,
  CategoryModel,
  LaboratoryModel,
+ LoginModel,
  ProductDto,
  ProductModel,
+ RegisterModel,
 } from '@/mvc/models';
 import {
  Item,
  Search,
- Message,
  statusIcon,
  statusForm,
  statusButton,
@@ -183,15 +184,25 @@ interface CustomPhotoProps {
 interface CustomModalProps {
  setting: ModalSetting;
 }
+interface CustomLoginFormProps {
+ entity: LoginModel;
+ validation: AnyObjectSchema;
+}
+interface CustomRegisterFormProps {
+ entity: RegisterModel;
+ validation: AnyObjectSchema;
+}
 export type {
  CustomDetailsCategoryProps,
  CustomLaboratoryFormProps,
  CustomDetailsProductProps,
  CustomCategoryFormProps,
+ CustomRegisterFormProps,
  CustomProductFormProps,
  CustomProgressBarProps,
  CustomSearchFormProps,
  CustomButtonIconProps,
+ CustomLoginFormProps,
  CustomTextAreaProps,
  CustomItemTabsProps,
  CustomDialogProps,

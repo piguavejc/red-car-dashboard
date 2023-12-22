@@ -8,14 +8,21 @@ import { Oval } from 'react-loader-spinner';
 import { theme } from '@/atomic/theme';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-const { secctions, footer, header } = data.screens.homepage;
-const { pages } = data.screens.dashboard;
+const { secctions, footer } = data.screens.homepage;
+const { pages, header } = data.screens.dashboard;
 
 export default function Home() {
+ const navigate = useRouter();
  const { headers, target, handlerTarger } = useHeader(secctions.headers);
  const { categories, isLoadingSearch, existError } = useCategoryController();
 
+ useEffect(() => {
+  if (secctions.names.logi === secctions.names.urls[target]) navigate.push(`/login`);
+  else navigate.push(`#${secctions.names.urls[target]}`);
+ }, [target]);
  /* error */
 
  if (existError)
@@ -29,7 +36,10 @@ export default function Home() {
  return (
   <main className="w-full bg-helper flex-col-stretch-center space-y-12">
    {/* header */}
-   <header className="w-full p-4 bg-secondary flex-row-between-center flex-initial ">
+   <header
+    id={secctions.names.home}
+    className="w-full p-4 bg-secondary flex-row-between-center flex-initial sticky top-0 z-10"
+   >
     <Image src={images.redCar.src} width={50} height={50} alt="" />
     <h1 className="header-2" style={{ color: theme.gray }}>
      {header.title}
@@ -37,7 +47,7 @@ export default function Home() {
     <div className="lg:hidden">
      <CustomButton title={header.button} type={types.button.icon} icon={types.icon.menu} />
     </div>
-    <div className="hidden lg:block flex-1">
+    <div className="hidden md:block lg:block flex-1">
      <CustomHeader list={headers} target={target} hanlderTarget={handlerTarger} />
     </div>
    </header>
@@ -62,6 +72,7 @@ export default function Home() {
     </div>
    ) : (
     <section
+     id={secctions.names.product}
      className="w-full bg-helper lg:w-[80%]"
      style={{
       gap: '2rem',
@@ -87,7 +98,10 @@ export default function Home() {
     </section>
    )}
    {/* who we */}
-   <section className="w-full py-12 px-4  bg-secondary flex-col-stretch-center space-y-8 lg:w-[80%] rounded-xl">
+   <section
+    id={secctions.names.whoUs}
+    className="w-full py-12 px-4  bg-secondary flex-col-stretch-center space-y-8 lg:w-[80%] rounded-xl"
+   >
     <Image src={images.redCar.src} width={250} height={250} alt="" className="flex-1" />
     <article className="space-y-4 flex-1">
      <header>
@@ -99,7 +113,7 @@ export default function Home() {
     </article>
    </section>
    {/* contact */}
-   <section className="w-full p-4 bg-helper space-y-16">
+   <section id={secctions.names.contact} className="w-full p-4 bg-helper space-y-16">
     <article className="space-y-8">
      <header>
       <h2 className="header-2">{secctions.contactanos.title}</h2>
