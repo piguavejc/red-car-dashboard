@@ -62,15 +62,6 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
         title={forms.login.buttons.create.primary}
         handlerPress={props.handleSubmit}
        />
-       {/* button secondary */}
-       <CustomButton
-        isDisable={false}
-        type={types.button.default}
-        text={forms.login.buttons.secundary}
-        title={forms.login.buttons.secundary}
-        variant={types.variant.button.secondary}
-        handlerPress={props.resetForm}
-       />
       </section>
      </section>
     );

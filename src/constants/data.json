@@ -269,11 +269,68 @@
    "forms": {
     "login": {
      "titles": {
+      "create": "Ingresa al Dashboard",
+      "edit": "Edita la cuenta",
+      "detail": "Edita de la categoria"
+     },
+     "fields": {
+      "user": {
+       "id": "user",
+       "label": "Usuario",
+       "placeholder": "Ej: piguavejc"
+      },
+      "password": {
+       "id": "password",
+       "label": "Contraseña",
+       "placeholder": "Ej: ********"
+      }
+     },
+     "buttons": {
+      "create": {
+       "primary": "Ingresar"
+      },
+      "edit": {
+       "primary": "Guardar cambios"
+      }
+     },
+     "load": "Espere mientras se guardan los datos"
+    }
+   }
+  },
+  "register": {
+   "secctions": {
+    "names": ["Cuenta", "Registrar"],
+    "login": "Cuenta",
+    "register": "Registrar"
+   },
+   "forms": {
+    "login": {
+     "titles": {
       "create": "Crea una cuenta",
       "edit": "Edita la cuenta",
       "detail": "Edita de la categoria"
      },
      "fields": {
+      "photo": {
+       "id": "photo",
+       "label": "Foto de perfil",
+       "placeholder": ""
+      },
+      "cedula": {
+       "id": "cedula",
+       "label": "Cedula",
+       "placeholder": "Ej: 1300000000"
+      },
+      "names": {
+       "id": "names",
+       "label": "Nombres completos",
+       "placeholder": "Ej: Jean Carlos"
+      },
+      "email": {
+       "id": "email",
+       "label": "Correo",
+       "placeholder": "Ej: piguavejc@gmail.com"
+      },
       "user": {
        "id": "user",
        "label": "Usuario",

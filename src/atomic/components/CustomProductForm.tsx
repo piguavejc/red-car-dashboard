@@ -50,7 +50,6 @@ const CustomProductForm = (props: CustomProductFormProps) => {
   >
    {(props) => {
     if (props.values.photo) handlerPoster(props.values.photo);
-    console.log(props.errors);
     return (
      <section className="flex-row-start-stretch relative">
       <section className="w-[50%] flex-col-start-stretch bg-form p-8 basis-full rounded-lg">

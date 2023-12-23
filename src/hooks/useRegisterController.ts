@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 const useRegisterController = () => {
  const [register, setRegister] = useState<RegisterModel>({
+  photo: undefined,
   password: undefined,
   cedula: undefined,
   email: undefined,
