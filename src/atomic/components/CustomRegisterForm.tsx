@@ -1,15 +1,13 @@
-import { CustomButton, CustomInput, CustomPoster } from '@/atomic/elements';
+import { CustomButton, CustomInput, CustomPassword } from '@/atomic/elements';
 import { CustomRegisterFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { RegisterModel } from '@/mvc/models';
 import { types, data } from '@/constants';
-import { usePoster } from '@/hooks';
 import React from 'react';
 
 const { forms } = data.screens.register;
 
 const CustomRegisterForm = (props: CustomRegisterFormProps) => {
- const { urlImage, handlerPoster } = usePoster();
  return (
   <Formik
    enableReinitialize={true}
@@ -17,30 +15,16 @@ const CustomRegisterForm = (props: CustomRegisterFormProps) => {
    initialValues={props.entity}
    onSubmit={(values: RegisterModel, formikHelpers: FormikHelpers<RegisterModel>) => {
     formikHelpers.resetForm();
+    props.hnalderSubmit(values);
    }}
   >
    {(props) => {
-    if (props.values.photo) handlerPoster(props.values.photo);
     return (
      <section className="flex-row-start-stretch relative">
       <section className="w-[50%] bg-form basis-full p-8 flex-col-start-stretch rounded-lg">
        <header>
         <h2 className="title-form"> {forms.login.titles.create} </h2>
        </header>
-       {/* photo */}
-       <CustomPoster
-        id={forms.login.fields.photo.id}
-        type={types.form.create}
-        value={props.values.photo}
-        urlImage={String(urlImage)}
-        messageError={props.errors.photo}
-        label={forms.login.fields.photo.label}
-        validation={props.errors.photo && props.touched.photo}
-        handlerChange={(e) => {
-         props.setFieldValue(forms.login.fields.photo.id, e.target.files![0]);
-        }}
-        hanhandlerBlur={props.handleBlur(forms.login.fields.photo.id)}
-       />
        {/* cedula  */}
        <CustomInput
         isRequeried
@@ -94,7 +78,7 @@ const CustomRegisterForm = (props: CustomRegisterFormProps) => {
         handlerChange={props.handleChange(forms.login.fields.user.id)}
        />
        {/* password  */}
-       <CustomInput
+       <CustomPassword
         isRequeried
         isDisable={false}
         value={props.values.password}

@@ -1,11 +1,12 @@
-import { CategoryDto, CategoryModel } from '@/mvc/models';
-import { Search, resposeApi } from '@/types';
+import { ResponseDto, CategoryDto } from '@/mvc/models/dto';
+import { CategoryModel } from '@/mvc/models';
 import { AxiosResponse } from 'axios';
+import { Search } from '@/types';
 interface CategoryController {
- create: (category: CategoryModel) => Promise<AxiosResponse<resposeApi>>;
- edit: (category: CategoryModel) => Promise<AxiosResponse<resposeApi>>;
- enable: (category: CategoryModel) => Promise<AxiosResponse<resposeApi>>;
- disable: (category: CategoryModel) => Promise<AxiosResponse<resposeApi>>;
+ create: (category: CategoryModel) => Promise<AxiosResponse<ResponseDto>>;
+ edit: (category: CategoryModel) => Promise<AxiosResponse<ResponseDto>>;
+ enable: (category: CategoryModel) => Promise<AxiosResponse<ResponseDto>>;
+ disable: (category: CategoryModel) => Promise<AxiosResponse<ResponseDto>>;
  search: (search: Search) => Promise<AxiosResponse<{ data: CategoryDto[] }>>;
  find: (id: number) => Promise<AxiosResponse<{ data: CategoryDto }>>;
  showDisable: () => Promise<AxiosResponse<{ data: CategoryDto[] }>>;

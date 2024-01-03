@@ -1,6 +1,7 @@
-import { ProductDto, ProductModel } from '@/mvc/models';
 import { Item, Search, statusDialog } from '@/types';
 import { messageDialog, types } from '@/constants';
+import { ProductDto } from '@/mvc/models/dto';
+import { ProductModel } from '@/mvc/models';
 import { useEffect, useState } from 'react';
 import { useProduct } from './useProduct';
 import { useDialog, useModal } from '.';
@@ -24,10 +25,11 @@ const useProductController = (
   listLaboratories,
   searchLaboratory,
   existError,
+  messageError,
  } = useProduct();
  const [isLoading, setIsLoading] = useState<boolean>(true);
  const [product, setProduct] = useState<ProductModel>({
-  idproduct: undefined,
+  id: undefined,
   photo: undefined,
   category: undefined,
   laboratory: undefined,
@@ -110,7 +112,7 @@ const useProductController = (
  const handlerHiddeEdit = () => {
   setEdition(!isEdition);
   setProduct({
-   idproduct: undefined,
+   id: undefined,
    photo: undefined,
    category: undefined,
    laboratory: undefined,
@@ -171,7 +173,7 @@ const useProductController = (
   const rs = await search(value);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -190,7 +192,7 @@ const useProductController = (
    const data = rs.data.data;
    if (data)
     setProduct({
-     idproduct: data.idproduct,
+     id: data.id_product,
      category: data.category,
      laboratory: data.laboratory,
      barcode: data.barcode,
@@ -199,9 +201,9 @@ const useProductController = (
      summary: data.summary,
      dosage: data.dosage,
      cost: data.cost,
-     pvp: data.pvp,
+     pvp: data.pvp?.toString(),
      photo,
-     idimage: data.idimage,
+     idimage: data.id_image,
     });
   }
   setIsLoading(false);
@@ -223,7 +225,7 @@ const useProductController = (
   const rs = await listDisableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -238,7 +240,7 @@ const useProductController = (
   const rs = await listEnableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -254,7 +256,7 @@ const useProductController = (
   const rs = await listCategories(category);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -270,7 +272,7 @@ const useProductController = (
   const rs = await listLaboratories(category, laboratory);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -286,7 +288,7 @@ const useProductController = (
   const rs = await searchCategory(product, category);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -302,7 +304,7 @@ const useProductController = (
   const rs = await searchLaboratory(category, laboratory, search);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idproduct,
+    id: item.id_product,
     name: item.product,
     photo: item.photo,
    }));
@@ -339,6 +341,7 @@ const useProductController = (
   isEdition,
   isLoading,
   existError,
+  messageError,
   modalSetting,
   isLoadingSearch,
   disabledProducts,

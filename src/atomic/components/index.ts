@@ -3,6 +3,7 @@ export { CustomDetailsProduct } from './CustomDetailsProduct';
 export { CustomLaboratoryForm } from './CustomLaboratoryForm';
 export { CustomCategoryForm } from './CustomCategoryForm';
 export { CustomRegisterForm } from './CustomRegisterForm';
+export { CustomMessageError } from './CustomMessageError';
 export { CustomProductForm } from './CustomProductForm';
 export { CustomProgressBar } from './CustomProgressBar';
 export { CustomLoginForm } from './CustomLoginForm';

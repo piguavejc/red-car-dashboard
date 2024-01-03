@@ -1,21 +1,22 @@
-import { ProductDto, ProductModel } from '@/mvc/models';
-import { Search, resposeApi } from '@/types';
+import { ResponseDto, ProductDto } from '@/mvc/models/dto';
+import { ProductModel } from '@/mvc/models';
 import { AxiosResponse } from 'axios';
+import { Search } from '@/types';
 
 interface ProductController {
  showEnable: () => Promise<AxiosResponse<{ data: ProductDto[] }>>;
  showDisable: () => Promise<AxiosResponse<{ data: ProductDto[] }>>;
  find: (id: number) => Promise<AxiosResponse<{ data: ProductDto }>>;
- edit: (product: ProductModel) => Promise<AxiosResponse<resposeApi>>;
- create: (product: ProductModel) => Promise<AxiosResponse<resposeApi>>;
+ edit: (product: ProductModel) => Promise<AxiosResponse<ResponseDto>>;
+ create: (product: ProductModel) => Promise<AxiosResponse<ResponseDto>>;
  search: (search: Search) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
  searchLaboratory: (
   category: string,
   laboratory: string,
   search: Search,
  ) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
- enable: (id: number, product: string) => Promise<AxiosResponse<resposeApi>>;
- disable: (id: number, product: string) => Promise<AxiosResponse<resposeApi>>;
+ enable: (id: number, product: string) => Promise<AxiosResponse<ResponseDto>>;
+ disable: (id: number, product: string) => Promise<AxiosResponse<ResponseDto>>;
  showCategory: (category: string) => Promise<AxiosResponse<{ data: ProductDto[] }>>;
  searchCategory: (
   product: string,

@@ -1,13 +1,12 @@
 import { AnyObjectSchema } from 'yup';
 import {
- CategoryDto,
  CategoryModel,
  LaboratoryModel,
  LoginModel,
- ProductDto,
  ProductModel,
  RegisterModel,
 } from '@/mvc/models';
+import { CategoryDto, ProductDto } from '@/mvc/models/dto';
 import {
  Item,
  Search,
@@ -187,10 +186,15 @@ interface CustomModalProps {
 interface CustomLoginFormProps {
  entity: LoginModel;
  validation: AnyObjectSchema;
+ hnalderSubmit: (value: LoginModel) => void;
 }
 interface CustomRegisterFormProps {
  entity: RegisterModel;
  validation: AnyObjectSchema;
+ hnalderSubmit: (value: RegisterModel) => void;
+}
+interface CustomMessageErrorProps {
+ message: string;
 }
 export type {
  CustomDetailsCategoryProps,
@@ -198,6 +202,7 @@ export type {
  CustomDetailsProductProps,
  CustomCategoryFormProps,
  CustomRegisterFormProps,
+ CustomMessageErrorProps,
  CustomProductFormProps,
  CustomProgressBarProps,
  CustomSearchFormProps,

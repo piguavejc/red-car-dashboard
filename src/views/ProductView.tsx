@@ -6,6 +6,7 @@ import {
  CustomSearch,
  CustomProductForm,
  CustomDetailsProduct,
+ CustomMessageError,
 } from '@/atomic/components';
 import { useProductController, useSearch, useTab, useCategoryController } from '@/hooks';
 import { CustomModal, CustomDialog } from '@/atomic/designs';
@@ -27,6 +28,7 @@ const ProductView = () => {
   isEdition,
   isLoading,
   existError,
+  messageError,
   modalSetting,
   isLoadingSearch,
   disabledProducts,
@@ -110,14 +112,7 @@ const ProductView = () => {
   );
  }
  /* error */
-
- if (existError)
-  return (
-   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
-    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="error-text"> {pages.products.error} </p>
-   </div>
-  );
+ if (existError) return <CustomMessageError message={messageError} />;
 
  return (
   <div className="overflow-scroll flex-row-start-stretch">

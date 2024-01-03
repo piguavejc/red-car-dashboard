@@ -2,7 +2,7 @@ import { NextAuthOptions, User } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { JWT } from 'next-auth/jwt';
 import jsonwebtoken from 'jsonwebtoken';
-import { UserModel } from '@/mvc/models';
+import { RegisterModel, UserModel } from '@/mvc/models';
 import { ServiceUser } from '@/mvc/services';
 const authOptions: NextAuthOptions = {
  providers: [
@@ -18,8 +18,6 @@ const authOptions: NextAuthOptions = {
 
   async signIn({ user }: { user: User }) {
    try {
-    const service = ServiceUser.getService();
-    await service.create(user as UserModel);
     return true;
    } catch (error) {
     console.log(error);

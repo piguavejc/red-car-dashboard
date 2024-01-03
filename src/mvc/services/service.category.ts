@@ -1,30 +1,31 @@
+import { ResponseDto, CategoryDto } from '@/mvc/models/dto';
+import { CategoryModel } from '@/mvc/models';
 import { CategoryController } from '@/mvc/controllers';
-import { CategoryDto, CategoryModel } from '@/mvc/models';
 import { AxiosResponse } from 'axios';
 import { Http } from './http/http';
-import { Search, resposeApi } from '@/types';
+import { Search } from '@/types';
 
 class ServiceCategory implements CategoryController {
- public create = async (category: CategoryModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.post<resposeApi>(
+ public create = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.post<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/create/category`,
    this.getFormData(category),
   );
  };
- public edit = async (category: CategoryModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ public edit = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/edit/category`,
    this.getFormData(category),
   );
  };
- public enable = async (category: CategoryModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ public enable = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/enable/category`,
    this.getURLSearchParams(category),
   );
  };
- public disable = async (category: CategoryModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ public disable = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/disable/category`,
    this.getURLSearchParams(category),
   );
@@ -56,7 +57,7 @@ class ServiceCategory implements CategoryController {
 
  public getFormData = (category: CategoryModel): FormData => {
   const formData: FormData = new FormData();
-  if (category.idcategory) formData.append('idCategory', `${category.idcategory}`);
+  if (category.id) formData.append('idCategory', `${category.id}`);
   if (category.category) formData.append('category', category.category as string);
   if (category.photo) formData.append('photo', category.photo as File);
   if (category.idphoto) formData.append('idphoto', category.idphoto);
@@ -65,7 +66,7 @@ class ServiceCategory implements CategoryController {
 
  public getURLSearchParams = (category: CategoryModel): URLSearchParams => {
   const formData: URLSearchParams = new URLSearchParams();
-  if (category.idcategory) formData.append('idCategory', `${category.idcategory}`);
+  if (category.id) formData.append('idCategory', `${category.id}`);
   if (category.category) formData.append('category', category.category as string);
   return formData;
  };

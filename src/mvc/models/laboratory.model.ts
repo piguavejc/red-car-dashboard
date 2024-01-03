@@ -1,5 +1,5 @@
 interface LaboratoryModel {
- idlaboratory?: number | undefined;
+ id?: number | undefined;
  laboratory: string | undefined;
 }
 export type { LaboratoryModel };

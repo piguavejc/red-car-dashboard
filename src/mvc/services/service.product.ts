@@ -1,12 +1,13 @@
+import { ResponseDto, ProductDto } from '@/mvc/models/dto';
 import { ProductController } from '@/mvc/controllers';
-import { ProductDto, ProductModel } from '@/mvc/models';
+import { ProductModel } from '@/mvc/models';
 import { AxiosResponse } from 'axios';
 import { Http } from './http/http';
-import { Search, resposeApi } from '@/types';
+import { Search } from '@/types';
 
 class ServiceProduct implements ProductController {
- public create = async (product: ProductModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.post<resposeApi>(
+ public create = async (product: ProductModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.post<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/create/product`,
    this.getFormData(product),
   );
@@ -24,14 +25,17 @@ class ServiceProduct implements ProductController {
    `${process.env.API_RED_CAR_LOCAL}/show/laboratory/product?category=${category}&laboratory=${laboratory}`,
   );
  };
- public edit = async (product: ProductModel): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ public edit = async (product: ProductModel): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/edit/product`,
    this.getFormData(product),
   );
  };
- public enable = async (idProduct: number, product: string): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ public enable = async (
+  idProduct: number,
+  product: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/enable/product`,
    this.getSearchParams(idProduct, product),
   );
@@ -39,8 +43,8 @@ class ServiceProduct implements ProductController {
  public disable = async (
   idProduct: number,
   product: string,
- ): Promise<AxiosResponse<resposeApi>> => {
-  return await this.http.put<resposeApi>(
+ ): Promise<AxiosResponse<ResponseDto>> => {
+  return await this.http.put<ResponseDto>(
    `${process.env.API_RED_CAR_LOCAL}/disable/product`,
    this.getSearchParams(idProduct, product),
   );
@@ -87,7 +91,7 @@ class ServiceProduct implements ProductController {
 
  public getFormData = (product: ProductModel): FormData => {
   const formData: FormData = new FormData();
-  if (product.idproduct) formData.append('idProduct', product.idproduct.toString());
+  if (product.id) formData.append('idProduct', product.id.toString());
   if (product.laboratory) formData.append('laboratory', product.laboratory);
   if (product.features) formData.append('features', product.features);
   if (product.category) formData.append('category', product.category);

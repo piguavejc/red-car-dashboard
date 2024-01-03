@@ -2,9 +2,11 @@ import React from 'react';
 import { IconProps } from '@/types';
 import { types } from '@/constants';
 import {
+ HiEye,
  HiTrash,
  HiMenu,
  HiCheck,
+ HiEyeOff,
  HiPencil,
  HiRefresh,
  HiXCircle,
@@ -29,6 +31,8 @@ const CustomIcon = (props: IconProps) => {
  if (props.type === types.icon.whatsapp) return <FaWhatsapp size={65} color={theme.green} />;
  if (props.type === types.icon.plus) return <HiOutlinePlusCircle size={30} color={theme.white} />;
  if (props.type === types.icon.detail) return <HiInformationCircle size={30} color={theme.gray} />;
+ if (props.type === types.icon.eye) return <HiEye size={30} color={theme.gray} />;
+ if (props.type === types.icon.eyeOff) return <HiEyeOff size={30} color={theme.gray} />;
  return null;
 };
 

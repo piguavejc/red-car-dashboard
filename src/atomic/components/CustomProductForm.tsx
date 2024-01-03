@@ -239,17 +239,17 @@ const CustomProductForm = (props: CustomProductFormProps) => {
        <section className="flex-1 w-[50%] p-8 space-y-8">
         <CustomDetailsProduct
          data={{
-          pvp: props.values.pvp,
+          pvp: Number(props.values.pvp),
           photo: String(urlImage),
-          cost: props.values.cost,
-          dosage: props.values.dosage,
-          product: props.values.product,
-          barcode: props.values.barcode,
-          summary: props.values.summary,
-          category: props.values.category,
-          features: props.values.features,
-          idproduct: props.values.idproduct,
-          laboratory: props.values.laboratory,
+          cost: String(props.values.cost),
+          dosage: String(props.values.dosage),
+          product: String(props.values.product),
+          barcode: String(props.values.barcode),
+          summary: String(props.values.summary),
+          category: String(props.values.category),
+          features: String(props.values.features),
+          id_product: Number(props.values.id),
+          laboratory: String(props.values.laboratory),
          }}
          isLoading={false}
         />

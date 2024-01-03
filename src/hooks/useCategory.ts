@@ -1,49 +1,59 @@
-import { useState } from 'react';
-import { CategoryDto, CategoryModel } from '@/mvc/models';
+import { CategoryDto, ResponseDto } from '@/mvc/models/dto';
 import { ServiceCategory } from '@/mvc/services';
-import { Search, resposeApi } from '@/types';
-import { AxiosResponse } from 'axios';
+import { CategoryModel } from '@/mvc/models';
+import { AxiosError, AxiosResponse } from 'axios';
+import { Search } from '@/types';
+import { useState } from 'react';
 
 const service: ServiceCategory = ServiceCategory.getService();
 const useCategory = () => {
  const [existError, setExistError] = useState<boolean>(false);
+ const [messageError, setMessageError] = useState<string>('');
 
  /* create category */
- const create = async (values: CategoryModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const create = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.create(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
  /* edit category */
- const edit = async (values: CategoryModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const edit = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.edit(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
  /* disable category */
- const disable = async (values: CategoryModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const disable = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.disable(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
  };
  /* enable category */
- const enable = async (values: CategoryModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const enable = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.enable(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
@@ -58,9 +68,11 @@ const useCategory = () => {
  > => {
   try {
    return await service.search(search);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
@@ -75,9 +87,11 @@ const useCategory = () => {
  > => {
   try {
    return await service.find(id);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
@@ -91,9 +105,11 @@ const useCategory = () => {
  > => {
   try {
    return await service.showDisable();
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
@@ -106,9 +122,11 @@ const useCategory = () => {
  > => {
   try {
    return await service.showEnable();
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data?.error as string);
   }
   return undefined;
  };
@@ -122,6 +140,7 @@ const useCategory = () => {
   listEnableds,
   listDisableds,
   existError,
+  messageError,
  };
 };
 export { useCategory };

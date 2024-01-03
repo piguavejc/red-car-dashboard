@@ -1,15 +1,26 @@
-import { CategoryDto, CategoryModel } from '@/mvc/models';
 import { Item, Search, statusDialog } from '@/types';
 import { messageDialog, types } from '@/constants';
+import { CategoryDto } from '@/mvc/models/dto';
+import { CategoryModel } from '@/mvc/models';
 import { useCategory } from './useCategory';
 import { useEffect, useState } from 'react';
 import { useDialog, useModal } from '.';
 
 const useCategoryController = (searchTarget?: Search) => {
- const { edit, find, create, search, enable, disable, listEnableds, listDisableds, existError } =
-  useCategory();
+ const {
+  edit,
+  find,
+  create,
+  search,
+  enable,
+  disable,
+  listEnableds,
+  listDisableds,
+  existError,
+  messageError,
+ } = useCategory();
  const [category, setCategory] = useState<CategoryModel>({
-  idcategory: undefined,
+  id: undefined,
   category: undefined,
   photo: undefined,
  });
@@ -53,19 +64,19 @@ const useCategoryController = (searchTarget?: Search) => {
  /* handler to disable one category */
  const handlerActionEnable = (id: number, category: string) => {
   handlerAppear(category, types.action.enable, messageDialog.category.enable);
-  setCategory({ idcategory: id, category });
+  setCategory({ id, category });
  };
 
  /* handler to enable one category */
  const handlerActionDisable = (id: number, category: string) => {
   handlerAppear(category, types.action.eliminate, messageDialog.category.disable);
-  setCategory({ idcategory: id, category });
+  setCategory({ id, category });
  };
 
  const handlerHiddeEdit = () => {
   setEdition(false);
   setCategory({
-   idcategory: undefined,
+   id: undefined,
    category: undefined,
    photo: undefined,
   });
@@ -123,7 +134,7 @@ const useCategoryController = (searchTarget?: Search) => {
   const rs = await search(value);
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idcategory,
+    id: item.id_category,
     name: item.category,
     photo: item.photo,
    }));
@@ -141,7 +152,7 @@ const useCategoryController = (searchTarget?: Search) => {
    const photo: File = new File([blob], 'foto', { type: blob.type });
    const data = rs.data.data;
    setCategory({
-    idcategory: data.idcategory,
+    id: data.id_category,
     category: data.category,
     photo,
     idphoto: data.idphoto,
@@ -165,7 +176,7 @@ const useCategoryController = (searchTarget?: Search) => {
   const rs = await listDisableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idcategory,
+    id: item.id_category,
     name: item.category,
     photo: item.photo,
    }));
@@ -179,7 +190,7 @@ const useCategoryController = (searchTarget?: Search) => {
   const rs = await listEnableds();
   if (rs?.data) {
    const data = rs.data.data.map((item) => ({
-    id: item.idcategory,
+    id: item.id_category,
     name: item.category,
     photo: item.photo,
    }));
@@ -198,11 +209,11 @@ const useCategoryController = (searchTarget?: Search) => {
  /* ------------------------------------------------------------------------------------------------ */
 
  /* eliminating a category */
- if (decisition && type === types.action.eliminate && category?.idcategory) {
+ if (decisition && type === types.action.eliminate && category?.id) {
   handlerDisable(category);
  }
  /* enabling a category */
- if (decisition && type === types.action.enable && category?.idcategory) {
+ if (decisition && type === types.action.enable && category?.id) {
   handlerEnable(category);
  }
 
@@ -223,6 +234,7 @@ const useCategoryController = (searchTarget?: Search) => {
   isLoading,
   categories,
   existError,
+  messageError,
   modalSetting,
   isLoadingSearch,
   disabledCategories,

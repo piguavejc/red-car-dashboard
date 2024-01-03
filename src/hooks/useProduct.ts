@@ -1,30 +1,37 @@
-import { useState } from 'react';
-import { ProductDto, ProductModel } from '@/mvc/models';
+import { ResponseDto, ProductDto } from '@/mvc/models/dto';
 import { ServiceProduct } from '@/mvc/services';
-import { Search, resposeApi } from '@/types';
-import { AxiosResponse } from 'axios';
+import { ProductModel } from '@/mvc/models';
+import { AxiosError, AxiosResponse } from 'axios';
+import { Search } from '@/types';
+import { useState } from 'react';
 
 const service: ServiceProduct = ServiceProduct.getService();
 
 const useProduct = () => {
  const [existError, setExistError] = useState<boolean>(false);
+ const [messageError, setMessageError] = useState<string>('');
+
  /* create */
- const create = async (values: ProductModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const create = async (values: ProductModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.create(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
  /* edit */
- const edit = async (values: ProductModel): Promise<AxiosResponse<resposeApi> | undefined> => {
+ const edit = async (values: ProductModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.edit(values);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -33,12 +40,14 @@ const useProduct = () => {
  const enable = async (
   idProduct: number,
   product: string,
- ): Promise<AxiosResponse<resposeApi> | undefined> => {
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.enable(idProduct, product);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -46,12 +55,14 @@ const useProduct = () => {
  const disable = async (
   idProduct: number,
   product: string,
- ): Promise<AxiosResponse<resposeApi> | undefined> => {
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.disable(idProduct, product);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -66,9 +77,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.search(search);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -83,9 +96,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.find(id);
-  } catch (error) {
-   //  console.log(error);
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -99,9 +114,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.showEnable();
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -114,9 +131,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.showDisable();
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -131,9 +150,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.showCategory(category);
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -149,9 +170,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.showLaboratory(category, laboratory);
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -167,9 +190,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.searchCategory(product, category);
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -187,9 +212,11 @@ const useProduct = () => {
  > => {
   try {
    return await service.searchLaboratory(category, laboratory, search);
-  } catch (error) {
-   // console.log(error)
+  } catch (error: any) {
+   const e: AxiosError<{ error: string }> = error;
+   //    console.log(e.response?.data);
    setExistError(true);
+   setMessageError(e.response?.data.error as string);
   }
   return undefined;
  };
@@ -207,6 +234,7 @@ const useProduct = () => {
   searchLaboratory,
   listLaboratories,
   existError,
+  messageError,
  };
 };
 export { useProduct };

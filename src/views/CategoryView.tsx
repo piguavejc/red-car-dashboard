@@ -2,6 +2,7 @@ import {
  CustomCategoryForm,
  CustomDetailsCategory,
  CustomList,
+ CustomMessageError,
  CustomSearch,
 } from '@/atomic/components';
 import { CustomDialog, CustomModal } from '@/atomic/designs';
@@ -24,6 +25,7 @@ const CategoryView = () => {
   isLoading,
   categories,
   existError,
+  messageError,
   modalSetting,
   isLoadingSearch,
   disabledCategories,
@@ -108,14 +110,7 @@ const CategoryView = () => {
  }
 
  /* error */
-
- if (existError)
-  return (
-   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
-    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="error-text"> {pages.category.error} </p>
-   </div>
-  );
+ if (existError) return <CustomMessageError message={messageError} />;
 
  return (
   <div className="overflow-scroll flex-row-start-stretch">

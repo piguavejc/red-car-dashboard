@@ -9,20 +9,8 @@ const validateRegister = object({
  names: string().required('Ingresa tus nombres'),
  cedula: string().required('Ingresa tu cedula'),
  password: string()
-  .matches(exprePassword, 'La contraseña es insegura')
+  // .matches(exprePassword, 'La contraseña es insegura')
   .required('Ingresa un contraseña'),
- photo: mixed()
-  .required('La foto es Requerido')
-  .test('is-image', 'El archivo no es una imagen válida', (value: any) => {
-   if (!value) return true; // Permitir valores nulos o indefinidos
-   const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
-   return supportedFormats.includes(value.type);
-  })
-  .test('file-size', 'El archivo es demasiado grande', (value: any) => {
-   if (!value) return true; // Permitir valores nulos o indefinidos
-   const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
-   return value.size <= maxSizeInBytes;
-  }),
 });
 
 export { validateRegister };

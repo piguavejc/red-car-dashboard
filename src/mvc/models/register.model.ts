@@ -4,6 +4,5 @@ interface RegisterModel {
  email: string | undefined;
  names: string | undefined;
  user: string | undefined;
- photo: File | undefined;
 }
 export type { RegisterModel };

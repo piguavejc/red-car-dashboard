@@ -2,6 +2,7 @@ import data from './data.json';
 import { images } from './images';
 import { typesIcon } from './icon';
 import { typesForm } from './form';
+import { response } from './response';
 import { typesAction } from './action';
 import { messageDialog } from './message';
 import { typesStatusDialog } from './dialog';
@@ -16,6 +17,7 @@ const types = Object.freeze({
  variant: {
   button: typesVariantButton,
  },
+ respone: response,
 });
 
 export { types, images, messageDialog, data };

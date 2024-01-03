@@ -1,8 +1,9 @@
-import { UserModel } from '@/mvc/models';
+import { LoginModel, RegisterModel } from '@/mvc/models';
+import { ResponseDto } from '@/mvc/models/dto';
 import { AxiosResponse } from 'axios';
-import { resposeApi } from '@/types';
 
 interface UserController {
- create: (user: UserModel) => Promise<AxiosResponse<resposeApi>>;
+ create: (user: RegisterModel) => Promise<AxiosResponse<ResponseDto>>;
+ login: (user: LoginModel) => Promise<AxiosResponse<RegisterModel>>;
 }
 export type { UserController };

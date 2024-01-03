@@ -1,15 +1,15 @@
 'use client';
 import { useCategoryController, useHeader } from '@/hooks';
-import { CustomCarousel } from '@/atomic/components';
+import { CustomCarousel, CustomMessageError } from '@/atomic/components';
 import { types, data, images } from '@/constants';
 import { CustomButton } from '@/atomic/elements';
 import { CustomHeader } from '@/atomic/designs';
 import { Oval } from 'react-loader-spinner';
+import { useRouter } from 'next/navigation';
 import { theme } from '@/atomic/theme';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 
 const { secctions, footer } = data.screens.homepage;
 const { pages, header } = data.screens.dashboard;
@@ -17,7 +17,7 @@ const { pages, header } = data.screens.dashboard;
 export default function Home() {
  const navigate = useRouter();
  const { headers, target, handlerTarger } = useHeader(secctions.headers);
- const { categories, isLoadingSearch, existError } = useCategoryController();
+ const { categories, isLoadingSearch, existError, messageError } = useCategoryController();
 
  useEffect(() => {
   if (secctions.names.logi === secctions.names.urls[target]) navigate.push(`/login`);
@@ -25,13 +25,7 @@ export default function Home() {
  }, [target]);
  /* error */
 
- if (existError)
-  return (
-   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
-    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="error-text"> {pages.products.error} </p>
-   </div>
-  );
+ if (existError) return <CustomMessageError message={messageError} />;
 
  return (
   <main className="w-full bg-helper flex-col-stretch-center space-y-12">

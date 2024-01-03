@@ -20,9 +20,10 @@ const useLaboratoryController = (
   listDisableds,
   listCategory,
   existError,
+  messageError,
  } = useLaboratory();
  const [laboratory, setLaboratory] = useState<LaboratoryModel>({
-  idlaboratory: undefined,
+  id: undefined,
   laboratory: undefined,
  });
  const [laboratories, setLaboratories] = useState<Item[]>([]);
@@ -46,10 +47,10 @@ const useLaboratoryController = (
 
  useEffect(() => {
   if (targetSearch) handlerSearch(targetSearch);
- }, [targetSearch]);
+ }, [targetSearch?.search]);
 
  useEffect(() => {
-  handlerListCategory(category as string);
+  if (category) handlerListCategory(category);
  }, [category]);
 
  /* update all laboratory */
@@ -69,19 +70,19 @@ const useLaboratoryController = (
  /* handler to enable one laboratory */
  const handlerActionEnable = (id: number, laboratory: string) => {
   handlerAppear(laboratory, types.action.enable, messageDialog.laboratory.enable);
-  setLaboratory({ idlaboratory: id, laboratory });
+  setLaboratory({ id: id, laboratory });
  };
 
  /* handler to disable one laboratory */
  const handlerActionDisable = (id: number, laboratory: string) => {
   handlerAppear(laboratory, types.action.eliminate, messageDialog.laboratory.disable);
-  setLaboratory({ idlaboratory: id, laboratory });
+  setLaboratory({ id: id, laboratory });
  };
 
  const handlerHiddeEdit = () => {
   setEdition(false);
   setLaboratory({
-   idlaboratory: undefined,
+   id: undefined,
    laboratory: undefined,
   });
  };
@@ -141,7 +142,7 @@ const useLaboratoryController = (
   try {
    const rs = await search(value);
    if (rs?.data) {
-    const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
+    const data = rs.data.data.map((item) => ({ id: item.id_laboratory, name: item.laboratory }));
     setLaboratories(data);
    }
   } catch (error) {
@@ -170,7 +171,7 @@ const useLaboratoryController = (
   setIsLoadingSearch(true);
   const rs = await listDisableds();
   if (rs?.data) {
-   const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
+   const data = rs.data.data.map((item) => ({ id: item.id_laboratory, name: item.laboratory }));
    setDisabledLaboratories(data);
   }
   setIsLoadingSearch(false);
@@ -182,7 +183,7 @@ const useLaboratoryController = (
   if (laboratories.length === 0) setLaboratories([]);
   const rs = await listEnableds();
   if (rs?.data) {
-   const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
+   const data = rs.data.data.map((item) => ({ id: item.id_laboratory, name: item.laboratory }));
    setLaboratories(data);
   }
   setIsLoadingSearch(false);
@@ -194,7 +195,7 @@ const useLaboratoryController = (
   if (laboratories.length === 0) setLaboratories([]);
   const rs = await listCategory(category);
   if (rs?.data) {
-   const data = rs.data.data.map((item) => ({ id: item.idlaboratory, name: item.laboratory }));
+   const data = rs.data.data.map((item) => ({ id: item.id_laboratory, name: item.laboratory }));
    setLaboratories(data);
   }
   setIsLoadingSearch(false);
@@ -203,11 +204,11 @@ const useLaboratoryController = (
  /* ----------------------------------------------------------------------------------------------------------------------- */
 
  /* eliminating a laboratory */
- if (decisition && type === types.action.eliminate && laboratory?.idlaboratory) {
+ if (decisition && type === types.action.eliminate && laboratory?.id) {
   handlerDisable(laboratory);
  }
  /* enabling a laboratory */
- if (decisition && type === types.action.enable && laboratory?.idlaboratory) {
+ if (decisition && type === types.action.enable && laboratory?.id) {
   handlerEnable(laboratory);
  }
 
@@ -228,6 +229,7 @@ const useLaboratoryController = (
   laboratory,
   existError,
   laboratories,
+  messageError,
   modalSetting,
   isLoadingSearch,
   disabledLaboratories,

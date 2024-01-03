@@ -1,4 +1,4 @@
-import { CustomButton, CustomInput } from '@/atomic/elements';
+import { CustomButton, CustomInput, CustomPassword } from '@/atomic/elements';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomLoginFormProps } from '@/types';
 import { types, data } from '@/constants';
@@ -15,6 +15,7 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
    initialValues={props.entity}
    onSubmit={(values: LoginModel, formikHelpers: FormikHelpers<LoginModel>) => {
     formikHelpers.resetForm();
+    props.hnalderSubmit(values);
    }}
   >
    {(props) => {
@@ -40,7 +41,7 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
        />
 
        {/* password  */}
-       <CustomInput
+       <CustomPassword
         isRequeried
         isDisable={false}
         value={props.values.password}

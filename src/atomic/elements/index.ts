@@ -1,4 +1,5 @@
 export { CustomTextArea } from './CustomTextArea';
+export { CustomPassword } from './CustomPassword';
 export { CustomItemTab } from './CustomItemTab';
 export { CustomPoster } from './CustomPoster';
 export { CustomButton } from './CustomButton';

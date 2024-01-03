@@ -9,10 +9,6 @@ interface Item {
  name: string | undefined;
  photo?: string | undefined | null;
 }
-interface resposeApi {
- id: number;
- message: string;
-}
 
 /*  */
 interface Message {
@@ -50,9 +46,12 @@ interface ModalSetting {
 type statusAction = 'enable' | 'create' | 'eliminate' | 'edit' | 'cancel' | 'update';
 /* types icons */
 type statusIcon =
+ | 'eye'
  | 'edit'
  | 'menu'
+ | 'plus'
  | 'close'
+ | 'eyeOff'
  | 'enable'
  | 'create'
  | 'detail'
@@ -60,7 +59,6 @@ type statusIcon =
  | 'refresh'
  | 'whatsapp'
  | 'eliminated'
- | 'plus'
  | 'facebook';
 
 /* types form */
@@ -76,7 +74,6 @@ export type {
  Photo,
  Search,
  Message,
- resposeApi,
  statusIcon,
  statusForm,
  statusButton,

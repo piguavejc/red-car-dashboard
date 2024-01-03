@@ -1,6 +1,6 @@
 'use client';
 import { useLaboratoryController, useProductController, useSearch, useTab } from '@/hooks';
-import { CustomSearch, CustomTabs } from '@/atomic/components';
+import { CustomMessageError, CustomSearch, CustomTabs } from '@/atomic/components';
 import { CustomButton, CustomItem, CustomPhoto } from '@/atomic/elements';
 import { types, data, images } from '@/constants';
 import { useRouter } from 'next/navigation';
@@ -18,8 +18,15 @@ export default function Category({ params: { name } }: { params: { name: string 
  const { tab, handlerTab } = useTab('Todos');
  const { search, hanlderSearch } = useSearch();
  const { laboratories, isLoadingSearch: isLoad } = useLaboratoryController(name, undefined);
- const { products, detail, isLoadingSearch, existError, handlerDetail, handlerCloseDetail } =
-  useProductController(name, tab, search);
+ const {
+  products,
+  detail,
+  isLoadingSearch,
+  existError,
+  messageError,
+  handlerDetail,
+  handlerCloseDetail,
+ } = useProductController(name, tab, search);
 
  const handlerGoBack = () => {
   navigate.back();
@@ -27,13 +34,7 @@ export default function Category({ params: { name } }: { params: { name: string 
 
  /* error */
 
- if (existError)
-  return (
-   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
-    <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
-    <p className="error-text"> {pages.products.error} </p>
-   </div>
-  );
+ if (existError) return <CustomMessageError message={messageError} />;
 
  return (
   <div className="w-full bg-helper flex flex-col justify-stretch items-stretch space-y-12">
