@@ -30,13 +30,14 @@
    "@/validations": ["./src/validations"],
    "@/mvc/services": ["./src/mvc/services"],
    "@/atomic/theme": ["./src/atomic/theme"],
+   "@/mvc/models/dto": ["./src/mvc/models/dto"],
    "@/atomic/designs": ["./src/atomic/designs"],
    "@/mvc/controllers": ["./src/mvc/controllers"],
    "@/atomic/elements": ["./src/atomic/elements"],
    "@/atomic/components": ["./src/atomic/components"],
    "@/lib/*": ["./src/lib/*"]
-  }
+  },
  },
  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
- "exclude": ["node_modules"]
+ "exclude": ["node_modules"],
 }
