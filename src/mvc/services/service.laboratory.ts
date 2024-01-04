@@ -6,48 +6,64 @@ import { Http } from './http/http';
 import { Search } from '@/types';
 
 class ServiceLaboratory implements LaboratoryController {
- public create = async (laboratory: LaboratoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public create = async (
+  laboratory: LaboratoryModel,
+  token?: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.post<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/create/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/create/laboratory`,
    this.getFormData(laboratory),
+   token,
   );
  };
- public edit = async (laboratory: LaboratoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public edit = async (
+  laboratory: LaboratoryModel,
+  token?: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/edit/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/edit/laboratory`,
    this.getFormData(laboratory),
+   token,
   );
  };
- public enable = async (laboratory: LaboratoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public enable = async (
+  laboratory: LaboratoryModel,
+  token?: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/enable/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/enable/laboratory`,
    this.getFormData(laboratory),
+   token,
   );
  };
- public disable = async (laboratory: LaboratoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public disable = async (
+  laboratory: LaboratoryModel,
+  token?: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/disable/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/disable/laboratory`,
    this.getFormData(laboratory),
+   token,
   );
  };
  public search = async (search: Search): Promise<AxiosResponse<{ data: LaboratoryDto[] }>> => {
   return await this.http.get<LaboratoryModel>(
-   `${process.env.API_RED_CAR_LOCAL}/search/laboratory?search=${search.search}`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/search/laboratory?search=${search.search}`,
   );
  };
  public find = async (id: number): Promise<AxiosResponse<{ data: LaboratoryDto }>> => {
   return await this.http.get<LaboratoryModel>(
-   `${process.env.API_RED_CAR_LOCAL}/find/laboratory?id=${id}`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/find/laboratory?id=${id}`,
   );
  };
  public showDisable = async (): Promise<AxiosResponse<{ data: LaboratoryDto[] }>> => {
   return await this.http.get<{ data: LaboratoryDto[] }>(
-   `${process.env.API_RED_CAR_LOCAL}/show/disable/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/show/disable/laboratory`,
   );
  };
  public showEnable = async (): Promise<AxiosResponse<{ data: LaboratoryDto[] }>> => {
   return await this.http.get<{ data: LaboratoryDto[] }>(
-   `${process.env.API_RED_CAR_LOCAL}/show/enable/laboratory`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/show/enable/laboratory`,
   );
  };
 
@@ -55,7 +71,7 @@ class ServiceLaboratory implements LaboratoryController {
   category: string,
  ): Promise<AxiosResponse<{ data: LaboratoryDto[] }>> => {
   return await this.http.get<{ data: LaboratoryDto[] }>(
-   `${process.env.API_RED_CAR_LOCAL}/show/enable/laboratory/category?category=${category}`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/show/enable/laboratory/category?category=${category}`,
   );
  };
 

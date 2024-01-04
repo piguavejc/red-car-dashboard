@@ -1,6 +1,6 @@
 import { LoginModel, RegisterModel } from '@/mvc/models';
 import { AxiosError, AxiosResponse } from 'axios';
-import { ResponseDto } from '@/mvc/models/dto';
+import { LoginDto, ResponseDto } from '@/mvc/models/dto';
 import { ServiceUser } from '@/mvc/services';
 import { useState } from 'react';
 
@@ -21,7 +21,7 @@ const useUser = () => {
   }
   return undefined;
  };
- const login = async (values: LoginModel): Promise<AxiosResponse<RegisterModel> | undefined> => {
+ const login = async (values: LoginModel): Promise<AxiosResponse<LoginDto> | undefined> => {
   try {
    return await service.login(values);
   } catch (error: any) {

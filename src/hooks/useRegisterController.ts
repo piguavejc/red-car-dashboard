@@ -20,7 +20,7 @@ const useRegisterController = () => {
  };
  const handlerLogin = async (values: LoginModel) => {
   const rs = await login(values);
-  if (rs?.data.cedula) console.log('bien !!!');
+  if (rs?.data.data.id_user) console.log('bien !!!');
  };
  return { existError, messageError, register, modalSetting, handlerCreate, handlerLogin };
 };

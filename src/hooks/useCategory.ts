@@ -11,9 +11,12 @@ const useCategory = () => {
  const [messageError, setMessageError] = useState<string>('');
 
  /* create category */
- const create = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const create = async (
+  values: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.create(values);
+   return await service.create(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -23,9 +26,12 @@ const useCategory = () => {
   return undefined;
  };
  /* edit category */
- const edit = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const edit = async (
+  values: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.edit(values);
+   return await service.edit(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -35,9 +41,12 @@ const useCategory = () => {
   return undefined;
  };
  /* disable category */
- const disable = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const disable = async (
+  values: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.disable(values);
+   return await service.disable(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -46,9 +55,12 @@ const useCategory = () => {
   }
  };
  /* enable category */
- const enable = async (values: CategoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const enable = async (
+  values: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.enable(values);
+   return await service.enable(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);

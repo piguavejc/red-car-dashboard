@@ -1,6 +1,7 @@
 import { Item, Search, statusDialog } from '@/types';
 import { messageDialog, types } from '@/constants';
 import { ProductDto } from '@/mvc/models/dto';
+import { useSession } from 'next-auth/react';
 import { ProductModel } from '@/mvc/models';
 import { useEffect, useState } from 'react';
 import { useProduct } from './useProduct';
@@ -11,6 +12,7 @@ const useProductController = (
  laboratory: string | undefined,
  searchTarget: Search,
 ) => {
+ const session = useSession();
  const {
   edit,
   find,
@@ -59,6 +61,10 @@ const useProductController = (
   handlerAppear,
   handlerVerify,
  } = useDialog();
+
+ useEffect(() => {
+  if (session.status === 'authenticated') console.log(session);
+ }, [session.status]);
 
  useEffect(() => {
   if (category === 'Todos') handlerSearch(searchTarget);
@@ -138,7 +144,7 @@ const useProductController = (
  /* create */
  const handlerCreate = async (values: ProductModel) => {
   setIsLoading(true);
-  const rs = await create(values);
+  const rs = await create(values, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   setIsLoading(false);
   handlerUpdateAll();
@@ -146,7 +152,7 @@ const useProductController = (
  /* edit */
  const handlerEdit = async (values: ProductModel) => {
   setIsLoading(true);
-  const rs = await edit(values);
+  const rs = await edit(values, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   setIsLoading(false);
   handlerUpdateAll();
@@ -155,14 +161,14 @@ const useProductController = (
 
  /* enable */
  const handlerEnable = async (idProduct: number, product: string) => {
-  const rs = await enable(idProduct, product);
+  const rs = await enable(idProduct, product, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   handlerHidde();
   handlerUpdateAll();
  };
  /* disable */
  const handlerDisable = async (idProduct: number, product: string) => {
-  const rs = await disable(idProduct, product);
+  const rs = await disable(idProduct, product, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   handlerHidde();
   handlerUpdateAll();

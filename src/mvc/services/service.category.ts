@@ -6,52 +6,68 @@ import { Http } from './http/http';
 import { Search } from '@/types';
 
 class ServiceCategory implements CategoryController {
- public create = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public create = async (
+  category: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.post<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/create/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/create/category`,
    this.getFormData(category),
+   token,
   );
  };
- public edit = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public edit = async (
+  category: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/edit/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/edit/category`,
    this.getFormData(category),
+   token,
   );
  };
- public enable = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public enable = async (
+  category: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/enable/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/enable/category`,
    this.getURLSearchParams(category),
+   token,
   );
  };
- public disable = async (category: CategoryModel): Promise<AxiosResponse<ResponseDto>> => {
+ public disable = async (
+  category: CategoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.put<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/disable/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/disable/category`,
    this.getURLSearchParams(category),
+   token,
   );
  };
 
  public showDisable = async (): Promise<AxiosResponse<{ data: CategoryDto[] }>> => {
   return await this.http.get<{ data: CategoryDto[] }>(
-   `${process.env.API_RED_CAR_LOCAL}/show/disable/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/show/disable/category`,
   );
  };
 
  public showEnable = async (): Promise<AxiosResponse<{ data: CategoryDto[] }>> => {
   return await this.http.get<{ data: CategoryDto[] }>(
-   `${process.env.API_RED_CAR_LOCAL}/show/enable/category`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/show/enable/category`,
   );
  };
 
  public search = async (search: Search): Promise<AxiosResponse<{ data: CategoryDto[] }>> => {
   return await this.http.get<CategoryDto>(
-   `${process.env.API_RED_CAR_LOCAL}/search/category?search=${search.search}`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/search/category?search=${search.search}`,
   );
  };
 
  public find = async (id: number): Promise<AxiosResponse<{ data: CategoryDto }>> => {
   return await this.http.get<CategoryDto>(
-   `${process.env.API_RED_CAR_LOCAL}/find/category?id=${id}`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/find/category?id=${id}`,
   );
  };
 

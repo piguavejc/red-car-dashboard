@@ -1,14 +1,16 @@
 import { useDialog, useModal } from '.';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { LaboratoryModel } from '@/mvc/models';
 import { useLaboratory } from './useLaboratory';
 import { messageDialog, types } from '@/constants';
 import { Item, Search, statusDialog } from '@/types';
+import { useSession } from 'next-auth/react';
 
 const useLaboratoryController = (
  category: string | undefined,
  targetSearch: Search | undefined,
 ) => {
+ const session = useSession();
  const {
   edit,
   find,
@@ -27,6 +29,7 @@ const useLaboratoryController = (
   laboratory: undefined,
  });
  const [laboratories, setLaboratories] = useState<Item[]>([]);
+ const [token, setToken] = useState<string>('');
  const [disabledLaboratories, setDisabledLaboratories] = useState<Item[]>([]);
  const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(true);
  const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -45,6 +48,9 @@ const useLaboratoryController = (
 
  const { modalSetting, handlerStatus } = useModal(false);
 
+ useEffect(() => {
+  if (session.status === 'authenticated') console.log(session);
+ }, [session.status]);
  useEffect(() => {
   if (targetSearch) handlerSearch(targetSearch);
  }, [targetSearch?.search]);
@@ -99,7 +105,7 @@ const useLaboratoryController = (
  const handlerCreate = async (values: LaboratoryModel) => {
   setIsLoading(true);
   try {
-   const rs = await create(values);
+   const rs = await create(values, session.data?.user.token as string);
    if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   } catch (error) {
    //  console.log(error);
@@ -114,7 +120,7 @@ const useLaboratoryController = (
  };
  /* edit laboratory */
  const handlerEdit = async (values: LaboratoryModel) => {
-  const rs = await edit(values);
+  const rs = await edit(values, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   handlerHiddeEdit();
   handlerUpdateAll();
@@ -122,7 +128,7 @@ const useLaboratoryController = (
 
  /* disable laboratory */
  const handlerDisable = async (values: LaboratoryModel) => {
-  const rs = await disable(values);
+  const rs = await disable(values, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   handlerHidde();
   handlerUpdateAll();
@@ -130,7 +136,7 @@ const useLaboratoryController = (
 
  /* enable laboratory */
  const handlerEnable = async (values: LaboratoryModel) => {
-  const rs = await enable(values);
+  const rs = await enable(values, session.data?.user.token as string);
   if (rs?.data) handlerStatus(true, rs.data.id as statusDialog, rs.data.message);
   handlerHidde();
   handlerUpdateAll();

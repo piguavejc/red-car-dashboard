@@ -1,18 +1,18 @@
 import { UserController } from '@/mvc/controllers';
-import { ResponseDto } from '@/mvc/models/dto';
+import { LoginDto, ResponseDto } from '@/mvc/models/dto';
 import { LoginModel, RegisterModel } from '@/mvc/models';
 import { AxiosResponse } from 'axios';
 import { Http } from './http/http';
 class ServiceUser implements UserController {
  public create = async (user: RegisterModel): Promise<AxiosResponse<ResponseDto>> => {
   return await this.http.post<ResponseDto>(
-   `${process.env.API_RED_CAR_LOCAL}/auth/register`,
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`,
    this.getFormData(user),
   );
  };
- public login = async (user: LoginModel): Promise<AxiosResponse<RegisterModel>> => {
-  return await this.http.post<RegisterModel>(
-   `${process.env.API_RED_CAR_LOCAL}/auth/login`,
+ public login = async (user: LoginModel): Promise<AxiosResponse<LoginDto>> => {
+  return await this.http.post<LoginDto>(
+   `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
    this.getFormDataLogin(user),
   );
  };

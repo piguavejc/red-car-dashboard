@@ -9,8 +9,8 @@ import React from 'react';
 const { secctions } = data.screens.login;
 
 export default function Login() {
- const { login } = useLoginController();
- const { register, modalSetting, existError, messageError, handlerCreate, handlerLogin } =
+ const { login, handlerLogin } = useLoginController();
+ const { register, modalSetting, existError, messageError, handlerCreate } =
   useRegisterController();
  const { headers, target, handlerTarger } = useHeader(secctions.names);
 

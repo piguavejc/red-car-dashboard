@@ -1,6 +1,6 @@
 'use client';
-import { useCategoryController, useHeader } from '@/hooks';
 import { CustomCarousel, CustomMessageError } from '@/atomic/components';
+import { useCategoryController, useHeader } from '@/hooks';
 import { types, data, images } from '@/constants';
 import { CustomButton } from '@/atomic/elements';
 import { CustomHeader } from '@/atomic/designs';

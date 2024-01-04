@@ -12,9 +12,12 @@ const useProduct = () => {
  const [messageError, setMessageError] = useState<string>('');
 
  /* create */
- const create = async (values: ProductModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const create = async (
+  values: ProductModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.create(values);
+   return await service.create(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -24,9 +27,12 @@ const useProduct = () => {
   return undefined;
  };
  /* edit */
- const edit = async (values: ProductModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const edit = async (
+  values: ProductModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.edit(values);
+   return await service.edit(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -40,9 +46,10 @@ const useProduct = () => {
  const enable = async (
   idProduct: number,
   product: string,
+  token: string,
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.enable(idProduct, product);
+   return await service.enable(idProduct, product, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -55,9 +62,10 @@ const useProduct = () => {
  const disable = async (
   idProduct: number,
   product: string,
+  token: string,
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.disable(idProduct, product);
+   return await service.disable(idProduct, product, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);

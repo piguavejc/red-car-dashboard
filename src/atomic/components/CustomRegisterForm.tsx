@@ -13,7 +13,10 @@ const CustomRegisterForm = (props: CustomRegisterFormProps) => {
    enableReinitialize={true}
    validationSchema={props.validation}
    initialValues={props.entity}
-   onSubmit={(values: RegisterModel, formikHelpers: FormikHelpers<RegisterModel>) => {
+   onSubmit={(
+    values: Omit<RegisterModel, 'token'>,
+    formikHelpers: FormikHelpers<Omit<RegisterModel, 'token'>>,
+   ) => {
     formikHelpers.resetForm();
     props.hnalderSubmit(values);
    }}

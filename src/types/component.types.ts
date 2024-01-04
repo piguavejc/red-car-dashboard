@@ -189,9 +189,9 @@ interface CustomLoginFormProps {
  hnalderSubmit: (value: LoginModel) => void;
 }
 interface CustomRegisterFormProps {
- entity: RegisterModel;
+ entity: Omit<RegisterModel, 'token'>;
  validation: AnyObjectSchema;
- hnalderSubmit: (value: RegisterModel) => void;
+ hnalderSubmit: (value: Omit<RegisterModel, 'token'>) => void;
 }
 interface CustomMessageErrorProps {
  message: string;

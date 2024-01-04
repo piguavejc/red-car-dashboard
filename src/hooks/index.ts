@@ -1,3 +1,4 @@
+'use client';
 export { useLaboratoryController } from './useLaboratoryController';
 export { useCategoryController } from './useCategoryController';
 export { useRegisterController } from './useRegisterController';

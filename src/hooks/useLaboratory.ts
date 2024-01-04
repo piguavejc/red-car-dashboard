@@ -13,9 +13,10 @@ const useLaboratory = () => {
  /* create laboratory */
  const create = async (
   values: LaboratoryModel,
+  token: string,
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.create(values);
+   return await service.create(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -25,9 +26,12 @@ const useLaboratory = () => {
   return undefined;
  };
  /* edit laboratory */
- const edit = async (values: LaboratoryModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
+ const edit = async (
+  values: LaboratoryModel,
+  token: string,
+ ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.edit(values);
+   return await service.edit(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
@@ -39,9 +43,10 @@ const useLaboratory = () => {
  /* disable laboratory */
  const disable = async (
   values: LaboratoryModel,
+  token: string,
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.disable(values);
+   return await service.disable(values, token);
   } catch (error: any) {
    // console.log(error:any);
    setExistError(true);
@@ -52,9 +57,10 @@ const useLaboratory = () => {
  /* enable laboratory */
  const enable = async (
   values: LaboratoryModel,
+  token: string,
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
-   return await service.enable(values);
+   return await service.enable(values, token);
   } catch (error: any) {
    const e: AxiosError<{ error: string }> = error;
    //    console.log(e.response?.data);
