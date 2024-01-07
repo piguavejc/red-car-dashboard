@@ -25,7 +25,6 @@ const yourAuthenticationLogic = async (credentials: {
  } catch (error) {
   throw error;
  }
- return null;
 };
 
 const handler = NextAuth({
@@ -33,20 +32,19 @@ const handler = NextAuth({
   CredentialsProvider({
    name: 'Credentials',
    credentials: {
-    username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+    email: { label: 'Username', type: 'text', placeholder: 'jsmith' },
     password: { label: 'Password', type: 'password' },
    },
    async authorize(credentials, req) {
     try {
      const data = await yourAuthenticationLogic({
-      username: credentials?.username as string,
+      username: credentials?.email as string,
       password: credentials?.password as string,
      });
      return data;
     } catch (error) {
      throw error;
     }
-    return null;
    },
   }),
  ],
@@ -58,6 +56,10 @@ const handler = NextAuth({
   async jwt({ token, user, account, profile }) {
    return { ...token, ...user };
   },
+ },
+ session: { maxAge: 7200 },
+ pages: {
+  signIn: '/login',
  },
 });
 export { handler as GET, handler as POST };

@@ -25,7 +25,7 @@ const CustomPassword = (props: CustomInputProps) => {
      placeholder={props.placeholder}
     />
     <CustomButton
-     title={''}
+     title={isVisible ? 'Ocultar' : 'Mostrar'}
      type={types.button.icon}
      icon={isVisible ? types.icon.eye : types.icon.eyeOff}
      handlerPress={() => setIsVisible(!isVisible)}

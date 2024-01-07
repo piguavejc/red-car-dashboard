@@ -103,7 +103,7 @@ const LaboratoryView = () => {
 
  if (existError)
   return (
-   <div className="flex-col-center-center h-screen bg-slate-800 px-4 py-8  rounded-lg">
+   <div className="flex-col-center-center h-screen 4 py-8  rounded-lg">
     <img className="max-w-[30%] rounded-xl" src="/not-found.svg" alt="" />
     <p className="error-text"> {pages.laboratory.error} </p>
    </div>

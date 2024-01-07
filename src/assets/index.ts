@@ -6,41 +6,42 @@ import success from '../../public/assets/success.png';
 import redCar from '../../public/assets/red-car.png';
 import empty from '../../public/assets/empty.png';
 import load from '../../public/assets/load.png';
+import avatar from '../../public/assets/user-avatar.svg';
 
 const assets = Object.freeze({
  images: {
   warning: {
-   title: '',
-   alt: '',
+   title: 'Advertencia',
+   alt: 'imagen de advertencia, ha ocurrido un error',
    src: warning,
   },
   success: {
-   title: '',
+   title: 'Exito',
    alt: '',
    src: success,
   },
   redCar: {
-   title: '',
+   title: 'Logo de carrito rojo',
    alt: '',
    src: redCar,
   },
   empty: {
-   title: '',
+   title: 'Vacio',
    alt: '',
    src: empty,
   },
   load: {
-   title: '',
+   title: 'Refrescar',
    alt: '',
    src: load,
   },
   facebook: {
-   title: '',
+   title: 'Facebook',
    alt: '',
    src: facebook,
   },
   whatsapp: {
-   title: '',
+   title: 'Whatsapp',
    alt: '',
    src: whatsapp,
   },
@@ -48,6 +49,11 @@ const assets = Object.freeze({
    title: '',
    alt: '',
    src: prostaeros,
+  },
+  avatar: {
+   title: 'avatar del usuario',
+   alt: '',
+   src: avatar,
   },
  },
 });

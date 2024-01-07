@@ -1,6 +1,7 @@
 import { CustomDetailsProductProps } from '@/types';
 import { CustomButton } from '@/atomic/elements';
 import { types, data } from '@/constants';
+import { styles } from '@/atomic/theme';
 import React, { useState } from 'react';
 import Image from 'next/image';
 
@@ -26,11 +27,12 @@ const CustomDetailsProduct = (props: CustomDetailsProductProps) => {
    <div className="p-4 flex-row-center-stretch bg-helper rounded-xl">
     <div className="flex-row-start-center">
      <Image
-      className="rounded-full w-[7rem] h-[7rem] bg-slate-300 object-contain"
+      className="rounded-full w-[7rem] h-[7rem] object-contain"
       src={String(props.data.photo)}
       alt={String(props.data.product)}
       width={150}
       height={150}
+      style={styles.backgrounds.helper}
      />
      <h2 className="title-form"> {props.data.product} </h2>
     </div>

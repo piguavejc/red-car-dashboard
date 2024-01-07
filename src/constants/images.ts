@@ -9,5 +9,6 @@ const images = Object.freeze({
  banners: {
   prostaEros: assets.images.prostaeros,
  },
+ avatar: assets.images.avatar,
 });
 export { images };

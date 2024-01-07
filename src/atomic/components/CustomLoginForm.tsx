@@ -1,13 +1,19 @@
 import { CustomButton, CustomInput, CustomPassword } from '@/atomic/elements';
 import { Formik, FormikHelpers } from 'formik';
 import { CustomLoginFormProps } from '@/types';
-import { types, data } from '@/constants';
+import { types, data, images } from '@/constants';
 import { LoginModel } from '@/mvc/models';
 import React from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const { forms } = data.screens.login;
 
 const CustomLoginForm = (props: CustomLoginFormProps) => {
+ const route = useRouter();
+ const handlerPage = () => {
+  route.push('/register');
+ };
  return (
   <Formik
    enableReinitialize={true}
@@ -25,6 +31,15 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
        <header>
         <h2 className="title-form"> {forms.login.titles.create} </h2>
        </header>
+
+       <Image
+        className="self-center"
+        src={images.avatar.src}
+        alt={images.avatar.alt}
+        title={images.avatar.title}
+        width={150}
+        height={150}
+       />
 
        {/* user  */}
        <CustomInput
@@ -54,7 +69,7 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
         handlerChange={props.handleChange(forms.login.fields.password.id)}
        />
 
-       {/* button create or edit  */}
+       {/* button login  */}
        <CustomButton
         isDisable={!props.isValid}
         type={types.button.default}
@@ -62,6 +77,15 @@ const CustomLoginForm = (props: CustomLoginFormProps) => {
         text={forms.login.buttons.create.primary}
         title={forms.login.buttons.create.primary}
         handlerPress={props.handleSubmit}
+       />
+       <p className="default-text-bold">o</p>
+       {/* button register  */}
+       <CustomButton
+        type={types.button.default}
+        variant={types.variant.button.secondary}
+        text={forms.login.buttons.register.primary}
+        title={forms.login.buttons.register.primary}
+        handlerPress={handlerPage}
        />
       </section>
      </section>

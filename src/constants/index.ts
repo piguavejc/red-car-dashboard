@@ -7,6 +7,7 @@ import { typesAction } from './action';
 import { messageDialog } from './message';
 import { typesStatusDialog } from './dialog';
 import { typesButton, typesVariantButton } from './button';
+import { variant } from './loading';
 
 const types = Object.freeze({
  icon: typesIcon,
@@ -18,6 +19,7 @@ const types = Object.freeze({
   button: typesVariantButton,
  },
  respone: response,
+ loading: variant,
 });
 
 export { types, images, messageDialog, data };

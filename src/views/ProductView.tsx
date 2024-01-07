@@ -44,7 +44,7 @@ const ProductView = () => {
   handlerActionEnable,
   handlerActionDisable,
  } = useProductController(tab, undefined, search);
- const { categories } = useCategoryController();
+ const { categories, isLoadingSearch: isLoad } = useCategoryController();
  /* dialog */
  if (dialog.isActivate)
   return (
@@ -130,8 +130,9 @@ const ProductView = () => {
    <div className="flex-col-start-stretch w-[50%] p-8">
     {/* Tabs */}
     <CustomTabs
-     items={categories.map((category) => category.name as string)}
      itemFocus={tab}
+     isLoading={isLoad}
+     items={categories.map((category) => category.name as string)}
      returnItem={handlerTab}
     />
     {/* header Search */}

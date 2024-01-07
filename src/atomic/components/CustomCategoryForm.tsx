@@ -1,9 +1,8 @@
 import { CustomButton, CustomInput, CustomPoster } from '@/atomic/elements';
+import { CustomDetailsCategory, CustomLoading } from '.';
 import { CustomCategoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { CategoryModel } from '@/mvc/models';
-import { Oval } from 'react-loader-spinner';
-import { CustomDetailsCategory } from '.';
 import { types, data } from '@/constants';
 import { usePoster } from '@/hooks';
 import React from 'react';
@@ -14,23 +13,7 @@ const CustomCategoryForm = (props: CustomCategoryFormProps) => {
  const { type } = props;
  const { urlImage, handlerPoster } = usePoster();
  if (props.isLoading && props.type === types.form.edit) {
-  return (
-   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
-    <Oval
-     height={80}
-     width={80}
-     color="gray"
-     wrapperStyle={{}}
-     wrapperClass=""
-     visible={true}
-     ariaLabel="oval-loading"
-     secondaryColor="#666"
-     strokeWidth={5}
-     strokeWidthSecondary={5}
-    />
-    <p className="default-text-bold"> {category.load} </p>
-   </div>
-  );
+  return <CustomLoading variant={types.loading.normal} />;
  }
  return (
   <Formik

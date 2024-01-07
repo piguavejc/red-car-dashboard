@@ -1,16 +1,16 @@
 'use client';
-import { CustomLoading, CustomLoginForm, CustomMessageError } from '@/atomic/components';
+import { CustomLoading, CustomMessageError, CustomRegisterForm } from '@/atomic/components';
+import { CustomHeader, CustomModal } from '@/atomic/designs';
 import { useHeader, useRegisterController } from '@/hooks';
-import { CustomModal } from '@/atomic/designs';
-import { data, types } from '@/constants';
 import { validate } from '@/validations';
+import { data, types } from '@/constants';
 import React from 'react';
 
 const { secctions } = data.screens.login;
 
-export default function Login() {
- const { target } = useHeader(secctions.names, false);
- const { modalSetting, existError, messageError, isLoading, count, handlerLogin } =
+export default function Register() {
+ const { headers, target, handlerTarger } = useHeader(secctions.names, false);
+ const { count, register, isLoading, existError, modalSetting, messageError, handlerCreate } =
   useRegisterController(secctions.names[target].name);
 
  /* modal */
@@ -31,7 +31,11 @@ export default function Login() {
 
  return (
   <div className="w-full h-screen bg-helper flex-col-center-center">
-   <CustomLoginForm entity={count} validation={validate.login} hnalderSubmit={handlerLogin} />
+   <CustomRegisterForm
+    entity={register}
+    validation={validate.login}
+    hnalderSubmit={handlerCreate}
+   />
   </div>
  );
 }

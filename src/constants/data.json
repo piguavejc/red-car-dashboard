@@ -1,4 +1,9 @@
 {
+ "globals": {
+  "empty": {
+   "text": "No se encuentran ningun resultado"
+  }
+ },
  "screens": {
   "dashboard": {
    "message": {
@@ -48,8 +53,7 @@
        "primary": "Guardar cambios"
       },
       "secundary": "Limpiar el formulario"
-     },
-     "load": "Espere mientras se guardan los datos"
+     }
     },
     "laboratory": {
      "titles": {
@@ -75,8 +79,7 @@
        "primary": "Guardar cambios"
       },
       "secundary": "Limpiar el formulario"
-     },
-     "load": "Espere mientras se guardan los datos"
+     }
     },
     "products": {
      "titles": {
@@ -147,15 +150,13 @@
        "primary": "Guardar cambios"
       },
       "secundary": "Limpiar el formulario"
-     },
-     "load": "Espere mientras se guardan los datos"
+     }
     }
    },
    "details": {
     "product": ["Descripcion", "Propiedades", "Dosis"]
    },
    "list": {
-    "load": "Espere mientras se carga los datos...",
     "empty": "No se encuentra el producto aun",
     "buttons": {
      "delete": "Eliminar",
@@ -194,7 +195,20 @@
    "header": {
     "title": "Carrito Rojo",
     "button": "Menu",
-    "items": ["Categoria", "Laboratorio", "Producto"]
+    "items": [
+     {
+      "url": "/dashboard/category",
+      "name": "Categoria"
+     },
+     {
+      "url": "/dashboard/laboratory",
+      "name": "Laboratorio"
+     },
+     {
+      "url": "/dashboard/product",
+      "name": "Productos"
+     }
+    ]
    }
   },
   "homepage": {
@@ -208,10 +222,31 @@
      "product": "productos",
      "whoUs": "quienes-somos",
      "contact": "contactanos",
-     "logi": "entrar",
+     "login": "entrar",
      "urls": ["inicio", "productos", "quienes-somos", "contactanos", "entrar"]
     },
-    "headers": ["Inicio", "Productos", "Quienes Somos", "Contactanos", "Entrar"],
+    "headers": [
+     {
+      "url": "#inicio",
+      "name": "Inicio"
+     },
+     {
+      "url": "#productos",
+      "name": "Productos"
+     },
+     {
+      "url": "#quienes-somos",
+      "name": "Quienes Somos"
+     },
+     {
+      "url": "#contactanos",
+      "name": "Contactanos"
+     },
+     {
+      "url": "/login",
+      "name": "Entrar"
+     }
+    ],
     "products": {
      "loading": {
       "title": "Mensaje de espera",
@@ -262,7 +297,16 @@
   },
   "login": {
    "secctions": {
-    "names": ["Cuenta", "Registrar"],
+    "names": [
+     {
+      "url": "",
+      "name": "Cuenta"
+     },
+     {
+      "url": "",
+      "name": "Registrar"
+     }
+    ],
     "login": "Cuenta",
     "register": "Registrar"
    },
@@ -287,13 +331,12 @@
      },
      "buttons": {
       "create": {
-       "primary": "Ingresar"
+       "primary": "Entrar"
       },
-      "edit": {
-       "primary": "Guardar cambios"
+      "register": {
+       "primary": "Create una cuenta"
       }
-     },
-     "load": "Espere mientras se guardan los datos"
+     }
     }
    }
   },
@@ -350,8 +393,7 @@
        "primary": "Guardar cambios"
       },
       "secundary": "Limpiar el formulario"
-     },
-     "load": "Espere mientras se guardan los datos"
+     }
     }
    }
   }

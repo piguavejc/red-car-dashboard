@@ -1,34 +1,32 @@
 'use client';
-import { CustomCarousel, CustomMessageError } from '@/atomic/components';
+import {
+ CustomCarousel,
+ CustomEmpty,
+ CustomLoading,
+ CustomMessageError,
+} from '@/atomic/components';
 import { useCategoryController, useHeader } from '@/hooks';
 import { types, data, images } from '@/constants';
 import { CustomButton } from '@/atomic/elements';
 import { CustomHeader } from '@/atomic/designs';
-import { Oval } from 'react-loader-spinner';
-import { useRouter } from 'next/navigation';
+import { styles } from '@/atomic/theme';
 import { theme } from '@/atomic/theme';
-import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const { secctions, footer } = data.screens.homepage;
-const { pages, header } = data.screens.dashboard;
+const { header } = data.screens.dashboard;
 
 export default function Home() {
- const navigate = useRouter();
- const { headers, target, handlerTarger } = useHeader(secctions.headers);
+ const { headers, target, handlerTarger } = useHeader(secctions.headers, true);
  const { categories, isLoadingSearch, existError, messageError } = useCategoryController();
 
- useEffect(() => {
-  if (secctions.names.logi === secctions.names.urls[target]) navigate.push(`/login`);
-  else navigate.push(`#${secctions.names.urls[target]}`);
- }, [target]);
  /* error */
 
  if (existError) return <CustomMessageError message={messageError} />;
 
  return (
-  <main className="w-full bg-helper flex-col-stretch-center space-y-12">
+  <main className="w-full bg-helper flex-col-stretch-center space-y-20">
    {/* header */}
    <header
     id={secctions.names.home}
@@ -47,27 +45,11 @@ export default function Home() {
    </header>
    <CustomCarousel />
    {/* categories */}
-   {isLoadingSearch ? (
-    <div className="w-[90%] component-loading flex-col-center-center lg:w-[80%]">
-     <h2 className="header-2 text-center">{secctions.products.loading.title}</h2>
-     <p className="default-text text-center">{secctions.products.loading.text}</p>
-     <Oval
-      height={80}
-      width={80}
-      color="gray"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-      ariaLabel="oval-loading"
-      secondaryColor="#666"
-      strokeWidth={5}
-      strokeWidthSecondary={5}
-     />
-    </div>
-   ) : (
+   <article className="w-full mt-[10rem]bg-helper flex-col-stretch-center space-y-16">
+    <h2 className="header-2"> {'Productos'}</h2>
     <section
      id={secctions.names.product}
-     className="w-full bg-helper lg:w-[80%]"
+     className="w-full lg:w-[80%]"
      style={{
       gap: '2rem',
       display: 'grid',
@@ -78,19 +60,25 @@ export default function Home() {
       justifyItems: 'center',
      }}
     >
-     {categories.map((category, i) => (
-      <Link key={i} href={`/category/${category.name}`} title={`categoria ${category.name}`}>
-       <Image
-        className="flex-row-center-center"
-        src={category.photo as string}
-        width={150}
-        height={300}
-        alt=""
-       />
-      </Link>
-     ))}
+     {isLoadingSearch ? (
+      <CustomLoading variant={types.loading.grid} />
+     ) : categories.length === 0 ? (
+      <CustomEmpty />
+     ) : (
+      categories.map((category, i) => (
+       <Link key={i} href={`/category/${category.name}`} title={`categoria ${category.name}`}>
+        <Image
+         className="flex-row-center-center"
+         src={category.photo as string}
+         width={150}
+         height={300}
+         alt=""
+        />
+       </Link>
+      ))
+     )}
     </section>
-   )}
+   </article>
    {/* who we */}
    <section
     id={secctions.names.whoUs}
@@ -135,7 +123,7 @@ export default function Home() {
     </article>
    </section>
    {/* footer */}
-   <footer className="w-full py-16 bg-slate-200 flex-row-center-center">
+   <footer className="w-full py-16 flex-row-center-center" style={styles.backgrounds.secondary}>
     <Link
      className="w-full p-2 block "
      href={footer.author.url}

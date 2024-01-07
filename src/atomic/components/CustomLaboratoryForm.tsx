@@ -2,8 +2,8 @@ import { CustomButton, CustomInput } from '@/atomic/elements';
 import { CustomLaboratoryFormProps } from '@/types';
 import { Formik, FormikHelpers } from 'formik';
 import { LaboratoryModel } from '@/mvc/models';
-import { Oval } from 'react-loader-spinner';
 import { types, data } from '@/constants';
+import { CustomLoading } from '.';
 import React from 'react';
 
 const { laboratory } = data.screens.dashboard.forms;
@@ -11,23 +11,7 @@ const { laboratory } = data.screens.dashboard.forms;
 const CustomLaboratoryForm = (props: CustomLaboratoryFormProps) => {
  const { type } = props;
  if (props.isLoading && props.type === types.form.edit) {
-  return (
-   <div className="flex-col-center-center bg-helper px-4 py-8  rounded-lg">
-    <Oval
-     height={80}
-     width={80}
-     color="gray"
-     wrapperStyle={{}}
-     wrapperClass=""
-     visible={true}
-     ariaLabel="oval-loading"
-     secondaryColor="#666"
-     strokeWidth={5}
-     strokeWidthSecondary={5}
-    />
-    <p className="default-text-bold"> {laboratory.load} </p>
-   </div>
-  );
+  return <CustomLoading variant={types.loading.normal} />;
  }
  return (
   <Formik

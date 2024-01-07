@@ -3,7 +3,7 @@
 }
 
 .bg-form {
- background-color: var(--bg-helper);
+ background-color: var(--color-helper);
  /* @apply bg-gray-50; */
 }
 
@@ -12,7 +12,7 @@
 }
 
 .text-form {
- background-color: var(--bg-secondary);
+ background-color: var(--color-secondary);
  @apply text-xl border-2 text-slate-600 p-2 rounded-lg whitespace-nowrap;
 }
 
@@ -29,6 +29,6 @@
 }
 
 .text-select-form {
- background-color: var(--bg-secondary);
+ background-color: var(--color-secondary);
  @apply text-xl text-slate-500 p-2 whitespace-nowrap;
 }

@@ -69,6 +69,8 @@ type statusButton = 'default' | 'icon' | 'iconText';
 type statusDialog = 200 | 500;
 /*  */
 type variantButton = 'primary' | 'secondary' | 'disabled';
+
+type variantLoading = 'normal' | 'list-vertical' | 'list-horizontal' | 'grid' | 'image-rounded';
 export type {
  Item,
  Photo,
@@ -82,4 +84,5 @@ export type {
  statusAction,
  variantButton,
  dialogSetting,
+ variantLoading,
 };

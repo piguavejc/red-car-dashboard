@@ -1,5 +1,5 @@
 .component-loading {
- background-color: var(--bg-secondary);
+ background-color: var(--color-secondary);
  @apply p-4 rounded-xl bg-opacity-50;
 }
 
@@ -61,7 +61,7 @@ body {
  align-items: center;
  justify-content: center;
  font-weight: bold;
- color: var(--bg-secondary);
+ color: var(--color-secondary);
 }
 
 .autoplay-progress svg {
@@ -73,7 +73,7 @@ body {
  width: 100%;
  height: 100%;
  stroke-width: 4px;
- stroke: var(--bg-secondary);
+ stroke: var(--color-secondary);
  fill: none;
  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
  stroke-dasharray: 125.6;

@@ -16,6 +16,7 @@ import {
  ModalSetting,
  dialogSetting,
  variantButton,
+ variantLoading,
 } from './common.types';
 
 /*  */
@@ -196,6 +197,12 @@ interface CustomRegisterFormProps {
 interface CustomMessageErrorProps {
  message: string;
 }
+interface CustomHeaderUserProps {
+ user: string;
+}
+interface CustomLoadingProps {
+ variant?: variantLoading;
+}
 export type {
  CustomDetailsCategoryProps,
  CustomLaboratoryFormProps,
@@ -207,8 +214,10 @@ export type {
  CustomProgressBarProps,
  CustomSearchFormProps,
  CustomButtonIconProps,
+ CustomHeaderUserProps,
  CustomLoginFormProps,
  CustomTextAreaProps,
+ CustomLoadingProps,
  CustomItemTabsProps,
  CustomDialogProps,
  CustomButtonProps,
