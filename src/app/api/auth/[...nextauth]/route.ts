@@ -1,8 +1,8 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { ServiceUser } from '@/mvc/services';
-import { LoginModel, RegisterModel } from '@/mvc/models';
-import NextAuth from 'next-auth';
 import { AdapterUser } from 'next-auth/adapters';
+import { ServiceUser } from '@/mvc/services';
+import { LoginModel } from '@/mvc/models';
+import NextAuth from 'next-auth';
 
 const service: ServiceUser = ServiceUser.getService();
 
@@ -23,6 +23,7 @@ const yourAuthenticationLogic = async (credentials: {
    token: rs.data.token,
   };
  } catch (error) {
+  console.error(error);
   throw error;
  }
 };
@@ -35,7 +36,7 @@ const handler = NextAuth({
     email: { label: 'Username', type: 'text', placeholder: 'jsmith' },
     password: { label: 'Password', type: 'password' },
    },
-   async authorize(credentials, req) {
+   async authorize(credentials) {
     try {
      const data = await yourAuthenticationLogic({
       username: credentials?.email as string,
@@ -43,17 +44,20 @@ const handler = NextAuth({
      });
      return data;
     } catch (error) {
+     console.error(error);
      throw error;
     }
    },
   }),
  ],
  callbacks: {
-  async session({ session, user, token }) {
+  async session({ session, token }) {
+   /* eslint-disable */
    session.user = token as any;
+   /* eslint-disable */
    return session;
   },
-  async jwt({ token, user, account, profile }) {
+  async jwt({ token, user }) {
    return { ...token, ...user };
   },
  },

@@ -1,5 +1,5 @@
 import { useDialog, useModal } from '.';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LaboratoryModel } from '@/mvc/models';
 import { useLaboratory } from './useLaboratory';
 import { messageDialog, types } from '@/constants';
@@ -29,7 +29,6 @@ const useLaboratoryController = (
   laboratory: undefined,
  });
  const [laboratories, setLaboratories] = useState<Item[]>([]);
- const [token, setToken] = useState<string>('');
  const [disabledLaboratories, setDisabledLaboratories] = useState<Item[]>([]);
  const [isLoadingSearch, setIsLoadingSearch] = useState<boolean>(true);
  const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -96,6 +95,7 @@ const useLaboratoryController = (
  /* handler to display the screen edition */
  const handlerShowEdit = (id: number, name: string) => {
   setEdition(!isEdition);
+  console.log(name);
   handlerFind(id);
  };
 

@@ -7,17 +7,16 @@ import {
  CustomSearch,
  CustomTabs,
 } from '@/atomic/components';
-import { CustomButton, CustomItem, CustomPhoto } from '@/atomic/elements';
+import { CustomButton, CustomItem } from '@/atomic/elements';
 import { types, data, images } from '@/constants';
 import { useRouter } from 'next/navigation';
-import { Oval } from 'react-loader-spinner';
 import { validate } from '@/validations';
 import { theme } from '@/atomic/theme';
 import Image from 'next/image';
 import React from 'react';
 
-const { header, loading, card } = data.screens.product;
-const { pages, forms, list } = data.screens.dashboard;
+const { header, card } = data.screens.product;
+const { forms, list } = data.screens.dashboard;
 
 export default function Category({ params: { name } }: { params: { name: string } }) {
  const navigate = useRouter();
@@ -75,7 +74,7 @@ export default function Category({ params: { name } }: { params: { name: string 
    </section>
   );
  return (
-  <div className="w-full bg-helper flex flex-col justify-stretch items-stretch space-y-12">
+  <div className="w-full bg-helper flex flex-col justify-stretch items-stretch space-y-8">
    {/* header */}
    <header className="w-full p-4 bg-primary flex-row-between-center lg:px-[5rem]">
     <CustomButton

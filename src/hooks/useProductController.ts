@@ -63,10 +63,6 @@ const useProductController = (
  } = useDialog();
 
  useEffect(() => {
-  if (session.status === 'authenticated') console.log(session);
- }, [session.status]);
-
- useEffect(() => {
   if (category === 'Todos') handlerSearch(searchTarget);
   if (category !== 'Todos') {
    if (searchTarget.search === '') handlerListCategory(category);
@@ -113,6 +109,7 @@ const useProductController = (
  /* handler to display the screen edition */
  const handlerShowEdit = (id: number, name: string) => {
   setEdition(!isEdition);
+  console.log(name);
   handlerFind(id);
  };
  const handlerHiddeEdit = () => {

@@ -1,5 +1,4 @@
 import { CustomSearchFormProps } from '@/types';
-import { CustomInput } from '@/atomic/elements';
 import { Formik, FormikHelpers } from 'formik';
 import React from 'react';
 

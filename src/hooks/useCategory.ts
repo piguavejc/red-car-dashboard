@@ -17,8 +17,10 @@ const useCategory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.create(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -32,8 +34,10 @@ const useCategory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.edit(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -47,8 +51,10 @@ const useCategory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.disable(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -61,8 +67,10 @@ const useCategory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.enable(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -80,8 +88,10 @@ const useCategory = () => {
  > => {
   try {
    return await service.search(search);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -99,8 +109,10 @@ const useCategory = () => {
  > => {
   try {
    return await service.find(id);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -117,8 +129,10 @@ const useCategory = () => {
  > => {
   try {
    return await service.showDisable();
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -134,8 +148,10 @@ const useCategory = () => {
  > => {
   try {
    return await service.showEnable();
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);

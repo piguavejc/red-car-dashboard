@@ -10,6 +10,7 @@ import { useCategoryController, useSearch } from '@/hooks';
 import { CustomButton } from '@/atomic/elements';
 import { validate } from '@/validations';
 import { types, data } from '@/constants';
+import React from 'react';
 
 const { pages } = data.screens.dashboard;
 const { forms } = data.screens.dashboard;

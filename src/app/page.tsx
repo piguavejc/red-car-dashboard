@@ -13,6 +13,7 @@ import { styles } from '@/atomic/theme';
 import { theme } from '@/atomic/theme';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 const { secctions, footer } = data.screens.homepage;
 const { header } = data.screens.dashboard;

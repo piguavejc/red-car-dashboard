@@ -1,8 +1,8 @@
 import './globals.css';
+import React from 'react';
 import type { Metadata } from 'next';
 import { SessionAuth } from '@/context';
 import { Inter } from 'next/font/google';
-
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

@@ -13,8 +13,10 @@ const useUser = () => {
  const create = async (values: RegisterModel): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.create(values);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data.error as string);
@@ -24,8 +26,10 @@ const useUser = () => {
  const login = async (values: LoginModel): Promise<AxiosResponse<LoginDto> | undefined> => {
   try {
    return await service.login(values);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);

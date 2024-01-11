@@ -1,9 +1,6 @@
 import { useRouter } from 'next/navigation';
-import { data } from '@/constants';
-import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-
-const { secctions } = data.screens.homepage;
+import { useState } from 'react';
 
 const useHeader = (items: { url: string; name: string }[], enlace: boolean) => {
  const navigation = useRouter();

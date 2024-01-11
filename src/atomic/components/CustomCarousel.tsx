@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -14,11 +14,12 @@ import Image from 'next/image';
 import { images } from '@/constants';
 
 const CustomCarousel = () => {
- const progressCircle = useRef<any>(null);
- const progressContent = useRef<any>(null);
- const onAutoplayTimeLeft = (s: any, time: number, progress: number) => {
-  progressCircle.current.style.setProperty('--progress', 1 - progress);
-  progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+ const progressCircle = useRef<SVGSVGElement | null>(null);
+ const progressContent = useRef<HTMLSpanElement | null>(null);
+ const onAutoplayTimeLeft = (s: unknown, time: number, progress: number) => {
+  if (progressCircle.current)
+   progressCircle.current.style.setProperty('--progress', (1 - progress).toString());
+  if (progressContent.current) progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
  };
  return (
   <>

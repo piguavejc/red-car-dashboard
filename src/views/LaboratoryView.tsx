@@ -4,6 +4,7 @@ import { useLaboratoryController, useSearch } from '@/hooks';
 import { CustomButton } from '@/atomic/elements';
 import { types, data } from '@/constants';
 import { validate } from '@/validations';
+import React from 'react';
 
 const { pages } = data.screens.dashboard;
 const { forms } = data.screens.dashboard;

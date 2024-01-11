@@ -17,8 +17,10 @@ const useLaboratory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.create(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -32,8 +34,10 @@ const useLaboratory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.edit(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -47,8 +51,8 @@ const useLaboratory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.disable(values, token);
-  } catch (error: any) {
-   // console.log(error:any);
+  } catch (error) {
+   // console.log(error);
    setExistError(true);
   }
   return undefined;
@@ -61,8 +65,10 @@ const useLaboratory = () => {
  ): Promise<AxiosResponse<ResponseDto> | undefined> => {
   try {
    return await service.enable(values, token);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -74,18 +80,17 @@ const useLaboratory = () => {
  const search = async (
   search: Search,
  ): Promise<
-  | AxiosResponse<
-     {
-      data: LaboratoryDto[];
-     },
-     any
-    >
+  | AxiosResponse<{
+     data: LaboratoryDto[];
+    }>
   | undefined
  > => {
   try {
    return await service.search(search);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -96,18 +101,17 @@ const useLaboratory = () => {
  const find = async (
   id: number,
  ): Promise<
-  | AxiosResponse<
-     {
-      data: LaboratoryDto;
-     },
-     any
-    >
+  | AxiosResponse<{
+     data: LaboratoryDto;
+    }>
   | undefined
  > => {
   try {
    return await service.find(id);
-  } catch (error: any) {
-   const e: AxiosError<{ error: string }> = error;
+  } catch (error) {
+   const e: AxiosError<{ error: string }> = error as AxiosError<{
+    error: string;
+   }>;
    //    console.log(e.response?.data);
    setExistError(true);
    setMessageError(e.response?.data?.error as string);
@@ -117,18 +121,15 @@ const useLaboratory = () => {
 
  /* show all disable */
  const listDisableds = async (): Promise<
-  | AxiosResponse<
-     {
-      data: LaboratoryDto[];
-     },
-     any
-    >
+  | AxiosResponse<{
+     data: LaboratoryDto[];
+    }>
   | undefined
  > => {
   try {
    return await service.showDisable();
-  } catch (error: any) {
-   // console.log(error:any)
+  } catch (error) {
+   // console.log(error)
    setExistError(true);
   }
   return undefined;
@@ -136,18 +137,15 @@ const useLaboratory = () => {
 
  /* show all enable */
  const listEnableds = async (): Promise<
-  | AxiosResponse<
-     {
-      data: LaboratoryDto[];
-     },
-     any
-    >
+  | AxiosResponse<{
+     data: LaboratoryDto[];
+    }>
   | undefined
  > => {
   try {
    return await service.showEnable();
-  } catch (error: any) {
-   // console.log(error:any)
+  } catch (error) {
+   // console.log(error)
    setExistError(true);
   }
   return undefined;
@@ -157,18 +155,15 @@ const useLaboratory = () => {
  const listCategory = async (
   category: string,
  ): Promise<
-  | AxiosResponse<
-     {
-      data: LaboratoryDto[];
-     },
-     any
-    >
+  | AxiosResponse<{
+     data: LaboratoryDto[];
+    }>
   | undefined
  > => {
   try {
    return await service.listCategory(category);
-  } catch (error: any) {
-   // console.log(error:any)
+  } catch (error) {
+   // console.log(error)
    setExistError(true);
   }
   return undefined;

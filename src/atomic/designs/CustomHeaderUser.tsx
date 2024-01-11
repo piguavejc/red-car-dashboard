@@ -16,7 +16,13 @@ const CustomHeaderUser = (props: CustomHeaderUserProps) => {
     handlerPress={() => signOut()}
    />
    <h2 className="header-3 text-right"> {props.user} </h2>
-   <Image src={images.avatar.src} alt={images.avatar.alt} title={images.avatar.title} width={75} height={75}  />
+   <Image
+    src={images.avatar.src}
+    alt={images.avatar.alt}
+    title={images.avatar.title}
+    width={75}
+    height={75}
+   />
   </nav>
  );
 };

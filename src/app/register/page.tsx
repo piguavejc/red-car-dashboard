@@ -1,7 +1,7 @@
 'use client';
 import { CustomLoading, CustomMessageError, CustomRegisterForm } from '@/atomic/components';
-import { CustomHeader, CustomModal } from '@/atomic/designs';
 import { useHeader, useRegisterController } from '@/hooks';
+import { CustomModal } from '@/atomic/designs';
 import { validate } from '@/validations';
 import { data, types } from '@/constants';
 import React from 'react';
@@ -9,8 +9,8 @@ import React from 'react';
 const { secctions } = data.screens.login;
 
 export default function Register() {
- const { headers, target, handlerTarger } = useHeader(secctions.names, false);
- const { count, register, isLoading, existError, modalSetting, messageError, handlerCreate } =
+ const { target } = useHeader(secctions.names, false);
+ const { register, isLoading, existError, modalSetting, messageError, handlerCreate } =
   useRegisterController(secctions.names[target].name);
 
  /* modal */

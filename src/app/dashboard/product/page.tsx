@@ -1,6 +1,7 @@
 'use client';
 import { styles } from '@/atomic/theme';
 import { ProductView } from '@/views';
+import React from 'react';
 
 export default function Product() {
  return (
