@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import type React from 'react'
+import { Separator } from '@/components/ui/separator'
 
 interface FormFooterProps extends React.ComponentProps<'div'> {
   type: 'login' | 'register'
@@ -30,21 +31,42 @@ const FooterForgotPassword = ({
   url?: string
 }) => {
   return (
-    <div className="flex items-center justify-between space-x-2">
-      <Link
-        href="/user/auth?type=forgotPassword"
-        className="text-sm underline hover:no-underline"
-      >
-        ¿Ha perdido la contraseña?
-      </Link>
+    <div className="flex flex-col items-center justify-between space-y-4">
       <Button
         disabled={isSubmitting}
         type="submit"
-        className="w-auto"
+        className="w-full"
         id="send-button"
       >
         Iniciar sesión
       </Button>
+      <Link
+        href="/user/auth?type=forgotPassword"
+        className="self-end text-sm underline hover:no-underline"
+      >
+        ¿Ha perdido la contraseña?
+      </Link>
+      <Separator />
+      <div className="flex w-full items-center space-x-2">
+        <Button
+          disabled={isSubmitting}
+          variant={'outline'}
+          type="submit"
+          className="w-full"
+          id="send-button"
+        >
+          Registrate
+        </Button>
+        <Button
+          disabled={isSubmitting}
+          variant={'outline'}
+          type="submit"
+          className="w-full"
+          id="send-button"
+        >
+          Activar Cuenta
+        </Button>
+      </div>
     </div>
   )
 }
