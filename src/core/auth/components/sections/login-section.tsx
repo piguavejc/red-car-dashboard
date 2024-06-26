@@ -1,4 +1,6 @@
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+import LoginForm from '@/core/auth/components/forms/login-form'
 
 export default function LoginSection() {
   return (
@@ -9,6 +11,9 @@ export default function LoginSection() {
             Login
           </CardTitle>
         </CardHeader>
+        <CardContent>
+          <LoginForm />
+        </CardContent>
       </Card>
     </div>
   )
