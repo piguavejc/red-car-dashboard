@@ -17,7 +17,8 @@
         "formulahendry.auto-rename-tag",
         "rodrigovallades.es7-react-js-snippets",
         "ms-playwright.playwright",
-        "bierner.color-info"
+        "bierner.color-info",
+        "streetsidesoftware.code-spell-checker"
       ]
     }
   }
