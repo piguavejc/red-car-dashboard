@@ -7,11 +7,13 @@ interface FormFooterProps extends React.ComponentProps<'div'> {
   type: 'login' | 'register'
   isSubmitting: boolean
   forgotPasswordRedirect?: string
+  loginRedirect?: string
 }
 
 export default function FormFooter({
   isSubmitting = false,
-  forgotPasswordRedirect,
+  forgotPasswordRedirect = '/',
+  loginRedirect = '/',
   type
 }: FormFooterProps) {
   if (type === 'login') {
@@ -22,13 +24,18 @@ export default function FormFooter({
       />
     )
   }
+
+  if (type === 'register') {
+    return <FooterLogin isSubmitting={isSubmitting} url={loginRedirect} />
+  }
 }
 
 const FooterForgotPassword = ({
-  isSubmitting
+  isSubmitting,
+  url
 }: {
   isSubmitting: boolean
-  url?: string
+  url: string
 }) => {
   return (
     <div className="flex flex-col items-center justify-between space-y-4">
@@ -41,7 +48,7 @@ const FooterForgotPassword = ({
         Iniciar sesión
       </Button>
       <Link
-        href="/user/auth?type=forgotPassword"
+        href={url}
         className="self-end text-sm underline hover:no-underline"
       >
         ¿Ha perdido la contraseña?
@@ -67,6 +74,34 @@ const FooterForgotPassword = ({
           Activar Cuenta
         </Button>
       </div>
+    </div>
+  )
+}
+
+const FooterLogin = ({
+  isSubmitting,
+  url
+}: {
+  isSubmitting: boolean
+  url: string
+}) => {
+  return (
+    <div className="flex flex-col items-center justify-between space-y-4">
+      <Button
+        disabled={isSubmitting}
+        type="submit"
+        className="w-full"
+        id="send-button"
+      >
+        Registrate
+      </Button>
+      <Separator />
+      <Link
+        href={url}
+        className="self-end text-sm underline hover:no-underline"
+      >
+        ¿Ya tienes una cuenta?
+      </Link>
     </div>
   )
 }
