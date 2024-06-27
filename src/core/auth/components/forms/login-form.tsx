@@ -17,6 +17,7 @@ export default function LoginForm() {
           fieldKey={'email'}
         />
         <FormField
+          type="password"
           label={'Password'}
           placeholder={'Ej: 12345678'}
           control={form.control}
