@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { Button } from '@/components/ui/button'
+import ButtonCollapsed from '@/core/shared/components/buttons/button-collapsed'
+import ButtonTheme from '@/core/shared/components/buttons/button-theme'
 import Flex from '@/core/shared/components/layout/flex'
 import Image from 'next/image'
 import type React from 'react'
@@ -13,8 +14,8 @@ export default function Header({ className }: HeaderProps) {
       <CardHeader>
         <Flex>
           <Flex>
-            <Button variant={'outline'}>icon</Button>
-            <Button variant={'outline'}>icon</Button>
+            <ButtonCollapsed />
+            <ButtonTheme />
           </Flex>
           <Flex>
             <CardTitle>User</CardTitle>
