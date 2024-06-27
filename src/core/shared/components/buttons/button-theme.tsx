@@ -1,3 +1,5 @@
+'use cilent'
+
 import { Button } from '@/components/ui/button'
 import { Moon } from 'lucide-react'
 import React from 'react'
