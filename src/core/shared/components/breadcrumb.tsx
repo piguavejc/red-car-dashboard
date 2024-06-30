@@ -20,7 +20,6 @@ export default function Breadcrumb() {
     const indexTarget = routes.findIndex((r) => r === route)
     const newRoutes = routes.slice(0, indexTarget + 1)
     const newPath = newRoutes.join('/')
-    console.log(newPath)
     router.push(`/${newPath}`)
   }
 
