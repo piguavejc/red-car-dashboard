@@ -1,10 +1,10 @@
 import Breadcrumb from '@/core/shared/components/breadcrumb'
 
-export default function DashboardPage() {
+export default function page() {
   return (
-    <header>
+    <div>
       <Breadcrumb />
-      <p>dashboard</p>
-    </header>
+      <p>page</p>
+    </div>
   )
 }
