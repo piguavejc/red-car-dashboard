@@ -24,7 +24,7 @@ export default function Breadcrumb() {
   }
 
   return (
-    <Flex>
+    <Flex className="w-auto justify-start">
       {routes.map((route) => {
         return (
           <Flex key={route}>
