@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils'
 import { useCollapsed } from '@/store'
 import { useEffect } from 'react'
 
-interface SiderProps extends React.ComponentProps<'section'> {
+interface SidebarProps extends React.ComponentProps<'section'> {
   title: string
 }
-export default function Sider({ className, title }: SiderProps) {
+export default function Sidebar({ className, title }: SidebarProps) {
   const { setIsCollapsed, isCollapsed } = useCollapsed()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Sider({ className, title }: SiderProps) {
 
   return (
     <Card className={cn('space-y-5', className, isCollapsed && 'hidden')}>
-      <SiderTitle title={title} />
+      <SideBarTitle title={title} />
       <ul className="space-y-4">
         <Menu text={'Category'} href={'/'} />
         <Menu text={'Product'} href={'/'} />
@@ -40,7 +40,7 @@ export default function Sider({ className, title }: SiderProps) {
   )
 }
 
-const SiderTitle = ({ title }: { title: string }) => {
+const SideBarTitle = ({ title }: { title: string }) => {
   const { isCollapsed } = useCollapsed()
 
   return isCollapsed ? (
