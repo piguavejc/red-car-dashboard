@@ -4,7 +4,7 @@ import Flex from '@/core/shared/components/layout/flex'
 import FormCreate from '@/core/shared/components/form/form-create'
 import { z } from 'zod'
 
-export default function ProductsPage() {
+export default function ProductCreatePage() {
   const schema = z.object({
     name: z.string(),
     price: z.number()
