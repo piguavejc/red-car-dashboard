@@ -9,8 +9,9 @@ import { useEffect } from 'react'
 
 interface SidebarProps extends React.ComponentProps<'section'> {
   title: string
+  routes: DashboardRoutes
 }
-export default function Sidebar({ className, title }: SidebarProps) {
+export default function Sidebar({ className, title, routes }: SidebarProps) {
   const { setIsCollapsed, isCollapsed } = useCollapsed()
 
   useEffect(() => {
@@ -33,8 +34,9 @@ export default function Sidebar({ className, title }: SidebarProps) {
     <Card className={cn('space-y-5', className, isCollapsed && 'hidden')}>
       <SideBarTitle title={title} />
       <ul className="space-y-4">
-        <Menu text={'Category'} href={'/'} />
-        <Menu text={'Product'} href={'/'} />
+        {routes.map((route) => (
+          <Menu key={route.name} text={route.name} href={route.list ?? ''} />
+        ))}
       </ul>
     </Card>
   )
