@@ -1,5 +1,8 @@
 import Breadcrumb from '@/core/shared/components/breadcrumb'
-import { Button } from '@/components/ui/button'
+import ButtonCreate from '@/core/shared/components/buttons/button-create'
+import ButtonDelete from '@/core/shared/components/buttons/button-delete'
+import ButtonEdit from '@/core/shared/components/buttons/button-edit'
+import ButtonShow from '@/core/shared/components/buttons/button-show'
 import Flex from '@/core/shared/components/layout/flex'
 import { Table } from '@/core/shared/components/table/table'
 
@@ -74,15 +77,16 @@ export default function page() {
   return (
     <Flex className="w-full flex-col items-start justify-start space-y-2">
       <Breadcrumb />
+      <ButtonCreate />
       <Table
         data={data}
         className="w-full max-w-6xl self-center"
         header={header}
         actions={({ entity }) => (
           <Flex>
-            <Button>editar {entity.id}</Button>
-            <Button>mostrar</Button>
-            <Button>eliminar</Button>
+            <ButtonEdit id={entity.id} />
+            <ButtonShow id={entity.id} />
+            <ButtonDelete id={entity.id} />
           </Flex>
         )}
       />
