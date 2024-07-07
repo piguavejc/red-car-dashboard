@@ -21,7 +21,7 @@ type RecordWithId = {
 type RecordsArray = RecordWithId[]
 
 interface TableProps extends React.ComponentProps<typeof Card> {
-  header: Record<string, String>
+  header: Record<string, string>
   data: RecordsArray
   actions?: ({ entity }: { entity: RecordWithId }) => React.ReactNode
 }

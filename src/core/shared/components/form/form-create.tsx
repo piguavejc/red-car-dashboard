@@ -9,21 +9,26 @@ import Flex from '@/core/shared/components/layout/flex'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { ZodObject, type z } from 'zod'
+import { useForm, type DefaultValues } from 'react-hook-form'
+import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
-interface FormCreateProps {
-  schema: ZodObject<any, any, any, any, any>
+interface FormCreateProps<T extends Record<string, unknown>> {
+  schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
 }
 
-export default function FormCreate({ schema }: FormCreateProps) {
+export default function FormCreate<T extends Record<string, unknown>>({
+  schema
+}: FormCreateProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
   //   const valuesSchema = Object.values(schema.shape)
-  const defaultValues: TypeSchema = keysSchema.reduce((object, key) => {
-    object[key] = ''
-    return object
-  }, {} as TypeSchema)
+  const defaultValues: DefaultValues<TypeSchema> = keysSchema.reduce(
+    (object, key) => {
+      object[key as keyof TypeSchema] = '' as TypeSchema[keyof TypeSchema]
+      return object
+    },
+    {} as DefaultValues<TypeSchema>
+  )
 
   const pathName = usePathname()
   const [title, setTitle] = useState<string>('')
@@ -34,7 +39,9 @@ export default function FormCreate({ schema }: FormCreateProps) {
   })
   const { isSubmitting } = form.formState
 
-  const onSubmit = async (values: TypeSchema) => {}
+  const onSubmit = async (values: TypeSchema) => {
+    console.log(values)
+  }
 
   useEffect(() => {
     if (pathName.endsWith('/create')) {
@@ -58,13 +65,13 @@ export default function FormCreate({ schema }: FormCreateProps) {
                 <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {keysSchema.map((key) => (
+                {keysSchema.map((accessorKey) => (
                   <FormField
-                    key={key}
-                    label={key}
+                    key={accessorKey}
+                    label={accessorKey}
                     placeholder={''}
                     control={form.control}
-                    fieldKey={key}
+                    accessorKey={accessorKey}
                   />
                 ))}
                 <Flex>

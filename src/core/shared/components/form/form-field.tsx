@@ -7,21 +7,25 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import type { Control, FieldValues, Path } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
-import type { Control } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 
-interface FormFieldProps extends React.ComponentProps<'div'> {
+interface FormFieldProps<T extends FieldValues>
+  extends React.ComponentProps<'div'> {
   label: string
-  control: Control<any>
-  fieldKey: string
+  control: Control<T>
+  accessorKey: keyof T
   placeholder: string
   type?: 'text' | 'password'
 }
 
-export default function FormField({ type = 'text', ...props }: FormFieldProps) {
+export default function FormField<T extends FieldValues>({
+  type = 'text',
+  ...props
+}: FormFieldProps<T>) {
   if (type === 'text') {
     return <FieldText {...props} type={type} />
   }
@@ -31,27 +35,27 @@ export default function FormField({ type = 'text', ...props }: FormFieldProps) {
   }
 }
 
-const FieldText = ({
+const FieldText = <T extends FieldValues>({
   control,
-  fieldKey,
+  accessorKey,
   label,
   placeholder
-}: FormFieldProps) => {
+}: FormFieldProps<T>) => {
+  const name = accessorKey as Path<T>
   return (
     <BaseFormField
       control={control}
-      name={fieldKey}
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel htmlFor={fieldKey}>{label}</FormLabel>
-
+          <FormLabel htmlFor={name}>{label}</FormLabel>
           <FormControl>
             <Input
               {...field}
               type="text"
-              id={fieldKey}
+              id={name}
               placeholder={placeholder}
-              autoComplete={fieldKey}
+              autoComplete={name}
             />
           </FormControl>
           <FormMessage />
@@ -60,13 +64,12 @@ const FieldText = ({
     />
   )
 }
-const FieldPassword = ({
+const FieldPassword = <T extends FieldValues>({
   control,
-  fieldKey,
+  accessorKey,
   label,
-  type,
   placeholder
-}: FormFieldProps) => {
+}: FormFieldProps<T>) => {
   const [buttonText, setButtonText] = useState<string>('Mostrar')
   const [inputType, setInputType] = useState<string>('password')
   const togglePasswordVisibility = () => {
@@ -74,22 +77,24 @@ const FieldPassword = ({
     setInputType(inputType === 'text' ? 'password' : 'text')
   }
 
+  const name = accessorKey as Path<T>
+
   return (
     <BaseFormField
       control={control}
-      name={fieldKey}
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel htmlFor={fieldKey}>{label}</FormLabel>
+          <FormLabel htmlFor={name}>{label}</FormLabel>
 
           <FormControl>
             <div className="flex justify-between space-x-2">
               <Input
                 {...field}
                 type={inputType}
-                id={fieldKey}
+                id={name}
                 placeholder={placeholder}
-                autoComplete={fieldKey}
+                autoComplete={name}
               />
               <Button
                 type="button"
