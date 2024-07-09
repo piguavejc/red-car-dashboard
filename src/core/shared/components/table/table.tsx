@@ -36,8 +36,6 @@ export function Table({
   const headers = Object.values(header)
   const Headerkeys = Object.keys(header)
 
-  if (actions) headers.push('Actions')
-
   return (
     <Card className={cn('', className)} {...props}>
       <CardHeader>
@@ -53,6 +51,7 @@ export function Table({
                   {name}
                 </TableHead>
               ))}
+              {actions && <TableHead className="text-end">Actions</TableHead>}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -66,11 +65,7 @@ export function Table({
                       </TableCell>
                     )
                   })}
-                  {actions && (
-                    <TableCell className="text-center">
-                      {actions({ entity })}
-                    </TableCell>
-                  )}
+                  {actions && <TableCell>{actions({ entity })}</TableCell>}
                 </TableRow>
               )
             })}

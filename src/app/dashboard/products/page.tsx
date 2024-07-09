@@ -83,7 +83,7 @@ export default function page() {
         className="w-full max-w-6xl self-center"
         header={header}
         actions={({ entity }) => (
-          <Flex>
+          <Flex className="justify-end">
             <ButtonEdit id={entity.id} />
             <ButtonShow id={entity.id} />
             <ButtonDelete id={entity.id} />
