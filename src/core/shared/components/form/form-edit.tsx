@@ -9,30 +9,35 @@ import Flex from '@/core/shared/components/layout/flex'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { ZodObject, type z } from 'zod'
+import { useForm, type DefaultValues } from 'react-hook-form'
+import { ZodObject, type z, type ZodType } from 'zod'
 
-interface FormEditProps {
-  schema: ZodObject<any, any, any, any, any>
-  data: Record<string, any>
+interface FormEditProps<T extends Record<string, unknown>> {
+  schema: ZodObject<{ [K in keyof T]: ZodType }>
+  defaultValues: Record<keyof T, unknown>
 }
 
-export default function FormEdit({ schema, data }: FormEditProps) {
+export default function FormEdit<T extends Record<string, unknown>>({
+  schema,
+  defaultValues
+}: FormEditProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
-  //   const valuesSchema = Object.values(schema.shape)
-  const defaultValues: TypeSchema = data as TypeSchema
 
   const pathName = usePathname()
   const [title, setTitle] = useState<string>('')
 
   const form = useForm<TypeSchema>({
     resolver: zodResolver(schema),
-    defaultValues
+    defaultValues: {
+      ...(defaultValues as DefaultValues<TypeSchema>)
+    }
   })
   const { isSubmitting } = form.formState
 
-  const onSubmit = async (values: TypeSchema) => {}
+  const onSubmit = async (values: TypeSchema) => {
+    console.log(values)
+  }
 
   useEffect(() => {
     if (pathName.includes('/edit')) {
@@ -62,7 +67,7 @@ export default function FormEdit({ schema, data }: FormEditProps) {
                     label={key}
                     placeholder={''}
                     control={form.control}
-                    fieldKey={key}
+                    accessorKey={key}
                   />
                 ))}
                 <Flex>

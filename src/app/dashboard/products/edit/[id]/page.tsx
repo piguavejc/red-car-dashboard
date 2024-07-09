@@ -6,17 +6,19 @@ import { z } from 'zod'
 
 export default function ProductEditPage() {
   const schema = z.object({
-    name: z.string(),
+    name: z.number(),
     price: z.number()
   })
-  type TypeSchema = z.infer<typeof schema>
-  const data: TypeSchema = {
-    name: 'Product 1',
-    price: 100
-  }
+
   return (
     <Flex className="w-full flex-1 items-stretch">
-      <FormEdit schema={schema} data={data} />
+      <FormEdit
+        schema={schema}
+        defaultValues={{
+          name: '',
+          price: ''
+        }}
+      />
     </Flex>
   )
 }
