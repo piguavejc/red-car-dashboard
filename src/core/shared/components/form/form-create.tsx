@@ -21,7 +21,7 @@ export default function FormCreate<T extends Record<string, unknown>>({
 }: FormCreateProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
-  //   const valuesSchema = Object.values(schema.shape)
+  const valuesSchema = Object.values(schema.shape)
   const defaultValues: DefaultValues<TypeSchema> = keysSchema.reduce(
     (object, key) => {
       object[key as keyof TypeSchema] = '' as TypeSchema[keyof TypeSchema]
@@ -65,15 +65,46 @@ export default function FormCreate<T extends Record<string, unknown>>({
                 <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {keysSchema.map((accessorKey) => (
-                  <FormField
-                    key={accessorKey}
-                    label={accessorKey}
-                    placeholder={''}
-                    control={form.control}
-                    accessorKey={accessorKey}
-                  />
-                ))}
+                {keysSchema.map((accessorKey, index) => {
+                  const typeSchema = valuesSchema[index]._def.typeName
+
+                  if (typeSchema === 'ZodNumber') {
+                    return (
+                      <FormField
+                        key={accessorKey}
+                        label={accessorKey}
+                        type={'number'}
+                        placeholder={''}
+                        control={form.control}
+                        accessorKey={accessorKey}
+                      />
+                    )
+                  }
+
+                  if (typeSchema === 'ZodEffects') {
+                    return (
+                      <FormField
+                        key={accessorKey}
+                        label={accessorKey}
+                        type={'upload'}
+                        placeholder={''}
+                        control={form.control}
+                        accessorKey={accessorKey}
+                      />
+                    )
+                  }
+
+                  return (
+                    <FormField
+                      key={accessorKey}
+                      label={accessorKey}
+                      type="text"
+                      placeholder={''}
+                      control={form.control}
+                      accessorKey={accessorKey}
+                    />
+                  )
+                })}
                 <Flex>
                   <Button variant={'outline'}>Cancelar</Button>
                   <Button disabled={isSubmitting} type="submit">

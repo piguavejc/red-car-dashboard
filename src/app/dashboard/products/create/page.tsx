@@ -8,13 +8,24 @@ export default function ProductCreatePage() {
   interface Product {
     name: string
     price: number
+    image: File
   }
 
   type TypeSchema<T> = { [K in keyof T]: ZodTypeAny }
 
   const schema = z.object<TypeSchema<Product>>({
     name: z.string(),
-    price: z.number()
+    price: z.number(),
+    image: z
+      .instanceof(File)
+      .refine(
+        (file) => file.size < 2 * 1024 * 1024,
+        'File size must be less than 2MB'
+      )
+      .refine(
+        (file) => file.size < 2 * 1024 * 1024,
+        'File size must be less than 2MB'
+      )
   })
 
   return (

@@ -1,17 +1,11 @@
 'use client'
 
-import {
-  FormField as BaseFormField,
-  FormControl,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { Control, FieldValues } from 'react-hook-form'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import { FieldNumber } from '@/core/shared/components/form/field-number'
+import { FieldPassword } from '@/core/shared/components/form/field-password'
+import { FieldText } from '@/core/shared/components/form/field-text'
+import { FieldUpload } from '@/core/shared/components/form/field-upload'
 
 interface FormFieldProps<T extends FieldValues>
   extends React.ComponentProps<'div'> {
@@ -19,7 +13,7 @@ interface FormFieldProps<T extends FieldValues>
   control: Control<T>
   accessorKey: keyof T
   placeholder: string
-  type?: 'text' | 'password'
+  type?: FieldTypes
 }
 
 export default function FormField<T extends FieldValues>({
@@ -27,87 +21,18 @@ export default function FormField<T extends FieldValues>({
   ...props
 }: FormFieldProps<T>) {
   if (type === 'text') {
-    return <FieldText {...props} type={type} />
+    return <FieldText {...props} />
   }
 
   if (type === 'password') {
-    return <FieldPassword {...props} type={type} />
-  }
-}
-
-const FieldText = <T extends FieldValues>({
-  control,
-  accessorKey,
-  label,
-  placeholder
-}: FormFieldProps<T>) => {
-  const name = accessorKey as Path<T>
-  return (
-    <BaseFormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel htmlFor={name}>{label}</FormLabel>
-          <FormControl>
-            <Input
-              {...field}
-              type="text"
-              id={name}
-              placeholder={placeholder}
-              autoComplete={name}
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  )
-}
-const FieldPassword = <T extends FieldValues>({
-  control,
-  accessorKey,
-  label,
-  placeholder
-}: FormFieldProps<T>) => {
-  const [buttonText, setButtonText] = useState<string>('Mostrar')
-  const [inputType, setInputType] = useState<string>('password')
-  const togglePasswordVisibility = () => {
-    setButtonText(buttonText === 'Mostrar' ? 'Ocultar' : 'Mostrar')
-    setInputType(inputType === 'text' ? 'password' : 'text')
+    return <FieldPassword {...props} />
   }
 
-  const name = accessorKey as Path<T>
+  if (type === 'number') {
+    return <FieldNumber {...props} />
+  }
 
-  return (
-    <BaseFormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel htmlFor={name}>{label}</FormLabel>
-
-          <FormControl>
-            <div className="flex justify-between space-x-2">
-              <Input
-                {...field}
-                type={inputType}
-                id={name}
-                placeholder={placeholder}
-                autoComplete={name}
-              />
-              <Button
-                type="button"
-                variant={'ghost'}
-                onClick={togglePasswordVisibility} // Usando el nuevo nombre de función
-              >
-                {buttonText}
-              </Button>
-            </div>
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  )
+  if (type === 'upload') {
+    return <FieldUpload {...props} />
+  }
 }
