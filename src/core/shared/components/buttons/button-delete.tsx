@@ -10,21 +10,23 @@ import {
 } from '@/components/ui/dialog'
 
 import { Button } from '@/components/ui/button'
+import { Trash } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface ButtonDeleteProps extends React.ComponentProps<typeof Button> {
-  text?: string
   id: string
 }
 export default function ButtonDelete({
   id,
-  text = 'Eliminar',
   className,
   ...props
 }: ButtonDeleteProps) {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button>{text}</Button>
+        <Button variant={'outline'} className={cn('', className)} {...props}>
+          <Trash size={15} />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

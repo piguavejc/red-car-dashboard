@@ -3,15 +3,14 @@
 import { usePathname, useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
+import { Pencil } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface ButtonEditProps extends React.ComponentProps<typeof Button> {
-  text?: string
   id: string
 }
 export default function ButtonEdit({
   id,
-  text = 'Editar',
   className,
   ...props
 }: ButtonEditProps) {
@@ -23,8 +22,13 @@ export default function ButtonEdit({
     router.push(`/dashboard/${route}/edit/${id}`)
   }
   return (
-    <Button className={cn('', className)} {...props} onClick={redirectToEdit}>
-      {text}
+    <Button
+      className={cn('', className)}
+      variant={'outline'}
+      {...props}
+      onClick={redirectToEdit}
+    >
+      <Pencil size={15} />
     </Button>
   )
 }
