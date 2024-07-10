@@ -2,22 +2,22 @@
 
 import Flex from '@/core/shared/components/layout/flex'
 import FormEdit from '@/core/shared/components/form/form-edit'
-import { z } from 'zod'
+import { ProductDtoSchema } from '@/core/product/domain/dto/product-dto'
 
 export default function ProductEditPage() {
-  const schema = z.object({
-    name: z.number(),
-    price: z.number()
-  })
-
   return (
     <Flex className="w-full flex-1 items-stretch">
       <FormEdit
-        schema={schema}
+        schema={ProductDtoSchema}
         defaultValues={{
-          name: '',
-          price: ''
+          id: '12345',
+          name: 'hola',
+          description: 'jaajskhs'
         }}
+        labels={['Id', 'Nombre', 'Descripción']}
+        showFields={['id', 'name', 'description']}
+        placeholders={['id', 'name', 'description']}
+        typesInput={['text', 'text', 'textarea']}
       />
     </Flex>
   )
