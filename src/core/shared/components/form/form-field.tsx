@@ -2,6 +2,7 @@
 
 import type { Control, FieldValues } from 'react-hook-form'
 
+import { FieldEmail } from '@/core/shared/components/form/field-email'
 import { FieldNumber } from '@/core/shared/components/form/field-number'
 import { FieldPassword } from '@/core/shared/components/form/field-password'
 import { FieldText } from '@/core/shared/components/form/field-text'
@@ -39,5 +40,9 @@ export default function FormField<T extends FieldValues>({
 
   if (type === 'upload') {
     return <FieldUpload {...props} />
+  }
+
+  if (type === 'email') {
+    return <FieldEmail {...props} />
   }
 }
