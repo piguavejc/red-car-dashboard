@@ -1,6 +1,9 @@
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import RegisterForm from '@/core/auth/components/forms/register-for'
+import FormAuth from '@/core/shared/components/form/form-auth'
+import { loginSchema } from '@/core/auth/domain/entities/login-entity'
 
 export default function RegisterSection() {
   return (
@@ -12,7 +15,13 @@ export default function RegisterSection() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <RegisterForm />
+          <FormAuth
+            schema={loginSchema}
+            typesInput={['email', 'password']}
+            placeholders={['Correo', 'Contraseña']}
+            labels={['Correo', 'Contraseña']}
+            showFields={['email', 'password']}
+          />
         </CardContent>
       </Card>
     </div>

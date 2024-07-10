@@ -1,6 +1,9 @@
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import LoginForm from '@/core/auth/components/forms/login-form'
+import FormAuth from '@/core/shared/components/form/form-auth'
+import { loginSchema } from '@/core/auth/domain/entities/login-entity'
 
 export default function LoginSection() {
   return (
@@ -12,7 +15,13 @@ export default function LoginSection() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <LoginForm />
+          <FormAuth
+            schema={loginSchema}
+            typesInput={['email', 'password']}
+            placeholders={['Correo', 'Contraseña']}
+            labels={['Correo', 'Contraseña']}
+            showFields={['email', 'password']}
+          />
         </CardContent>
       </Card>
     </div>
