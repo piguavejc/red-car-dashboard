@@ -13,17 +13,21 @@ import { useForm, type DefaultValues } from 'react-hook-form'
 import { ZodObject, type z, type ZodType } from 'zod'
 
 interface FormEditProps<T extends Record<string, unknown>> {
+  labels: string[]
   schema: ZodObject<{ [K in keyof T]: ZodType }>
   defaultValues: Record<keyof T, unknown>
   placeholders: string[]
   typesInput: FieldTypes[]
+  showFields: (keyof T)[]
 }
 
 export default function FormEdit<T extends Record<string, unknown>>({
+  labels,
   schema,
   defaultValues,
   placeholders,
-  typesInput
+  typesInput,
+  showFields
 }: FormEditProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
@@ -68,10 +72,15 @@ export default function FormEdit<T extends Record<string, unknown>>({
                 {keysSchema.map((key, index) => {
                   const type = typesInput[index]
                   const placeholder = placeholders[index]
+                  const isVisibled = showFields.includes(key as keyof T)
+                  const label = labels[index]
+
+                  if (!isVisibled) return null
+
                   return (
                     <FormField
                       key={key}
-                      label={key}
+                      label={label}
                       placeholder={placeholder}
                       type={type}
                       control={form.control}
