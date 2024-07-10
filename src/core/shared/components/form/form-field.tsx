@@ -5,6 +5,7 @@ import type { Control, FieldValues } from 'react-hook-form'
 import { FieldNumber } from '@/core/shared/components/form/field-number'
 import { FieldPassword } from '@/core/shared/components/form/field-password'
 import { FieldText } from '@/core/shared/components/form/field-text'
+import { FieldTextArea } from '@/core/shared/components/form/field-textarea'
 import { FieldUpload } from '@/core/shared/components/form/field-upload'
 
 interface FormFieldProps<T extends FieldValues>
@@ -30,6 +31,10 @@ export default function FormField<T extends FieldValues>({
 
   if (type === 'number') {
     return <FieldNumber {...props} />
+  }
+
+  if (type === 'textarea') {
+    return <FieldTextArea {...props} />
   }
 
   if (type === 'upload') {

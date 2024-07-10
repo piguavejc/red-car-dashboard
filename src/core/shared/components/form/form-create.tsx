@@ -14,14 +14,17 @@ import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
 interface FormCreateProps<T extends Record<string, unknown>> {
   schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
+  typesInput: FieldTypes[]
+  placeholders: string[]
 }
 
 export default function FormCreate<T extends Record<string, unknown>>({
-  schema
+  schema,
+  typesInput,
+  placeholders
 }: FormCreateProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
-  const valuesSchema = Object.values(schema.shape)
   const defaultValues: DefaultValues<TypeSchema> = keysSchema.reduce(
     (object, key) => {
       object[key as keyof TypeSchema] = '' as TypeSchema[keyof TypeSchema]
@@ -66,40 +69,15 @@ export default function FormCreate<T extends Record<string, unknown>>({
               </CardHeader>
               <CardContent className="space-y-4">
                 {keysSchema.map((accessorKey, index) => {
-                  const typeSchema = valuesSchema[index]._def.typeName
-
-                  if (typeSchema === 'ZodNumber') {
-                    return (
-                      <FormField
-                        key={accessorKey}
-                        label={accessorKey}
-                        type={'number'}
-                        placeholder={''}
-                        control={form.control}
-                        accessorKey={accessorKey}
-                      />
-                    )
-                  }
-
-                  if (typeSchema === 'ZodEffects') {
-                    return (
-                      <FormField
-                        key={accessorKey}
-                        label={accessorKey}
-                        type={'upload'}
-                        placeholder={''}
-                        control={form.control}
-                        accessorKey={accessorKey}
-                      />
-                    )
-                  }
+                  const type = typesInput[index]
+                  const placeholder = placeholders[index]
 
                   return (
                     <FormField
                       key={accessorKey}
                       label={accessorKey}
-                      type="text"
-                      placeholder={''}
+                      type={type}
+                      placeholder={placeholder}
                       control={form.control}
                       accessorKey={accessorKey}
                     />

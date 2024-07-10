@@ -1,1 +1,7 @@
-type FieldTypes = 'text' | 'password' | 'upload' | 'number'
+type FieldTypes =
+  | 'text'
+  | 'password'
+  | 'upload'
+  | 'number'
+  | 'email'
+  | 'textarea'
