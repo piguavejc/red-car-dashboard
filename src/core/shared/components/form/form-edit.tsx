@@ -15,11 +15,15 @@ import { ZodObject, type z, type ZodType } from 'zod'
 interface FormEditProps<T extends Record<string, unknown>> {
   schema: ZodObject<{ [K in keyof T]: ZodType }>
   defaultValues: Record<keyof T, unknown>
+  placeholders: string[]
+  typesInput: FieldTypes[]
 }
 
 export default function FormEdit<T extends Record<string, unknown>>({
   schema,
-  defaultValues
+  defaultValues,
+  placeholders,
+  typesInput
 }: FormEditProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
@@ -61,15 +65,20 @@ export default function FormEdit<T extends Record<string, unknown>>({
                 <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {keysSchema.map((key) => (
-                  <FormField
-                    key={key}
-                    label={key}
-                    placeholder={''}
-                    control={form.control}
-                    accessorKey={key}
-                  />
-                ))}
+                {keysSchema.map((key, index) => {
+                  const type = typesInput[index]
+                  const placeholder = placeholders[index]
+                  return (
+                    <FormField
+                      key={key}
+                      label={key}
+                      placeholder={placeholder}
+                      type={type}
+                      control={form.control}
+                      accessorKey={key}
+                    />
+                  )
+                })}
                 <Flex>
                   <Button variant={'outline'}>Cancelar</Button>
                   <Button disabled={isSubmitting} type="submit">
