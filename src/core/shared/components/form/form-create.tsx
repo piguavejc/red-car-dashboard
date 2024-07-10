@@ -16,10 +16,14 @@ interface FormCreateProps<T extends Record<string, unknown>> {
   schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
   typesInput: FieldTypes[]
   placeholders: string[]
+  labels: string[]
+  showFields: (keyof T)[]
 }
 
 export default function FormCreate<T extends Record<string, unknown>>({
   schema,
+  labels,
+  showFields,
   typesInput,
   placeholders
 }: FormCreateProps<T>) {
@@ -71,11 +75,15 @@ export default function FormCreate<T extends Record<string, unknown>>({
                 {keysSchema.map((accessorKey, index) => {
                   const type = typesInput[index]
                   const placeholder = placeholders[index]
+                  const label = labels[index]
+                  const isVisibled = showFields.includes(accessorKey as keyof T)
+
+                  if (!isVisibled) return null
 
                   return (
                     <FormField
                       key={accessorKey}
-                      label={accessorKey}
+                      label={label}
                       type={type}
                       placeholder={placeholder}
                       control={form.control}
