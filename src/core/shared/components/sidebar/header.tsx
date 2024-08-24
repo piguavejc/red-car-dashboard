@@ -1,6 +1,5 @@
 import { Card, CardTitle } from '@/components/ui/card'
 
-import ButtonCollapsed from '@/core/shared/components/buttons/button-collapsed'
 import ButtonTheme from '@/core/shared/components/buttons/button-theme'
 import Flex from '@/core/shared/components/layout/flex'
 import Image from 'next/image'
@@ -13,7 +12,6 @@ export default function Header({ className }: HeaderProps) {
     <Card className={cn('w-full', className)}>
       <Flex>
         <Flex>
-          <ButtonCollapsed />
           <ButtonTheme />
         </Flex>
         <Flex>

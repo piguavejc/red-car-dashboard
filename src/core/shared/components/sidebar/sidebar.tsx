@@ -4,34 +4,14 @@ import { Card } from '@/components/ui/card'
 import Menu from '@/core/shared/components/sidebar/menu'
 import type React from 'react'
 import { cn } from '@/lib/utils'
-import { useCollapsed } from '@/store'
-import { useEffect } from 'react'
 
 interface SidebarProps extends React.ComponentProps<'section'> {
   title: string
   routes: DashboardRoutes
 }
 export default function Sidebar({ className, title, routes }: SidebarProps) {
-  const { setIsCollapsed, isCollapsed } = useCollapsed()
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsCollapsed(true)
-      } else {
-        setIsCollapsed(false)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    handleResize()
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
-    <Card className={cn('space-y-5', className, isCollapsed && 'hidden')}>
+    <Card className={cn('space-y-5', className)}>
       <SideBarTitle title={title} />
       <ul className="space-y-4">
         {routes.map((route) => (
@@ -43,13 +23,7 @@ export default function Sidebar({ className, title, routes }: SidebarProps) {
 }
 
 const SideBarTitle = ({ title }: { title: string }) => {
-  const { isCollapsed } = useCollapsed()
-
-  return isCollapsed ? (
-    <div>
-      <p className="text-center text-xl font-bold">{title.charAt(0)}</p>
-    </div>
-  ) : (
+  return (
     <div>
       <p className="text-xl font-bold">{title}</p>
     </div>
