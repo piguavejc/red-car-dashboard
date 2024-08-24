@@ -7,7 +7,7 @@ interface FlexProps extends React.ComponentProps<'div'> {
 export default function Flex({ className, children, ...props }: FlexProps) {
   return (
     <div
-      className={cn('flex items-center justify-between space-x-2', className)}
+      className={cn('flex items-center justify-between', className)}
       {...props}
     >
       {children}
