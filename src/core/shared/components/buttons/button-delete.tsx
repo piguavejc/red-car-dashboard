@@ -23,7 +23,7 @@ export default function ButtonDelete({
 }: ButtonDeleteProps) {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant={'outline'} className={cn('', className)} {...props}>
           <Trash size={15} />
         </Button>
