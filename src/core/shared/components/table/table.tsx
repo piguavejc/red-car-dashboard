@@ -47,7 +47,7 @@ export function Table({
           <TableHeader>
             <TableRow>
               {headers.map((name, i) => (
-                <TableHead className="text-center" key={i}>
+                <TableHead className="text-nowrap text-center" key={i}>
                   {name}
                 </TableHead>
               ))}
@@ -60,7 +60,7 @@ export function Table({
                 <TableRow key={entity.id}>
                   {Headerkeys.map((key) => {
                     return (
-                      <TableCell key={key} className="text-center">
+                      <TableCell key={key} className="text-nowrap text-center">
                         {entity[key]}
                       </TableCell>
                     )
