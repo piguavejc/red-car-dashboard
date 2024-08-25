@@ -14,13 +14,16 @@ export default function DashboardLayout({
 }) {
   const routes = getDashboardRoutes()
   return (
-    <Flex className={cn('h-screen items-stretch p-2')}>
+    <Flex
+      className={cn('h-screen items-stretch p-2 lg:flex-row lg:space-x-2')}
+      initialValue={'column'}
+    >
       <Sidebar
         title={'Dashboard'}
-        className="hidden bg-background p-2"
+        className="hidden bg-background p-2 lg:block"
         routes={routes}
       />
-      <Flex className="w-full flex-col items-stretch">
+      <Flex className="w-full items-stretch" initialValue={'column'}>
         <Header className="bg-background p-2 md:p-5" />
         <Flex className="flex-1 items-stretch justify-stretch">{children}</Flex>
       </Flex>

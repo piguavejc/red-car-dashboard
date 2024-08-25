@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Flex from '@/core/shared/components/layout/flex'
 import Link from 'next/link'
 import type React from 'react'
 import { Separator } from '@/components/ui/separator'
@@ -38,7 +39,10 @@ const FooterForgotPassword = ({
   url: string
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between space-y-4">
+    <Flex
+      className="flex items-center justify-between space-y-4"
+      initialValue={'column'}
+    >
       <Button
         disabled={isSubmitting}
         type="submit"
@@ -74,7 +78,7 @@ const FooterForgotPassword = ({
           Activar Cuenta
         </Button>
       </div>
-    </div>
+    </Flex>
   )
 }
 
@@ -86,7 +90,10 @@ const FooterLogin = ({
   url: string
 }) => {
   return (
-    <div className="flex flex-col items-center justify-between space-y-4">
+    <Flex
+      className="flex items-center justify-between space-y-4"
+      initialValue={'column'}
+    >
       <Button
         disabled={isSubmitting}
         type="submit"
@@ -102,6 +109,6 @@ const FooterLogin = ({
       >
         ¿Ya tienes una cuenta?
       </Link>
-    </div>
+    </Flex>
   )
 }

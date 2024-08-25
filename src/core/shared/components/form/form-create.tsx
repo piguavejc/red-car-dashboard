@@ -59,9 +59,15 @@ export default function FormCreate<T extends Record<string, unknown>>({
   }, [pathName])
 
   return (
-    <Flex className="w-full flex-1 flex-col items-start space-y-5">
+    <Flex
+      className="w-full flex-1 items-start space-y-5"
+      initialValue={'column'}
+    >
       <Breadcrumb />
-      <Flex className="w-full flex-1 flex-col items-center justify-center">
+      <Flex
+        className="w-full flex-1 items-center justify-center"
+        initialValue={'column'}
+      >
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

@@ -75,7 +75,7 @@ export default function page() {
   ]
 
   return (
-    <Flex className="w-full flex-col items-start justify-start space-y-2">
+    <Flex className="w-full items-start justify-start" initialValue={'column'}>
       <Breadcrumb />
       <ButtonCreate />
       <Table
