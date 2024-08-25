@@ -1,7 +1,7 @@
 import { AlignJustify } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Flex from '@/core/shared/components/layout/flex'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import type React from 'react'
 import { cn } from '@/lib/utils'
 
