@@ -15,7 +15,7 @@ export default function Flex({
     <div
       className={cn(
         'flex items-center justify-between space-x-2',
-        initialValue === 'row' &&
+        initialValue === 'column' &&
           'flex-col items-start justify-start space-x-0 space-y-2',
         className
       )}
