@@ -5,7 +5,7 @@ import type {
   Message
 } from '@/core/shared/infrastructure/schema/shared.schema'
 
-import type { LoginEntity } from '@/core/auth/domain/entities/login-entity'
+import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
 import {
   handlingError,
   type ResponseSA
@@ -14,7 +14,7 @@ import myAxios from '@/core/shared/infrastructure/my-axios'
 import { cookies } from 'next/headers'
 
 export const login = async (
-  data: LoginEntity
+  data: LoginInput
 ): Promise<ResponseSA<AccessToken>> => {
   const result = await handlingError<AccessToken>(
     async (): Promise<AccessToken> => {
@@ -27,7 +27,7 @@ export const login = async (
 }
 
 export const register = async (
-  data: LoginEntity
+  data: LoginInput
 ): Promise<ResponseSA<Message>> => {
   const result = await handlingError<Message>(async () => {
     const result = await myAxios.post<Message>('/auth/register', data)

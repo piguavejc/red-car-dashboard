@@ -1,10 +1,10 @@
+import type { AccessToken } from '@/core/shared/infrastructure/schema/shared.schema'
 import { AuthLogin } from '@/core/auth/aplication/auth-login'
-import type { LoginDto } from '@/core/auth/domain/dto/login-dto'
-import type { LoginEntity } from '@/core/auth/domain/entities/login-entity'
+import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
+import type { ResponseSA } from '@/core/shared/infrastructure/action'
 
 export class AuthService {
-  static async login(data: LoginEntity): Promise<LoginDto> {
-    const { accessToken } = await AuthLogin.run(data)
-    return { accessToken }
+  static async login(data: LoginInput): Promise<ResponseSA<AccessToken>> {
+    return await AuthLogin.run(data)
   }
 }

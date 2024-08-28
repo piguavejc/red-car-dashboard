@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AuthLogin } from '@/core/auth/aplication/auth-login'
 
 import {
-  loginSchema,
-  type LoginEntity
+  loginInputSchema,
+  type LoginInput
 } from '@/core/auth/domain/entities/login-entity'
 import FormAuth from '@/core/shared/components/form/form-auth'
 import { useRouter } from 'next/navigation'
@@ -14,7 +14,7 @@ import toast from 'react-hot-toast'
 export default function LoginSection() {
   const router = useRouter()
 
-  const handleLogin = async (values: LoginEntity) => {
+  const handleLogin = async (values: LoginInput) => {
     const result = await AuthLogin.run(values)
     if (result.error !== null) {
       toast.error(result.error)
@@ -35,7 +35,7 @@ export default function LoginSection() {
         </CardHeader>
         <CardContent>
           <FormAuth
-            schema={loginSchema}
+            schema={loginInputSchema}
             typesInput={['email', 'password']}
             placeholders={['Correo', 'Contraseña']}
             labels={['Correo', 'Contraseña']}
