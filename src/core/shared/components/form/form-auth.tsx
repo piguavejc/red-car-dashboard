@@ -17,6 +17,7 @@ interface FormAuthProps<T extends Record<string, unknown>> {
   placeholders: string[]
   labels: string[]
   showFields: (keyof T)[]
+  handleSubmit: (values: T) => void
 }
 
 export default function FormAuth<T extends Record<string, unknown>>({
@@ -24,7 +25,8 @@ export default function FormAuth<T extends Record<string, unknown>>({
   labels,
   showFields,
   typesInput,
-  placeholders
+  placeholders,
+  handleSubmit
 }: FormAuthProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
@@ -46,7 +48,7 @@ export default function FormAuth<T extends Record<string, unknown>>({
   const { isSubmitting } = form.formState
 
   const onSubmit = async (values: TypeSchema) => {
-    console.log(values)
+    await handleSubmit(values as T)
   }
 
   useEffect(() => {
