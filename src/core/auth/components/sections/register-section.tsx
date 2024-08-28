@@ -30,6 +30,7 @@ export default function RegisterSection() {
             labels={['Correo', 'Contraseña']}
             showFields={['email', 'password']}
             handleSubmit={handleRegister}
+            formType="register"
           />
         </CardContent>
       </Card>

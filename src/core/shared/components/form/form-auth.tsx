@@ -1,11 +1,11 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form } from '@/components/ui/form'
 import FormField from '@/core/shared/components/form/form-field'
 import Flex from '@/core/shared/components/layout/flex'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm, type DefaultValues } from 'react-hook-form'
@@ -18,6 +18,7 @@ interface FormAuthProps<T extends Record<string, unknown>> {
   labels: string[]
   showFields: (keyof T)[]
   handleSubmit: (values: T) => void
+  formType?: 'login' | 'register'
 }
 
 export default function FormAuth<T extends Record<string, unknown>>({
@@ -26,7 +27,8 @@ export default function FormAuth<T extends Record<string, unknown>>({
   showFields,
   typesInput,
   placeholders,
-  handleSubmit
+  handleSubmit,
+  formType = 'login'
 }: FormAuthProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
@@ -45,7 +47,6 @@ export default function FormAuth<T extends Record<string, unknown>>({
     resolver: zodResolver(schema),
     defaultValues
   })
-  const { isSubmitting } = form.formState
 
   const onSubmit = async (values: TypeSchema) => {
     await handleSubmit(values as T)
@@ -58,6 +59,8 @@ export default function FormAuth<T extends Record<string, unknown>>({
       setTitle(title)
     }
   }, [pathName])
+
+  const { isSubmitting } = form.formState
 
   return (
     <Flex
@@ -98,8 +101,13 @@ export default function FormAuth<T extends Record<string, unknown>>({
                   )
                 })}
                 <Flex className="justify-end">
-                  <Button disabled={isSubmitting} type="submit">
-                    Iniciar Sesion
+                  <Button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="flex items-center space-x-2"
+                  >
+                    {formType === 'login' ? 'Iniciar Sesion' : 'Registrarse'}
+                    {isSubmitting && <Loader />}
                   </Button>
                 </Flex>
               </CardContent>
