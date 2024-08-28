@@ -8,10 +8,21 @@ import {
   type LoginEntity
 } from '@/core/auth/domain/entities/login-entity'
 import FormAuth from '@/core/shared/components/form/form-auth'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export default function RegisterSection() {
+  const router = useRouter()
+
   const handleRegister = async (values: LoginEntity) => {
-    await AuthRegister.run(values)
+    const result = await AuthRegister.run(values)
+    if (result.error !== null) {
+      toast.error(result.error)
+      return
+    }
+    toast.success('Usuario registrado correctamente')
+    router.push('/auth/login')
+    router.refresh()
   }
 
   return (
