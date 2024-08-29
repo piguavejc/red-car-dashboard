@@ -1,6 +1,6 @@
 import type { AccessToken } from '@/core/shared/infrastructure/schema/shared.schema'
 import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
-import type { ResponseSA } from '@/core/shared/infrastructure/action'
+import type { ResponseSA } from '@/core/shared/infrastructure/action/shared'
 import { login } from '@/core/auth/domain/action'
 
 export class AuthLogin {

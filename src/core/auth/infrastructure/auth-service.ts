@@ -1,7 +1,7 @@
 import type { AccessToken } from '@/core/shared/infrastructure/schema/shared.schema'
 import { AuthLogin } from '@/core/auth/aplication/auth-login'
 import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
-import type { ResponseSA } from '@/core/shared/infrastructure/action'
+import type { ResponseSA } from '@/core/shared/infrastructure/action/shared'
 
 export class AuthService {
   static async login(data: LoginInput): Promise<ResponseSA<AccessToken>> {

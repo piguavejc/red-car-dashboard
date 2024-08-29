@@ -9,7 +9,7 @@ import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
 import {
   handlingError,
   type ResponseSA
-} from '@/core/shared/infrastructure/action'
+} from '@/core/shared/infrastructure/action/shared'
 import myAxios from '@/core/shared/infrastructure/my-axios'
 import { cookies } from 'next/headers'
 
