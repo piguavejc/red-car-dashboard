@@ -14,11 +14,6 @@ import type React from 'react'
 import TypeCell from '@/core/shared/components/table/type-cell'
 import { cn } from '@/lib/utils'
 
-type RecordWithId = {
-  id: string
-  [key: string]: unknown
-}
-
 type RecordsArray = RecordWithId[]
 
 interface TableProps extends React.ComponentProps<typeof Card> {
