@@ -11,11 +11,12 @@ import {
 } from '@/components/ui/table'
 
 import type React from 'react'
+import TypeCell from '@/core/shared/components/table/type-cell'
 import { cn } from '@/lib/utils'
 
 type RecordWithId = {
   id: string
-  [key: string]: string
+  [key: string]: unknown
 }
 
 type RecordsArray = RecordWithId[]
@@ -59,11 +60,7 @@ export function Table({
               return (
                 <TableRow key={entity.id}>
                   {Headerkeys.map((key) => {
-                    return (
-                      <TableCell key={key} className="text-nowrap text-center">
-                        {entity[key]}
-                      </TableCell>
-                    )
+                    return <TypeCell key={key} value={entity[key]} />
                   })}
                   {actions && <TableCell>{actions({ entity })}</TableCell>}
                 </TableRow>
