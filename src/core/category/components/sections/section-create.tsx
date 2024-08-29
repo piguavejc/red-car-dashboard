@@ -6,22 +6,19 @@ import {
   type CategoryInputDto
 } from '@/core/category/domain/dto/category-input.dto'
 import FormCreate from '@/core/shared/components/form/form-create'
-import { useRouter } from 'next/navigation'
 
 import toast from 'react-hot-toast'
 
 export default function SectionCreate() {
-  const router = useRouter()
   const handleCreate = async (data: CategoryInputDto) => {
     const result = await CreateCategoryUseCase.run(data)
 
-    if (result.error !== null) {
-      toast.error(result.error)
+    if (result === undefined) {
+      toast.success('Categoría creada')
       return
     }
 
-    toast.success('Categoría creada')
-    router.push('/dashboard/categories')
+    toast.error(result.error)
   }
   return (
     <FormCreate

@@ -12,11 +12,12 @@ import toast from 'react-hot-toast'
 export default function SectionEdit({ category }: { category: Category }) {
   const handleSubmit = async (values: CategoryInputDto) => {
     const result = await UpdateCategoryUseCase.run(category.id, values)
-    if (result.error !== null) {
-      toast.error(result.error)
+    if (result === undefined) {
+      toast.success('Categoría actualizada')
       return
     }
-    toast.success('Categoría actualizada')
+    toast.error(result.error)
+    return
   }
 
   return (

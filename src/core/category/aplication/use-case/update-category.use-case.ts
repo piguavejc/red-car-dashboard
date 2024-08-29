@@ -7,7 +7,7 @@ export class UpdateCategoryUseCase {
   static async run(
     id: string,
     data: CategoryInputDto
-  ): Promise<ResponseSA<Category>> {
+  ): Promise<ResponseSA<Category | undefined>> {
     return await updateAction<Category>('categories', id, data)
   }
 }
