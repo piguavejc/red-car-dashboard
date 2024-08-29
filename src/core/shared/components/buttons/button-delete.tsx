@@ -16,7 +16,7 @@ import { Trash } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import deleteAction from '@/core/shared/infrastructure/action/action'
 import toast from 'react-hot-toast'
-import { usePathname } from 'next/navigation'
+import { useResource } from '@/core/shared/hook/use-resource'
 
 interface ButtonDeleteProps extends React.ComponentProps<typeof Button> {
   id: string
@@ -28,13 +28,10 @@ export default function ButtonDelete({
   className,
   ...props
 }: ButtonDeleteProps) {
-  const pathName = usePathname()
+  const { resource } = useResource()
 
   const handleDelete = async () => {
-    const resource = pathName.split('/')[2]
     const result = await deleteAction(resource, id)
-
-    console.log(resource)
 
     if (result.error !== null) {
       toast.error(result.error)
@@ -62,10 +59,9 @@ export default function ButtonDelete({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle> ¿Estás seguro de eliminar? </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Una vez eliminado no se podra recuperar la informacion
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

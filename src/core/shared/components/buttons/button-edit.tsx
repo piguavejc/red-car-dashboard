@@ -5,6 +5,7 @@ import { Link } from 'next-view-transitions'
 import { Pencil } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
+import { useResource } from '@/core/shared/hook/use-resource'
 
 interface ButtonEditProps extends React.ComponentProps<typeof Button> {
   id: string
@@ -17,10 +18,10 @@ export default function ButtonEdit({
   ...props
 }: ButtonEditProps) {
   const pathName = usePathname()
+  const { resource } = useResource()
 
   const generateUrl = (): string => {
-    const route = pathName.split('/')[2]
-    return `/dashboard/${route}/edit/${id}`
+    return `/dashboard/${resource}/edit/${id}`
   }
 
   return (
