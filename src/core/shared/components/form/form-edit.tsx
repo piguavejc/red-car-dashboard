@@ -5,8 +5,10 @@ import { Form } from '@/components/ui/form'
 import Breadcrumb from '@/core/shared/components/breadcrumb'
 import FormField from '@/core/shared/components/form/form-field'
 import Flex from '@/core/shared/components/layout/flex'
+import { useResource } from '@/core/shared/hook/use-resource'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader } from 'lucide-react'
+import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm, type DefaultValues } from 'react-hook-form'
@@ -31,6 +33,7 @@ export default function FormEdit<T extends Record<string, unknown>>({
   showFields,
   handleSubmit
 }: FormEditProps<T>) {
+  const { resource } = useResource()
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
 
@@ -97,7 +100,11 @@ export default function FormEdit<T extends Record<string, unknown>>({
                   )
                 })}
                 <Flex>
-                  <Button variant={'outline'}>Cancelar</Button>
+                  <Link href={`/dashboard/${resource} `}>
+                    <Button variant={'outline'} type="button">
+                      Cancelar
+                    </Button>
+                  </Link>
                   <Button
                     disabled={isSubmitting}
                     type="submit"
