@@ -16,6 +16,7 @@ export default async function CategoryEditPage({
   }
 
   const category = result.data
+
   return (
     <Flex className="w-full flex-1 items-stretch">
       <SectionEdit category={category} />
