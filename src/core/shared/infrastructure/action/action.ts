@@ -23,12 +23,12 @@ export default async function deleteAction<RecordWithId>(
 export async function createAction<RecordWithId>(
   resource: string,
   data: Record<string, unknown>
-): Promise<ResponseSA<RecordWithId>> {
+): Promise<ResponseSA<RecordWithId | undefined>> {
   const result = await handlingError<RecordWithId>(async () => {
     const result = await myAxios.post<RecordWithId>(`/${resource}`, data)
     return result.data
   })
-  if (result.error !== null) {
+  if (result.error === null) {
     revalidatePath(`/dashboard/${resource}`)
     redirect(`/dashboard/${resource}`)
   }
@@ -39,7 +39,7 @@ export async function updateAction<RecordWithId>(
   resource: string,
   id: string,
   data: Record<string, unknown>
-): Promise<ResponseSA<RecordWithId>> {
+): Promise<ResponseSA<RecordWithId | undefined>> {
   const result = await handlingError<RecordWithId>(async () => {
     const result = await myAxios.put<RecordWithId>(`/${resource}/${id}`, data)
     return result.data
