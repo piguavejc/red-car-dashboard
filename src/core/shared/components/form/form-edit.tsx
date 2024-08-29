@@ -1,5 +1,4 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form } from '@/components/ui/form'
@@ -7,18 +6,20 @@ import Breadcrumb from '@/core/shared/components/breadcrumb'
 import FormField from '@/core/shared/components/form/form-field'
 import Flex from '@/core/shared/components/layout/flex'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm, type DefaultValues } from 'react-hook-form'
-import { ZodObject, type z, type ZodType } from 'zod'
+import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
 interface FormEditProps<T extends Record<string, unknown>> {
   labels: string[]
-  schema: ZodObject<{ [K in keyof T]: ZodType }>
+  schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
   defaultValues: Record<keyof T, unknown>
   placeholders: string[]
   typesInput: FieldTypes[]
   showFields: (keyof T)[]
+  handleSubmit: (values: T) => Promise<void>
 }
 
 export default function FormEdit<T extends Record<string, unknown>>({
@@ -27,7 +28,8 @@ export default function FormEdit<T extends Record<string, unknown>>({
   defaultValues,
   placeholders,
   typesInput,
-  showFields
+  showFields,
+  handleSubmit
 }: FormEditProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
@@ -44,7 +46,7 @@ export default function FormEdit<T extends Record<string, unknown>>({
   const { isSubmitting } = form.formState
 
   const onSubmit = async (values: TypeSchema) => {
-    console.log(values)
+    await handleSubmit(values as T)
   }
 
   useEffect(() => {
@@ -96,8 +98,13 @@ export default function FormEdit<T extends Record<string, unknown>>({
                 })}
                 <Flex>
                   <Button variant={'outline'}>Cancelar</Button>
-                  <Button disabled={isSubmitting} type="submit">
+                  <Button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="flex items-center space-x-2"
+                  >
                     Guardar
+                    {isSubmitting && <Loader />}
                   </Button>
                 </Flex>
               </CardContent>
