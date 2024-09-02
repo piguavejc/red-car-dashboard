@@ -7,6 +7,7 @@ import {
 } from '@/core/laboratory/domain/dto/laboratory-input.dto'
 import type { Laboratory } from '@/core/laboratory/domain/entities/laboratory'
 import FormEdit from '@/core/shared/components/form/form-edit'
+import { createFields } from '@/lib/utils'
 import toast from 'react-hot-toast'
 
 export default function SectionEdit({
@@ -24,17 +25,30 @@ export default function SectionEdit({
     return
   }
 
+  const { defaultValues, fields } = createFields<LaboratoryInputDto>({
+    defaultValues: {
+      name: laboratory.name,
+      description: laboratory.description
+    },
+    fields: [
+      {
+        accessorKey: 'name',
+        label: 'Nombre',
+        type: 'text'
+      },
+      {
+        accessorKey: 'description',
+        label: 'Descripción',
+        type: 'textarea'
+      }
+    ]
+  })
+
   return (
     <FormEdit
       schema={laboratoryInputDtoSchema}
-      defaultValues={{
-        name: laboratory.name,
-        description: laboratory.description
-      }}
-      labels={['Nombre', 'Description']}
-      showFields={['name', 'description']}
-      placeholders={['name', 'description']}
-      typesInput={['text', 'textarea']}
+      defaultValues={defaultValues}
+      fields={fields}
       handleSubmit={handleSubmit}
     />
   )

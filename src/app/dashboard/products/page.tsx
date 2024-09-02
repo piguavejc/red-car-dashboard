@@ -10,6 +10,12 @@ import { Table } from '@/core/shared/components/table/table'
 export default async function page() {
   const header = {
     name: 'Nombre',
+    laboratory: {
+      name: 'Laboratorio'
+    },
+    category: {
+      name: 'Categoría'
+    },
     createdAt: 'Creado en',
     updatedAt: 'Actualizado en'
   }

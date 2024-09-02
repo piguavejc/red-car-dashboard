@@ -6,6 +6,7 @@ import {
   type CategoryInputDto
 } from '@/core/category/domain/dto/category-input.dto'
 import FormCreate from '@/core/shared/components/form/form-create'
+import { createFields } from '@/lib/utils'
 
 import toast from 'react-hot-toast'
 
@@ -20,13 +21,25 @@ export default function SectionCreate() {
 
     toast.error(result.error)
   }
+
+  const { defaultValues, fields } = createFields<CategoryInputDto>({
+    defaultValues: {
+      name: ''
+    },
+    fields: [
+      {
+        accessorKey: 'name',
+        label: 'Nombre',
+        type: 'text'
+      }
+    ]
+  })
+
   return (
     <FormCreate
       schema={categoryInputDtoSchema}
-      typesInput={['text']}
-      placeholders={['Nombre']}
-      labels={['Nombre']}
-      showFields={['name']}
+      fields={fields}
+      defaultValues={defaultValues}
       handleSubmit={handleCreate}
     />
   )

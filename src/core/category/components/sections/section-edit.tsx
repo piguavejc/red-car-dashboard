@@ -7,6 +7,7 @@ import {
 } from '@/core/category/domain/dto/category-input.dto'
 import type { Category } from '@/core/category/domain/entities/category'
 import FormEdit from '@/core/shared/components/form/form-edit'
+import { createFields } from '@/lib/utils'
 import toast from 'react-hot-toast'
 
 export default function SectionEdit({ category }: { category: Category }) {
@@ -20,17 +21,30 @@ export default function SectionEdit({ category }: { category: Category }) {
     return
   }
 
+  const { defaultValues, fields } = createFields<CategoryInputDto>({
+    defaultValues: {
+      name: category.name,
+      description: category.description
+    },
+    fields: [
+      {
+        accessorKey: 'name',
+        label: 'Nombre',
+        type: 'text'
+      },
+      {
+        accessorKey: 'description',
+        label: 'Descripción',
+        type: 'textarea'
+      }
+    ]
+  })
+
   return (
     <FormEdit
       schema={categoryInputDtoSchema}
-      defaultValues={{
-        name: category.name,
-        description: category.description
-      }}
-      labels={['Nombre', 'Description']}
-      showFields={['name', 'description']}
-      placeholders={['name', 'description']}
-      typesInput={['text', 'textarea']}
+      defaultValues={defaultValues}
+      fields={fields}
       handleSubmit={handleSubmit}
     />
   )
