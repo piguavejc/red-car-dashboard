@@ -18,6 +18,15 @@ export default function TypeCell({ value }: TypeCellProps) {
 
     return <TableCell className="text-nowrap text-center">{value}</TableCell>
   }
+
+  if (typeof value === 'object') {
+    if (value === null) return null
+
+    const data = (value as { name: string }).name
+
+    return <TableCell className="text-nowrap text-center">{data}</TableCell>
+  }
+
   return (
     <TableCell className="text-nowrap text-center">No existe el tipo</TableCell>
   )

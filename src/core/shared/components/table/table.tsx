@@ -10,6 +10,7 @@ import {
   TableRow
 } from '@/components/ui/table'
 
+import CellHeader from '@/core/shared/components/table/cell-header'
 import type React from 'react'
 import TypeCell from '@/core/shared/components/table/type-cell'
 import { cn } from '@/lib/utils'
@@ -17,7 +18,7 @@ import { cn } from '@/lib/utils'
 type RecordsArray = RecordWithId[]
 
 interface TableProps extends React.ComponentProps<typeof Card> {
-  header: Record<string, string>
+  header: Record<string, unknown>
   data: RecordsArray
   actions?: ({ entity }: { entity: RecordWithId }) => React.ReactNode
 }
@@ -43,15 +44,13 @@ export function Table({
           <TableHeader>
             <TableRow>
               {headers.map((name, i) => (
-                <TableHead className="text-nowrap text-center" key={i}>
-                  {name}
-                </TableHead>
+                <CellHeader key={i} value={name} />
               ))}
               {actions && <TableHead className="text-end">Actions</TableHead>}
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((entity) => {
+            {data.map((entity, index) => {
               return (
                 <TableRow key={entity.id}>
                   {Headerkeys.map((key) => {

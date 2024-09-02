@@ -16,31 +16,26 @@ import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
 interface FormCreateProps<T extends Record<string, unknown>> {
   schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
-  typesInput: FieldTypes[]
-  placeholders: string[]
-  labels: string[]
-  showFields: (keyof T)[]
+  defaultValues: DefaultValues<
+    z.infer<ZodObject<{ [K in keyof T]: ZodTypeAny }>>
+  >
+  fields: Array<{
+    accessorKey: keyof T
+    label: string
+    type?: FieldTypes
+    options?: Array<{ id: string; value: string }>
+  }>
   handleSubmit: (data: T) => Promise<void>
 }
 
 export default function FormCreate<T extends Record<string, unknown>>({
   schema,
-  labels,
-  showFields,
-  typesInput,
-  placeholders,
+  fields,
+  defaultValues,
   handleSubmit
 }: FormCreateProps<T>) {
   const { resource } = useResource()
   type TypeSchema = z.infer<typeof schema>
-  const keysSchema = Object.keys(schema.shape)
-  const defaultValues: DefaultValues<TypeSchema> = keysSchema.reduce(
-    (object, key) => {
-      object[key as keyof TypeSchema] = '' as TypeSchema[keyof TypeSchema]
-      return object
-    },
-    {} as DefaultValues<TypeSchema>
-  )
 
   const pathName = usePathname()
   const [title, setTitle] = useState<string>('')
@@ -63,6 +58,8 @@ export default function FormCreate<T extends Record<string, unknown>>({
     }
   }, [pathName])
 
+  const { control } = form
+
   return (
     <Flex
       className="w-full flex-1 items-start space-y-5"
@@ -83,22 +80,16 @@ export default function FormCreate<T extends Record<string, unknown>>({
                 <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {keysSchema.map((accessorKey, index) => {
-                  const type = typesInput[index]
-                  const placeholder = placeholders[index]
-                  const label = labels[index]
-                  const isVisibled = showFields.includes(accessorKey as keyof T)
-
-                  if (!isVisibled) return null
-
+                {fields.map((field, index) => {
                   return (
                     <FormField
-                      key={accessorKey}
-                      label={label}
-                      type={type}
-                      placeholder={placeholder}
+                      key={index}
+                      label={field.label}
+                      type={field.type}
+                      placeholder={'placeholder'}
                       control={form.control}
-                      accessorKey={accessorKey}
+                      accessorKey={field.accessorKey}
+                      options={field.options}
                     />
                   )
                 })}

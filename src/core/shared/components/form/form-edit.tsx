@@ -15,27 +15,27 @@ import { useForm, type DefaultValues } from 'react-hook-form'
 import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
 interface FormEditProps<T extends Record<string, unknown>> {
-  labels: string[]
   schema: ZodObject<{ [K in keyof T]: ZodTypeAny }>
-  defaultValues: Record<keyof T, unknown>
-  placeholders: string[]
-  typesInput: FieldTypes[]
-  showFields: (keyof T)[]
+  defaultValues: DefaultValues<
+    z.infer<ZodObject<{ [K in keyof T]: ZodTypeAny }>>
+  >
+  fields: Array<{
+    accessorKey: keyof T
+    label: string
+    type?: FieldTypes
+    options?: Array<{ id: string; value: string }>
+  }>
   handleSubmit: (values: T) => Promise<void>
 }
 
 export default function FormEdit<T extends Record<string, unknown>>({
-  labels,
   schema,
   defaultValues,
-  placeholders,
-  typesInput,
-  showFields,
+  fields,
   handleSubmit
 }: FormEditProps<T>) {
   const { resource } = useResource()
   type TypeSchema = z.infer<typeof schema>
-  const keysSchema = Object.keys(schema.shape)
 
   const pathName = usePathname()
   const [title, setTitle] = useState<string>('')
@@ -80,22 +80,16 @@ export default function FormEdit<T extends Record<string, unknown>>({
                 <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {keysSchema.map((key, index) => {
-                  const type = typesInput[index]
-                  const placeholder = placeholders[index]
-                  const isVisibled = showFields.includes(key as keyof T)
-                  const label = labels[index]
-
-                  if (!isVisibled) return null
-
+                {fields.map((field, index) => {
                   return (
                     <FormField
-                      key={key}
-                      label={label}
-                      placeholder={placeholder}
-                      type={type}
+                      key={index}
+                      label={field.label}
+                      placeholder={''}
+                      type={field.type}
                       control={form.control}
-                      accessorKey={key}
+                      accessorKey={field.accessorKey}
+                      options={field.options}
                     />
                   )
                 })}
