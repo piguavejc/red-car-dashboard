@@ -52,3 +52,10 @@ export function isValidDate(dateString: string): boolean {
   const date = new Date(dateString)
   return !isNaN(date.getTime())
 }
+
+export const createFields = <T extends Record<string, unknown>>({
+  defaultValues,
+  fields
+}: CreateFieldsProps<T>): CreateFieldsProps<T> => {
+  return { defaultValues, fields }
+}
