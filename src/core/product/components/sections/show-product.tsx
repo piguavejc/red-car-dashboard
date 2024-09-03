@@ -8,6 +8,7 @@ import {
 
 import Image from 'next/image'
 import type { Product } from '@/core/product/domain/entities/product'
+import ShowItem from '@/core/shared/components/form/show-item'
 import WhatsappButton from '@/core/shared/components/buttons/whatsapp-button'
 
 export default function ShowProduct({ product }: { product: Product }) {
@@ -22,10 +23,15 @@ export default function ShowProduct({ product }: { product: Product }) {
           alt={product.name}
           className="w-full max-w-lg"
         />
-        <CardTitle>{product.name}</CardTitle>
+        <CardTitle className="text-center">{product.name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>{product.description}</p>
+        <ShowItem
+          name="Descricción"
+          value={product.description ?? ''}
+          isPublic
+          isLast
+        />
       </CardContent>
       <CardFooter>
         <WhatsappButton description={product.name} className="w-full" />

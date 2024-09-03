@@ -10,11 +10,13 @@ import { useCopyText } from '@/core/shared/hook/use-copy-text'
 export default function ShowItem({
   name,
   value,
-  isLast
+  isLast = false,
+  isPublic = true
 }: {
   name: string
   value: unknown
-  isLast: boolean
+  isLast?: boolean
+  isPublic?: boolean
 }) {
   const { handleCopyText } = useCopyText(value)
 
@@ -30,9 +32,11 @@ export default function ShowItem({
           <p className="font-bold">{name}</p>
           <ShowField value={value} />
         </div>
-        <Button onClick={onCopyText} variant={'ghost'}>
-          <Clipboard />
-        </Button>
+        {!isPublic && (
+          <Button onClick={onCopyText} variant={'ghost'}>
+            <Clipboard />
+          </Button>
+        )}
       </div>
       {isLast && <Separator />}
     </div>
