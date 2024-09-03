@@ -46,7 +46,7 @@ export default function pProductItem({ product }: { product: Product }) {
             />
           </CardContent>
           <CardFooter>
-            <WhatsappButton description={product.name} />
+            <WhatsappButton description={product.name} className="w-full" />
           </CardFooter>
         </Card>
       </motion.div>

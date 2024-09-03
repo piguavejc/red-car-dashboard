@@ -20,7 +20,7 @@ export default async function Home() {
     <div className="space-y-10">
       <Header />
       <ListProduct products={products} />
-      <Footer />
+      <Footer className="mt-40" />
     </div>
   )
 }
