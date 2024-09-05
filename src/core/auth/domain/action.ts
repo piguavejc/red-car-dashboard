@@ -11,7 +11,9 @@ import {
   type ResponseSA
 } from '@/core/shared/infrastructure/action/shared'
 import myAxios from '@/core/shared/infrastructure/my-axios'
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export const login = async (
   data: LoginInput
@@ -34,4 +36,10 @@ export const register = async (
     return result.data
   })
   return result
+}
+
+export const logout = async (): Promise<void> => {
+  cookies().delete('accessToken')
+  revalidatePath('/')
+  redirect('/')
 }
