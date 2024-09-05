@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import Container from '@/core/shared/components/container'
 import { HeartHandshake } from 'lucide-react'
 import { Link } from 'next-view-transitions'
@@ -10,7 +11,9 @@ export default function Header() {
           <HeartHandshake className="h-6 w-6" />
           <span className="text-lg font-semibold">Salud y Vida </span>
         </Link>
-        <nav className="flex items-center gap-4"></nav>
+        <Link href={'/auth/login'}>
+          <Button>Iniciar sesión</Button>
+        </Link>
       </header>
     </Container>
   )
