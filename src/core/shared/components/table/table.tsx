@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/table'
 
 import CellHeader from '@/core/shared/components/table/cell-header'
+import Pagination from '@/core/shared/components/table/pagination'
 import type React from 'react'
 import TypeCell from '@/core/shared/components/table/type-cell'
 import { cn } from '@/lib/utils'
@@ -68,6 +69,7 @@ export function Table({
             </TableRow>
           </TableFooter>
         </TableBase>
+        <Pagination />
       </CardContent>
     </Card>
   )
