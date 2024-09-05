@@ -17,7 +17,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-4">
       <Header />
       <ListProduct products={products} />
       <Footer className="mt-40" />
