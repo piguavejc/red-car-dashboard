@@ -1,6 +1,6 @@
 import Container from '@/core/shared/components/container'
 import Flex from '@/core/shared/components/layout/flex'
-import Image from 'next/image'
+import Logo from '@/core/shared/components/header/logo'
 import { cn } from '@/lib/utils'
 
 export default function Footer({
@@ -11,15 +11,7 @@ export default function Footer({
     <footer className={cn('bg-gray-950', className)} {...props}>
       <Container className="space-y-8 rounded-md p-4">
         <Flex className="flex flex-col space-y-8 md:flex-row md:space-y-0">
-          <Image
-            src={'/user.svg'}
-            width={0}
-            height={0}
-            sizes="100%"
-            alt=""
-            className="w-full max-w-[2rem]"
-          />
-
+          <Logo />
           <ul className="flex items-center space-x-8">
             <li>Inicio</li>
             <li>Productos</li>
