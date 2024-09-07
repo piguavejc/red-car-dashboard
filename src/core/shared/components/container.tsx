@@ -8,7 +8,7 @@ export default function Container({
 }: React.ComponentProps<'div'>) {
   return (
     <div className={cn('flex w-full items-center justify-center')} {...props}>
-      <div className={cn('w-full max-w-[80rem] px-4 md:px-0', className)}>
+      <div className={cn('w-full max-w-[80rem] px-4 lg:px-0', className)}>
         {children}
       </div>
     </div>
