@@ -2,9 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   TableBase,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow
@@ -41,7 +39,6 @@ export function Table({
       </CardHeader>
       <CardContent>
         <TableBase>
-          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
               {headers.map((name, i) => (
@@ -62,12 +59,6 @@ export function Table({
               )
             })}
           </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableCell colSpan={3}>Total</TableCell>
-              <TableCell className="text-right">$2,500.00</TableCell>
-            </TableRow>
-          </TableFooter>
         </TableBase>
         <Pagination />
       </CardContent>
