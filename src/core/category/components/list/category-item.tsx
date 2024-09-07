@@ -34,6 +34,13 @@ export default function CategoryItem({
 
     if (query === category.name) {
       setIsFocus(true)
+
+      const element = document.getElementById('list-category')
+      if (element !== null) {
+        const yOffset = -2 * 16
+        const y = element.getBoundingClientRect().top + yOffset
+        window.scrollTo({ top: y, behavior: 'smooth' })
+      }
       return
     }
 
@@ -41,11 +48,7 @@ export default function CategoryItem({
   }, [searchParams])
 
   return (
-    <Link
-      href={generateCategoryUrl()}
-      className={cn('px-4 py-2', className)}
-      onClick={generateCategoryUrl}
-    >
+    <Link href={generateCategoryUrl()} className={cn('', className)}>
       <Button variant={isFocus ? 'default' : 'ghost'}>{category.name}</Button>
     </Link>
   )
