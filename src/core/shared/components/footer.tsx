@@ -8,7 +8,7 @@ export default function Footer({
   ...props
 }: React.ComponentProps<'footer'>) {
   return (
-    <footer className={cn('bg-gray-950', className)} {...props}>
+    <footer className={cn('bg-black', className)} {...props}>
       <Container className="space-y-8 rounded-md p-4">
         <Flex className="flex flex-col space-y-8 md:flex-row md:space-y-0">
           <Logo />
