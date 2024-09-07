@@ -6,7 +6,7 @@ import Logo from '@/core/shared/components/header/logo'
 export default function Header() {
   return (
     <Container>
-      <header className="flex h-16 items-center justify-between">
+      <header className="flex items-center justify-between py-4">
         <Logo />
         <Link href={'/auth/login'}>
           <Button>Iniciar sesión</Button>
