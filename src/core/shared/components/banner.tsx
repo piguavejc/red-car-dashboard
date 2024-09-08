@@ -71,7 +71,7 @@ export default function Banner() {
               width={0}
               height={0}
               sizes="100%"
-              className="w-full flex-1 object-contain"
+              className="w-full flex-1 rounded-md object-contain"
             />
           </SwiperSlide>
         ))}
