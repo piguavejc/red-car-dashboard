@@ -20,7 +20,7 @@ export default async function ListCategory() {
   return (
     <Suspense>
       <Section isEmpty={categories.length === 0}>
-        <Flex className="justify-start">
+        <Flex className="justify-start overflow-x-auto pb-4">
           {categories.map((category, index) => (
             <CategoryItem category={category} key={index} />
           ))}

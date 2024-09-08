@@ -49,7 +49,7 @@ export default function CategoryItem({
 
   return (
     <Link href={generateCategoryUrl()} className={cn('', className)}>
-      <Button variant={isFocus ? 'default' : 'ghost'}>{category.name}</Button>
+      <Button variant={isFocus ? 'default' : 'outline'}>{category.name}</Button>
     </Link>
   )
 }
