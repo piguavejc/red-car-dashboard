@@ -3,10 +3,35 @@ import Container from '@/core/shared/components/container'
 import Footer from '@/core/shared/components/footer'
 import Header from '@/core/shared/components/header'
 import ListProduct from '@/core/product/components/sections/list-product'
-import { SearchProductUseCase } from '@/core/product/aplication/use-case/search-product.use-case'
+import { SearchCategoryUseCase } from '@/core/category/aplication/use-case/search-category.use-case'
+import { SearchProductByCategoryUseCase } from '@/core/product/aplication/use-case/search-product-by-category.use-case'
+import { Suspense } from 'react'
 
-export default async function Home() {
-  const result = await SearchProductUseCase.run()
+export default async function Home({
+  searchParams: { category }
+}: {
+  searchParams: {
+    category: string | undefined
+  }
+}) {
+  let name = category ?? ''
+
+  if (category === undefined) {
+    const resultCategory = await SearchCategoryUseCase.run()
+
+    if (resultCategory.error) {
+      return <div>Error</div>
+    }
+
+    const categories = resultCategory.data
+    if (categories === null) {
+      return <div>Loading...</div>
+    }
+
+    name = categories[0].name
+  }
+
+  const result = await SearchProductByCategoryUseCase.run(name)
 
   if (result.error) {
     return <div>Error</div>
@@ -24,7 +49,9 @@ export default async function Home() {
       <Container>
         <Banner />
       </Container>
-      <ListProduct products={products} />
+      <Suspense fallback={<p>cargando...</p>}>
+        <ListProduct products={products} />
+      </Suspense>
       <Footer className="mt-40" />
     </div>
   )

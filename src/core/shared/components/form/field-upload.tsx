@@ -38,7 +38,6 @@ export const FieldUpload = <T extends FieldValues>({
   const name = accessorKey as Path<T>
 
   if (isLoading) {
-    console.log('loading')
     return <p>...loading</p>
   }
 
