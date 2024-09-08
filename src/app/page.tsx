@@ -5,6 +5,7 @@ import Header from '@/core/shared/components/header'
 import ListProduct from '@/core/product/components/sections/list-product'
 import { SearchCategoryUseCase } from '@/core/category/aplication/use-case/search-category.use-case'
 import { SearchProductByCategoryUseCase } from '@/core/product/aplication/use-case/search-product-by-category.use-case'
+import SkeletonProduct from '@/core/product/components/skeleton/skeleton-product'
 import { Suspense } from 'react'
 
 export default async function Home({
@@ -49,7 +50,7 @@ export default async function Home({
       <Container>
         <Banner />
       </Container>
-      <Suspense fallback={<p>cargando...</p>}>
+      <Suspense fallback={<SkeletonProduct />}>
         <ListProduct products={products} />
       </Suspense>
       <Footer className="mt-40" />
