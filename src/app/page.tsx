@@ -29,7 +29,9 @@ export default async function Home({
       return <div>Loading...</div>
     }
 
-    name = categories[0].name
+    if (categories.length > 0) {
+      name = categories[0].name
+    }
   }
 
   const result = await SearchProductByCategoryUseCase.run(name)
