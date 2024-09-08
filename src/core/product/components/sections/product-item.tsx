@@ -12,11 +12,14 @@ import Image from 'next/image'
 import { Link } from 'next-view-transitions'
 import type { Product } from '@/core/product/domain/entities/product'
 import WhatsappButton from '@/core/shared/components/buttons/whatsapp-button'
+import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function pProductItem({ product }: { product: Product }) {
   const whatsappUrl = `https://wa.me/?text=Estoy%20interesado%20en%20el%20producto%20${product.name}`
   const resource = 'products'
+  const [loading, setIsLoading] = useState<boolean>(false)
 
   const generateUrl = (): string => {
     return `/${resource}/${product.id}`
@@ -35,12 +38,22 @@ export default function pProductItem({ product }: { product: Product }) {
           <CardHeader>
             <CardTitle className="text-center">{product.name}</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col">
             <Image
               width={0}
               height={0}
               sizes="100%"
-              className="w-full max-w-lg"
+              className={cn(
+                'hidden h-full w-full max-w-[5rem] self-center object-cover md:max-w-[10rem]',
+                loading ? 'max-w-[5rem] animate-pulse' : 'block'
+              )}
+              objectFit="cover"
+              onLoadStart={() => {
+                setIsLoading(true)
+              }}
+              onLoad={() => {
+                setIsLoading(false)
+              }}
               alt={product.name}
               src={product.cloudinary.secureUrl}
             />
