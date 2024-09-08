@@ -20,4 +20,4 @@ COPY --from=builder /my-space/node_modules/sharp ./node_modules/sharp
 ENV NEXT_SHARP_PATH=/my-space/node_modules/sharp
 
 EXPOSE 3000
-
+ENTRYPOINT ["node", "server.js"]
