@@ -27,7 +27,13 @@ export default function Sidebar({ className, title, routes }: SidebarProps) {
   }
 
   useEffect(() => {
-    setPage(pathName)
+    const route = pathName.split('/')
+    if (route.length >= 2) {
+      const page = route.slice(0, 3).join('/')
+      console.log(page)
+      setPage(page)
+      return
+    }
   }, [pathName])
 
   return (
