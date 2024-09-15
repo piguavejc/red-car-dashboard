@@ -6,14 +6,16 @@ import Flex from '@/core/shared/components/layout/flex'
 import type React from 'react'
 import { cn } from '@/lib/utils'
 
-interface HeaderProps extends React.ComponentProps<'header'> {}
-export default function Header({ className }: HeaderProps) {
+interface HeaderProps extends React.ComponentProps<'div'> {
+  routes: DashboardRoutes
+}
+export default function Header({ routes, className, ...props }: HeaderProps) {
   return (
-    <Card className={cn('w-full', className)}>
+    <Card className={cn('w-full', className)} {...props}>
       <Flex>
         <ButtonTheme />
         <Avatar className="hidden lg:flex" />
-        <ButtonAvatar className="lg:hidden" />
+        <ButtonAvatar className="lg:hidden" routes={routes} />
       </Flex>
     </Card>
   )

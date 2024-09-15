@@ -27,7 +27,7 @@ export default function DashboardLayout({
         className="w-full flex-1 items-stretch space-y-10"
         initialValue={'column'}
       >
-        <Header className="bg-background p-2 md:p-5" />
+        <Header className="bg-background p-2 md:p-5" routes={routes} />
         <Flex className="flex-1 items-stretch justify-stretch">{children}</Flex>
       </Flex>
     </Flex>
