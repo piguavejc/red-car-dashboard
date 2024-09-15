@@ -72,3 +72,13 @@ export async function searchByIdAction<RecordWithId>(
   })
   return result
 }
+
+export async function getTotalAction(
+  resource: string
+): Promise<ResponseSA<RecordTotal>> {
+  const result = await handlingError<RecordTotal>(async () => {
+    const result = await myAxios.get<RecordTotal>(`/${resource}/total`)
+    return result.data
+  })
+  return result
+}
