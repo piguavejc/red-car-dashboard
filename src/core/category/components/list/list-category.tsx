@@ -1,31 +1,63 @@
+'use client'
+
+import { useRef, useState } from 'react'
+
+import type { Category } from '@/core/category/domain/entities/category'
 import CategoryItem from '@/core/category/components/list/category-item'
-import Flex from '@/core/shared/components/layout/flex'
-import { SearchCategoryUseCase } from '@/core/category/aplication/use-case/search-category.use-case'
-import Section from '@/core/shared/components/section/section'
-import { Suspense } from 'react'
 
-export default async function ListCategory() {
-  const result = await SearchCategoryUseCase.run()
+export default function ListCategory({
+  categories
+}: {
+  categories: Category[]
+}) {
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  if (result.error) {
-    return <div>Error</div>
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (containerRef.current !== null) {
+      setIsDragging(true)
+      setStartX(e.pageX - containerRef.current.offsetLeft)
+      setScrollLeft(containerRef.current.scrollLeft)
+      containerRef.current.classList.add('no-select')
+    }
   }
 
-  const categories = result.data
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || containerRef.current === null) return
+    e.preventDefault()
+    const x = e.pageX - containerRef.current.offsetLeft
+    const walk = (x - startX) * 2
+    containerRef.current.scrollLeft = scrollLeft - walk
+  }
 
-  if (categories === null) {
-    return <div>Loading...</div>
+  const handleMouseUp = () => {
+    setIsDragging(false)
+    if (containerRef.current !== null) {
+      containerRef.current.classList.remove('no-select')
+    }
+  }
+
+  const handleMouseLeave = () => {
+    setIsDragging(false)
+    if (containerRef.current !== null) {
+      containerRef.current.classList.remove('no-select')
+    }
   }
 
   return (
-    <Suspense>
-      <Section isEmpty={categories.length === 0}>
-        <Flex className="justify-start overflow-x-auto pb-4">
-          {categories.map((category, index) => (
-            <CategoryItem category={category} key={index} />
-          ))}
-        </Flex>
-      </Section>
-    </Suspense>
+    <div
+      className="no-scrollbar flex cursor-grab items-center justify-start space-x-2 overflow-x-auto pb-4"
+      ref={containerRef}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+    >
+      {categories.map((category, index) => (
+        <CategoryItem category={category} key={index} />
+      ))}
+    </div>
   )
 }
