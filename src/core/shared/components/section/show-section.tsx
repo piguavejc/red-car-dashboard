@@ -4,7 +4,7 @@ import FormShow from '@/core/shared/components/form/form-show'
 
 export default function ShowSection({ data }: { data: RecordWithId }) {
   return (
-    <Card className="w-full max-w-lg p-4">
+    <Card className="w-full max-w-2xl p-4">
       <CardHeader>
         <CardTitle className="text-center">Categoria</CardTitle>
       </CardHeader>
