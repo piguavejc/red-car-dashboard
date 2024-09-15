@@ -33,12 +33,12 @@ export default function ShowProduct({ product }: { product: Product }) {
           height={0}
           sizes="100%"
           alt={product.name}
-          className="w-full max-w-lg"
+          className="mx-auto w-full max-w-[10rem]"
         />
       </CardHeader>
       <CardContent>
         <ShowItem
-          name="Descricción"
+          name="Descripción"
           value={product.description ?? ''}
           isPublic
           isLast
