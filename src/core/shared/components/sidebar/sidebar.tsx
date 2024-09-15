@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Link } from 'next-view-transitions'
 import { LogOut } from 'lucide-react'
 import Menu from '@/core/shared/components/sidebar/menu'
 import type React from 'react'
@@ -61,7 +62,9 @@ export default function Sidebar({ className, title, routes }: SidebarProps) {
 const SideBarTitle = ({ title }: { title: string }) => {
   return (
     <div>
-      <p className="text-xl font-bold">{title}</p>
+      <Link href={'/dashboard'}>
+        <p className="text-xl font-bold">{title}</p>
+      </Link>
     </div>
   )
 }
