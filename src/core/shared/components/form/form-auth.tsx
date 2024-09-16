@@ -6,6 +6,7 @@ import FormField from '@/core/shared/components/form/form-field'
 import Flex from '@/core/shared/components/layout/flex'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader } from 'lucide-react'
+import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm, type DefaultValues } from 'react-hook-form'
@@ -100,7 +101,7 @@ export default function FormAuth<T extends Record<string, unknown>>({
                     />
                   )
                 })}
-                <Flex className="justify-end">
+                <Flex className="items-end" initialValue="column">
                   <Button
                     disabled={isSubmitting}
                     type="submit"
@@ -109,6 +110,28 @@ export default function FormAuth<T extends Record<string, unknown>>({
                     {formType === 'login' ? 'Iniciar Sesion' : 'Registrarse'}
                     {isSubmitting && <Loader />}
                   </Button>
+                  {formType === 'login' && (
+                    <p className="space-x-2">
+                      <span>Aun no tienes una cuenta, registrate</span>
+                      <Link
+                        href={'/auth/register'}
+                        className="text-blue-500 underline"
+                      >
+                        aqui
+                      </Link>
+                    </p>
+                  )}
+                  {formType === 'register' && (
+                    <p className="space-x-2">
+                      <span>Ya tienes una cuenta, inicia sesion</span>
+                      <Link
+                        href={'/auth/login'}
+                        className="text-blue-500 underline"
+                      >
+                        aqui
+                      </Link>
+                    </p>
+                  )}
                 </Flex>
               </CardContent>
             </Card>
