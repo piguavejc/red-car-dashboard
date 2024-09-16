@@ -13,7 +13,7 @@ export default function WhatsappButton({
   ...props
 }: WhatsappButtonProps) {
   const text = `Hola, Estoy interesado en el producto ${description}`
-  const whatsappUrl = `https://wa.me/593969851458?text=${text}`
+  const whatsappUrl = `https://wa.me/593962731292?text=${text}`
 
   return (
     <Link
