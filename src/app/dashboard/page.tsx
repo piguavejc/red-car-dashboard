@@ -3,6 +3,7 @@ import Flex from '@/core/shared/components/layout/flex'
 import MixChart from '@/core/shared/components/mix-chart'
 import { Suspense } from 'react'
 import { getTotalAction } from '@/core/shared/infrastructure/action/action'
+export const dynamic = 'force-dynamic'
 
 export default async function DashboardPage() {
   const resultProducts = await getTotalAction('products')

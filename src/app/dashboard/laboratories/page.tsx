@@ -6,6 +6,7 @@ import ButtonShow from '@/core/shared/components/buttons/button-show'
 import Flex from '@/core/shared/components/layout/flex'
 import { SearchLaboratoryUseCase } from '@/core/laboratory/aplication/use-case/search-laboratory.use-case'
 import { Table } from '@/core/shared/components/table/table'
+export const dynamic = 'force-dynamic'
 
 export default async function page() {
   const header = {

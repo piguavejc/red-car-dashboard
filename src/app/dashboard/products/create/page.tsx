@@ -2,6 +2,7 @@ import Flex from '@/core/shared/components/layout/flex'
 import { SearchCategoryUseCase } from '@/core/category/aplication/use-case/search-category.use-case'
 import { SearchLaboratoryUseCase } from '@/core/laboratory/aplication/use-case/search-laboratory.use-case'
 import SectionCreate from '@/core/product/components/sections/section-create'
+export const dynamic = 'force-dynamic'
 
 export default async function ProductCreatePage() {
   const laboratoryResult = await SearchLaboratoryUseCase.run()
