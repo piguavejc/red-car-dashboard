@@ -20,11 +20,11 @@ export default function ButtonCreate({
   }
   return (
     <Button
-      className={cn('', className)}
-      variant={'outline'}
+      className={cn('space-x-2', className)}
       {...props}
       onClick={redirectToCreate}
     >
+      <p>Crear</p>
       <CirclePlus size={15} />
     </Button>
   )

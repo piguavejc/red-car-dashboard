@@ -25,19 +25,21 @@ export default async function page() {
   return (
     <Flex className="w-full items-start justify-start" initialValue={'column'}>
       <Breadcrumb />
-      <ButtonCreate />
-      <Table
-        data={categories}
-        className="w-full max-w-6xl self-center"
-        header={header}
-        actions={({ entity }) => (
-          <Flex className="justify-end">
-            <ButtonEdit id={entity.id} />
-            <ButtonShow id={entity.id} />
-            <ButtonDelete id={entity.id} />
-          </Flex>
-        )}
-      />
+      <Flex className="w-full self-center" initialValue="column">
+        <ButtonCreate className="self-end" />
+        <Table
+          data={categories}
+          className="w-full"
+          header={header}
+          actions={({ entity }) => (
+            <Flex className="justify-end">
+              <ButtonEdit id={entity.id} />
+              <ButtonShow id={entity.id} />
+              <ButtonDelete id={entity.id} />
+            </Flex>
+          )}
+        />
+      </Flex>
     </Flex>
   )
 }
