@@ -44,7 +44,7 @@ export default function pProductItem({ product }: { product: Product }) {
             height={0}
             sizes="100%"
             className={cn(
-              'hidden h-full w-full max-w-[5rem] self-center object-cover md:max-w-[10rem]',
+              'hidden h-[18rem] w-full max-w-[5rem] self-center object-contain md:max-w-[10rem]',
               loading ? 'max-w-[5rem] animate-pulse' : 'block'
             )}
             objectFit="cover"
