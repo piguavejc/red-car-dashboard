@@ -25,11 +25,11 @@ const cloudinarySchema = sharedSchema.extend({
 })
 
 export const productSchema = sharedSchema.extend({
-  name: z.string().min(3),
+  name: z.string().min(3).trim(),
   description: z.string().min(3).max(255).optional().nullable(),
-  laboratoryId: z.string().uuid(),
-  categoryId: z.string().uuid(),
-  cloudinaryId: z.string().uuid(),
+  laboratoryId: z.string().uuid().trim(),
+  categoryId: z.string().uuid().trim(),
+  cloudinaryId: z.string().uuid().trim(),
   category: categorySchema,
   laboratory: laboratorySchema,
   cloudinary: cloudinarySchema
