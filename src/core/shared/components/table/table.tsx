@@ -17,15 +17,17 @@ import { cn } from '@/lib/utils'
 type RecordsArray = RecordWithId[]
 
 interface TableProps extends React.ComponentProps<typeof Card> {
-  header: Record<string, unknown>
+  total: number
   data: RecordsArray
+  header: Record<string, unknown>
   actions?: ({ entity }: { entity: RecordWithId }) => React.ReactNode
 }
 
 export function Table({
+  data,
+  total,
   header,
   actions,
-  data,
   className,
   ...props
 }: TableProps) {
@@ -60,7 +62,7 @@ export function Table({
             })}
           </TableBody>
         </TableBase>
-        <Pagination />
+        <Pagination total={total} />
       </CardContent>
     </Card>
   )

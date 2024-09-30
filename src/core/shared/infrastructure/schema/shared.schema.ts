@@ -28,6 +28,12 @@ export const imageSchema = z.object({
   imageUrl: z.string().url().optional()
 })
 
+export const paginationSchema = z.object({
+  limit: z.number().optional(),
+  offset: z.number().optional()
+})
+
+export type Pagination = z.infer<typeof paginationSchema>
 export type AccessToken = z.infer<typeof accessTokenSchema>
 export type Id = z.infer<typeof idSchema>
 export type Message = z.infer<typeof messageSchema>

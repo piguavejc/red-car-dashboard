@@ -8,17 +8,31 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
-import { useEffect, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-export default function Pagination() {
-  const [range] = useState<number>(5)
+import { PaginationEnum } from '@/core/shared/enums/pagination.enum'
+import { cn } from '@/lib/utils'
+import { useState } from 'react'
+
+export default function Pagination({ total }: { total: number }) {
+  const [range, setRange] = useState<number>(
+    Math.ceil(total / PaginationEnum.LIMIT)
+  )
   const pathName = usePathname()
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams)
-  const page: number = Number.parseInt(params.get('page') ?? '1')
 
-  useEffect(() => {}, [searchParams])
+  const limit: number = Number.parseInt(
+    params.get('limit') ?? PaginationEnum.LIMIT.toString()
+  )
+
+  const offset: number = Number.parseInt(
+    params.get('offset') ?? PaginationEnum.OFFSET.toString()
+  )
+
+  let page = offset / limit
+
+  page = page === PaginationEnum.LIMIT ? 0 : page
 
   return (
     <BasePagination>
@@ -28,7 +42,10 @@ export default function Pagination() {
         </PaginationItem>
         {Array.from({ length: range }).map((_, index) => (
           <PaginationItem key={index}>
-            <PaginationLink href={`${pathName}?page=${index + 1}`}>
+            <PaginationLink
+              href={`${pathName}?offset=${index * limit}`}
+              className={cn(page === index ? 'bg-green-500' : null)}
+            >
               {index + 1}
             </PaginationLink>
           </PaginationItem>

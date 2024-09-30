@@ -5,6 +5,7 @@ import {
   type ResponseSA
 } from '@/core/shared/infrastructure/action/shared'
 import myAxios from '@/core/shared/infrastructure/my-axios'
+import type { Pagination } from '@/core/shared/infrastructure/schema/shared.schema'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -53,10 +54,13 @@ export async function updateAction<RecordWithId>(
 }
 
 export async function searchAction<RecordWithId>(
-  resource: string
+  resource: string,
+  data: Pagination
 ): Promise<ResponseSA<RecordWithId[]>> {
   const result = await handlingError<RecordWithId[]>(async () => {
-    const result = await myAxios.get<RecordWithId[]>(`/${resource}`)
+    const result = await myAxios.get<RecordWithId[]>(
+      `/${resource}?limit=${data.limit}&offset=${data.offset}`
+    )
     return result.data
   })
   return result
