@@ -16,14 +16,8 @@ export default async function ProductEditPage({
   if (result.error !== null) {
     return <div>Error</div>
   }
-  const laboratoryResult = await SearchLaboratoryUseCase.run({
-    limit: undefined,
-    offset: undefined
-  })
-  const categoryResult = await SearchCategoryUseCase.run({
-    limit: undefined,
-    offset: undefined
-  })
+  const laboratoryResult = await SearchLaboratoryUseCase.run()
+  const categoryResult = await SearchCategoryUseCase.run()
 
   if (laboratoryResult.error) {
     return <div>{laboratoryResult.error}</div>

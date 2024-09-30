@@ -4,7 +4,7 @@ import type { ResponseSA } from '@/core/shared/infrastructure/action/shared'
 import { searchAction } from '@/core/shared/infrastructure/action/action'
 
 export class SearchCategoryUseCase {
-  static async run(data: Pagination): Promise<ResponseSA<Category[]>> {
+  static async run(data?: Pagination): Promise<ResponseSA<Category[]>> {
     return await searchAction<Category>('categories', data)
   }
 }
