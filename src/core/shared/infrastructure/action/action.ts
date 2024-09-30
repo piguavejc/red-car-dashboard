@@ -57,10 +57,18 @@ export async function searchAction<RecordWithId>(
   resource: string,
   data: Pagination
 ): Promise<ResponseSA<RecordWithId[]>> {
+  if (data !== undefined) {
+    const result = await handlingError<RecordWithId[]>(async () => {
+      const result = await myAxios.get<RecordWithId[]>(
+        `/${resource}?limit=${data.limit}&offset=${data.offset}`
+      )
+      return result.data
+    })
+    return result
+  }
+
   const result = await handlingError<RecordWithId[]>(async () => {
-    const result = await myAxios.get<RecordWithId[]>(
-      `/${resource}?limit=${data.limit}&offset=${data.offset}`
-    )
+    const result = await myAxios.get<RecordWithId[]>(`/${resource}`)
     return result.data
   })
   return result
