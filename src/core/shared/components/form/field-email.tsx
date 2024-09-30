@@ -38,6 +38,13 @@ export const FieldEmail = <T extends FieldValues>({
               id={name}
               placeholder={placeholder}
               autoComplete={name}
+              onInput={(e) => {
+                const input = e.currentTarget
+                const trimmedValue = input.value.replace(/\s{2,}/g, ' ')
+                if (input.value !== trimmedValue) {
+                  input.value = trimmedValue
+                }
+              }}
             />
           </FormControl>
           <FormMessage />

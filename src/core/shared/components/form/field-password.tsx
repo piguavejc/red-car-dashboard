@@ -1,11 +1,11 @@
 'use client'
 
 import {
-    FormField as BaseFormField,
-    FormControl,
-    FormItem,
-    FormLabel,
-    FormMessage
+  FormField as BaseFormField,
+  FormControl,
+  FormItem,
+  FormLabel,
+  FormMessage
 } from '@/components/ui/form'
 import type { Control, FieldValues, Path } from 'react-hook-form'
 
@@ -52,11 +52,18 @@ export const FieldPassword = <T extends FieldValues>({
                 id={name}
                 placeholder={placeholder}
                 autoComplete={name}
+                onInput={(e) => {
+                  const input = e.currentTarget
+                  const trimmedValue = input.value.replace(/\s{2,}/g, ' ')
+                  if (input.value !== trimmedValue) {
+                    input.value = trimmedValue
+                  }
+                }}
               />
               <Button
                 type="button"
                 variant={'ghost'}
-                onClick={togglePasswordVisibility} // Usando el nuevo nombre de función
+                onClick={togglePasswordVisibility}
               >
                 {buttonText}
               </Button>
