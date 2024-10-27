@@ -7,25 +7,18 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { FieldValues, Path } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 
-interface FormFieldProps<T extends FieldValues>
-  extends React.ComponentProps<'div'> {
-  label: string
-  control: Control<T>
-  accessorKey: keyof T
-  placeholder: string
-}
-
 export const FieldPassword = <T extends FieldValues>({
+  label,
   control,
   accessorKey,
-  label,
-  placeholder
+  placeholder,
+  onChange
 }: FormFieldProps<T>) => {
   const [buttonText, setButtonText] = useState<string>('Mostrar')
   const [inputType, setInputType] = useState<string>('password')
@@ -48,6 +41,10 @@ export const FieldPassword = <T extends FieldValues>({
             <div className="flex justify-between space-x-2">
               <Input
                 {...field}
+                onChange={(e) => {
+                  field.onChange(e.target.value)
+                  onChange(e.target.value)
+                }}
                 type={inputType}
                 id={name}
                 placeholder={placeholder}

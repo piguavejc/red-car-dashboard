@@ -5,7 +5,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { FieldValues, Path } from 'react-hook-form'
 import {
   Select,
   SelectContent,
@@ -14,21 +14,12 @@ import {
   SelectValue
 } from '@/components/ui/select'
 
-interface FormFieldProps<T extends FieldValues>
-  extends React.ComponentProps<'div'> {
-  label: string
-  control: Control<T>
-  accessorKey: keyof T
-  placeholder: string
-  options: Array<{ id: string; value: string }>
-}
-
 export const FieldSelect = <T extends FieldValues>({
   control,
   accessorKey,
   label,
   options
-}: FormFieldProps<T>) => {
+}: FormFieldProps<T> & { options: Array<{ id: string; value: string }> }) => {
   const name = accessorKey as Path<T>
   return (
     <BaseFormField

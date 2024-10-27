@@ -5,23 +5,16 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { FieldValues, Path } from 'react-hook-form'
 
 import { Input } from '@/components/ui/input'
 
-interface FormFieldProps<T extends FieldValues>
-  extends React.ComponentProps<'div'> {
-  label: string
-  control: Control<T>
-  accessorKey: keyof T
-  placeholder: string
-}
-
 export const FieldText = <T extends FieldValues>({
+  label,
   control,
   accessorKey,
-  label,
-  placeholder
+  placeholder,
+  onChange
 }: FormFieldProps<T>) => {
   const name = accessorKey as Path<T>
   return (
@@ -34,6 +27,10 @@ export const FieldText = <T extends FieldValues>({
           <FormControl>
             <Input
               {...field}
+              onChange={(e) => {
+                field.onChange(e.target.value)
+                onChange(e.target.value)
+              }}
               type="text"
               id={name}
               placeholder={placeholder}

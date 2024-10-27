@@ -5,17 +5,9 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { FieldValues, Path } from 'react-hook-form'
 
 import { Textarea } from '@/components/ui/textarea'
-
-interface FormFieldProps<T extends FieldValues>
-  extends React.ComponentProps<'div'> {
-  label: string
-  control: Control<T>
-  accessorKey: keyof T
-  placeholder: string
-}
 
 export const FieldTextArea = <T extends FieldValues>({
   control,

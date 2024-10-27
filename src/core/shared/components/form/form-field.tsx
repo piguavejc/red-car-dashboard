@@ -23,6 +23,7 @@ interface FormFieldProps<T extends FieldValues>
   placeholder: string
   type?: FieldTypes
   options?: Array<{ id: string; value: string }>
+  onChange: (value: unknown) => void
 }
 
 export default function FormField<T extends FieldValues>({

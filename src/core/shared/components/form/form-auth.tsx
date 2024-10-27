@@ -9,7 +9,7 @@ import { Loader } from 'lucide-react'
 import { Link } from 'next-view-transitions'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm, type DefaultValues } from 'react-hook-form'
+import { useForm, type Path, type PathValue } from 'react-hook-form'
 import { ZodObject, type z, type ZodTypeAny } from 'zod'
 
 interface FormAuthProps<T extends Record<string, unknown>> {
@@ -18,11 +18,15 @@ interface FormAuthProps<T extends Record<string, unknown>> {
   placeholders: string[]
   labels: string[]
   showFields: (keyof T)[]
-  handleSubmit: (values: T) => void
   formType?: 'login' | 'register'
+  values: T
+  setValues: Array<(value: unknown) => void>
+  handleSubmit: (values: T) => void
 }
 
 export default function FormAuth<T extends Record<string, unknown>>({
+  values,
+  setValues,
   schema,
   labels,
   showFields,
@@ -33,20 +37,12 @@ export default function FormAuth<T extends Record<string, unknown>>({
 }: FormAuthProps<T>) {
   type TypeSchema = z.infer<typeof schema>
   const keysSchema = Object.keys(schema.shape)
-  const defaultValues: DefaultValues<TypeSchema> = keysSchema.reduce(
-    (object, key) => {
-      object[key as keyof TypeSchema] = '' as TypeSchema[keyof TypeSchema]
-      return object
-    },
-    {} as DefaultValues<TypeSchema>
-  )
 
   const pathName = usePathname()
   const [title, setTitle] = useState<string>('')
 
   const form = useForm<TypeSchema>({
-    resolver: zodResolver(schema),
-    defaultValues
+    resolver: zodResolver(schema)
   })
 
   const onSubmit = async (values: TypeSchema) => {
@@ -62,6 +58,16 @@ export default function FormAuth<T extends Record<string, unknown>>({
   }, [pathName])
 
   const { isSubmitting } = form.formState
+
+  for (const key of keysSchema) {
+    const value = values[key as keyof T] as PathValue<
+      TypeSchema,
+      Path<TypeSchema>
+    >
+    if (value !== undefined && value !== null && key !== undefined) {
+      form.setValue(key as Path<TypeSchema>, value)
+    }
+  }
 
   return (
     <Flex
@@ -98,6 +104,9 @@ export default function FormAuth<T extends Record<string, unknown>>({
                       placeholder={placeholder}
                       control={form.control}
                       accessorKey={accessorKey}
+                      onChange={(value: unknown) => {
+                        setValues[index](value)
+                      }}
                     />
                   )
                 })}

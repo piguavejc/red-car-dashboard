@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import type { Control, FieldValues, Path } from 'react-hook-form'
+import type { FieldValues, Path } from 'react-hook-form'
 
 import { Card } from '@/components/ui/card'
 import Image from 'next/image'
@@ -16,14 +16,6 @@ import { Input } from '@/components/ui/input'
 import { Plus } from 'lucide-react'
 import base64 from 'base64-encode-file'
 import { useState } from 'react'
-
-interface FormFieldProps<T extends FieldValues>
-  extends React.ComponentProps<'div'> {
-  label: string
-  control: Control<T>
-  accessorKey: keyof T
-  placeholder: string
-}
 
 export const FieldUpload = <T extends FieldValues>({
   control,
