@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuthStore } from '@/app/auth/store/auth/auth.store'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AuthLogin } from '@/core/auth/aplication/auth-login'
 
@@ -13,6 +14,8 @@ import toast from 'react-hot-toast'
 
 export default function LoginSection() {
   const router = useRouter()
+  const email = useAuthStore((state) => state.email)
+  const setEmail = useAuthStore((state) => state.setEmail)
 
   const handleLogin = async (values: LoginInput) => {
     const result = await AuthLogin.run(values)
@@ -41,6 +44,14 @@ export default function LoginSection() {
             labels={['Correo', 'Contraseña']}
             showFields={['email', 'password']}
             handleSubmit={handleLogin}
+            values={{ email, password: '' }}
+            setValues={[
+              (value: unknown) => {
+                if (typeof value === 'string') {
+                  setEmail(value)
+                }
+              }
+            ]}
           />
         </CardContent>
       </Card>

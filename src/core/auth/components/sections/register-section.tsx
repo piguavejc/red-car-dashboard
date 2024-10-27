@@ -1,5 +1,6 @@
 'use client'
 
+import { useAuthStore } from '@/app/auth/store/auth/auth.store'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AuthRegister } from '@/core/auth/aplication/auth-register'
 
@@ -13,6 +14,8 @@ import toast from 'react-hot-toast'
 
 export default function RegisterSection() {
   const router = useRouter()
+  const email = useAuthStore((state) => state.email)
+  const setEmail = useAuthStore((state) => state.setEmail)
 
   const handleRegister = async (values: LoginInput) => {
     const result = await AuthRegister.run(values)
@@ -42,6 +45,15 @@ export default function RegisterSection() {
             showFields={['email', 'password']}
             handleSubmit={handleRegister}
             formType="register"
+            values={{ email, password: '' }}
+            setValues={[
+              (value: unknown) => {
+                console.log('email', value)
+                if (typeof value === 'string') {
+                  setEmail(value)
+                }
+              }
+            ]}
           />
         </CardContent>
       </Card>
