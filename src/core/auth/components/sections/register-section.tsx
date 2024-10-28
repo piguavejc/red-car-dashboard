@@ -48,7 +48,6 @@ export default function RegisterSection() {
             values={{ email, password: '' }}
             setValues={[
               (value: unknown) => {
-                console.log('email', value)
                 if (typeof value === 'string') {
                   setEmail(value)
                 }
