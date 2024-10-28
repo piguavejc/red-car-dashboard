@@ -105,7 +105,9 @@ export default function FormAuth<T extends Record<string, unknown>>({
                       control={form.control}
                       accessorKey={accessorKey}
                       onChange={(value: unknown) => {
-                        setValues[index](value)
+                        if (setValues[index] !== undefined) {
+                          setValues[index](value)
+                        }
                       }}
                     />
                   )
