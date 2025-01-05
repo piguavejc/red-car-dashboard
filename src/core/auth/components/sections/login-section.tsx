@@ -1,7 +1,13 @@
 'use client'
 
 import { useAuthStore } from '@/app/auth/store/auth/auth.store'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
 import { AuthLogin } from '@/core/auth/aplication/auth-login'
 
 import {
@@ -54,6 +60,17 @@ export default function LoginSection() {
             ]}
           />
         </CardContent>
+        <CardFooter className="justify-center">
+          <p className="text-center">
+            ¿Olvidaste tu contraseña?{' '}
+            <a
+              href="/auth/request-password-reset"
+              className="text-blue-500 hover:underline"
+            >
+              Recupérala aquí
+            </a>
+          </p>
+        </CardFooter>
       </Card>
     </div>
   )

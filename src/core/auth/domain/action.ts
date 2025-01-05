@@ -6,6 +6,7 @@ import type {
 } from '@/core/shared/infrastructure/schema/shared.schema'
 
 import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
+import type { RequestPasswordResetInput } from '@/core/auth/domain/entities/request-password-reset.entity'
 import {
   handlingError,
   type ResponseSA
@@ -33,6 +34,20 @@ export const register = async (
 ): Promise<ResponseSA<Message>> => {
   const result = await handlingError<Message>(async () => {
     const result = await myAxios.post<Message>('/auth/register', data)
+    return result.data
+  })
+  return result
+}
+
+export const requestPasswordReset = async (
+  data: RequestPasswordResetInput
+): Promise<ResponseSA<Message>> => {
+  console.log('data', data)
+  const result = await handlingError<Message>(async () => {
+    const result = await myAxios.post<Message>(
+      '/auth/request-password-reset',
+      data
+    )
     return result.data
   })
   return result

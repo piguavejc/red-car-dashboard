@@ -19,7 +19,7 @@ export async function handlingError<T>(
     const result = await fn()
     return { data: result, error: null }
   } catch (error: any) {
-    console.error(error)
+    // console.error(error)
     if (error instanceof AxiosError) {
       return {
         data: null,
