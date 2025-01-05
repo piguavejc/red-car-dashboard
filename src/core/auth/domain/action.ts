@@ -7,6 +7,7 @@ import type {
 
 import type { LoginInput } from '@/core/auth/domain/entities/login-entity'
 import type { RequestPasswordResetInput } from '@/core/auth/domain/entities/request-password-reset.entity'
+import type { ResetPasswordInput } from '@/core/auth/domain/entities/reset-password.entity'
 import {
   handlingError,
   type ResponseSA
@@ -48,6 +49,16 @@ export const requestPasswordReset = async (
       '/auth/request-password-reset',
       data
     )
+    return result.data
+  })
+  return result
+}
+
+export const resetPassword = async (
+  data: ResetPasswordInput
+): Promise<ResponseSA<Message>> => {
+  const result = await handlingError<Message>(async () => {
+    const result = await myAxios.post<Message>('/auth/reset-password', data)
     return result.data
   })
   return result
