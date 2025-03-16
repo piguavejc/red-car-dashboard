@@ -30,7 +30,7 @@ export const FieldNumber = <T extends FieldValues>({
               onChange={(e) => {
                 const valueAsNumber = e.target.valueAsNumber
                 field.onChange(valueAsNumber)
-                onChange(valueAsNumber)
+                if (onChange) onChange(valueAsNumber)
               }}
               type="number"
               id={name}

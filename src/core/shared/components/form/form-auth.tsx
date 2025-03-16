@@ -18,7 +18,7 @@ interface FormAuthProps<T extends Record<string, unknown>> {
   placeholders: string[]
   labels: string[]
   showFields: (keyof T)[]
-  formType?: 'login' | 'register'
+  formType?: 'login' | 'register' | 'request-password-reset'
   values: T
   setValues: Array<(value: unknown) => void>
   handleSubmit: (values: T) => void
@@ -105,7 +105,9 @@ export default function FormAuth<T extends Record<string, unknown>>({
                       control={form.control}
                       accessorKey={accessorKey}
                       onChange={(value: unknown) => {
-                        setValues[index](value)
+                        if (setValues[index] !== undefined) {
+                          setValues[index](value)
+                        }
                       }}
                     />
                   )
@@ -116,7 +118,11 @@ export default function FormAuth<T extends Record<string, unknown>>({
                     type="submit"
                     className="flex items-center space-x-2"
                   >
-                    {formType === 'login' ? 'Iniciar Sesion' : 'Registrarse'}
+                    {formType === 'login'
+                      ? 'Iniciar Sesion'
+                      : formType === 'register'
+                        ? 'Registrarse'
+                        : 'Enviar'}
                     {isSubmitting && <Loader />}
                   </Button>
                   {formType === 'login' && (
