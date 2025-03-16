@@ -29,7 +29,7 @@ export const FieldEmail = <T extends FieldValues>({
               {...field}
               onChange={(e) => {
                 field.onChange(e.target.value)
-                onChange(e.target.value)
+                if (onChange) onChange(e.target.value)
               }}
               type="email"
               id={name}

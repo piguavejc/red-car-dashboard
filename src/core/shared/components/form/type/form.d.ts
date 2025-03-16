@@ -4,5 +4,5 @@ interface FormFieldProps<T extends FieldValues>
   control: Control<T>
   accessorKey: keyof T
   placeholder: string
-  onChange: (value: unknown) => void
+  onChange?: (value: unknown) => void
 }

@@ -11,10 +11,12 @@ import FormAuth from '@/core/shared/components/form/form-auth'
 import { useRouter, useSearchParams } from 'next/navigation'
 import toast from 'react-hot-toast'
 
-export default function ResetPasswordSection() {
+export default function ResetPasswordSection({
+  accessToken
+}: {
+  accessToken: string
+}) {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const accessToken = searchParams.get('accessToken') ?? ''
 
   if (accessToken === '') {
     throw new Error('No se ha proporcionado un token de acceso')
